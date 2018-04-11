@@ -1,24 +1,16 @@
 import React, {Component} from 'react';
-import BrandBar from './brandBar'
+import BrandBar from './home/brandBar'
+import MegaDropDownHeader from './home/megaDropDownHeader'
 import {connect} from "react-redux";
 
 class Home extends Component {
-
-    componentWillMount() {
-        console.log("here");
-        this.props.check();
-
-    }
-
     render() {
-
         return (
             <div>
                 <BrandBar/>
+                <MegaDropDownHeader/>
             </div>
         )
-
-
     }
 }
 

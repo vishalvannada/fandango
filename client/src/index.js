@@ -5,7 +5,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import promise from 'redux-promise';
 import thunk from 'redux-thunk';
-// import reducers from './reducers';
+import reducers from './reducers';
 import axios from 'axios';
 import Home from './components/home'
 
@@ -17,9 +17,9 @@ const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
 //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 // );
 
-// export const store = createStoreWithMiddleware(reducers);
+export const store = createStoreWithMiddleware(reducers);
 
-export const store = createStoreWithMiddleware();
+// export const store = createStoreWithMiddleware();
 
 
 function loggedIn() {

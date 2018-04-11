@@ -10,12 +10,12 @@ class BrandBar extends Component {
             <div>
 
                 <div id="brand-bar">
-                    <div class="fandango-container">
-                        <nav style="float: right">
+                    <div className="fandango-container">
+                        <nav className="text-right">
                             <a href="/fandango-gift-cards">Gift Cards</a> |
-                            <a href="/freemovietickets">Offers</a> |
-                            <a href="https://www.fandango.com/account/signin?from=%2F" class="hide-logged-in">Sign In</a> |
-                            <a href="/signout" class="show-logged-in">Sign Out</a>
+                            <a href="/freemovietickets"> Offers</a> |
+                            <a href="https://www.fandango.com/account/signin?from=%2F" className="hide-logged-in"> Sign In</a>
+                            {/* |<a href="/signout" className="show-logged-in"> Sign Out</a>*/}
                         </nav>
                     </div>
                 </div>
