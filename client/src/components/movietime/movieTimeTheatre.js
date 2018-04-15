@@ -10,7 +10,14 @@ import {Link} from 'react-router-dom';
 class MovieTopSection extends Component {
     state = {
         movieSearch: "",
-        isLogging : false,
+        Date: moment(new Date()).format()
+    }
+    setDate(values){
+        //console.log(values);
+        this.setState({Date:values})
+        console.log("i consoled this",this.state);
+        this.props.getMoviesInSearchPage(this.state);
+
     }
 
     searchMovie() {
@@ -23,21 +30,23 @@ class MovieTopSection extends Component {
 
         var arrayDates = [];
 
-        for (let i = 0; i < 15; i++) {
+        for (var i = 0; i < 15; i++) {
             let newDate = new Date();
             newDate.setDate(newDate.getDate() + i);
             arrayDates.push(newDate);
-            console.log(newDate);
+            //  console.log(newDate);
         }
 
-        console.log(arrayDates)
+        //  console.log(arrayDates)
 
 
         return (_.map(arrayDates, Date => {
             return (
-                <div key={Date} onClick={() => this.setState({isLogging : true})}>
+                <div key={Date}>
 
-                    <div className={this.state.isLogging ? 'background-white text-center carousel-date' : 'text-center carousel-date'}>
+                    <div className="background-white text-center carousel-date" onClick={() => {
+                        this.setDate(moment(Date).format())
+                    }}>
 
                         <span className="font-timesNewRoman font-size-15">{moment(Date).format('ddd')}</span>
                         <br/>
@@ -54,14 +63,16 @@ class MovieTopSection extends Component {
 
         var settings = {
             slidesToShow: 7,
-            slidesToScroll: 4,
-            infinite: true,
-            // centerMode : true,
-            className : 'color-darkgray',
-            focusOnSelect : true,
-            initialSlide : 7,
+            slidesToScroll: 3,
+            infinite: false,
         };
 
+        if(this.props.movietime.moviesTheatres.moviemap.length==0)
+        {
+            return(
+                <div>No Movies Found</div>
+            )
+        }
 
         if (this.props.movietime.moviesTheatres.moviemap[0].type != "test") {
             return (

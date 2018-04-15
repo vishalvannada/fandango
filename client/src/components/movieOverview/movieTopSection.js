@@ -24,7 +24,7 @@ class MovieTopSection extends Component {
                             <br/>
                             <h1 className="font-condensed-bold-white">{this.props.movie.title}</h1>
 
-                            
+
                             <nav class="nav-movie-top my-3">
                                 <a href="#">overview</a>
                                 <a href="#">movietimes+tickets</a>
