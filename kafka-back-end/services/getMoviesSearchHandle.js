@@ -13,7 +13,7 @@ function groupBy(arr, key) {
     for (i = 0, j = arr.length; i < j; i++) {
         cur = arr[i];
         if (!(cur[key] in types)) {
-            types[cur[key]] = { type: cur[key], data: [] };
+            types[cur[key]] = {type: cur[key], data: []};
             newArr.push(types[cur[key]]);
         }
         types[cur[key]].data.push(cur);
@@ -37,7 +37,7 @@ function handle_request(msg, callback) {
             "HallID": new RegExp(msg.reqBody.movieSearch)
         };
 
-        MongoConPool.find('movieHall', queryJson,function (err, movie) {
+        MongoConPool.find('movieHall', queryJson, function (err, movie) {
             if (err) {
                 res.code = "401";
                 callback(null, res);
@@ -49,10 +49,10 @@ function handle_request(msg, callback) {
                     var carsJSON = {};
                     carsJSON.id = movie[i].ID;
                     var spl = movie[i].HallID.split('|');
-                    carsJSON.theatreName =spl[0];
-                    carsJSON.theatreCity =spl[1];
-                    carsJSON.theatreState=spl[2];
-                    carsJSON.theatreZip =spl[3];
+                    carsJSON.theatreName = spl[0];
+                    carsJSON.theatreCity = spl[1];
+                    carsJSON.theatreState = spl[2];
+                    carsJSON.theatreZip = spl[3];
                     carsJSON.movie = movie[i].movie;
                     carsJSON.ScreenNo = movie[i].ScreenNo;
                     carsJSON.Showtimes = movie[i].Showtimes;
@@ -62,13 +62,13 @@ function handle_request(msg, callback) {
                     i = i + 1;
                     return carsJSON;
                 });
-var resmap=groupBy(resArr,"theatreName");
-console.log(resmap);
+                var resmap = groupBy(resArr, "theatreName");
+                console.log(resmap);
 
                 res.code = 200;
                 res.movietheatre = resArr;
-                res.moviemap=resmap;
-                console.log("movie theatres are",resArr);
+                res.moviemap = resmap;
+                console.log("movie theatres are", resArr);
                 callback(null, res);
             }
         });

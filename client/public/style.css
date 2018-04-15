@@ -7,10 +7,26 @@ body {
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
+.background-white{
+    background-color: white;
+}
+
 .font-condensed-bold {
     font-family: 'Open Sans Condensed', sans-serif;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+.fandango-button{
+    background-color: #FD7D15;
+    padding: 8px !important;
+    font-family: Roboto !important;
+    /*font-weight: bold !important;*/
+}
+
+
+.align-right{
+    float: right;
 }
 
 .font-condensed-bold-white {
@@ -18,6 +34,10 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     color: white;
+}
+
+.font-color-fandango{
+    color: #FD7D15;
 }
 
 .font-color-white{
@@ -65,6 +85,14 @@ body {
     color: #ccc;
 }
 
+.color-darkgray{
+    color: #424141;
+}
+
+.font-family-roboto{
+    font-family: Roboto;
+}
+
 .fandango-container {
     width: 1260px;
     height: inherit;
@@ -89,6 +117,17 @@ body {
     height: 66px;
     border-bottom: 2px solid #FD7D15;
     color: white !important;
+}
+
+.background-fandango-checkout{
+    background-color: #424141 !important;
+    height: 60px;
+    /*color: white !important;*/
+}
+
+.checkOut-container{
+    width: 960px;
+    margin: auto;
 }
 
 /* breakpoint and up - mega dropdown styles */
@@ -203,6 +242,13 @@ body {
     margin-bottom: 70px;
 }
 
+
+.carousel-dates{
+    margin-top: 15px;
+    width: 890px;
+    margin-left: 60px;
+}
+
 .slick-next:before {
     font-size: 40px;
     color: darkgray;
@@ -241,6 +287,7 @@ body {
 
 .image-movie-detail {
     width: 164px;
+    height : 246px;
     z-index: 10;
     -webkit-transition: all .4s ease-out;
     -moz-transition: all .4s ease-out;
@@ -277,6 +324,10 @@ body {
 .image {
     margin: 0;
     border: 0
+}
+
+.image-theatres{
+    width: 134px;
 }
 
 .carousel-movie-name {
@@ -381,10 +432,6 @@ body {
     font-size: 14px;
 }
 
-.nav-movie-top{
-    margin: 10px 0px;
-}
-
 .form-review{
     background-color: white;
 }
@@ -402,4 +449,70 @@ body {
 .width-100{
     width: 100%;
     max-width: 100%;
+}
+
+.theatre-info{
+    line-height: 1;
+}
+
+ul.breadcrumb {
+    display: inline-block;
+    width: 295px;
+    float: right;
+    padding: 0;
+    color: #cccccc;
+    font-family: 'Times New Roman';
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 0px;
+}
+
+.border-red {
+    border: 1px solid #eb3730;
+}
+
+.redux-payment-form{
+    width: 100%;
+    font-family: Roboto;
+    font-size: 14px;
+}
+
+.error-message {
+    margin-top: 5px;
+    color: #eb3730;
+}
+
+.max-width-50 {
+    max-width: 50%;
+}
+
+
+.max-width-20 {
+    /*width: 31%;*/
+    max-width: 23%;
+    min-width: 23%;
+    /*margin: auto;*/
+    float: left;
+}
+
+
+.max-width-40 {
+    /*width: 31%;*/
+    max-width: 40%;
+    min-width: 40%;
+    /*margin: auto;*/
+    float: left;
+}
+
+
+.max-width-30 {
+    /*width: 31%;*/
+    max-width: 31%;
+    min-width: 25%;
+    /*margin: auto;*/
+    float: left;
+}
+
+.carousel-date{
+    border: 1px solid #CCCCCC;
 }

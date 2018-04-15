@@ -24,7 +24,8 @@ class MovieTopSection extends Component {
                             <br/>
                             <h1 className="font-condensed-bold-white">{this.props.movie.title}</h1>
 
-                            <nav class="nav-movie-top">
+                            
+                            <nav class="nav-movie-top my-3">
                                 <a href="#">overview</a>
                                 <a href="#">movietimes+tickets</a>
                                 <a href="#">synopsis</a>
@@ -49,18 +50,24 @@ class MovieTopSection extends Component {
                                             className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.rating} {this.props.movie.runtime} minutes
                                         </small>
                                         <br/>
-                                        <small className="font-size-13 font-timesNewRoman color-ccc">Suspense/Thriller</small>
+                                        <small className="font-size-13 font-timesNewRoman color-ccc">Suspense/Thriller
+                                        </small>
                                         <span></span>
                                         {/*<Rating/>*/}
-                                        <div className="rating-stars mt-2">
-                                            <ReactStars
-                                                count={5}
-                                                size={24}
-                                                half={false}
-                                                color2={'#ffd700'}/>
-                                        </div>
-                                        <span class="icon icon-rottom-fresh rotten-tomatoes__icon text-center"></span><br/>
-                                        <small className="font-size-13 font-timesNewRoman color-ccc ">Rotten Tomatoes</small>
+
+                                            <div onClick={() => this.props.history.push(`/movie-review/${this.props.movie.tmdbid}`)} className="rating-stars mt-2">
+                                                <ReactStars
+                                                    edit={false}
+                                                    count={5}
+                                                    size={24}
+                                                    half={false}
+                                                    color2={'#ffd700'}/>
+                                            </div>
+
+                                        <span
+                                            class="icon icon-rottom-fresh rotten-tomatoes__icon text-center"></span><br/>
+                                        <small className="font-size-13 font-timesNewRoman color-ccc ">Rotten Tomatoes
+                                        </small>
                                         <br/>
                                     </div>
 
@@ -72,10 +79,9 @@ class MovieTopSection extends Component {
                                         <br/>
                                         <Link to="/somewhere"><span className="font-weight-700 font-size-14">SOME ALL MOVIE THEATRES + MOVIES</span></Link><br/>
                                         {/*<small className="font-color-white">Movie Times for Tuesday, April 17, 2018*/}
-                                            {/*<br/>*/}
+                                        {/*<br/>*/}
                                         {/*Closed caption  Luxury Lounger Recliners Reserved seating</small>*/}
                                     </div>
-
 
 
                                 </div>
