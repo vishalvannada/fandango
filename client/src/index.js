@@ -8,6 +8,8 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 import Home from './components/home';
 import MovieDetail from './components/movieDetail'
+import MovieTime from './components/movietime'
+
 
 
 const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
@@ -18,8 +20,10 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <Switch>
+                    <Route path="/movietime" component={MovieTime}/>
                     <Route path="/movie-overview" component={MovieDetail}/>
                     <Route path="/" component={Home}/>
+
                 </Switch>
             </div>
         </BrowserRouter>

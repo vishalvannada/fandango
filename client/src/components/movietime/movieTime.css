@@ -1,0 +1,142 @@
+.fd-movie {
+    position: relative;
+    background-color: #fff;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex: 0 1 auto;
+}
+
+.fd-movie__details{
+    font-family: alternate-gothic-no-1-d,"Futura Condensed","Arial Narrow",Arial,sans-serif;
+    color:black;
+
+}
+.fd-theater__header {
+    background: #262626;
+    color: #fff;
+    padding: 10px;
+}
+.fd-movie__showtimes__tick-headline {
+    margin-bottom: 15px;
+    color: #929292;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 22px;
+    display: inline-block;
+    font-family: "Times New Roman",Times,Baskerville,Georgia,serif;
+
+}
+.showtime-btn {
+    width: 89px;
+    padding: 13px 0;
+    margin: 2px;
+    text-align: center;
+}
+.btn {
+    background: #f15500;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    overflow: hidden;
+    padding: 10px 20px;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+.icon.icon-ticket {
+    width: 25px;
+    height: 19px;
+    background-position: center;
+}
+.icon-ticket, .no-touch .invert-hover .icon-ticket:hover {
+    background-image: url(./ticket.PNG);
+    background-repeat: no-repeat;
+}
+.icon {
+    font-size: 0;
+    direction: ltr;
+    background-color: transparent;
+}
+.btn, .icon {
+    display: inline-block;
+}
+.icon, img {
+    vertical-align: middle;
+}
+.btn, .icon {
+    display: inline-block;
+}
+.btn, .cta {
+    cursor: pointer;
+    font-weight: 700;
+}
+.btn, body {
+    font-family: proxima-nova,Helvetica,Arial,sans-serif;
+}
+.btn, input[type=checkbox] {
+    box-shadow: none;
+}
+.fd-movie__btn-list-item{
+    display:inline-block;
+}
+
+
+
+
+
+
+.light {
+    color: #FFF;
+    transition: color .3s linear;
+}
+
+.light {
+    color: #fff;
+}
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: #4AA7F6;
+    -webkit-transition: color .3s linear;
+    -moz-transition: color .3s linear;
+    -o-transition: color .3s linear;
+    transition: color .3s linear;
+}
+a {
+    color: #4aa7f6;
+}
+a {
+    text-decoration: none;
+}
+a {
+    background-color: transparent;
+}
+
+
+
+.uppercase {
+    text-transform: uppercase;
+}
+.font-lg {
+    font-size: 28px;
+}
+.font-300 {
+    font-weight: 300;
+}
+.font-sans-serif {
+    font-family: alternate-gothic-no-1-d,"Futura Condensed","Arial Narrow",Arial,sans-serif;
+
+}
+.font-lg, .font-md, .font-reg, .font-sm, .font-xl, .font-xxl, .font-xxs {
+    line-height: 1em;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: 400;
+}
+.font-proxima-nova{
+    font-family: proxima-nova,Helvetica,Arial,sans-serif;
+}
