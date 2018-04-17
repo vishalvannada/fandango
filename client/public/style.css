@@ -7,6 +7,44 @@ body {
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
+.font-condensed-bold {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.font-condensed-bold-white {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+}
+
+.font-timesNewRoman {
+    font-size: 14px;
+    font-family: "Times New Roman";
+    font-style: italic;
+}
+
+.font-timesNewRoman-gray{
+    font-size: 14px;
+    font-family: "Times New Roman";
+    font-style: italic;
+    color: gray;
+}
+
+.font-size-13{
+    font-size: 13px;
+}
+
+.font-size-16{
+    font-size: 16px;
+}
+
+.font-size-18{
+    font-size: 18px;
+}
+
 #brand-bar {
     height: 32px;
     background-color: #000;
@@ -19,8 +57,12 @@ body {
     color: #CCC;
 }
 
+.color-ccc{
+    color: #ccc;
+}
+
 .fandango-container {
-    width: 1280px;
+    width: 1260px;
     height: inherit;
     margin: auto;
 }
@@ -55,11 +97,10 @@ body {
     }
 
     /* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
-    .navbar .nav-item {
-        padding: .5rem .5rem;
-        margin: 0 .25rem;
-    }
-
+    /*.navbar .nav-item {*/
+    /*padding: .5rem .5rem;*/
+    /*margin: 0 .25rem;*/
+    /*}*/
     /* makes the dropdown full width  */
     .navbar .dropdown {
         position: static;
@@ -85,13 +126,17 @@ body {
 
 }
 
+.navbar {
+    padding: 0px !important;
+}
+
 .megaDropDown-brand {
     width: 242px;
     height: 56px;
     padding: 5px;
 }
 
-.navbar-nav>li>a:after {
+.navbar-nav > li > a:after {
     display: inline-block;
     margin-left: 3px;
     border-top: 11px solid #f15500;
@@ -100,4 +145,212 @@ body {
     content: "";
     vertical-align: middle;
     padding-bottom: 3px;
+}
+
+.font-size-14 {
+    font-size: 14px;
+}
+
+.font-weight-700 {
+    font-weight: 500;
+}
+
+.header-form-input {
+    width: 300px !important;
+    border-radius: 18px;
+}
+
+.header-button-go {
+    background-color: #FD7D15;
+    color: white;
+    font-weight: bold;
+    border-radius: 50px;
+    font-style: italic;
+    font-size: 18px;
+    padding: 4px;
+    border: 2px solid #FD7D15;
+}
+
+.home-under-brand {
+    height: 45px;
+    background-color: darkgrey;
+}
+
+.under-brand-buy {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    color: white;
+}
+
+.inside-brand-buy {
+    font-family: Roboto;
+    font-size: 15px;
+    /*font-weight: bold;*/
+    font-weight: 500;
+    color: whitesmoke;
+}
+
+.carousel {
+    margin-top: 15px;
+    width: 890px;
+    height: 254px;
+    margin-left: 60px;
+    margin-bottom: 70px;
+}
+
+.slick-next:before {
+    font-size: 40px;
+    color: darkgray;
+}
+
+.slick-prev:before {
+    font-size: 40px;
+    color: darkgray;
+}
+
+.slick-prev {
+    left: -45px;
+}
+
+.image-carousel {
+    width: 133px;
+    height: 210px;
+    z-index: 10;
+    -webkit-transition: all .4s ease-out;
+    -moz-transition: all .4s ease-out;
+    -o-transition: all .4s ease-out;
+    transition: all .4s ease-out;
+    -webkit-backface-visibility: hidden;
+}
+
+.image-carousel:hover {
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    cursor: pointer;
+    filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',
+    M11=2, M12=-0, M21=0, M22=2);
+}
+
+.image-movie-detail {
+    width: 164px;
+    z-index: 10;
+    -webkit-transition: all .4s ease-out;
+    -moz-transition: all .4s ease-out;
+    -o-transition: all .4s ease-out;
+    transition: all .4s ease-out;
+    -webkit-backface-visibility: hidden;
+}
+
+.image-movie-detail:hover {
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    cursor: pointer;
+    filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',
+    M11=2, M12=-0, M21=0, M22=2);
+}
+
+.carousel-movie-image {
+    float: left;
+    z-index: 10;
+    overflow: hidden;
+    width: 133px !important;
+}
+
+.movieDetail-image-div {
+    float: left;
+    z-index: 10;
+    overflow: hidden;
+    width: 164px !important;
+}
+
+.image {
+    margin: 0;
+    border: 0
+}
+
+.carousel-movie-name {
+    background-color: white !important;
+    clear: left;
+    width: 133px;
+    height: 78px;
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+.background-movie-top {
+    background-color: rgba(0, 0, 0, .7);
+}
+
+.movieDetail-release-date{
+    background-color: #262626;
+    line-height: 1;
+}
+
+.movie-showtimes:before {
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…40LDE2LjZMMy43LDYuNmwxNC45LTQuMUwyMS4zLDEyLjZ6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==) center center no-repeat;
+    display: inline-block;
+    height: 38px;
+    width: 38px;
+    content: '';
+    border: 1px solid #fff;
+    border-radius: 19px;
+    vertical-align: top;
+    margin-right: -1px;
+}
+
+
+/*Rating Classes*/
+
+@import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
+
+/* Basic styles */
+
+.rating-row {
+    text-align: center;
+}
+
+.rate {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    float: right;
+    font-size: 0;
+    color: #d9d9d9;
+}
+
+.rating label:before {
+    content: "\f005";
+    font-family: FontAwesome;
+    font-size: 40px;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #fcd000;
+    transition: 0.2s;
+}
+
+.rating input:checked ~ label {
+    color: #ccac00;
+}
+
+.rating input:checked ~ label:hover,
+.rating input:checked ~ label:hover ~ label {
+    color: #fcd000;
+    transition: 0.2s;
 }

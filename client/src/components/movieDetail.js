@@ -1,28 +1,25 @@
 import React, {Component} from 'react';
 import BrandBar from './home/brandBar'
 import MegaDropDownHeader from './home/megaDropDownHeader';
-import UnderBrand from './home/underBrand';
-import Carousel from './home/carousel';
+import MovieTopSection from './movieDetail/movieTopSection';
 import {connect} from "react-redux";
 import {demo} from "../actions/homeActions";
 
 
 
-class Home extends Component {
+class MovieDetail extends Component {
 
 
-    componentDidMount(){
-        this.props.demo()
-    }
+    // componentDidMount(){
+    //     this.props.demo()
+    // }
 
     render() {
         return (
             <div>
                 <BrandBar/>
                 <MegaDropDownHeader/>
-                <UnderBrand/>
-                <Carousel home={this.props.home}/>
-                <img src="./home_dog.jpg"/>
+                <MovieTopSection/>
             </div>
         )
     }
@@ -32,4 +29,4 @@ function mapStateToProps(state) {
     return {home: state.home}
 }
 
-export default connect(mapStateToProps, {demo})(Home);
+export default connect(null, null)(MovieDetail);
