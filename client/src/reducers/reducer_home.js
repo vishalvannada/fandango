@@ -1,4 +1,4 @@
-import {DEMO} from "../actions/homeActions";
+import {DEMO} from "../actions/vishalActions";
 
 //state may be object or array or anything that we want
 

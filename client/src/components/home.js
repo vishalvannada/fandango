@@ -4,7 +4,7 @@ import MegaDropDownHeader from './home/megaDropDownHeader';
 import UnderBrand from './home/underBrand';
 import Carousel from './home/carousel';
 import {connect} from "react-redux";
-import {demo} from "../actions/homeActions";
+import {demo} from "../actions/vishalActions";
 
 
 

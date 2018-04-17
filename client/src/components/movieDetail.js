@@ -3,7 +3,7 @@ import BrandBar from './home/brandBar'
 import MegaDropDownHeader from './home/megaDropDownHeader';
 import MovieTopSection from './movieDetail/movieTopSection';
 import {connect} from "react-redux";
-import {demo} from "../actions/homeActions";
+import {demo} from "../actions/vishalActions";
 
 
 

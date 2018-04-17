@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Slider from "react-slick";
 import _ from 'lodash';
-import {demo} from "../../actions/homeActions";
+import {demo} from "../../actions/vishalActions";
 
 class Carousel extends Component {
 
