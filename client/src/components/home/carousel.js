@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Slider from "react-slick";
 import _ from 'lodash';
-import {demo} from "../../actions/vishalActions";
+import moment from 'moment';
+import {Link} from 'react-router-dom';
 
 class Carousel extends Component {
 
@@ -12,6 +13,7 @@ class Carousel extends Component {
             return (_.map(this.props.home.movies, movie => {
                 return (
                     <div key={movie.title}>
+                        <Link to={`/movie-overview/${movie.tmdbid}`}>
                         <div className="carousel-movie-image">
                             <img
                                 src={`http://image.tmdb.org/t/p/w200${movie.poster_path}`}
@@ -20,8 +22,9 @@ class Carousel extends Component {
                         <div className="carousel-movie-name px-2 pt-1">
                             <span className="font-condensed-bold p-0">{movie.title}</span>
                             <br/>
-                            <span className="font-timesNewRoman-gray">{movie.release_date}</span>
+                            <span className="font-timesNewRoman-gray">{moment(movie.release_date).format('MMM DD, YYYY')}</span>
                         </div>
+                        </Link>
                     </div>
                 )
             }))

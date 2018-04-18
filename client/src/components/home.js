@@ -4,7 +4,7 @@ import MegaDropDownHeader from './home/megaDropDownHeader';
 import UnderBrand from './home/underBrand';
 import Carousel from './home/carousel';
 import {connect} from "react-redux";
-import {demo} from "../actions/vishalActions";
+import {getMoviesInHomePageCarousel} from "../actions/vishalActions";
 
 
 
@@ -12,7 +12,7 @@ class Home extends Component {
 
 
     componentDidMount(){
-        this.props.demo()
+        this.props.getMoviesInHomePageCarousel()
     }
 
     render() {
@@ -32,4 +32,4 @@ function mapStateToProps(state) {
     return {home: state.home}
 }
 
-export default connect(mapStateToProps, {demo})(Home);
+export default connect(mapStateToProps, {getMoviesInHomePageCarousel})(Home);

@@ -1,0 +1,57 @@
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import Slider from "react-slick";
+import _ from 'lodash';
+import moment from 'moment';
+import {Link} from 'react-router-dom';
+
+class CastCrewCarousel extends Component {
+
+
+    renderMovies() {
+        if (this.props.cast.length > 0) {
+            return (_.map(this.props.cast, castMember => {
+                console.log(castMember)
+                return (
+                    <div key={castMember.name}>
+                        <Link to={`/castMember-overview/${castMember.tmdbid}`}>
+                            <div className="carousel-movie-image">
+                                <img
+                                    src={`http://image.tmdb.org/t/p/w200${castMember.profile_path}`}
+                                    className="image-carousel image"/>
+                            </div>
+                            <div className="carousel-movie-name px-2 pt-1">
+                                <span className="font-condensed-bold p-0">{castMember.name}</span>
+                                <br/>
+                                <span className="font-timesNewRoman-gray">{castMember.character}</span>
+                            </div>
+                        </Link>
+                    </div>
+                )
+            }))
+        }
+    }
+
+
+    render() {
+        var settings = {
+            slidesToShow: 6,
+            slidesToScroll: 3,
+            infinite: true,
+        };
+
+        return (
+            <div className="carousel">
+                <Slider {...settings}>
+                    {this.renderMovies()}
+                </Slider>
+
+            </div>
+        )
+    }
+}
+
+
+export default connect(null, null)(CastCrewCarousel);
+
+

@@ -19,13 +19,29 @@ var multer = require('multer');
 
 router.post('/dummyData', function (req, res, next) {
 
-    console.log(req.param('vishal'))
 
-    // res.status(201).end();
+
+
 
 
     kafka.make_request('loadDataFromAPI_topic', {
-        title: req.param('vishal')
+        tmdbid: req.param('tmdbid'),
+        title: req.param('title'),
+        backdrop_path: req.param('backdrop_path'),
+        original_language: req.param('original_language'),
+        overview: req.param('overview'),
+        poster_path: req.param('poster_path'),
+        release_date: req.param('release_date'),
+        runtime: req.param('runtime'),
+        status: req.param('status'),
+        tagline: req.param('tagline'),
+        vote_average: req.param('vote_average'),
+        vote_count: req.param('vote_count'),
+        youtube_trailer: req.param('youtube_trailer'),
+        cast: req.param('cast'),
+        crew: req.param('crew'),
+        rating: req.param('rating'),
+        reviews: req.param('reviews'),
     }, function (err, results) {
         console.log('in result');
         if (results.code == 200) {

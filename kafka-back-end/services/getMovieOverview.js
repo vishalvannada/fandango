@@ -17,43 +17,28 @@ function handle_request(msg, callback) {
     var i = 0;
     try {
 
+        console.log("msg.tmdbid", msg.tmdbid)
         var queryJson = {
-            tmdbid: msg.tmdbid,
-            title: msg.title,
-            backdrop_path: msg.backdrop_path,
-            original_language: msg.original_language,
-            overview: msg.overview,
-            poster_path: msg.poster_path,
-            release_date: new Date(msg.release_date),
-            runtime: msg.runtime,
-            status: msg.status,
-            tagline: msg.tagline,
-            vote_average: msg.vote_average,
-            vote_count: msg.vote_count,
-            youtube_trailer: msg.youtube_trailer,
-            cast: msg.cast,
-            crew: msg.crew,
-            rating: msg.rating,
-            reviews: msg.reviews,
+            "tmdbid": Number.parseInt(msg.tmdbid)
         };
 
-        MongoConPool.insert('movies', queryJson, function (err, flights) {
+        MongoConPool.findOne('movies', queryJson, function (err, movie) {
             if (err) {
                 res.code = "401";
-                res.value = "Flights details fetch unsuccessful";
                 callback(null, res);
             }
             else {
                 res.code = 200;
-                console.log("mama", flights)
+                res.movie = movie;
+                console.log("movie",movie)
                 callback(null, res);
             }
         });
 
     }
-    catch (e) {
+    catch
+        (e) {
         res.code = "401";
-        res.value = "Flights details fetch unsuccessful";
         callback(null, res);
     }
     // winston.remove(winston.transports.File);

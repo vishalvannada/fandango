@@ -10,6 +10,7 @@ var passport = require('passport');
 require('./routes/passport')(passport);
 
 var index = require('./routes/vishal/index');
+var movies = require('./routes/vishal/movies');
 
 var mongoSessionURL = "mongodb://cmpe273:sreedevi@ds139929.mlab.com:39929/freelancer_lab2";
 var expressSessions = require("express-session");
@@ -72,7 +73,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/', index); //vishal
+app.use('/movies', movies); //vishal
 
 // catch 404 and forward to error handlers
 app.use(function(req, res, next) {
