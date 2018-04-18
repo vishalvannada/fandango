@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="866bccd2-bf54-41b2-80e8-627ed00afaf4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/signUp/signUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/signUp/signUp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/signUp/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/signUp/signup.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,8 +20,8 @@
       <file leaf-file-name="signUp.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/components/signUp/signUp.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="103" column="102" lean-forward="true" selection-start-line="103" selection-start-column="102" selection-end-line="103" selection-end-column="102" />
+            <state relative-caret-position="26">
+              <caret line="296" column="68" selection-start-line="296" selection-start-column="68" selection-end-line="296" selection-end-column="68" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#21#60#0" expanded="true" />
@@ -40,8 +40,8 @@
       <file leaf-file-name="signup.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/signUp/signup.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+            <state relative-caret-position="360">
+              <caret line="41" column="10" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -265,25 +265,25 @@
       <workItem from="1522114304650" duration="7046000" />
       <workItem from="1523352857437" duration="16907000" />
       <workItem from="1523863735127" duration="52792000" />
-      <workItem from="1524034297760" duration="10760000" />
+      <workItem from="1524034297760" duration="12675000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87505000" />
+    <option name="totallyTimeSpent" value="89420000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="810" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.15997182" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.15997182" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.32959327" />
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="2" visible="true" weight="0.30294532" />
+      <window_info anchor="bottom" id="Terminal" order="2" visible="true" weight="0.30294532" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -623,15 +623,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/signUp/signup.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+        <state relative-caret-position="360">
+          <caret line="41" column="10" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/signUp/signUp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="103" column="102" lean-forward="true" selection-start-line="103" selection-start-column="102" selection-end-line="103" selection-end-column="102" />
+        <state relative-caret-position="26">
+          <caret line="296" column="68" selection-start-line="296" selection-start-column="68" selection-end-line="296" selection-end-column="68" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#21#60#0" expanded="true" />

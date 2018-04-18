@@ -64,6 +64,8 @@ class signUp extends Component {
 
         /* Render using Redux-Form */
     render(){
+
+
         console.log("Inside Signup");
         return(
 
@@ -170,7 +172,7 @@ class signUp extends Component {
 
                                                     {/* Email - ID */}
                                                     <label>Email-ID</label>
-                                                    <Field name="firstname"
+                                                    <Field name="email"
                                                            className="form-control form-control-lg registration-form-email"
                                                            id="EmailAddressBox"
                                                            type = 'text'
@@ -215,14 +217,14 @@ class signUp extends Component {
                                                         <hr/>
                                                     </div>
                                                     <div
-                                                        className="large-8 medium-12 columns social-signin large-centered">
+                                                        className=" medium-12 columns social-signin large-centered">
                                                         <div id="googlePlusSignIn"
                                                              className="social-login-button social-login-gplus"
-                                                             data-gapiattached="true">Join with Google+
+                                                             data-gapiattached="true"><Link to = '#'>Join with Google+</Link>
                                                         </div>
                                                         <div id="facebookSignIn"
-                                                             className="social-login-button social-login-facebook">Join
-                                                            with Facebook
+                                                             className="social-login-button social-login-facebook"><Link to = '#'>Join
+                                                            with Facebook</Link>
                                                         </div>
                                                         <small className="secondary-cta">We respect your privacy and
                                                             will never<br/> post without your permission.</small>
@@ -292,20 +294,25 @@ class signUp extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(signUp)
 function validate(values) {
     const errors = {};
+    let regEx_email = "/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i";
     //validate input from values
 
 
-    if (!values.proName || values.proName.length < 10) {
-        errors.proName = "Please enter atleast 10 characters\n ";
+    if (!values.firstname || values.firstname.length < 10) {
+        errors.firstname = "Please enter username of min 10 characters\n ";
     }
 
 
-    if (!values.proDescr || values.proDescr.length < 30 || values.proDescr.length > 140) {
-        errors.proDescr = "Please enter between 30  and 150 characters\n ";
+    if (!values.email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = "Please enter a valid Email-ID\n ";
     }
 
-    if (!values.proSkills) {
-        errors.proSkills = 'please enter some skills';
+    if (!values.password){
+        errors.password = "Please enter a valid password\n";
+    }
+
+    if (!values.confirm_password|| values.password !==values.confirm_password) {
+        errors.confirm_password = 'Password doesn\'t match\n';
     }
 
     //if errors is empty , the form is fine to submit
