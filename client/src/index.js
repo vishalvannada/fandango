@@ -7,9 +7,13 @@ import promise from 'redux-promise';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 import Home from './components/home';
+
+import MovieTime from './components/movietime'
+
 import MovieDetail from './components/movieOverview';
 import MovieRating from './components/movieRating';
 import SecretPage from './components/secretPage';
+
 
 
 const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
@@ -20,10 +24,12 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <Switch>
+                    <Route path="/movietime" component={MovieTime}/>
                     <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
                     <Route path="/movie-review/:tmdbid" component={MovieRating}/>
                     <Route path="/secret" component={SecretPage}/>
                     <Route path="/" component={Home}/>
+
                 </Switch>
             </div>
         </BrowserRouter>
