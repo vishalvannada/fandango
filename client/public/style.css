@@ -285,12 +285,26 @@ body {
 }
 
 .background-movie-top {
-    background-color: rgba(0, 0, 0, .7);
+    background-color: rgba(0, 0, 0, 0.6);
+    /*position: absolute;*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .movieDetail-release-date{
     background-color: #262626;
-    line-height: 1;
+}
+
+.movieDetail-synopsis{
+    background-color: #262626;
+    color: white;
+    text-align: center;
+    width: 40%;
+    margin: auto;
+    font-size: 18px;
+    font-weight: 500 !important;
 }
 
 .movie-showtimes:before {

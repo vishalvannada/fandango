@@ -7,8 +7,11 @@ import promise from 'redux-promise';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 import Home from './components/home';
-import MovieDetail from './components/movieDetail'
+
 import MovieTime from './components/movietime'
+
+import MovieDetail from './components/movieOverview';
+import SecretPage from './components/secretPage';
 
 
 
@@ -21,7 +24,8 @@ ReactDOM.render(
             <div>
                 <Switch>
                     <Route path="/movietime" component={MovieTime}/>
-                    <Route path="/movie-overview" component={MovieDetail}/>
+                    <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
+                    <Route path="/secret" component={SecretPage}/>
                     <Route path="/" component={Home}/>
 
                 </Switch>

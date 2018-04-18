@@ -9,13 +9,8 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 require('./routes/passport')(passport);
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var login = require('./routes/login');
-var signup = require('./routes/signUp');
-var project = require('./routes/project');
-
-
+var index = require('./routes/vishal/index');
+var movies = require('./routes/vishal/movies');
 
 var mongoSessionURL = "mongodb://cmpe273:sreedevi@ds139929.mlab.com:39929/freelancer_lab2";
 var expressSessions = require("express-session");
@@ -27,7 +22,7 @@ var app = express();
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://ec2-54-183-235-146.us-west-1.compute.amazonaws.com:3000');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -78,11 +73,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/login',login);
-app.use('/signup',signup);
-app.use('/project',project);
+app.use('/', index); //vishal
+app.use('/movies', movies); //vishal
+
 // catch 404 and forward to error handlers
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
