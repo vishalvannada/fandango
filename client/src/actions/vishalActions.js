@@ -4,7 +4,7 @@ import moment from 'moment';
 
 export const DEMO = 'demo';
 export const MOVIES_CAROUSEL_NOW = 'moviesCarouselNow';
-export const MOVIE_OVERVIEW = 'movieOverview'
+export const MOVIE_OVERVIEW = 'movieOverview';
 
 
 const ROOT_URL = 'http://localhost:3001';
@@ -111,11 +111,11 @@ function movieOverview(response){
 
 
 export function getMovieOverview(tmdbid) {
-    console.log(tmdbid)
+    console.log(tmdbid);
     return (dispatch) => {
         const response = axios.get(`${ROOT_URL}/movies/getMovieOverview?tmdbid=${tmdbid}`)
             .then(response => {
-                console.log(response.data)
+                console.log(response.data);
                 dispatch(movieOverview(response.data))
             }).catch(error => {
                 console.log(error);

@@ -12,6 +12,7 @@ import MovieTime from './components/movietime'
 
 import MovieDetail from './components/movieOverview';
 import SecretPage from './components/secretPage';
+import SignUp from './components/signUp/signUp'; // Rishith
 
 
 
@@ -23,10 +24,12 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <Switch>
+                    <Route exact path="/signup" component={SignUp}/> {/* Added by Rishith */}
                     <Route path="/movietime" component={MovieTime}/>
                     <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
                     <Route path="/secret" component={SecretPage}/>
                     <Route path="/" component={Home}/>
+
 
                 </Switch>
             </div>

@@ -10,7 +10,7 @@ class MovieTopSection extends Component {
         var divStyle = {
             //backgroundImage: 'url(http://image.tmdb.org/t/p/original/nIrDm42dy5PaXtUAzUfPmxM4mQm.jpg)',
             backgroundColor: "white"
-        }
+        };
 
         return (
             <div className="background-movie-top" style={divStyle}>
