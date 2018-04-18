@@ -29,6 +29,9 @@ class Rating extends Component {
                 </div>
 
             </div>
+			
+			
+			//<div>Pranith</div>
         )
     }
 }
