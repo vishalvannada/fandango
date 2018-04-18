@@ -17,7 +17,9 @@ class CastCrewCarousel extends Component {
                         <Link to={`/castMember-overview/${castMember.tmdbid}`}>
                             <div className="carousel-movie-image">
                                 <img
-                                    src={`http://image.tmdb.org/t/p/w200${castMember.profile_path}`}
+                                    src={castMember.profile_path != null ? `http://image.tmdb.org/t/p/w200${castMember.profile_path}` :
+                                        '//images.fandango.com/ImageRenderer/200/0/redesign/static/img/default_poster.png/0/images/masterrepository/other/temp.jpg'
+                                    }
                                     className="image-carousel image"/>
                             </div>
                             <div className="carousel-movie-name px-2 pt-1">
