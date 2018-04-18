@@ -97,13 +97,55 @@ class signUp extends Component {
                         </header>
                         <div className="page registration">
                             <div className='row'>
-                                <div className='double-type medium-7 medium-centered columns'>
+                                <div className='double-type medium-10 medium-centered columns'>
                                     <div className='panel-group row'>
-                                        <div id ='offer_container' className='panel intercept-container medium-2 columns'>
-                                            <img
-                                                src ={offer}
-                                                id = 'offer'
-                                            />
+
+
+                                        <div className="panel intercept-container  medium-6  columns">
+                                            <div className="action-details small-12 columns">
+                                                <div className="vip-perks vip-perks--authentication">
+                                                    <div className="perks__header">
+                                                        Level up your movie life with Fandango VIP:
+                                                    </div>
+
+                                                    <div className="perks__list">
+                                                        <div className="perk perk--vip-plus" id="my-fandango">
+                                                            <div className="perk__header">
+                                                                New! Earn Points, Get Movies
+                                                            </div>
+
+                                                        </div>
+                                                        <div className="perk perk--rope" id="insider-perks">
+                                                            <div className="perk__header">
+                                                                Insider Perks
+                                                            </div>
+
+                                                        </div>
+                                                        <div className="perk perk--popcorn" id="theater-rewards">
+                                                            <div className="perk__header">
+                                                                Partner Rewards
+                                                            </div>
+
+                                                        </div>
+                                                        <div className="perk perk--ticket" id="worry-free-tickets">
+                                                            <div className="perk__header">
+                                                                Refunds &amp; Exchanges
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <div className="registration-promo-unit hide-for-small-only">
+                                                <img
+                                                    src="//images.fandango.com/cms/assets/aced1350-33b7-11e8-8eca-fd26e4965c58--vip-registration-banner.png"
+                                                    alt="Introducing FandangoVIP+ -- Join now and get started."/>
+                                            </div>
+
                                         </div>
 
                                         <div className='panel sign-up-form medium-6 columns'>
@@ -171,6 +213,19 @@ class signUp extends Component {
                                                     </small>
                                                     <div className="divider">
                                                         <hr/>
+                                                    </div>
+                                                    <div
+                                                        className="large-8 medium-12 columns social-signin large-centered">
+                                                        <div id="googlePlusSignIn"
+                                                             className="social-login-button social-login-gplus"
+                                                             data-gapiattached="true">Join with Google+
+                                                        </div>
+                                                        <div id="facebookSignIn"
+                                                             className="social-login-button social-login-facebook">Join
+                                                            with Facebook
+                                                        </div>
+                                                        <small className="secondary-cta">We respect your privacy and
+                                                            will never<br/> post without your permission.</small>
                                                     </div>
 
 

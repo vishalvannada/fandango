@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="866bccd2-bf54-41b2-80e8-627ed00afaf4" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/vishalActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/actions/vishalActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/home/brandBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/home/brandBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/movietime.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/movietime.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/movietime/movieTimeTheatre.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/movietime/movieTimeTheatre.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/signUp/signUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/signUp/signUp.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,25 +17,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="signUp.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="signUp.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/components/signUp/signUp.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="172" column="60" selection-start-line="172" selection-start-column="60" selection-end-line="172" selection-end-column="60" />
+            <state relative-caret-position="145">
+              <caret line="103" column="102" lean-forward="true" selection-start-line="103" selection-start-column="102" selection-end-line="103" selection-end-column="102" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#21#60#0" expanded="true" />
                 <element signature="e#1679#3146#0" />
+                <element signature="e#3606#5930#0" />
+                <element signature="e#3706#5878#0" />
+                <element signature="e#3813#4003#0" />
+                <element signature="e#4057#5822#0" />
+                <element signature="e#4143#4512#0" />
+                <element signature="e#4258#4448#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signup.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="signup.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/signUp/signup.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="28" selection-start-line="28" selection-end-line="29" />
+            <state relative-caret-position="330">
+              <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -119,8 +118,8 @@
         <option value="$PROJECT_DIR$/client/src/components/signup.css" />
         <option value="$PROJECT_DIR$/client/public/index.html" />
         <option value="$PROJECT_DIR$/client/src/components/signUp.js" />
-        <option value="$PROJECT_DIR$/client/src/components/signUp/signUp.js" />
         <option value="$PROJECT_DIR$/client/src/components/signUp/signup.css" />
+        <option value="$PROJECT_DIR$/client/src/components/signUp/signUp.js" />
       </list>
     </option>
   </component>
@@ -266,12 +265,12 @@
       <workItem from="1522114304650" duration="7046000" />
       <workItem from="1523352857437" duration="16907000" />
       <workItem from="1523863735127" duration="52792000" />
-      <workItem from="1524034297760" duration="9518000" />
+      <workItem from="1524034297760" duration="10760000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86263000" />
+    <option name="totallyTimeSpent" value="87505000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="810" extended-state="6" />
@@ -622,22 +621,28 @@
     <entry file="file://$PROJECT_DIR$/client/src/components/signUp/offers.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/signUp/signup.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/signUp/signUp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="172" column="60" selection-start-line="172" selection-start-column="60" selection-end-line="172" selection-end-column="60" />
+        <state relative-caret-position="145">
+          <caret line="103" column="102" lean-forward="true" selection-start-line="103" selection-start-column="102" selection-end-line="103" selection-end-column="102" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#21#60#0" expanded="true" />
             <element signature="e#1679#3146#0" />
+            <element signature="e#3606#5930#0" />
+            <element signature="e#3706#5878#0" />
+            <element signature="e#3813#4003#0" />
+            <element signature="e#4057#5822#0" />
+            <element signature="e#4143#4512#0" />
+            <element signature="e#4258#4448#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/signUp/signup.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="28" selection-start-line="28" selection-end-line="29" />
         </state>
       </provider>
     </entry>
