@@ -1,5 +1,6 @@
 /* Done by Rishith*/
 import React, {Component} from 'react';
+import {doSignUp} from './rishithActions';
 import {Route, withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -10,17 +11,18 @@ import offer from './offers.png'
 
 
 
-class signUp extends Component {
+class SignUp extends Component {
 
-    constructor(props) {
-        super(props);
-
-
-    }
+    // constructor(props) {
+    //     super(props);
+    //
+    //
+    // }
 
     /* Passing Values into action */
     onSubmit(values){
         console.log(values);
+        this.props.doSignUp(values)
 
     }
 
@@ -66,7 +68,9 @@ class signUp extends Component {
     render(){
 
 
+
         console.log("Inside Signup");
+        const { handleSubmit, load, pristine, reset, submitting } = this.props;
         return(
 
             <div>
@@ -151,7 +155,8 @@ class signUp extends Component {
                                         </div>
 
                                         <div className='panel sign-up-form medium-6 columns'>
-                                            <div className='sub-panel'><form className="registration-form">  {/*Handle Submit missing*/}
+                                            <div className='sub-panel'><
+                                                form className="registration-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>  {/*Handle Submit missing*/}
                                                 <p className="join-header">JOIN FANDANGO<span
                                                     className="page-header-emphasis">VIP</span>
 
@@ -200,7 +205,7 @@ class signUp extends Component {
                                                     />
                                                     <div className="form-group">
                                                         <button id="registration-form-submit" className="btn-cta full-width vip-join-now" >
-                                                            <span className="post-project-btn-font">Post My Project</span>
+                                                            <span className="post-project-btn-font">JOIN NOW FOR FREE</span>
                                                         </button>
                                                     </div>
                                                     <small>
@@ -223,7 +228,7 @@ class signUp extends Component {
                                                              data-gapiattached="true"><Link to = '#'>Join with Google+</Link>
                                                         </div>
                                                         <div id="facebookSignIn"
-                                                             className="social-login-button social-login-facebook"><Link to = '#'>Join
+                                                             className="social-login-button social-login-facebook"><Link to='#'>Join
                                                             with Facebook</Link>
                                                         </div>
                                                         <small className="secondary-cta">We respect your privacy and
@@ -294,12 +299,13 @@ class signUp extends Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(signUp)
 function validate(values) {
     const errors = {};
+
     let regEx_email = "/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i";
     //validate input from values
 
 
-    if (!values.firstname || values.firstname.length < 10) {
-        errors.firstname = "Please enter username of min 10 characters\n ";
+    if (!values.firstname || values.firstname.length < 5) {
+        errors.firstname = "Please enter username of min 5 characters\n ";
     }
 
 
@@ -307,12 +313,15 @@ function validate(values) {
         errors.email = "Please enter a valid Email-ID\n ";
     }
 
-    if (!values.password){
+    if (!values.password || values.password.length<8){
         errors.password = "Please enter a valid password\n";
     }
 
-    if (!values.confirm_password|| values.password !==values.confirm_password) {
-        errors.confirm_password = 'Password doesn\'t match\n';
+    if (!values.confirm_password) {
+        errors.confirm_password = 'Confirm Password is empty\n';
+    }
+    if (values.password !==values.confirm_password){
+        errors.confirm_password = 'Passwords doesn\'t match\n';
     }
 
     //if errors is empty , the form is fine to submit
@@ -322,5 +331,5 @@ function validate(values) {
 
 export default reduxForm({
     validate,
-    form: 'PostProjectForm'
-}) (connect(null,{})(signUp));
+    form: 'SignUpForm'
+}) (connect(null,{doSignUp})(SignUp));

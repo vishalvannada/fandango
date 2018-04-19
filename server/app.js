@@ -11,6 +11,7 @@ require('./routes/passport')(passport);
 
 var index = require('./routes/vishal/index');
 var movies = require('./routes/vishal/movies');
+var signup = require('./routes/rishith/signup');
 
 var mongoSessionURL = "mongodb://cmpe273:sreedevi@ds139929.mlab.com:39929/freelancer_lab2";
 var expressSessions = require("express-session");
@@ -22,7 +23,7 @@ var app = express();
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3002'); /* Rishith - I am Using 3002 and changing it to '3002'*/
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -75,6 +76,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index); //vishal
 app.use('/movies', movies); //vishal
+app.use('/signup', signup);//rishith
+
 
 // catch 404 and forward to error handlers
 app.use(function(req, res, next) {

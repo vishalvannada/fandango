@@ -69,10 +69,10 @@ consumer2.on('message', function (message) {
 
 consumer3.on('message', function (message) {
     console.log('message received');
-    console.log(message)
+    console.log(message);
     console.log(JSON.parse(message.value));
     var data = JSON.parse(message.value);
-    console.log(data)
+    console.log(data);
     getMovieOverview.handle_request(data.data, function(err,res){
         console.log('after handle',res, err);
         var payloads = [

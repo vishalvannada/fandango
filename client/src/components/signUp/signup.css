@@ -43,3 +43,11 @@ hr{
 
     color: red;
 }
+.intercept-container{
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sub-panel{
+    margin-left: auto;
+}

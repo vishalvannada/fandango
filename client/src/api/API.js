@@ -1,4 +1,4 @@
-const api = 'http://localhost:3000'
+const api = 'http://localhost:3004'; /* Rishith - I use port number 3002 instead of 3000*/
 
 
 export const getImages = () =>

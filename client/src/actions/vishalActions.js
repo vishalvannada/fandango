@@ -7,7 +7,7 @@ export const MOVIES_CAROUSEL_NOW = 'moviesCarouselNow';
 export const MOVIE_OVERVIEW = 'movieOverview';
 
 
-const ROOT_URL = 'http://localhost:3001';
+export const ROOT_URL = 'http://localhost:3004'; /* Changing the port number from 3001 to 3004 and exporting it */
 
 function sendDemo(payload) {
     return {

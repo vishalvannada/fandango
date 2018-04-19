@@ -10,7 +10,7 @@ export default function (state = movieOverview, action) {
             console.log(action.payload)
             return {
                 movie: action.payload
-            }
+            };
         default:
             return state;
     }

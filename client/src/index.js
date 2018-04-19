@@ -13,6 +13,8 @@ import MovieTime from './components/movietime'
 import MovieDetail from './components/movieOverview';
 import SecretPage from './components/secretPage';
 import SignUp from './components/signUp/signUp'; // Rishith
+import UserProfile from './components/userProfile/userProfile'; // Rishith
+
 
 
 
@@ -24,7 +26,8 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <Switch>
-                    <Route exact path="/signup" component={SignUp}/> {/* Added by Rishith */}
+                    <Route exact path="/signup" render={(props)=>{return <SignUp/>}}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
+                    <Route exact path='/userprofile' render = {(props)=> {return <UserProfile/>}}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
                     <Route path="/movietime" component={MovieTime}/>
                     <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
                     <Route path="/secret" component={SecretPage}/>

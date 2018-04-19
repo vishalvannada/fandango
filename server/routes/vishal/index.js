@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('../../routes/mysql');
-var kafka = require('../kafka/client')
+var kafka = require('../kafka/client');
 var multer = require('multer');
 
 // var storage = multer.diskStorage({
@@ -18,12 +18,6 @@ var multer = require('multer');
 // var type = upload.single('mypic');
 
 router.post('/dummyData', function (req, res, next) {
-
-
-
-
-
-
     kafka.make_request('loadDataFromAPI_topic', {
         tmdbid: req.param('tmdbid'),
         title: req.param('title'),
@@ -133,6 +127,6 @@ router.post('/savedetails', function (req, res, next) {
         res.status(401).end();
     }
 
-})
+});
 
 module.exports = router;
