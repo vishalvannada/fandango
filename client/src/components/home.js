@@ -22,7 +22,7 @@ class Home extends Component {
                 <MegaDropDownHeader/>
                 <UnderBrand/>
                 <Carousel home={this.props.home}/>
-                <img src="./home_dog.jpg"/>
+                <img src="./home_dog.jpg" className="width-100"/>
             </div>
         )
     }

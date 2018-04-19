@@ -25,7 +25,7 @@ class CastCrewCarousel extends Component {
                             <div className="carousel-movie-name px-2 pt-1">
                                 <span className="font-condensed-bold p-0">{castMember.name}</span>
                                 <br/>
-                                <span className="font-timesNewRoman-gray">{castMember.character}</span>
+                                <span className="font-timesNewRoman-gray">{castMember.character ? castMember.character : castMember.job}</span>
                             </div>
                         </Link>
                     </div>

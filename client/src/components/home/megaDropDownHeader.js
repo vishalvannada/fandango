@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 
 class MegaDropDownHeader extends Component {
@@ -10,8 +11,10 @@ class MegaDropDownHeader extends Component {
             <div className="background-fandango">
                 <div className="fandango-container">
                     <nav className="navbar navbar-expand-lg navbar-dark">
+                        <Link to="/">
                         <img className="megaDropDown-brand mt-1"
                              src="https://images.fandango.com/mobile/web/img/assets/logo-fandango.svg"/>
+                        </Link>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
