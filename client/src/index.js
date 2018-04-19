@@ -9,6 +9,7 @@ import reducers from './reducers';
 import Home from './components/home';
 
 import MovieTime from './components/movietime'
+import AddMovie from './components/addMovie'
 
 import MovieDetail from './components/movieOverview';
 import MovieRating from './components/movieRating';
@@ -25,6 +26,7 @@ ReactDOM.render(
             <div>
                 <Switch>
                     <Route path="/movietime" component={MovieTime}/>
+                    <Route path="/addmovie" component={AddMovie}/>
                     <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
                     <Route path="/movie-review/:tmdbid" component={MovieRating}/>
                     <Route path="/secret" component={SecretPage}/>
