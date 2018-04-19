@@ -21,14 +21,14 @@ class MovieOverview extends Component {
         // console.log(this.props.movie.movie);
 
 
-
-
         return (
             <div>
                 <BrandBar/>
                 <MegaDropDownHeader/>
                 {this.props.movie.movie ? <MovieTopSection movie={this.props.movie.movie}/> : ''}
-                {this.props.movie.movie.cast ? <CastCrewCarousel cast={this.props.movie.movie.cast.concat(this.props.movie.movie.crew)}/> : ''}
+                {this.props.movie.movie.cast ?
+                    <CastCrewCarousel cast={this.props.movie.movie.cast.concat(this.props.movie.movie.crew)}/> : ''}
+                <img src="http://localhost:3000/movie-overview-hard.jpg"/>
             </div>
         )
     }
