@@ -31,7 +31,7 @@ class Rating extends Component {
             </div>
 			
 			
-			//<div>Pranith</div>
+			//<div>Prith<div>hfghjkl
         )
     }
 }
