@@ -23,7 +23,7 @@ var app = express();
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3002'); /* Rishith - I am Using 3002 and changing it to '3002'*/
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001'); /* Rishith - I am Using 3002 and changing it to '3001'*/
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

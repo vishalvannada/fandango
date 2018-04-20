@@ -1,0 +1,48 @@
+#profile_block{
+    margin-left: 30px;
+}
+
+
+.Collapsible__trigger{
+
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+.date-box{
+
+    margin-left: 10px;
+}
+
+#MonthBox{
+
+    padding-right: auto;
+}
+
+#YearBox{
+
+    padding-left: auto;
+}
+
+.collapse-element{
+
+    padding :15px;
+}
+
+.footer-elements{
+
+    margin-left: 15px;
+
+}
+.footer-nav{
+    padding-top: 30px;
+}
+.footer-nav-header{
+    padding-bottom: 3px;
+    height:45px;
+    width:400px;
+    font-size: 1.5rem;
+}
+
+
+
