@@ -3,9 +3,14 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import SigninNavbar from './Signin/signinNavbar';
 import SigninBody from "./Signin/signinBody";
-import {signin} from "../actions/satishActions";
 
 class Signin extends Component{
+    componentDidMount(){
+        var logStat= window.localStorage.getItem('isLoggedIn');
+        if(logStat){
+            this.props.history.push('/');
+        }
+    }
 
     render(){
         return(
@@ -13,7 +18,6 @@ class Signin extends Component{
                 <SigninNavbar/>
                 <SigninBody/>
             </div>
-
 
         )
 

@@ -2,46 +2,117 @@ import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import SigninNavbar from './signinNavbar';
+import {Field,reduxForm} from "redux-form";
 import "./signin.css";
+import {bindActionCreators} from "redux";
+import {signin} from "../../actions/satishActions";
+
 
 class SigninForm extends Component {
+    renderField(field){
+        const {input, meta:{touched,error}} = field;
+        const cname = `form-group ${touched && error? 'has-danger' : ''} `;
+
+        return(
+            <div className= {cname}>
+                {/*<label>{field.label}</label>*/}
+                <input className="form-control large-input"
+                       {...input} {...field}
+                />
+                <div className="text-help">
+                    {touched ? error: ''}
+                </div>
+            </div>
+        )
+    }
+    renderError(){
+        if(this.props.error){
+            return(
+                <div className="text-help">
+                    {this.props.error}
+                </div>
+            );
+        }
+    }
+    onSubmit(values){
+        console.log(values);
+        this.props.signin(values);
+    }
 
     render() {
+        const { handleSubmit, load, pristine, reset, submitting } = this.props;
         return (
-            <div class="panel sign-up-form large-6 medium-6 small-12 columns">
-                <div class="sub-panel">
-                    <p class="join-header">FANDANGO<span class="page-header-emphasis">VIP</span>
-                        <span class="registration-caption hide-for-small-only"></span>
-                        <span class="registration-caption show-for-small-only"></span>
+            <div className="panel sign-up-form large-6 medium-6 small-12 columns">
+                <div className="sub-panel">
+                    <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    <p className="join-header">FANDANGO<span className="page-header-emphasis">VIP</span>
+                        <span className="registration-caption hide-for-small-only"></span>
+                        <span className="registration-caption show-for-small-only"></span>
                     </p>
-                    <div class="registration-promo-unit show-for-small-only">
+                    <div className="registration-promo-unit show-for-small-only">
                         <img src="//images.fandango.com/cms/assets/aced1350-33b7-11e8-8eca-fd26e4965c58--vip-registration-banner.png" alt=""/>
                     </div>
-                    <div id="ErrorMessageWrapper" class=" hide">
-                        <div id="signin-error" class="error-msg"></div>
+                    <div id="ErrorMessageWrapper" className=" hide">
+                        <div id="signin-error" className="error-msg">{this.renderError.bind(this)}</div>
                     </div>
-                    <label for="UsernameBox">Email Address</label>
-                    <input name="ctl00$GlobalBody$SignOnControl$UsernameBox" type="text" id="UsernameBox"/>
-                    <label for="PasswordBox">Password</label>
-                    <input name="ctl00$GlobalBody$SignOnControl$PasswordBox" type="password" maxlength="40" id="PasswordBox"/>
+                    <label htmlFor="UsernameBox">Email Address</label>
+                    <Field name="email" type="text" id="UsernameBox" component={this.renderField}/>
+                    <label htmlFor="PasswordBox">Password</label>
+                    <Field name="password" type="password" maxLength="40" id="PasswordBox" component={this.renderField}/>
 
                     <input type="hidden" name="ctl00$GlobalBody$SignOnControl$CaptchEnabledField" id="GlobalBody_SignOnControl_CaptchEnabledField"/>
-                    <a id="ForgotPasswordLink" href="forgotpassword?from=%2F" class="secondary-cta">Forgot your password?</a>
-                    <a id="ctl00_GlobalBody_SignOnControl_SignInButton" class="btn-cta full-width" alternatetext="Sign In" data-wss="&amp;lid=Sign_Button" href="javascript:__doPostBack('ctl00$GlobalBody$SignOnControl$SignInButton','')">Sign In</a>
-
+                    <a id="ForgotPasswordLink" href="forgotpassword?from=%2F" className="secondary-cta">Forgot your password?</a>
+                    <button type="submit" disabled={pristine || submitting} className="btn-cta full-width" alternatetext="Sign In" >Sign In</button>
+                    </form>
                 </div>
-                <div class="divider">
+                <div className="divider">
                     <hr/>
                 </div>
-
-                <div class="large-8 medium-12 columns social-signin large-centered">
-                    <div id="googlePlusSignIn" class="social-login-button social-login-gplus" data-gapiattached="true">Sign in with Google+</div>
-                    <div id="facebookSignIn" class="social-login-button social-login-facebook">Sign in with Facebook</div>
-                    <small class="secondary-cta">We respect your privacy and will never<br/> post without your permission.</small>
+                <div className="large-8 medium-12 columns social-signin large-centered">
+                    <div id="googlePlusSignIn" className="social-login-button social-login-gplus" data-gapiattached="true">Sign in with Google+</div>
+                    <div id="facebookSignIn" className="social-login-button social-login-facebook">Sign in with Facebook</div>
+                    <small className="secondary-cta">We respect your privacy and will never<br/> post without your permission.</small>
                 </div>
             </div>
         )
     }
 }
+function validate(values){
+    const errors = {};
+    //validate input from values
 
-export default SigninForm;
+    if(!values.email)
+{
+        errors.email = 'Please enter Username or email address\n';
+    }
+    if(values.email == /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i){
+        errors.email = 'Invalid Email address\n';
+    }
+
+    if(!values.password){
+        errors.password= 'please enter password';
+    }
+
+    //if errors is empty , the form is fine to submit
+    //if errors has *any* properties, redux form assumes that form is invalid
+    return errors;
+}
+
+
+function mapStateToProps(state) {
+    return( {error: state.user.message})
+}
+
+
+function mapDispatchToProps(dispatch){
+    return {
+        ...bindActionCreators({
+            signin},dispatch)
+
+    };
+}
+
+export default reduxForm({
+    validate,
+    form: 'loginForm'
+}) (connect(mapStateToProps,mapDispatchToProps)( SigninForm));

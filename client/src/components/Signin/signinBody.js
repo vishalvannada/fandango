@@ -9,35 +9,35 @@ class SigninBody extends Component{
     render(){
 
         return(
-            <div class="page registration " role="main">
-                <div class="row">
+            <div className="page registration " role="main">
+                <div className="row">
 
-                    <div class="double-type large-8 medium-10 small-12 large-centered medium-centered small-centered columns">
-                        <div class="panel-group row">
-                            <div class="panel intercept-container large-6 medium-6 small-12 columns">
-                                <div class="action-details small-12 columns">
-                                    <div class="vip-perks vip-perks--authentication">
-                                        <div class="perks__header">
+                    <div className="double-type large-8 medium-10 small-12 large-centered medium-centered small-centered columns">
+                        <div className="panel-group row">
+                            <div className="panel intercept-container large-6 medium-6 small-12 columns">
+                                <div className="action-details small-12 columns">
+                                    <div className="vip-perks vip-perks--authentication">
+                                        <div className="perks__header">
                                             Level up your movie life with Fandango VIP:
                                         </div>
-                                        <div class="perks__list">
-                                            <div class="perk perk--vip-plus" id="my-fandango">
-                                                <div class="perk__header">
+                                        <div className="perks__list">
+                                            <div className="perk perk--vip-plus" id="my-fandango">
+                                                <div className="perk__header">
                                                     New! Earn Points, Get Movies
                                                 </div>
                                             </div>
-                                            <div class="perk perk--rope" id="insider-perks">
-                                                <div class="perk__header">
+                                            <div className="perk perk--rope" id="insider-perks">
+                                                <div className="perk__header">
                                                     Insider Perks
                                                 </div>
                                             </div>
-                                            <div class="perk perk--popcorn" id="theater-rewards">
-                                                <div class="perk__header">
+                                            <div className="perk perk--popcorn" id="theater-rewards">
+                                                <div className="perk__header">
                                                     Partner Rewards
                                                 </div>
                                             </div>
-                                            <div class="perk perk--ticket" id="worry-free-tickets">
-                                                <div class="perk__header">
+                                            <div className="perk perk--ticket" id="worry-free-tickets">
+                                                <div className="perk__header">
                                                     Refunds &amp; Exchanges
                                                 </div>
                                             </div>
@@ -47,7 +47,7 @@ class SigninBody extends Component{
 
                                 </div>
 
-                                <div class="registration-promo-unit hide-for-small-only">
+                                <div className="registration-promo-unit hide-for-small-only">
                                     <img src="//images.fandango.com/cms/assets/aced1350-33b7-11e8-8eca-fd26e4965c58--vip-registration-banner.png" alt=""/>
                                 </div>
 
@@ -64,5 +64,7 @@ class SigninBody extends Component{
 
     }
 }
+
+
 
 export default SigninBody;

@@ -11,10 +11,13 @@ require('./routes/passport')(passport);
 
 var index = require('./routes/vishal/index');
 var movies = require('./routes/vishal/movies');
+var user = require('./routes/satish/users')
+
 
 var mongoSessionURL = "mongodb://cmpe273:sreedevi@ds139929.mlab.com:39929/freelancer_lab2";
 var expressSessions = require("express-session");
-var mongoStore = require("connect-mongo")(expressSessions);
+var MysqlStore = require('express-mysql-session')(expressSessions);
+
 
 var app = express();
 
@@ -46,20 +49,27 @@ app.use(function (req, res, next) {
 //     activeDuration : 20*60*1000
 // }));
 
+var options = {
+    host: 'localhost',
+    user: 'test',
+    password: 'pass',
+    database: 'fandango',
+    port: 3306
+};
+
+
 app.use(expressSessions({
-    secret: "CMPE273_passport",
-    resave: false,
-    //Forces the session to be saved back to the session store, even if the session was never modified during the request
-    saveUninitialized: false, //force to save uninitialized session to db.
-    //A session is uninitialized when it is new but not modified.
-    duration: 30 * 60 * 1000,
-    activeDuration: 5 * 6 * 1000,
-    store: new mongoStore({
-        url: mongoSessionURL
-    })
+    secret: 'CMPE273_fandango',
+    httpOnly: true,
+    secure: false,
+    maxAge: null,
+    duration: 30 * 60 * 1000,    //setting the time for active session
+    activeDuration: 5 * 60 * 1000,
+    resave :false,
+    store: new MysqlStore(options),
+    saveUninitialized: false,
+    unset: 'destroy'
 }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -72,9 +82,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use('/', index); //vishal
 app.use('/movies', movies); //vishal
+app.use('/user',user);//satish
 
 // catch 404 and forward to error handlers
 app.use(function(req, res, next) {

@@ -6,7 +6,7 @@ router.get('/getMoviesInHomePageCarousel', function (req, res) {
 
     kafka.make_request('getMoviesInHomePageCarousel_topic', {}, function (err, results) {
 
-        if (results.code == 200) {
+        if (results.code === 200) {
             console.log(results);
             res.status(201).send(results.movies)
         }
@@ -42,7 +42,6 @@ router.get('/getMovieOverview', function (req, res) {
 
 router.post('/savedetails', function (req, res, next) {
 
-
     if (req.session) {
         const username = req.param('username');
         const email = req.param('email');
@@ -53,7 +52,6 @@ router.post('/savedetails', function (req, res, next) {
         if (req.param('phoneNumber')) {
             phoneNumber = req.param('phoneNumber');
         }
-
         if (req.param('aboutMe')) {
             aboutMe = req.param('aboutMe');
         }

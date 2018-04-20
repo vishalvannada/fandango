@@ -1,5 +1,5 @@
 var ejs = require('ejs');
-var mysql = require('mysql');
+var mysql = require('mysql2');
 
 //Put your mysql configuration settings - user, password, database and port
 
@@ -39,13 +39,10 @@ function fetchData(callback, sqlQuery) {
 function executeQuery(callback, sqlQuery){
 
     console.log("\nSQL Query::"+sqlQuery);
-
-
     pool.getConnection(function(err,connection) {
         if(err){
             throw err;
         }
-
         connection.query(sqlQuery, function (err, result) {
             callback(err);
         });

@@ -12,7 +12,8 @@ import MovieTime from './components/movietime'
 
 import MovieDetail from './components/movieOverview';
 import SecretPage from './components/secretPage';
-import Signin from "./components/signin"
+import Signin from "./components/signin";
+import SignUp from "./components/signUp";
 
 
 
@@ -27,8 +28,10 @@ ReactDOM.render(
                     <Route path="/movietime" component={MovieTime}/>
                     <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
                     <Route path="/secret" component={SecretPage}/>
-                    <Route path="/signin" component={Signin}/>
+                    <Route path="/signin" component={Signin}/> {/*satish*/}
+                    <Route exact path="/signup" render={(props)=>{return <SignUp/>}}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
                     <Route path="/" component={Home}/>
+
                 </Switch>
             </div>
         </BrowserRouter>

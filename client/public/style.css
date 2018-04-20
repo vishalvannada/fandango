@@ -368,3 +368,15 @@ body {
     color: #fcd000;
     transition: 0.2s;
 }
+
+/*Satish changes for brand Bar*/
+.show-logged-in {
+    background-color: black;
+    height : 10px;
+    align-content: center;
+    padding: 5px;
+    font-size: 14px;
+}
+.show-logged-in button:hover{
+    background-color: black;
+}
