@@ -2,12 +2,21 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 //import "./movieTime.css"
 import {Field, reduxForm,initialize} from "redux-form";
-import TextField from 'material-ui/TextField';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {getMoviesInSearchPage} from "../../actions/pranithActions";
-import StarRatings from 'react-star-ratings';
+import {getMoviesInSearchPage,GetMoviesnHalls} from "../../actions/pranithActions";
+
+import DropdownList from 'react-widgets/lib/DropdownList'
+
+import Multiselect from 'react-widgets/lib/Multiselect'
+import 'react-widgets/dist/css/react-widgets.css';
 
 class MovieTopSection extends Component {
+
+
+    componentWillMount()
+    {
+        console.log("calling movie halls");
+        this.props.GetMoviesnHalls();
+    }
     state = {
         movieSearch: ""
     }
@@ -29,18 +38,93 @@ class MovieTopSection extends Component {
             </div>
         )
     }
+    renderMultiselect = ({input, data, valueField, textField, meta}) => {
+
+        const className = `${meta.touched && meta.error ? 'border-red' : ''}`
+        return (
+            <div>
+                <Multiselect {...input}
+                             className={className}
+                             onBlur={() => input.onBlur()}
+                             value={input.value || []} // requires value to be an array
+                             data={data}
+                             valueField={valueField}
+                             textField={textField}
+                             placeholder={"Select Movie times"}
+
+                />
+                <div className="error-message">
+                    {meta.touched ? meta.error : ''}
+                </div>
+            </div>
+        )
+    }
+
+    /*data={this.props.moviesDropdown.movies.movietheatre}
+                                                        valueField="type"
+                                                        type="DropdownList"
+                                                        textField="type"
+    * */
+
+
+
+
+    renderDropdown = ({input, data, valueField, textField, meta,placeholder}) => {
+
+        const className = `${meta.touched && meta.error ? 'border-red' : ''}`
+        return (
+            <div>
+                <DropdownList {...input}
+                             className={className}
+                             onBlur={() => input.onBlur()}
+                             //value={input.value || []} // requires value to be an array
+                             data={data}
+                             valueField={valueField}
+                             textField={textField}
+                            placeholder={placeholder}
+
+                />
+                <div className="error-message">
+                    {meta.touched ? meta.error : ''}
+                </div>
+            </div>
+        )
+    }
+
+
+
+
+    /*renderDropdown(field) {
+       // const className = `form-control input-login ${field.meta.touched && field.meta.error ? 'border-red' : ''}`
+        const className ="form-control input-login";
+        return (
+            <div className="form-group form-group-custom">
+                <DropdownList
+                    className={className}
+                    {...field}
+
+
+
+                />
+                <div className="error-message">
+                    {field.meta.touched ? field.meta.error : ''}
+                </div>
+            </div>
+        )
+    }*/
     onSubmit(values) {
-        //   console.log("on submit");
-        // console.log(values);
+           console.log("on submit");
+        console.log(values);
         //console.log(values.username);
         //console.log(this.props);
        // this.setState({editProfile: false});
-        this.props.editProfile(values);
+      //  this.props.editProfile(values);
         // this.props.history.push("/dashboard");
 
     };
 
     renderText(field) {
+
         const className = `form-control ${field.meta.touched && field.meta.error ? 'border-red' : ''}`
         return (
             <div className="form-group form-group-custom">
@@ -58,6 +142,9 @@ class MovieTopSection extends Component {
     }
 
     render() {
+        const colors = [ { color: 'Red', value: 'ff0000' },
+            { color: 'Green', value: '00ff00' },
+            { color: 'Blue', value: '0000ff' } ]
         // console.log(this.props);
         //console.log(this.props.movietime.moviesTheatres.moviemap);
       //  console.log(this.props.movietime.moviesTheatres.moviemap[0].type);
@@ -66,15 +153,13 @@ class MovieTopSection extends Component {
             //backgroundImage: 'url(http://image.tmdb.org/t/p/original/nIrDm42dy5PaXtUAzUfPmxM4mQm.jpg)',
             backgroundColor: "white"
         };
-        console.log(this.props.movietime.moviesTheatres.moviemap.type);
+        console.log(this.props.moviesDropdown.movies.moviemap);
 
 
 
             return (
                 <div className="background-movie-top" style={divStyle}>
                     <div className="fandango-container">
-
- Pranith
                         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                             <div>
                                 <div className="card profile-body-left">
@@ -85,35 +170,44 @@ class MovieTopSection extends Component {
                                         <div className="col-md-7">
                                             <div className="mt-4 ml-0 pl-0">
 
+
+                                                <div className="form-group form-group-custom">
                                                 <Field
-                                                    label="This is your Name"
-                                                    name="username"
+                                                    name="movie"
+                                                    component={this.renderDropdown}
+                                                    data={this.props.moviesDropdown.movies.moviemap}
+                                                    valueField="movie"
+                                                    type="DropdownList"
+                                                    textField="movie"
+                                                placeholder="Select a Movie name"/>
+                                                </div>
+
+                                                <br/>
+                                                <div className="form-group form-group-custom">
+                                                    <Field
+                                                        name="theatre"
+                                                        component={this.renderDropdown}
+                                                        data={this.props.moviesDropdown.movies.movietheatre}
+                                                        valueField="type"
+                                                        type="DropdownList"
+                                                        textField="type"
+                                                        placeholder="Select a Movie Hall "/>
+                                                </div>
+                                                <Field
+                                                    name="showTimes"
+                                                    component={this.renderMultiselect}
+                                                    data={["9:30a","12:30p","3:30p","9:30p"]}
+                                                    placeholder="Select Show time"
+                                                />
+                                                <br/>
+                                                <Field
+                                                    label="Please enter number of seats "
+                                                    name="noOfSeats"
                                                     component={this.renderField}
                                                     type="text"
-                                                /><br/>
-
-                                                <Field
-                                                    label="Email Address"
-                                                    name="email"
-                                                    component={this.renderField}
-                                                    type="email"
                                                 />
                                                 <br/>
 
-                                                <Field
-                                                    label="Phone Number"
-                                                    name="phoneNumber"
-                                                    component={this.renderField}
-                                                    type="tel"
-                                                /><br/>
-                                                <Field
-                                                    label="Bio"
-                                                    name="aboutMe" component={this.renderText}/>
-
-
-                                                <Field
-                                                    label="Skills"
-                                                    name="skills" component={this.renderText}/>
                                             </div>
                                         </div>
                                     </div>
@@ -147,30 +241,17 @@ function validate(values) {
     const errors = {};
 
     //names are associated to fields in the redux form names
-    if (!values.username) {
-        errors.username = "UserName can't be empty";
+    if (!values.noOfSeats) {
+        errors.username = "No of Seats can't be empty";
     }
 
-    if (values.username) {
-        if (values.username.length < 6) {
-            errors.username = "Username should be of 6 letters or more!";
-        }
-    }
-
-    if (!values.email) {
-        errors.email = "Email can't be empty";
-    }
-    if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)){
-        errors.email = "Please enter a valid email address";
-    }
-    if(isNaN(values.phoneNumber)){
-        errors.phoneNumber = "Please Enter a valid phone number"
-    }
     return errors;
 }
 
 function mapStateToProps(state) {
-    return {movietime: state.moviesSearchPagePK}
+    return {
+        movietime: state.moviesSearchPagePK,
+        moviesDropdown:state.moviesDropdown}
 }
 
 
@@ -178,4 +259,4 @@ export default
 reduxForm({
     validate,
     form: 'AddMovie'
-})(connect(mapStateToProps, {getMoviesInSearchPage})(MovieTopSection));
+})(connect(mapStateToProps, {getMoviesInSearchPage,GetMoviesnHalls})(MovieTopSection));

@@ -20,26 +20,27 @@ console.log(req,req.body,"-----------------------------------------------------"
     });
 });
 
+// getmoviesnhalls
 
-
-router.get('/getMovieOverview', function (req, res) {
-
-    console.log(req.param('tmdbid'));
-
-    kafka.make_request('getMovieOverview_topic', {"tmdbid" : req.param('tmdbid')}, function (err, results) {
-
+router.post('/getmoviesnhalls', function (req, res) {
+    console.log("from getMoviesInSearchPage_topic entry");
+    console.log("-----------------------------------------------------");
+    kafka.make_request('getMoviesnHalls_topic',{"reqBody":req.body}, function (err, results) {
 
         if (results.code == 200) {
-            console.log("inresult", results);
-            res.status(201).send(results.movie)
+            console.log(results);
+            res.status(201).send(results)
         }
         else {
-            console.log('roo', results);
-            res.status(401).end()
+            console.log('fuckedup', results);
+            console.log('fuckedup', results);
+            // res.status(401).end()
         }
 
     });
 });
+
+
 
 
 router.post('/savedetails', function (req, res, next) {
