@@ -144,10 +144,11 @@ consumerPranith2.on('message', function (message) {
 });
 consumerPranith3.on('message', function (message) {
     console.log('message received');
-    console.log(message)
-    console.log(JSON.parse(message.value));
+    //console.log(message)
+    //console.log(JSON.parse(message.value));
     var data = JSON.parse(message.value);
     console.log(data)
+    console.log("=================================");
     getMoviesSeacrhHandle.handle_addMovies(data.data, function(err,res){
         console.log('after handle',res, err);
         var payloads = [
