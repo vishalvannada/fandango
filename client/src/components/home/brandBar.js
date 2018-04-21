@@ -1,18 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom';
+import {bindActionCreators} from 'redux';
 import {signout} from "../../actions/satishActions";
+import {fetchUser} from "../../actions/satishActions";
+
 
 
 class BrandBar extends Component{
+    componentDidMount(){
+        this.props.fetchUser();
+    }
 
     handleSignout(){
         this.props.signout(null);
     }
 
-
     render() {
-        var isLoggedIn = window.localStorage.getItem('isLoggedIn');
+        var isLoggedIn = this.props.user.isLoggedIn;
+        console.log('isloggeIn',isLoggedIn);
 
         return (
             <div>
@@ -39,8 +45,16 @@ class BrandBar extends Component{
     }
 }
 
-// function mapStateToProps(state) {
-//     return {dashboard: state.dashboard}
-// }
+function mapStateToProps(state) {
+    return ({user: state.getUser})
+}
 
-export default connect(null,{signout})(BrandBar);
+function mapDispatchToProps(dispatch){
+    return {
+        ...bindActionCreators({
+            signout, fetchUser
+        },dispatch)
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(BrandBar);

@@ -62,7 +62,31 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
-
+        case 'savePayment':
+            user.savePayment(data.data, function (err, res) {
+                console.log("res: ",res);
+                response(data, res);
+                return;
+            });
+            break;
+        case 'basicInfo':
+            user.basicInfo(data.data, function(err,res) {
+                response(data, res);
+                return;
+            });
+            break;
+        case 'changeEmail':
+            user.changeEmail(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+        case 'changePassword':
+            user,changePassword(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
     }
 });
 

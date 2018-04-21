@@ -53,7 +53,7 @@ class SigninForm extends Component {
                         <img src="//images.fandango.com/cms/assets/aced1350-33b7-11e8-8eca-fd26e4965c58--vip-registration-banner.png" alt=""/>
                     </div>
                     <div id="ErrorMessageWrapper" className=" hide">
-                        <div id="signin-error" className="error-msg">{this.renderError.bind(this)}</div>
+                        <div id="signin-error" className="error-msg" component={this.renderError}></div>
                     </div>
                     <label htmlFor="UsernameBox">Email Address</label>
                     <Field name="email" type="text" id="UsernameBox" component={this.renderField}/>

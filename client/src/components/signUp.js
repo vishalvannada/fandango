@@ -8,16 +8,16 @@ import { Field, reduxForm } from 'redux-form'
 import './Signin/signup.css';
 import logo from './Signin/fandango-logo.svg';
 import offer from './Signin/offers.png'
-
-
+import {fetchUser} from "../actions/satishActions";
 
 class SignUp extends Component {
-
+    componentWillMount(){
+    //    this.props.fetchUser();
+    }
     /* Passing Values into action */
     onSubmit(values){
         console.log(values);
         this.props.doSignUp(values)
-
     }
 
     /* Form Validations and Error Messages */
@@ -55,20 +55,14 @@ class SignUp extends Component {
         )
     }
 
-
-
-
     /* Render using Redux-Form */
     render(){
-
-
-
+        var logStat= this.props.user.isLoggedIn;
+        var checkedin = this.props.user.isCheckedIn;
         console.log("Inside Signup");
         const { handleSubmit, load, pristine, reset, submitting } = this.props;
         return(
-
             <div>
-
                 <div>
                     <header id="registration-header" className="registration-header" role="banner">
                         <nav role="navigation" className="nav-bar">
@@ -229,54 +223,23 @@ class SignUp extends Component {
                                                         will never<br/> post without your permission.</small>
                                                 </div>
 
-
-
-
-
-
-
                                             </div>
                                         </form></div>
                                     </div>
-
-
 
                                 </div>
 
                             </div>
 
-
-
-
-
-
-
                         </div>
-
-
-
-
                     </div>
 
-
-
-
-
-
                 </div>
-
-
             </div>
-
-
-
 
         );
 
     };
-
-
-
 }
 
 // function mapStateToProps(store) {
@@ -323,7 +286,22 @@ function validate(values) {
     return errors;
 }
 
+function mapStateToProps(state){
+    return ({
+        user: state.getUser
+    })
+}
+
+
+function mapDispatchToProps(dispatch){
+    return {
+        ...bindActionCreators({
+            doSignUp, fetchUser
+        },dispatch)
+    }
+}
+
 export default reduxForm({
     validate,
     form: 'SignUpForm'
-}) (connect(null,{doSignUp})(SignUp));
+}) (connect(mapStateToProps,mapDispatchToProps)(SignUp));

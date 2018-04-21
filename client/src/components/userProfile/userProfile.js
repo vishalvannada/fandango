@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Route, withRouter, Link} from 'react-router-dom';
-//import Accordion from 'react-responsive-accordion';
+
 import { Field, reduxForm } from 'redux-form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -13,19 +13,25 @@ import UtilityFooter from './utilityFooter';
 import BrandBar from '../home/brandBar';
 import MegaDropDownHeader from '../home/megaDropDownHeader';
 import FandangoVIPHeader from './fandangoVIPHeader'
-import {doSignUp} from "../signUp/rishithActions";
+import {doSignUp} from "../../actions/rishithActions";
 
 
 class UserProfile extends Component {
 
     constructor(props) {
         super(props);
+        this.onSubmit_change_image = this.onSubmit_change_image.bind(this)
 
     }
 
 
 
+    /* Passing Values from form-0: Change Image  */
+    onSubmit_change_image(values){
 
+        // this.props.doSignUp(values)
+
+    }
 
 
     /* Passing Values from form-1: Basic Information  */
@@ -93,6 +99,11 @@ class UserProfile extends Component {
         )
     }
 
+    customFileInput = (field) => {
+        delete field.input.value; // <-- just delete the value property
+        return <input type="file" id="file" {...field.input} />;
+    };
+
 
 
 
@@ -114,6 +125,31 @@ class UserProfile extends Component {
 
                     <div id='profile_block' className="medium-9 columns">
 
+                        {/*Change Profile Image*/}
+                        <div className='collapse-element'><Collapsible className="panel accordion-head well" trigger="CHANGE IMAGE">
+
+
+                            <div className="panel-group">
+
+
+                                <div className="panel accordion-body " id="change-image-form">
+                                    <div className="row">
+                                        <form className="image-form">
+                                            <div className="medium-8 columns" id = 'image-information'>
+                                                <Field name="image"
+                                                       className="form-control form-control-lg image-form-image"
+                                                       id="FileBox"
+                                                       type = 'file'
+                                                       component={this.customFileInput}
+                                                />
+                                                <button id="save-basic file" onClick={()=>{this.onSubmit_change_image()}} className="btn btn-default">Save</button>
+                                            </div>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </Collapsible></div>
+
                          {/*Basic Information*/}
                         <div className='collapse-element'><Collapsible className="panel accordion-head well" trigger="BASIC INFORMATION">
 
@@ -123,7 +159,8 @@ class UserProfile extends Component {
 
                                 <div className="panel accordion-body " id="basic-info-form">
                                     <div className="row">
-                                       <form onSubmit={handleSubmit(this.onSubmit_basic_info.bind(this))} className="update-form"> <div className="medium-6 columns">
+                                       <form onSubmit={handleSubmit(this.onSubmit_basic_info.bind(this))} className="update-form">
+                                           <div className="medium-5 columns" id = 'basic-information'>
 
                                            <label>First Name</label>
                                            <Field name="firstname"
@@ -133,7 +170,7 @@ class UserProfile extends Component {
                                                   component={this.renderField}
                                            />
                                         </div>
-                                        <div className="medium-6 columns">
+                                        <div className="medium-5 columns">
 
                                             <label>Last Name</label>
                                             <Field name="lastname"
@@ -144,7 +181,7 @@ class UserProfile extends Component {
                                             />
                                         </div>
                                         <div className="medium-5 columns">
-                                            <label className="" htmlFor="">Display Name</label>
+                                            <label className="display-name" htmlFor="">Display Name</label>
                                             <div className="special-note">This name will appear publicly when you rate and
                                                 review movies.
                                             </div>
@@ -155,6 +192,28 @@ class UserProfile extends Component {
                                                    component={this.renderField}
                                             />
                                         </div>
+                                           <div className="medium-5 columns">
+
+                                               <label>Phone Number</label>
+
+                                               <Field name="mobile"
+                                                      className="form-control form-control-lg update-form-mobile"
+                                                      id="MobileBox"
+                                                      type = 'text'
+                                                      component={this.renderField}
+                                               />
+                                           </div>
+
+                                           <div className="medium-11 columns">
+
+                                               <label>Address</label>
+                                               <Field name="address"
+                                                      className="form-control form-control-lg update-form-address"
+                                                      id="AddressBox"
+                                                      type = 'textarea'
+                                                      component={this.renderField}
+                                               />
+                                           </div>
                                         <div className="medium-7 columns right-40">
                                             <button id="save-basic" className="btn save-button">Save</button>
                                         </div></form>

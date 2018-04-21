@@ -3,6 +3,8 @@ var mysql = require('mysql2');
 var sequelize = require('sequelize');
 var models = require('../../models');
 var User = require('../../models/User')(models.sequelize, models.Sequelize);
+var UserProfile = require('../../models/User')(models.sequelize, models.Sequelize);
+
 function signin(msg, callback){
 
     var res = {};
@@ -92,8 +94,29 @@ function signup(msg, callback){
             });
         }
     });
+}
+
+function basicInfo(msg,callback){
 
 
 }
+
+function changeEmail(msg,callback){
+
+}
+
+function changePassword(msg,callback){
+
+}
+
+function savePayment(msg,callback){
+
+}
+
+
 exports.signin = signin;
 exports.signup= signup;
+exports.basicInfo = basicInfo;
+exports.changeEmail = changeEmail;
+exports.changePassword = changePassword;
+exports.savePayment = savePayment;

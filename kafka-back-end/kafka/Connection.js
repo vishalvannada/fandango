@@ -9,8 +9,10 @@ function ConnectionProvider() {
             {topic: 'signin',partition: 0},
             { topic: 'loadDataFromAPI_topic', partition: 0 },
             {topic: 'getMoviesInHomePageCarousel_topic',partition: 0},
-            { topic: 'getMovieOverview_topic', partition: 0 }
-
+            { topic: 'basicInfo', partition: 0 },
+            { topic: 'changeEmail', partition: 0 },
+            { topic: 'changePassword', partition: 0 },
+            { topic: 'savePayment', partition: 0 },
         ]);
         this.client.on('ready', function () { console.log('client ready!') })
 

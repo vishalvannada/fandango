@@ -7,8 +7,6 @@ import {connect} from "react-redux";
 import {getMovieOverview} from "../actions/vishalActions";
 
 class MovieOverview extends Component {
-
-
     componentWillMount() {
         const {tmdbid} = this.props.match.params;
         console.log(tmdbid)
@@ -17,12 +15,7 @@ class MovieOverview extends Component {
     }
 
     render() {
-
         // console.log(this.props.movie.movie);
-
-
-
-
         return (
             <div>
                 <BrandBar/>

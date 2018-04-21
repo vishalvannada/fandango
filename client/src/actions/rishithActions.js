@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {history} from "../App";
 
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const SIGN_UP_ERROR = 'SIGN_UP_ERROR';
@@ -15,6 +16,7 @@ export function doSignUp(userdata) {
                 console.log("Inside actions 'Response'-> ", res.data);
                 window.localStorage.setItem('user',res.data.user);
                 window.localStorage.setItem('isLoggedIn',true);
+                history.push('/home')
                 dispatch({type:SIGN_UP_SUCCESS, payload:res.data});
             })
             .catch((error) => {
@@ -23,3 +25,4 @@ export function doSignUp(userdata) {
 
     }
 }
+

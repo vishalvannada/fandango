@@ -24,7 +24,7 @@ class UtilityFooter extends Component {
                             <input id="footer-fanmail-email" className="fanmail-email" type="email"
                                    placeholder="Enter Email Address"/>
                                 <a id="footer-fanmail-submit" className="btn">Submit</a>
-                                <div className="error-msg" id="footer-fanmail-error"></div>
+
                         </div>
                         <h3 id="fanmail-module-success" className="hide">
                             THANKS FOR SIGNING UP!

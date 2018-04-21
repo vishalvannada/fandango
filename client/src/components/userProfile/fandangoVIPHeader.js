@@ -23,29 +23,29 @@ class FandangoVIPHeader extends Component {
                     </h1>
                     <nav className="page-navigation" role="navigation">
                         <ul className="page-navigation-list">
-                            <li className="page-navigation-item"><a className="page-navigation-link"
-                                                                    href="https://www.fandango.com/account/dashboard">Dashboard</a>
+                            <li className="page-navigation-item"><Link className="page-navigation-link"
+                                                                    to='/dashboard'>Dashboard</Link>
                             </li>
 
-                            <li className="page-navigation-item"><a className="page-navigation-link"
-                                                                    href="https://www.fandango.com/account/vip-plus-mypoints">My
-                                VIP+ Points</a></li>
+                            <li className="page-navigation-item"><Link className="page-navigation-link"
+                                                                       to='#'>My
+                                VIP+ Points</Link></li>
 
-                            <li className="page-navigation-item"><a className="page-navigation-link"
-                                                                    href="https://www.fandango.com/account/insiderperks">Insider
-                                Perks</a></li>
-                            <li className="page-navigation-item"><a className="page-navigation-link"
-                                                                    href="https://www.fandango.com/account/mypurchases">Purchase
-                                History</a></li>
-                            <li className="page-navigation-item"><a className="page-navigation-link is-selected"
-                                                                    href="https://www.fandango.com/account/settings">Account
-                                Settings</a></li>
-                            <li className="page-navigation-item"><a className="page-navigation-link"
-                                                                    href="https://www.fandango.com/account/emailpreferences">Email
-                                + Preferences</a></li>
-                            <li className="page-navigation-item"><a className="page-navigation-link"
-                                                                    href="https://www.fandango.com/account/rewards">Partner
-                                Rewards</a></li>
+                            <li className="page-navigation-item"><Link className="page-navigation-link"
+                                                                    to="https://www.fandango.com/account/insiderperks">Insider
+                                Perks</Link></li>
+                            <li className="page-navigation-item"><Link className="page-navigation-link"
+                                                                    to="#">Purchase
+                                History</Link></li>
+                            <li className="page-navigation-item"><Link className="page-navigation-link is-selected"
+                                                                    to="/userprofile">Account
+                                Settings</Link></li>
+                            <li className="page-navigation-item"><Link className="page-navigation-link"
+                                                                    to="/userprofile">Email
+                                + Preferences</Link></li>
+                            <li className="page-navigation-item"><Link className="page-navigation-link"
+                                                                    to="https://www.fandango.com/account/rewards">Partner
+                                Rewards</Link></li>
                         </ul>
                     </nav>
                 </div>
