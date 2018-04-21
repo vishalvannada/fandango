@@ -44,6 +44,24 @@ consumer.on('message', function (message) {
                 return;
             });
             break;
+        case 'loadDataFromAPI':
+            dummyData.handle_request(data.data, function(err,res) {
+                response(data, res);
+                return;
+            });
+            break;
+        case 'getMoviesInHomePageCarousel':
+            getMoviesInHomePageCarousel.handle_request(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+        case 'getMovieOverview':
+            getMovieOverview.handle_request(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
         case 'savePayment':
             user.savePayment(data.data, function (err, res) {
                 console.log("res: ",res);
@@ -69,42 +87,20 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
-        case 'loadDataFromAPI_topic':
-            dummyData.handle_request(data.data, function(err,res) {
-                response(data, res);
-                return;
-            });
-            break;
-        case 'getMoviesInHomePageCarousel_topic':
-            getMoviesInHomePageCarousel.handle_request(data.data, function(err,res){
-                response(data,res);
-                return;
-            })
-            break;
-        case 'getMovieOverview_topic':
-            getMovieOverview.handle_request(data.data, function(err,res){
-                response(data,res);
-                return;
-            })
-            break;
-
-        case 'getMoviesInSearchPage_topic':
-            getMoviesSearchHandle.handle_request(data.data, function(err,res) {
-                response(data, res);
-                return;
-            });
-            break;
-        case 'getMoviesnHalls_topic':
-            getMoviesSearchHandle.handle_request(data.data, function(err,res){
-                response(data,res);
-                return;
-            })
-            break;
-        case 'addmovies_topic':
-            getMoviesSearchHandle.handle_request(data.data, function(err,res){
-                response(data,res);
-                return;
-            })
-            break;
     }
 });
+
+function response(data, res) {
+    var payloads = [
+        { topic: data.replyTo,
+            messages:JSON.stringify({
+                correlationId:data.correlationId,
+                data : res
+            }),
+            partition : 0
+        }
+    ];
+    producer.send(payloads, function(err, data){
+        console.log(data);
+    });
+}

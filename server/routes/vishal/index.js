@@ -20,10 +20,6 @@ var multer = require('multer');
 router.post('/dummyData', function (req, res, next) {
 
 
-
-
-
-
     kafka.make_request('loadDataFromAPI_topic', {
         tmdbid: req.param('tmdbid'),
         title: req.param('title'),
@@ -35,7 +31,6 @@ router.post('/dummyData', function (req, res, next) {
         runtime: req.param('runtime'),
         status: req.param('status'),
         tagline: req.param('tagline'),
-        genre : req.param('genre'),
         vote_average: req.param('vote_average'),
         vote_count: req.param('vote_count'),
         youtube_trailer: req.param('youtube_trailer'),
@@ -65,7 +60,7 @@ router.get('/', function (req, res) {
         var username = req.session.username;
         kafka.make_request('profile_topic', {"username": username,}, function (err, results) {
 
-            if (results.code == 200) {
+            if (results.code === 200) {
                 console.log(results);
                 // req.session.username = req.param('username');
                 res.status(201).send(results.result)

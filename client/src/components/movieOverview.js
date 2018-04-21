@@ -7,8 +7,6 @@ import {connect} from "react-redux";
 import {getMovieOverview} from "../actions/vishalActions";
 
 class MovieOverview extends Component {
-
-
     componentWillMount() {
         const {tmdbid} = this.props.match.params;
         console.log(tmdbid)
@@ -17,18 +15,13 @@ class MovieOverview extends Component {
     }
 
     render() {
-
         // console.log(this.props.movie.movie);
-
-
         return (
             <div>
                 <BrandBar/>
                 <MegaDropDownHeader/>
-                {this.props.movie.movie ? <MovieTopSection history={this.props.history} movie={this.props.movie.movie}/> : ''}
-                {this.props.movie.movie.cast ?
-                    <CastCrewCarousel cast={this.props.movie.movie.cast.concat(this.props.movie.movie.crew)}/> : ''}
-                <img src="http://localhost:3000/movie-overview-hard.jpg"/>
+                {this.props.movie.movie ? <MovieTopSection movie={this.props.movie.movie}/> : ''}
+                {this.props.movie.movie.cast ? <CastCrewCarousel cast={this.props.movie.movie.cast.concat(this.props.movie.movie.crew)}/> : ''}
             </div>
         )
     }

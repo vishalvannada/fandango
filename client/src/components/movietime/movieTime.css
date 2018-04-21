@@ -8,15 +8,9 @@
     height:186px;
 }
 
-
-.fd-movie__poster{
-    max-width: inherit;
-}
-
 .fd-movie__details{
     font-family: alternate-gothic-no-1-d,"Futura Condensed","Arial Narrow",Arial,sans-serif;
     color:black;
-    padding: 10px;
 
 }
 .fd-theater__header {
@@ -36,8 +30,9 @@
 
 }
 .showtime-btn {
-    padding: 10px 10px !important;
-    margin: 4px;
+    width: 89px;
+    padding: 13px 0;
+    margin: 2px;
     text-align: center;
 }
 .btn {
@@ -90,12 +85,15 @@
 }
 .headerResultsPincode{
     background-image: url("./bg-header.jpg");
-    width: 100%;
-}
 
+}
 .heading-size-xl{
     color:white;
 }
+
+
+
+
 
 .light {
     color: #FFF;
