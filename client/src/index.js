@@ -7,13 +7,13 @@ import promise from 'redux-promise';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 import Home from './components/home';
-
 import MovieTime from './components/movietime'
-
 import MovieDetail from './components/movieOverview';
 import SecretPage from './components/secretPage';
 import SignUp from './components/signUp/signUp'; // Rishith
 import UserProfile from './components/userProfile/userProfile'; // Rishith
+import Dashboard from './components/dashboard/dashboard';
+
 
 
 
@@ -27,7 +27,10 @@ ReactDOM.render(
             <div>
                 <Switch>
                     <Route exact path="/signup" render={(props)=>{return <SignUp/>}}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
-                    <Route exact path='/userprofile' render = {(props)=> {return <UserProfile/>}}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
+                    {/* Added by Rishith */}{/*Need Conditional Rendering*/}
+                    <Route path ='/userprofile' component = {UserProfile}/>
+                    <Route exact path='/dashboard' render = {(props)=> {return <Dashboard/>}}/>
+                    {/* Added by Rishith */}{/*Need Conditional Rendering*/}
                     <Route path="/movietime" component={MovieTime}/>
                     <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
                     <Route path="/secret" component={SecretPage}/>

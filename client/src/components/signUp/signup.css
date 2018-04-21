@@ -51,3 +51,9 @@ hr{
 .sub-panel{
     margin-left: auto;
 }
+.action-details{
+    background-color: black;
+}
+.sub-panel{
+    background-color: black;
+}

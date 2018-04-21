@@ -36,6 +36,7 @@
 }
 .footer-nav{
     padding-top: 30px;
+    background: #4c4c4c;
 }
 .footer-nav-header{
     padding-bottom: 3px;
@@ -44,5 +45,36 @@
     font-size: 1.5rem;
 }
 
+.footer-utility-group{
+    margin-left: 15px;
+}
+
+.panel{
+
+    background: none repeat scroll 0 0 #f8f9fa;
+    padding-left: 10px;
+}
+.email-form{
+    padding-left: 10px;
+    padding-top: 10px;
+
+}
+.password-form{
+    padding-left: 10px;
+    padding-top:10px;
+}
+
+.payment-form{
+    padding-left: 10px;
+    padding-top:10px;
+
+}
+
+#profile-pic{
+    padding:10px;
+
+    width: 160px;
+    height: 160px;
+}
 
 

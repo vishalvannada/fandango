@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Route, withRouter, Link} from 'react-router-dom';
-//import Accordion from 'react-responsive-accordion';
+
 import { Field, reduxForm } from 'redux-form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -20,12 +20,18 @@ class UserProfile extends Component {
 
     constructor(props) {
         super(props);
+        this.onSubmit_change_image = this.onSubmit_change_image.bind(this)
 
     }
 
 
 
+    /* Passing Values from form-0: Change Image  */
+    onSubmit_change_image(values){
 
+        // this.props.doSignUp(values)
+
+    }
 
 
     /* Passing Values from form-1: Basic Information  */
@@ -93,6 +99,11 @@ class UserProfile extends Component {
         )
     }
 
+    customFileInput = (field) => {
+        delete field.input.value; // <-- just delete the value property
+        return <input type="file" id="file" {...field.input} />;
+    };
+
 
 
 
@@ -114,6 +125,31 @@ class UserProfile extends Component {
 
                     <div id='profile_block' className="medium-9 columns">
 
+                        {/*Change Profile Image*/}
+                        <div className='collapse-element'><Collapsible className="panel accordion-head well" trigger="CHANGE IMAGE">
+
+
+                            <div className="panel-group">
+
+
+                                <div className="panel accordion-body " id="change-image-form">
+                                    <div className="row">
+                                        <form className="image-form">
+                                            <div className="medium-8 columns" id = 'image-information'>
+                                                <Field name="image"
+                                                       className="form-control form-control-lg image-form-image"
+                                                       id="FileBox"
+                                                       type = 'file'
+                                                       component={this.customFileInput}
+                                                />
+                                                <button id="save-basic file" onClick={()=>{this.onSubmit_change_image()}} className="btn btn-default">Save</button>
+                                            </div>
+                                            </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </Collapsible></div>
+
                          {/*Basic Information*/}
                         <div className='collapse-element'><Collapsible className="panel accordion-head well" trigger="BASIC INFORMATION">
 
@@ -123,7 +159,8 @@ class UserProfile extends Component {
 
                                 <div className="panel accordion-body " id="basic-info-form">
                                     <div className="row">
-                                       <form onSubmit={handleSubmit(this.onSubmit_basic_info.bind(this))} className="update-form"> <div className="medium-6 columns">
+                                       <form onSubmit={handleSubmit(this.onSubmit_basic_info.bind(this))} className="update-form">
+                                           <div className="medium-6 columns" id = 'basic-information'>
 
                                            <label>First Name</label>
                                            <Field name="firstname"
