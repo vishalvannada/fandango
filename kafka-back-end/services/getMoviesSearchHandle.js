@@ -32,26 +32,27 @@ function handle_request(msg, callback) {
     var res = {};
     var i = 0;
     try {
- //console.log((new Date()).format('YYYY MM DD'));
-       // console.log("msg is-----------------------------------------------", msg);
+        //console.log((new Date()).format('YYYY MM DD'));
+        // console.log("msg is-----------------------------------------------", msg);
         //movieSearch: '95126', Date: '2018-04-20T20:12:00-07:00'
 
         var d = new Date(moment(msg.reqBody.Date).format("YYYY-MM-DD"));
-        d.setDate(d.getDate()-1);
+        d.setDate(d.getDate() - 1);
 
         var queryJson123 = {
             "release_date": {
                 "$gte": d,
-                "$lte" : new Date()
+                "$lte": new Date()
             }
         };
         var queryJson = {
-            "HallID": new RegExp(msg.reqBody.movieSearch),"Date":{ "$gte": d, "$lte" : new Date()}};
+            "HallID": new RegExp(msg.reqBody.movieSearch), "Date": {"$gte": d, "$lte": new Date()}
+        };
 
         MongoConPool.find('movieHall', queryJson, function (err, movie) {
             if (err) {
                 res.code = "402";
-                console.log(err,"--------------------------");
+                console.log(err, "--------------------------");
                 callback(null, res);
             }
             else {
@@ -75,15 +76,12 @@ function handle_request(msg, callback) {
                     return carsJSON;
                 });
                 var resmap = groupBy(resArr, "theatreName");
-                console.log(resmap);
-
-
+                // console.log(resmap);
 
                 res.code = 200;
                 res.movietheatre = resArr;
-
-                res.moviemap=resmap;
-                console.log("movie theatres are",resArr);
+                res.moviemap = resmap;
+                //     console.log("movie theatres are", resArr);
 
                 callback(null, res);
             }
@@ -105,59 +103,126 @@ function handle_addMovies(msg, callback) {
     // winston.remove(winston.transports.Console);
     // winston.add(winston.transports.File, { filename: './public/LogFiles/KayakAnalysis.json' });
     // winston.log('info', 'Flight Page Viewed', { page_name : 'Flights_page'});
-    //  console.log("---------------------------------------------",msg);
+    console.log("-----------------------------------------in addmovies--");
     var showtimes = [];
-    for (var i = 0; i < msg.reqBody.showTimes.length; i++)
-    {
+    for (var i = 0; i < msg.reqBody.showTimes.length; i++) {
         var showSeats = {};
         showSeats[msg.reqBody.showTimes[i]] = msg.reqBody.noOfSeats;
         showtimes.push(showSeats);
     }
 
 
-   // console.log(showtimes, "--------------------------------------");
+    // console.log(showtimes, "--------------------------------------");
     var res = {};
     var i = 0;
-    try {
-
-        //   console.log("msg is-----------------------------------------------", msg);
 
 
-        var queryJson = {
-            "ID": 108.0,
-            "HallID": msg.reqBody.theatre.data[0].theatreName + "|" + msg.reqBody.theatre.data[0].theatreCity + "|" +
-            msg.reqBody.theatre.data[0].theatreState + "|" + msg.reqBody.theatre.data[0].theatreZip,
-            "movie": {
-                "movieId": msg.reqBody.movie.tmdbid,
-                "poster_path": msg.reqBody.movie.poster_path,
-                "MovieName": msg.reqBody.movie.movie
-            },
-            "ScreenNo": 1,
-            "Showtimes": showtimes,
-            "NoofSeats": msg.reqBody.noOfSeats,
-            "TicketPrice": 10,
-            "Date": new Date()
-        };
+    var d = new Date();
 
-          MongoConPool.insert('movieHall', queryJson,function (err, movie) {
-               if (err) {
-                   res.code = "401";
-                   callback(null, res);
-               }
-               else {
+   // for (var i = 0; i < 10; i++)
+    {
+        console.log(i);
+        try {
 
-                  console.log(movie,"------------------------------------------------");
-                  res.result=movie;
-                  res.code=200;
-                   callback(null, res);
-               }
-           });
+            //   console.log("msg is-----------------------------------------------", msg);
+
+            d.setDate(d.getDate() + parseInt(msg.reqBody.Date));
+
+            var queryJsonSearch = {
+                "ID": 108.0,
+                "HallID": msg.reqBody.theatre.data[0].theatreName + "|" + msg.reqBody.theatre.data[0].theatreCity + "|" +
+                msg.reqBody.theatre.data[0].theatreState + "|" + msg.reqBody.theatre.data[0].theatreZip,
+                "movie": {
+                    "movieId": msg.reqBody.movie.tmdbid,
+                    "poster_path": msg.reqBody.movie.poster_path,
+                    "MovieName": msg.reqBody.movie.movie
+                },
+                "ScreenNo": 1,
+                "Showtimes": showtimes,
+                "NoofSeats": msg.reqBody.noOfSeats,
+                "TicketPrice": 10,
+                "Date": {$lte:d}
+            };
+
+
+
+            var queryJson = {
+                "ID": 108.0,
+                "HallID": msg.reqBody.theatre.data[0].theatreName + "|" + msg.reqBody.theatre.data[0].theatreCity + "|" +
+                msg.reqBody.theatre.data[0].theatreState + "|" + msg.reqBody.theatre.data[0].theatreZip,
+                "movie": {
+                    "movieId": msg.reqBody.movie.tmdbid,
+                    "poster_path": msg.reqBody.movie.poster_path,
+                    "MovieName": msg.reqBody.movie.movie
+                },
+                "ScreenNo": 1,
+                "Showtimes": showtimes,
+                "NoofSeats": msg.reqBody.noOfSeats,
+                "TicketPrice": 10,
+                "Date": d
+            };
+
+            MongoConPool.findOne('movieHall', queryJsonSearch, function (err, movie) {
+                if (err) {
+                    res.code = "401";
+                    callback(null, res);
+                    console.log("into error===============================================")
+                }
+                else {
+                    if (movie == null)
+                    {
+                        console.log(movie);
+                        console.log("adding movie================================================");
+                        MongoConPool.insert('movieHall', queryJson, function (err, movie) {
+                            if (err) {
+                                res.code = "401";
+                                //  callback(null, res);
+                                console.log(err);
+                                console.log("error in adding movie-=-=============------------------------------=======")
+                            }
+                            else {
+
+                                console.log("-moviea added-----------------------------------------------");
+                                res.result = movie;
+
+                                res.code = 200;
+                                 callback(null, res);
+                            }
+                        });
+
+                    }
+                    res.code=401;
+                    callback(null, res);
+
+                    //  res.result = movie;
+                    // res.code = 200;
+                    // callback(null, res);
+                }
+            });
+
+
+            /* MongoConPool.insert('movieHall', queryJson, function (err, movie) {
+                 if (err) {
+                     res.code = "401";
+                     callback(null, res);
+                 }
+                 else {
+
+                     console.log(movie, "------------------------------------------------");
+                     res.result = movie;
+                     res.code = 200;
+                     callback(null, res);
+                 }
+             });*/
+        }
+        catch
+            (e) {
+            res.code = "401";
+            //callback(null, res);
+        }
     }
-    catch
-        (e) {
-        res.code = "401";
-        callback(null, res);
-    }
+
+
     // winston.remove(winston.transports.File);
     // winston.add(winston.transports.Console);
 }
