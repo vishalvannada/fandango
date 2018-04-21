@@ -4,11 +4,11 @@ var mysql = require('mysql');
 //Put your mysql configuration settings - user, password, database and port
 
 var pool = mysql.createPool({
-    connectionLimit: 10,
+    connectionLimit: 20,
     host: 'localhost',
-    user: 'root',
-    password: 'sreedevi',
-    database: 'test',
+    user: 'test',
+    password: 'pass',
+    database: 'fandango',
     port: 3306
 });
 
@@ -36,4 +36,24 @@ function fetchData(callback, sqlQuery) {
 
 }
 
+function executeQuery(callback, sqlQuery){
+
+    console.log("\nSQL Query::"+sqlQuery);
+
+
+    pool.getConnection(function(err,connection) {
+        if(err){
+            throw err;
+        }
+
+        connection.query(sqlQuery, function (err, result) {
+            callback(err);
+        });
+        console.log("\nConnection closed..");
+        connection.release();
+    });
+}
+
+
+exports.executeQuery=executeQuery;
 exports.fetchData = fetchData;

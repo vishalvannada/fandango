@@ -35,7 +35,6 @@ function handle_request(msg, callback) {
             crew: msg.crew,
             rating: msg.rating,
             reviews: msg.reviews,
-            genre: msg.genre
         };
 
         MongoConPool.insert('movies', queryJson, function (err, flights) {

@@ -6,11 +6,7 @@ import Carousel from './home/carousel';
 import {connect} from "react-redux";
 import {getMoviesInHomePageCarousel} from "../actions/vishalActions";
 
-
-
 class Home extends Component {
-
-
     componentDidMount(){
         this.props.getMoviesInHomePageCarousel()
     }
@@ -22,7 +18,7 @@ class Home extends Component {
                 <MegaDropDownHeader/>
                 <UnderBrand/>
                 <Carousel home={this.props.home}/>
-                <img src="http://localhost:3000/home_dog.jpg" className="width-100"/>
+                <img src="./home_dog.jpg"/>
             </div>
         )
     }
