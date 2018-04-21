@@ -116,8 +116,13 @@ class MovieTopSection extends Component {
     }*/
     onSubmit(values) {
            console.log("on submit");
-        console.log(values);
-        this.props.addMovie(values);
+         //  var d = new Date();
+        for (var i=0;i<11;i++) {
+           // d.setDate(d.getDate() + 1);
+            values.Date=i;
+            console.log(values);
+            this.props.addMovie(values);
+        }
         //console.log(values.username);
         //console.log(this.props);
        // this.setState({editProfile: false});
