@@ -35,6 +35,7 @@ router.post('/dummyData', function (req, res, next) {
         runtime: req.param('runtime'),
         status: req.param('status'),
         tagline: req.param('tagline'),
+        genre : req.param('genre'),
         vote_average: req.param('vote_average'),
         vote_count: req.param('vote_count'),
         youtube_trailer: req.param('youtube_trailer'),

@@ -3,167 +3,123 @@ var connection =  new require('./kafka/Connection');
 var dummyData = require('./services/dummyData');
 var getMoviesInHomePageCarousel = require('./services/getMoviesInHomePageCarousel');
 var getMovieOverview = require('./services/getMovieOverview');
-var getMoviesSeacrhHandle = require('./services/getMoviesSearchHandle');
-
-var topic_name1 = 'loadDataFromAPI_topic';
-var consumer1 = connection.getConsumer(topic_name1);
-
-var topic_name2 = 'getMoviesInHomePageCarousel_topic';
-var consumer2 = connection.getConsumer(topic_name2);
-
-var topic_name3 = 'getMovieOverview_topic';
-var consumer3 = connection.getConsumer(topic_name3);
-var consumerPranith1 = connection.getConsumer('getMoviesInSearchPage_topic');
-var consumerPranith2 = connection.getConsumer('getMoviesnHalls_topic');
-var consumerPranith3 = connection.getConsumer('addmovies_topic');
+var user = require('./services/satish/user');
 
 var producer = connection.getProducer();
+var consumer = connection.getConsumer();
 
 
-consumer1.on('message', function (message) {
-    console.log('message received');
-    console.log(message)
-    console.log(JSON.parse(message.value));
-    var data = JSON.parse(message.value);
-    console.log(data)
-    dummyData.handle_request(data.data, function(err,res){
-        console.log('after handle',res, err);
-        var payloads = [
-            { topic: data.replyTo,
-                messages:JSON.stringify({
-                    correlationId:data.correlationId,
-                    data : res
-                }),
-                partition : 0
-            }
-        ];
-        producer.send(payloads, function(err, data){
-            console.log('producer',data);
-        });
-        return;
-    });
+
+console.log('server is running');
+
+//Models
+var models = require("./models");
+
+//Sync Database
+models.sequelize.sync().then(function() {
+    console.log('Nice! Database looks fine')
+}).catch(function(err) {
+    console.log(err, "Something went wrong with the Database Update!")
 });
 
-
-
-consumer2.on('message', function (message) {
+consumer.on('message', function (message) {
     console.log('message received');
-    console.log(message)
-    console.log(JSON.parse(message.value));
+    console.log(message);
+    console.log(JSON.stringify(message.value));
+
     var data = JSON.parse(message.value);
-    console.log(data)
-    getMoviesInHomePageCarousel.handle_request(data.data, function(err,res){
-        console.log('after handle',res, err);
-        var payloads = [
-            { topic: data.replyTo,
-                messages:JSON.stringify({
-                    correlationId:data.correlationId,
-                    data : res
-                }),
-                partition : 0
-            }
-        ];
-        producer.send(payloads, function(err, data){
-            console.log('producer',data);
-        });
-        return;
-    });
+
+
+    switch (message.topic){
+        case 'signup':
+            user.signup(data.data, function (err, res) {
+                response(data, res);
+                return;
+            });
+            break;
+        case 'signin':
+            user.signin(data.data, function (err, res) {
+                console.log("res: ",res);
+                response(data, res);
+                return;
+            });
+            break;
+        case 'savePayment':
+            user.savePayment(data.data, function (err, res) {
+                console.log("res: ",res);
+                response(data, res);
+                return;
+            });
+            break;
+        case 'basicInfo':
+            user.basicInfo(data.data, function(err,res) {
+                response(data, res);
+                return;
+            });
+            break;
+        case 'changeEmail':
+            user.changeEmail(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+        case 'changePassword':
+            user,changePassword(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+        case 'loadDataFromAPI_topic':
+            dummyData.handle_request(data.data, function(err,res) {
+                response(data, res);
+                return;
+            });
+            break;
+        case 'getMoviesInHomePageCarousel_topic':
+            getMoviesInHomePageCarousel.handle_request(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+        case 'getMovieOverview_topic':
+            getMovieOverview.handle_request(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+
+        case 'getMoviesInSearchPage_topic':
+            getMoviesSearchHandle.handle_request(data.data, function(err,res) {
+                response(data, res);
+                return;
+            });
+            break;
+        case 'getMoviesnHalls_topic':
+            getMoviesSearchHandle.handle_request(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+        case 'addmovies_topic':
+            getMoviesSearchHandle.handle_request(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+    }
 });
 
-
-consumer3.on('message', function (message) {
-    console.log('message received');
-    console.log(message)
-    console.log(JSON.parse(message.value));
-    var data = JSON.parse(message.value);
-    console.log(data)
-    getMovieOverview.handle_request(data.data, function(err,res){
-        console.log('after handle',res, err);
-        var payloads = [
-            { topic: data.replyTo,
-                messages:JSON.stringify({
-                    correlationId:data.correlationId,
-                    data : res
-                }),
-                partition : 0
-            }
-        ];
-        producer.send(payloads, function(err, data){
-            console.log('producer',data);
-        });
-        return;
+function response(data, res) {
+    var payloads = [
+        { topic: data.replyTo,
+            messages:JSON.stringify({
+                correlationId:data.correlationId,
+                data : res
+            }),
+            partition : 0
+        }
+    ];
+    producer.send(payloads, function(err, data){
+        console.log(data);
     });
-});
-//Pranith
-consumerPranith1.on('message', function (message) {
-    console.log('message received');
-    console.log(message)
-    console.log(JSON.parse(message.value));
-    var data = JSON.parse(message.value);
-    console.log(data)
-    getMoviesSeacrhHandle.handle_request(data.data, function(err,res){
-        console.log('after handle',res, err);
-        var payloads = [
-            { topic: data.replyTo,
-                messages:JSON.stringify({
-                    correlationId:data.correlationId,
-                    data : res
-                }),
-                partition : 0
-            }
-        ];
-        producer.send(payloads, function(err, data){
-            console.log('producer',data);
-        });
-        return;
-    });
-});
-
-consumerPranith2.on('message', function (message) {
-    console.log('message received');
-    console.log(message)
-    console.log(JSON.parse(message.value));
-    var data = JSON.parse(message.value);
-    console.log(data)
-    getMoviesSeacrhHandle.handle_MoviesnHalls("test", function(err,res){
-        console.log('after handle',res, err);
-        var payloads = [
-            { topic: data.replyTo,
-                messages:JSON.stringify({
-                    correlationId:data.correlationId,
-                    data : res
-                }),
-                partition : 0
-            }
-        ];
-        producer.send(payloads, function(err, data){
-            console.log('producer',data);
-        });
-        return;
-    });
-});
-consumerPranith3.on('message', function (message) {
-    console.log('message received');
-    console.log(message)
-    console.log(JSON.parse(message.value));
-    var data = JSON.parse(message.value);
-    console.log(data)
-    getMoviesSeacrhHandle.handle_addMovies(data.data, function(err,res){
-        console.log('after handle',res, err);
-        var payloads = [
-            { topic: data.replyTo,
-                messages:JSON.stringify({
-                    correlationId:data.correlationId,
-                    data : res
-                }),
-                partition : 0
-            }
-        ];
-        producer.send(payloads, function(err, data){
-            console.log('producer',data);
-        });
-        return;
-    });
-});
-
-
+}

@@ -50,19 +50,23 @@ class MovieTopSection extends Component {
                                             className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.rating} {this.props.movie.runtime} minutes
                                         </small>
                                         <br/>
-                                        <small className="font-size-13 font-timesNewRoman color-ccc">Suspense/Thriller
+                                        <small
+                                            className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.genre}
                                         </small>
                                         <span></span>
                                         {/*<Rating/>*/}
 
-                                            <div onClick={() => this.props.history.push(`/movie-review/${this.props.movie.tmdbid}`)} className="rating-stars mt-2">
-                                                <ReactStars
-                                                    edit={false}
-                                                    count={5}
-                                                    size={24}
-                                                    half={false}
-                                                    color2={'#ffd700'}/>
-                                            </div>
+                                        <div
+                                            onClick={() => this.props.history.push(`/movie-review/${this.props.movie.tmdbid}`)}
+                                            className="rating-stars mt-2">
+                                            <ReactStars
+                                                edit={false}
+                                                count={5}
+                                                size={24}
+                                                half={false}
+                                                value={this.props.movie.vote_average/2}
+                                                color2={'#ffd700'}/>
+                                        </div>
 
                                         <span
                                             class="icon icon-rottom-fresh rotten-tomatoes__icon text-center"></span><br/>

@@ -3,24 +3,95 @@ import {connect} from "react-redux";
 import moment from "moment";
 import ReactStars from 'react-stars';
 import {Link} from 'react-router-dom';
+import {Field, reduxForm} from 'redux-form';
 import BrandBar from './home/brandBar'
 import MegaDropDownHeader from './home/megaDropDownHeader';
-import {getMovieOverview} from "../actions/vishalActions";
+import {getMovieOverview, saveReview} from "../actions/vishalActions";
+import swal from 'sweetalert'
 
 
 class MovieRating extends Component {
+
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            stars: 0,
+        };
+    }
 
     componentWillMount() {
         const {tmdbid} = this.props.match.params;
         console.log(tmdbid)
         this.props.getMovieOverview(tmdbid);
-        // console.log(this.props.movie.movie);
+    }
+
+    onSubmit(data) {
+        if (this.state.stars == '') {
+            swal("Please Select Rating");
+        }
+
+        data.stars = this.state.stars;
+        console.log(data)
+        this.props.saveReview(data)
+    }
+
+
+    renderField(field) {
+        const className = `form-control input-login ${field.meta.touched && field.meta.error ? 'border-red' : ''}`
+        return (
+            <div className="form-group form-group-custom">
+                <input
+                    className={className}
+                    {...field.input}
+                    placeholder={field.label}
+                    type={field.type}
+                />
+                <div className="error-message">
+                    {field.meta.touched ? field.meta.error : ''}
+                </div>
+            </div>
+        )
+    }
+
+
+    renderText(field) {
+        const className = `form-control ${field.meta.touched && field.meta.error ? 'border-red' : ''}`
+        return (
+            <div className="form-group form-group-custom">
+                <textarea
+                    className={className}
+                    {...field.input}
+                    placeholder={field.label}
+                    type={field.type}
+                    rows="8"
+                />
+                <div className="note-submit-review">Note: Your review will appear publicly
+                    on our site.
+                    Please do not include any personal information (full street address,
+                    etc.)
+                    Allow up to 24 hours for your review to post.
+                </div>
+                <div className="error-message">
+                    {field.meta.touched ? field.meta.error : ''}
+                </div>
+            </div>
+        )
     }
 
     render() {
 
         var divStyle = {
             backgroundImage: `url(http://image.tmdb.org/t/p/original${this.props.movie.movie.poster_path})`,
+        }
+
+        const {handleSubmit} = this.props;
+
+        const ratingChanged = (newRating) => {
+            console.log(newRating);
+            this.setState({
+                stars : newRating
+            })
         }
 
         return (
@@ -33,7 +104,7 @@ class MovieRating extends Component {
                             <br/>
                             <h1 className="font-condensed-bold-white">{this.props.movie.movie.title}</h1>
 
-                            <nav class="nav-movie-top">
+                            <nav className="nav-movie-top">
                                 <a href="#">overview</a>
                                 <a href="#">movietimes+tickets</a>
                                 <a href="#">synopsis</a>
@@ -60,17 +131,19 @@ class MovieRating extends Component {
                                         <br/>
                                         <small className="font-size-13 font-timesNewRoman color-ccc">Suspense/Thriller
                                         </small>
-                                        <span></span>
                                         {/*<Rating/>*/}
                                         <div className="rating-stars mt-2">
                                             <ReactStars
                                                 count={5}
                                                 size={24}
                                                 half={false}
-                                                color2={'#ffd700'}/>
+                                                edit={false}
+                                                color2={'#ffd700'}
+                                                value={this.props.movie.movie.vote_average / 2}
+                                            />
                                         </div>
                                         <span
-                                            class="icon icon-rottom-fresh rotten-tomatoes__icon text-center"></span><br/>
+                                            className="icon icon-rottom-fresh rotten-tomatoes__icon text-center"></span><br/>
                                         <small className="font-size-13 font-timesNewRoman color-ccc ">Rotten Tomatoes
                                         </small>
                                         <br/>
@@ -94,7 +167,7 @@ class MovieRating extends Component {
                                     </div>
                                 </div>
 
-                                <div className="col-md-7 p-0">
+                                <div className="col-md-7 p-0" onSubmit={this.handleSubmit}>
 
                                     <div className="form-review">
 
@@ -111,7 +184,10 @@ class MovieRating extends Component {
                                                     count={5}
                                                     size={24}
                                                     half={false}
-                                                    color2={'#ffd700'}/>
+                                                    color2={'#ffd700'}
+                                                    onChange={ratingChanged}
+                                                    value={this.state.stars}
+                                                />
                                             </div>
                                         </div>
 
@@ -119,28 +195,29 @@ class MovieRating extends Component {
 
                                         <h2 className="font-condensed-bold pt-2 px-3">WRITE A REVIEW</h2>
 
-                                        <form className="pt-3 px-4">
+                                        <form className="pt-3 px-4" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
                                             <small>Title:</small>
-                                            <input type="email" class="form-control" id="exampleFormControlInput1"/>
+                                            <Field
+                                                name="projectName"
+                                                component={this.renderField}
+                                                type="text"
+                                            />
 
 
                                             <small>Body:</small>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                      rows="8"></textarea>
+                                            <Field
+                                                name="projDesc"
+                                                component={this.renderText}/>
 
 
-                                            <div className="note-submit-review">Note: Your review will appear publicly
-                                                on our site.
-                                                Please do not include any personal information (full street address,
-                                                etc.)
-                                                Allow up to 24 hours for your review to post.
-                                            </div>
-
-
-                                            <button className="btn btn-primary text-center">
+                                            <button className="btn btn-primary align-right" type="submit">
                                                 Save Review
                                             </button>
+
+                                            <br/>
+                                            <br/>
+                                            <br/>
 
                                         </form>
 
@@ -157,10 +234,31 @@ class MovieRating extends Component {
     }
 }
 
+function validate(values) {
+
+    const errors = {};
+
+    if (!values.projectName) {
+        errors.projectName = "Please enter a Title";
+    }
+
+    if (values.projDesc) {
+        if (values.projDesc.length < 10) {
+            errors.projDesc = "Body should contain more than 10 letters";
+        }
+    }
+
+    return errors;
+}
+
 
 function mapStateToProps(state) {
     return {movie: state.movieOverview}
 }
 
-export default connect(mapStateToProps, {getMovieOverview})(MovieRating);
-
+export default reduxForm({
+    validate,
+    form: 'reviewForm',
+})(
+    connect(mapStateToProps, {getMovieOverview, saveReview})(MovieRating)
+);
