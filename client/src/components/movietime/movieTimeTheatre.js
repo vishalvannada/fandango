@@ -34,10 +34,10 @@ class MovieTopSection extends Component {
             let newDate = new Date();
             newDate.setDate(newDate.getDate() + i);
             arrayDates.push(newDate);
-          //  console.log(newDate);
+            //  console.log(newDate);
         }
 
-      //  console.log(arrayDates)
+        //  console.log(arrayDates)
 
 
         return (_.map(arrayDates, Date => {

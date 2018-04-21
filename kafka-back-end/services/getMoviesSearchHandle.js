@@ -82,6 +82,7 @@ function handle_request(msg, callback) {
                 res.movietheatre = resArr;
                 res.moviemap = resmap;
                 //     console.log("movie theatres are", resArr);
+
                 callback(null, res);
             }
         });

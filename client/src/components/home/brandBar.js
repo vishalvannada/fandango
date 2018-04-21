@@ -21,8 +21,6 @@ class BrandBar extends Component {
                 </div>
             </div>
         )
-
-
     }
 }
 
