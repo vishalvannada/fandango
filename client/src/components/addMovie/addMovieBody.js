@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import swal from 'sweetalert'
 //import "./movieTime.css"
 import {Field, reduxForm,initialize} from "redux-form";
-import {getMoviesInSearchPage,GetMoviesnHalls} from "../../actions/pranithActions";
+import {getMoviesInSearchPage,GetMoviesnHalls,addMovie} from "../../actions/pranithActions";
 
 import DropdownList from 'react-widgets/lib/DropdownList'
 
@@ -16,6 +17,7 @@ class MovieTopSection extends Component {
     {
         console.log("calling movie halls");
         this.props.GetMoviesnHalls();
+
     }
     state = {
         movieSearch: ""
@@ -115,6 +117,7 @@ class MovieTopSection extends Component {
     onSubmit(values) {
            console.log("on submit");
         console.log(values);
+        this.props.addMovie(values);
         //console.log(values.username);
         //console.log(this.props);
        // this.setState({editProfile: false});
@@ -142,6 +145,12 @@ class MovieTopSection extends Component {
     }
 
     render() {
+        console.log(this.props.addMovies);
+        if(this.props.addMovies.addMovies==true)
+        {
+            swal("Movie Added");
+
+        }
         const colors = [ { color: 'Red', value: 'ff0000' },
             { color: 'Green', value: '00ff00' },
             { color: 'Blue', value: '0000ff' } ]
@@ -251,7 +260,8 @@ function validate(values) {
 function mapStateToProps(state) {
     return {
         movietime: state.moviesSearchPagePK,
-        moviesDropdown:state.moviesDropdown}
+        moviesDropdown:state.moviesDropdown,
+        addMovies:state.addMovies}
 }
 
 
@@ -259,4 +269,4 @@ export default
 reduxForm({
     validate,
     form: 'AddMovie'
-})(connect(mapStateToProps, {getMoviesInSearchPage,GetMoviesnHalls})(MovieTopSection));
+})(connect(mapStateToProps, {getMoviesInSearchPage,GetMoviesnHalls,addMovie})(MovieTopSection));

@@ -32,10 +32,35 @@ export function GetMoviesnHalls() {
             });
     }
 }
+export function addMovie(values) {
+    console.log("from action addMovie");
+    return (dispatch) => {
+        console.log("kjhg",values)
+        const response = axios.post(`${ROOT_URL}/movietheatres/addmovies`,values)
+            .then(response => {
 
+                console.log(response.data)
+                if(response.data.code==200)
+                dispatch(addMoviesReducer(true));
+                else
+                    dispatch(addMoviesReducer(false));
+
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+}
 function moviesInSearchPage(response){
     return {
         type: "MOVIES_SEARCH_PAGE",
+        payload: response
+    }
+}
+
+
+function addMoviesReducer(response){
+    return {
+        type: "MOVIES_ADD",
         payload: response
     }
 }
