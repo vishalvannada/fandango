@@ -12,12 +12,13 @@ import Signin from "./components/signin";
 import SignUp from "./components/signUp";
 import UserProfile from "./components/userProfile/userProfile";
 import Dashboard from "./components/dashboard/dashboard";
-import AddMovie from './components/addMovie'
-import MovieDetail from './components/movieOverview';
-import MovieRating from './components/movieRating';
-import SecretPage from './components/secretPage';
-import CheckOut from './components/payment/checkout';
-import CheckOutPayment from './components/payment/checkoutPayment';
+// import AddMovie from './components/addMovie'
+
+// import MovieDetail from './components/movieOverview';
+// import MovieRating from './components/movieRating';
+// import SecretPage from './components/secretPage';
+// import CheckOut from './components/payment/checkout';
+// import CheckOutPayment from './components/payment/checkoutPayment';
 
 
 export const history = createBrowserHistory();
@@ -47,11 +48,11 @@ class App extends Component {
                                 <PrivateRoute path="/movie-overview/:tmdbid" component={MovieDetail} props={logStat}/>
                                 <PrivateRoute path="/secret" component={SecretPage} props={logStat}/>
                                 <PrivateRoute path="/dashboard" component={Dashboard} props={logStat}/>
-                                <PrivateRoute path="/check-out" component={CheckOut}/>
-                                <PrivateRoute path="/check-out-payment" component={CheckOutPayment}/>
-                                <PrivateRoute path="/addmovie" component={AddMovie}/>
-                                <PrivateRoute path="/movie-overview/:tmdbid" component={MovieDetail}/>
-                                <PrivateRoute path="/movie-review/:tmdbid" component={MovieRating}/>
+                                {/*<PrivateRoute path="/check-out" component={CheckOut}/>*/}
+                                {/*<PrivateRoute path="/check-out-payment" component={CheckOutPayment}/>*/}
+                                {/*<PrivateRoute path="/addmovie" component={AddMovie}/>*/}
+                                {/*<PrivateRoute path="/movie-overview/:tmdbid" component={MovieDetail}/>*/}
+                                {/*<PrivateRoute path="/movie-review/:tmdbid" component={MovieRating}/>*/}
                                 <Route path="/signin" component={Signin}/> {/*satish*/}
                                 <Route exact path="/signup" render={(props)=>{return <SignUp/>}}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
                                 <PrivateRoute exact path='/userprofile' component={UserProfile}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
