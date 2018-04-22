@@ -1,6 +1,10 @@
 var mongo = require("./mongo");
 var MongoConPool = require("./mongoConnPool");
 var moment = require('moment');
+const delay = require('delay');
+var randomInt = require('random-int');
+var MongoClient = require('mongodb').MongoClient;
+
 // var mongoURL = "mongodb://localhost:27017/KAYAK";
 // var winston = require('winston');
 
@@ -39,12 +43,7 @@ function handle_request(msg, callback) {
         var d = new Date(moment(msg.reqBody.Date).format("YYYY-MM-DD"));
         d.setDate(d.getDate() - 1);
 
-        var queryJson123 = {
-            "release_date": {
-                "$gte": d,
-                "$lte": new Date()
-            }
-        };
+
         var queryJson = {
             "HallID": new RegExp(msg.reqBody.movieSearch), "Date": {"$gte": d, "$lte": new Date()}
         };
@@ -103,9 +102,9 @@ function handle_addMovies(msg, callback) {
     // winston.remove(winston.transports.Console);
     // winston.add(winston.transports.File, { filename: './public/LogFiles/KayakAnalysis.json' });
     // winston.log('info', 'Flight Page Viewed', { page_name : 'Flights_page'});
-    console.log("-----------------------------------------in addmovies--");
+ //  console.log("-----------------------------------------in addmovies--");
     var showtimes = [];
-    for (var i = 0; i < msg.reqBody.showTimes.length; i++) {
+    for (let i = 0; i < msg.reqBody.showTimes.length; i++) {
         var showSeats = {};
         showSeats[msg.reqBody.showTimes[i]] = msg.reqBody.noOfSeats;
         showtimes.push(showSeats);
@@ -118,15 +117,49 @@ function handle_addMovies(msg, callback) {
 
 
     var d = new Date();
+    var arrayDates =[];
+    var queryJsonArray=[];
 
-   // for (var i = 0; i < 10; i++)
+    for (let i = 0; i < 6; i++) {
+        let newDate = new Date();
+        newDate.setDate(newDate.getDate() + i);
+        arrayDates.push(newDate);
+        //  console.log(newDate);
+    }
+console.log(arrayDates);
+   for (let i = 0; i < 6; i++)
+
+   {
+
+       //console.log(d,"??????????????????????????????????????????????????????????????????????????????????");
+       var queryJson = {
+           // "_id":parseInt(randomInt(9,1000000)),
+           "ID": 108.0,
+           "HallID": msg.reqBody.theatre.data[0].theatreName + "|" + msg.reqBody.theatre.data[0].theatreCity + "|" +
+           msg.reqBody.theatre.data[0].theatreState + "|" + msg.reqBody.theatre.data[0].theatreZip,
+           "movie": {
+               "movieId": msg.reqBody.movie.tmdbid,
+               "poster_path": msg.reqBody.movie.poster_path,
+               "MovieName": msg.reqBody.movie.movie
+           },
+           "ScreenNo": 1,
+           "Showtimes": showtimes,
+           "NoofSeats": msg.reqBody.noOfSeats,
+           "TicketPrice": 10,
+           "Date": arrayDates[i]
+       };
+
+       queryJsonArray.push(queryJson);
+
+   }
+   console.log(queryJsonArray);
     {
-        console.log(i);
+       // console.log(msg.reqBody,"????????????????????????????????????????????????????");
         try {
 
-            //   console.log("msg is-----------------------------------------------", msg);
+          //  console.log("msg is-----------------------------------------------");
 
-            d.setDate(d.getDate() + parseInt(msg.reqBody.Date));
+
 
             var queryJsonSearch = {
                 "ID": 108.0,
@@ -146,7 +179,8 @@ function handle_addMovies(msg, callback) {
 
 
 
-            var queryJson = {
+           /* var queryJson = {
+               // "_id":parseInt(randomInt(9,1000000)),
                 "ID": 108.0,
                 "HallID": msg.reqBody.theatre.data[0].theatreName + "|" + msg.reqBody.theatre.data[0].theatreCity + "|" +
                 msg.reqBody.theatre.data[0].theatreState + "|" + msg.reqBody.theatre.data[0].theatreZip,
@@ -160,20 +194,28 @@ function handle_addMovies(msg, callback) {
                 "NoofSeats": msg.reqBody.noOfSeats,
                 "TicketPrice": 10,
                 "Date": d
-            };
+            };*/
+   //   console.log("before delay)
+
+                {
+                    // Executed after 200 milliseconds
+                  //  console.log("after delay)
 
             MongoConPool.findOne('movieHall', queryJsonSearch, function (err, movie) {
                 if (err) {
                     res.code = "401";
                     callback(null, res);
-                    console.log("into error===============================================")
+                  //  console.log("into error===============================================", err)
                 }
                 else {
                     if (movie == null)
                     {
                         console.log(movie);
-                        console.log("adding movie================================================");
-                        MongoConPool.insert('movieHall', queryJson, function (err, movie) {
+
+
+                       // var batch = col.initializeOrderedBulkOp();
+                       // console.log("adding movie================================================");
+                        MongoConPool.insertMany('movieHall', queryJsonArray, function (err, movie) {
                             if (err) {
                                 res.code = "401";
                                 //  callback(null, res);
@@ -191,14 +233,18 @@ function handle_addMovies(msg, callback) {
                         });
 
                     }
-                    res.code=401;
-                    callback(null, res);
+                    else {
+                        res.code = 400;
+                        callback(null, res);
+                    }
 
                     //  res.result = movie;
                     // res.code = 200;
                     // callback(null, res);
                 }
             });
+
+                }
 
 
             /* MongoConPool.insert('movieHall', queryJson, function (err, movie) {
@@ -218,9 +264,10 @@ function handle_addMovies(msg, callback) {
         catch
             (e) {
             res.code = "401";
-            //callback(null, res);
+            callback(null, res);
         }
     }
+
 
 
     // winston.remove(winston.transports.File);
