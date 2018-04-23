@@ -152,7 +152,7 @@ class MovieTopSection extends Component {
     }
 
     render() {
-        console.log(this.props.addMovies);
+        console.log(this.props);
         if(this.props.addMovies.addMovies==true)
         {
             swal("Movie Added");
@@ -162,9 +162,6 @@ class MovieTopSection extends Component {
 
             swal("Movie not added");
         }
-        const colors = [ { color: 'Red', value: 'ff0000' },
-            { color: 'Green', value: '00ff00' },
-            { color: 'Blue', value: '0000ff' } ]
         // console.log(this.props);
         //console.log(this.props.movietime.moviesTheatres.moviemap);
       //  console.log(this.props.movietime.moviesTheatres.moviemap[0].type);
@@ -207,7 +204,10 @@ class MovieTopSection extends Component {
                                                     <Field
                                                         name="theatre"
                                                         component={this.renderDropdown}
-                                                        data={this.props.moviesDropdown.movies.movietheatre}
+                                                        data={this.props.moviesDropdown.movies.movietheatre.filter(function (task) {
+                                                            console.log(task.data[0].user)
+                                                            return task.data[0].user == "pranithkouda@gmail.com";
+                                                        })}
                                                         valueField="type"
                                                         type="DropdownList"
                                                         textField="type"

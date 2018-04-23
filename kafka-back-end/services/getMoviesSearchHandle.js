@@ -39,13 +39,15 @@ function handle_request(msg, callback) {
         //console.log((new Date()).format('YYYY MM DD'));
         // console.log("msg is-----------------------------------------------", msg);
         //movieSearch: '95126', Date: '2018-04-20T20:12:00-07:00'
+        var d2=new Date(moment(msg.reqBody.Date).format("YYYY-MM-DD"));
 
         var d = new Date(moment(msg.reqBody.Date).format("YYYY-MM-DD"));
         d.setDate(d.getDate() - 1);
+        console.log(d,d2);
 
 
         var queryJson = {
-            "HallID": new RegExp(msg.reqBody.movieSearch), "Date": {"$gte": d, "$lte": new Date()}
+            "HallID": new RegExp(msg.reqBody.movieSearch), "Date": {"$gte": new Date(d), "$lte": new Date(d2)}
         };
 
         MongoConPool.find('movieHall', queryJson, function (err, movie) {
@@ -70,6 +72,8 @@ function handle_request(msg, callback) {
                     carsJSON.Showtimes = movie[i].Showtimes;
                     carsJSON.NoofSeats = movie[i].NoofSeats;
                     carsJSON.TicketPrice = movie[i].Price;
+                    carsJSON.user = movie[i].user;
+
                     //carsJSON.Company=cars[i].Company;
                     i = i + 1;
                     return carsJSON;
@@ -134,7 +138,7 @@ console.log(arrayDates);
        //console.log(d,"??????????????????????????????????????????????????????????????????????????????????");
        var queryJson = {
            // "_id":parseInt(randomInt(9,1000000)),
-           "ID": 108.0,
+           "ID": randomInt(9,1000000),
            "HallID": msg.reqBody.theatre.data[0].theatreName + "|" + msg.reqBody.theatre.data[0].theatreCity + "|" +
            msg.reqBody.theatre.data[0].theatreState + "|" + msg.reqBody.theatre.data[0].theatreZip,
            "movie": {
@@ -146,7 +150,8 @@ console.log(arrayDates);
            "Showtimes": showtimes,
            "NoofSeats": msg.reqBody.noOfSeats,
            "TicketPrice": 10,
-           "Date": arrayDates[i]
+           "Date": arrayDates[i],
+           "user": "pranithkouda@gmail.com"
        };
 
        queryJsonArray.push(queryJson);
@@ -162,7 +167,6 @@ console.log(arrayDates);
 
 
             var queryJsonSearch = {
-                "ID": 108.0,
                 "HallID": msg.reqBody.theatre.data[0].theatreName + "|" + msg.reqBody.theatre.data[0].theatreCity + "|" +
                 msg.reqBody.theatre.data[0].theatreState + "|" + msg.reqBody.theatre.data[0].theatreZip,
                 "movie": {
@@ -342,7 +346,9 @@ function handle_MoviesnHalls(msg, callback) {
         //console.log("msg is-----------------------------------------------", msg);
         var queryJson = {
             //  "Date": {$gte : new Date()}
-            "HallID": new RegExp("|")
+
+            //hard code
+            "HallID": new RegExp("|"),"user":"pranithkouda@gmail.com"
         };
 
         var queryMovies = {poster_path: new RegExp('/')};
@@ -365,6 +371,7 @@ function handle_MoviesnHalls(msg, callback) {
                     //carsJSON.title=movie[i].title;
                     carsJSON.tmdbid = movie[i].tmdbid;
                     carsJSON.poster_path = movie[i].poster_path;
+
 
                     //carsJSON.Company=cars[i].Company;
                     i = i + 1;
@@ -403,11 +410,15 @@ function handle_MoviesnHalls(msg, callback) {
                             carsJSON.theatreCity = spl[1];
                             carsJSON.theatreState = spl[2];
                             carsJSON.theatreZip = spl[3];
-                            // carsJSON.movie = movie[i].movie;
-                            //carsJSON.ScreenNo = movie[i].ScreenNo;
-                            //carsJSON.Showtimes = movie[i].Showtimes;
-                            //carsJSON.NoofSeats = movie[i].NoofSeats;
-                            //carsJSON.TicketPrice = movie[i].Price;
+                            carsJSON.user = file.user;
+                             carsJSON.movie = file.movie;
+                            carsJSON.ScreenNo = file.ScreenNo;
+                            carsJSON.Showtimes = file.Showtimes;
+                            carsJSON.NoofSeats = file.NoofSeats;
+                            carsJSON.TicketPrice = file.Price;
+                            carsJSON.user = file.user;
+                            carsJSON.ID = file.ID;
+
                             //carsJSON.Company=cars[i].Company;
                             i = i + 1;
                             return carsJSON;

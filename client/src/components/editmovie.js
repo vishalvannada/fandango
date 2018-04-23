@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import BrandBar from './home/brandBar'
 import MegaDropDownHeader from './home/megaDropDownHeader';
-import MovieTopSection from './movietime/movieTimeTheatre';
+import EditMovieBody from './editMovieHall/editMovieHall';
 import {connect} from "react-redux";
 import {demo} from "../actions/vishalActions";
 
@@ -20,7 +20,7 @@ class Movietime extends Component {
             <div>
                 <BrandBar/>
                 <MegaDropDownHeader/>
-                <MovieTopSection/>
+                <EditMovieBody history={this.props.history}/>
             </div>
         )
     }

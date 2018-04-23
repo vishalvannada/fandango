@@ -10,6 +10,8 @@ import Home from './components/home';
 
 import MovieTime from './components/movietime'
 import AddMovie from './components/addMovie'
+import editMovie from './components/editmovie'
+
 
 import MovieDetail from './components/movieOverview';
 import MovieRating from './components/movieRating';
@@ -33,6 +35,7 @@ ReactDOM.render(
                     <Route path="/check-out-payment" component={CheckOutPayment}/>
                     <Route path="/addmovie" component={AddMovie}/>
                     <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
+                    <Route path="/editMovie" component={editMovie}/>
                     <Route path="/movie-review/:tmdbid" component={MovieRating}/>
                     <Route path="/secret" component={SecretPage}/>
                     <Route path="/" component={Home}/>
