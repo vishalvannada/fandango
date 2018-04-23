@@ -11,6 +11,7 @@ require('./routes/passport')(passport);
 
 var index = require('./routes/vishal/index');
 var movies = require('./routes/vishal/movies');
+var admin = require('./routes/vishal/admin');
 var movietheatres=require('./routes/pranith/movietheatre');
 var mongoSessionURL = "mongodb://cmpe273:sreedevi@ds139929.mlab.com:39929/freelancer_lab2";
 var expressSessions = require("express-session");
@@ -75,6 +76,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index); //vishal
 app.use('/movies', movies); //vishal
+app.use('/admin', admin); //vishal
 app.use('/movietheatres',movietheatres); //pranith
 
 // catch 404 and forward to error handlers

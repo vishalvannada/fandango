@@ -84,56 +84,56 @@ router.get('/', function (req, res) {
 });
 
 
-router.post('/savedetails', function (req, res, next) {
-
-
-    if (req.session) {
-        const username = req.param('username');
-        const email = req.param('email');
-        let phoneNumber = '';
-        let aboutMe = '';
-        let skills = '';
-
-        if (req.param('phoneNumber')) {
-            phoneNumber = req.param('phoneNumber');
-        }
-
-        if (req.param('aboutMe')) {
-            aboutMe = req.param('aboutMe');
-        }
-
-        if (req.param('skills')) {
-            skills = req.param('skills');
-        }
-
-        kafka.make_request('saveProfileDetails_topic',
-            {
-                oldname: req.session.username,
-                username: username,
-                aboutMe: aboutMe,
-                skills: skills,
-                phoneNumber: phoneNumber,
-                email: email,
-            },
-
-            function (err, results) {
-                console.log('in result');
-                if (results.code == 200) {
-                    console.log(results);
-                    res.status(201).send(results.result)
-                }
-                else {
-                    res.status(401).json({
-                        message: results.message
-                    })
-                }
-
-            });
-    }
-    else {
-        res.status(401).end();
-    }
-
-})
+// router.post('/savedetails', function (req, res, next) {
+//
+//
+//     if (req.session) {
+//         const username = req.param('username');
+//         const email = req.param('email');
+//         let phoneNumber = '';
+//         let aboutMe = '';
+//         let skills = '';
+//
+//         if (req.param('phoneNumber')) {
+//             phoneNumber = req.param('phoneNumber');
+//         }
+//
+//         if (req.param('aboutMe')) {
+//             aboutMe = req.param('aboutMe');
+//         }
+//
+//         if (req.param('skills')) {
+//             skills = req.param('skills');
+//         }
+//
+//         kafka.make_request('saveProfileDetails_topic',
+//             {
+//                 oldname: req.session.username,
+//                 username: username,
+//                 aboutMe: aboutMe,
+//                 skills: skills,
+//                 phoneNumber: phoneNumber,
+//                 email: email,
+//             },
+//
+//             function (err, results) {
+//                 console.log('in result');
+//                 if (results.code == 200) {
+//                     console.log(results);
+//                     res.status(201).send(results.result)
+//                 }
+//                 else {
+//                     res.status(401).json({
+//                         message: results.message
+//                     })
+//                 }
+//
+//             });
+//     }
+//     else {
+//         res.status(401).end();
+//     }
+//
+// })
 
 module.exports = router;

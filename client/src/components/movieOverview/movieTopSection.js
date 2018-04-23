@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import moment from "moment";
 import ReactStars from 'react-stars';
 import {Link} from 'react-router-dom';
-
+import _ from 'lodash';
 
 class MovieTopSection extends Component {
 
@@ -42,9 +42,8 @@ class MovieTopSection extends Component {
                                             className="image-movie-detail image"/>
                                     </div>
                                     <div className="movieDetail-release-date text-center">
-                                        <br/>
                                         <span
-                                            className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.status}</span>
+                                            className="font-size-13 font-timesNewRoman mt-1 color-ccc">{this.props.movie.status}</span>
                                         <h5 className="font-condensed-bold-white">{moment(this.props.movie.release_date).format('MMM DD, YYYY')}</h5>
                                         <small
                                             className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.rating} {this.props.movie.runtime} minutes
@@ -64,9 +63,14 @@ class MovieTopSection extends Component {
                                                 count={5}
                                                 size={24}
                                                 half={false}
-                                                value={this.props.movie.vote_average/2}
+                                                value={this.props.movie.reviews ? _.sumBy(this.props.movie.reviews, 'stars') / this.props.movie.reviews.length : 0}
                                                 color2={'#ffd700'}/>
                                         </div>
+
+                                        <small
+                                            className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.reviews ? this.props.movie.reviews.length : ''} Voters
+                                        </small>
+                                        <br/>
 
                                         <span
                                             class="icon icon-rottom-fresh rotten-tomatoes__icon text-center"></span><br/>

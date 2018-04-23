@@ -17,7 +17,7 @@ class CheckOut extends Component {
                 <div className="background-fandango-checkout">
                     <div className="checkOut-container">
 
-                        <Link to="/">
+                        <Link to="/home">
                             <img className="megaDropDown-brand mt-1"
                                  src="https://images.fandango.com/mobile/web/img/assets/logo-fandango.svg"/>
                         </Link>

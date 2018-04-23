@@ -11,7 +11,7 @@ class MegaDropDownHeader extends Component {
             <div className="background-fandango">
                 <div className="fandango-container">
                     <nav className="navbar navbar-expand-lg navbar-dark">
-                        <Link to="/">
+                        <Link to="/home">
                         <img className="megaDropDown-brand mt-1"
                              src="https://images.fandango.com/mobile/web/img/assets/logo-fandango.svg"/>
                         </Link>

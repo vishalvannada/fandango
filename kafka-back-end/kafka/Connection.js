@@ -5,18 +5,13 @@ function ConnectionProvider() {
 
         this.client = new kafka.Client("localhost:2181");
         this.kafkaConsumerConnection = new kafka.Consumer(this.client, [
-            {topic: 'signup', partition: 0},
-            {topic: 'signin', partition: 0},
-            {topic: 'basicInfo', partition: 0},
-            {topic: 'changeEmail', partition: 0},
-            {topic: 'changePassword', partition: 0},
-            {topic: 'savePayment', partition: 0},
-
-
             //vishal
             {topic: 'loadDataFromAPI_topic', partition: 0},
             {topic: 'getMoviesInHomePageCarousel_topic', partition: 0},
             {topic: 'getMovieOverview_topic', partition: 0},
+            {topic: 'saveReview_topic', partition: 0},
+            {topic: 'getSearchedMoviesAdmin_topic', partition: 0},
+            {topic: 'UpdateMovieAdmin_topic', partition: 0},
 
             //pranith
             {topic: 'getMoviesInSearchPage_topic', partition: 0},

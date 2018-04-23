@@ -8,6 +8,7 @@ import BrandBar from './home/brandBar'
 import MegaDropDownHeader from './home/megaDropDownHeader';
 import {getMovieOverview, saveReview} from "../actions/vishalActions";
 import swal from 'sweetalert'
+import _ from "lodash";
 
 
 class MovieRating extends Component {
@@ -27,13 +28,16 @@ class MovieRating extends Component {
     }
 
     onSubmit(data) {
-        if (this.state.stars == '') {
+        if (this.state.stars == 0) {
             swal("Please Select Rating");
         }
 
+        data.tmdbid = this.props.movie.movie.tmdbid;
         data.stars = this.state.stars;
         console.log(data)
-        this.props.saveReview(data)
+        this.props.saveReview(data, () => this.props.history.push(`/movie-overview/${this.props.movie.movie.tmdbid}`));
+
+
     }
 
 
@@ -90,7 +94,7 @@ class MovieRating extends Component {
         const ratingChanged = (newRating) => {
             console.log(newRating);
             this.setState({
-                stars : newRating
+                stars: newRating
             })
         }
 
@@ -104,26 +108,27 @@ class MovieRating extends Component {
                             <br/>
                             <h1 className="font-condensed-bold-white">{this.props.movie.movie.title}</h1>
 
-                            <nav className="nav-movie-top">
+                            <nav className="nav-movie-top my-3">
                                 <a href="#">overview</a>
                                 <a href="#">movietimes+tickets</a>
                                 <a href="#">synopsis</a>
-                                <a href="#">movie reviews</a>
+                                <a href="#reviews-bottom">movie reviews</a>
                                 <a href="#">trailers</a>
                                 <a href="#">more</a>
                             </nav>
 
                             <div className="row">
                                 <div className="col-md-3">
+                                    <Link to={`/movie-overview/${this.props.movie.movie.tmdbid}`}>
                                     <div className="movieDetail-image-div">
                                         <img
                                             src={`http://image.tmdb.org/t/p/w200${this.props.movie.movie.poster_path}`}
                                             className="image-movie-detail image"/>
                                     </div>
+                                    </Link>
                                     <div className="movieDetail-release-date text-center">
-                                        <br/>
                                         <span
-                                            className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.movie.status}</span>
+                                            className="font-size-13 font-timesNewRoman mt-1 color-ccc">{this.props.movie.movie.status}</span>
                                         <h5 className="font-condensed-bold-white">{moment(this.props.movie.movie.release_date).format('MMM DD, YYYY')}</h5>
                                         <small
                                             className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.movie.rating} {this.props.movie.movie.runtime} minutes
@@ -139,9 +144,13 @@ class MovieRating extends Component {
                                                 half={false}
                                                 edit={false}
                                                 color2={'#ffd700'}
-                                                value={this.props.movie.movie.vote_average / 2}
+                                                value={this.props.movie.movie.reviews ? _.sumBy(this.props.movie.movie.reviews, 'stars') / this.props.movie.movie.reviews.length : 0}
                                             />
                                         </div>
+                                        <small
+                                            className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.movie.reviews ? this.props.movie.movie.reviews.length : ''} Voters
+                                        </small>
+                                        <br/>
                                         <span
                                             className="icon icon-rottom-fresh rotten-tomatoes__icon text-center"></span><br/>
                                         <small className="font-size-13 font-timesNewRoman color-ccc ">Rotten Tomatoes
@@ -228,6 +237,8 @@ class MovieRating extends Component {
                         </div>
                     </div>
                 </div>
+
+
 
             </div>
         )

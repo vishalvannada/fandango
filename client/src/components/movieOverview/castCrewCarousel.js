@@ -24,7 +24,7 @@ class CastCrewCarousel extends Component {
     renderMovies() {
         if (this.props.cast.length > 0) {
             return (_.map(this.props.cast, castMember => {
-                console.log(castMember)
+                // console.log(castMember)
                 return (
                     <div key={castMember.name}>
                         {/*<Link to={`/castMember-overview/${castMember.tmdbid}`}>*/}
@@ -51,7 +51,7 @@ class CastCrewCarousel extends Component {
 
     render() {
 
-        console.log(this.state)
+        // console.log(this.state)
 
         var settings = {
             slidesToShow: 6,
