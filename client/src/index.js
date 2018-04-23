@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import promise from 'redux-promise';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
+
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+
 import Home from './components/home';
 
 import MovieTime from './components/movietime'
@@ -21,13 +23,12 @@ import AdminMovieEdit from './components/adminMovieSearch/movieEdit';
 import Error from './components/404Error';
 
 
-
-
 const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
 export const store = createStoreWithMiddleware(reducers);
 
 ReactDOM.render(
     <Provider store={store}>
+
         <BrowserRouter>
             <div>
                 <Switch>
@@ -46,5 +47,7 @@ ReactDOM.render(
                 </Switch>
             </div>
         </BrowserRouter>
+
     </Provider>
+
     , document.getElementById('root'));
