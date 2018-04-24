@@ -60,6 +60,7 @@ var options = {
 
 app.use(expressSessions({
     secret: 'CMPE273_fandango',
+    cookie: { secure: false },
     httpOnly: true,
     secure: false,
     maxAge: null,

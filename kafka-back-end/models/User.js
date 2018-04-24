@@ -10,6 +10,8 @@ module.exports = function(sequelize, Sequelize) {
         displayname: { type: Sequelize.STRING},
         email: { type:Sequelize.STRING, validate: {isEmail:true}, unique:true },
         password : {type: Sequelize.STRING,allowNull: false },
+        mobile: {type: Sequelize.STRING},
+        address: {type: Sequelize.STRING},
         cardnumber: {type: Sequelize.STRING},
         cardmonth: {type: Sequelize.STRING},
         cardyear: {type: Sequelize.STRING},

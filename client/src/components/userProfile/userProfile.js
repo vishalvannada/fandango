@@ -13,8 +13,7 @@ import UtilityFooter from './utilityFooter';
 import BrandBar from '../home/brandBar';
 import MegaDropDownHeader from '../home/megaDropDownHeader';
 import FandangoVIPHeader from './fandangoVIPHeader'
-import {doSignUp} from "../../actions/rishithActions";
-
+import {changePassword,changeEmail,changeBasicInfo,getUserDetails,savePaymentMethod,changeImage} from "../../actions/satishActions";
 
 class UserProfile extends Component {
 
@@ -23,45 +22,43 @@ class UserProfile extends Component {
         this.onSubmit_change_image = this.onSubmit_change_image.bind(this)
 
     }
-
-
+    componentDidMount(){
+        this.props.getUserDetails();
+    }
 
     /* Passing Values from form-0: Change Image  */
     onSubmit_change_image(values){
-
-        // this.props.doSignUp(values)
-
+         this.props.changeImage(values)
     }
 
 
     /* Passing Values from form-1: Basic Information  */
     onSubmit_basic_info(values){
         console.log(values);
-        // this.props.doSignUp(values)
+         this.props.changeBasicInfo(values)
 
     }
 
     /* Passing Values from form-2: Email Change  */
     onSubmit_email(values){
         console.log(values);
-        // this.props.doSignUp(values)
+        this.props.changeEmail(values)
 
     }
 
     /* Passing Values from form-3: Password Change  */
     onSubmit_password(values){
         console.log(values);
-        // this.props.doSignUp(values)
+        this.props.changePassword(values)
 
     }
 
     /* Passing Values from form-3: Payment Infomation  */
     onSubmit_payment(values){
         console.log(values);
-        // this.props.doSignUp(values)
+         this.props.savePaymentMethod(values)
 
     }
-
 
 
     /* Form Validations and Error Messages */
@@ -112,6 +109,7 @@ class UserProfile extends Component {
 
     render(){
         console.log("Inside Signup");
+        console.log("props",this.props.user);
         const { handleSubmit, load, pristine, reset, submitting } = this.props;
 
         return(
@@ -168,6 +166,7 @@ class UserProfile extends Component {
                                                   id="FirstNameBox"
                                                   type = 'text'
                                                   component={this.renderField}
+                                                  value = {this.props.user.firstname}
                                            />
                                         </div>
                                         <div className="medium-5 columns">
@@ -178,6 +177,7 @@ class UserProfile extends Component {
                                                    id="LastNameBox"
                                                    type = 'text'
                                                    component={this.renderField}
+                                                   value = {this.props.user.lastname}
                                             />
                                         </div>
                                         <div className="medium-5 columns">
@@ -190,6 +190,7 @@ class UserProfile extends Component {
                                                    id="DisplayName"
                                                    type = 'text'
                                                    component={this.renderField}
+                                                   value = {this.props.user.displayname}
                                             />
                                         </div>
                                            <div className="medium-5 columns">
@@ -201,6 +202,7 @@ class UserProfile extends Component {
                                                       id="MobileBox"
                                                       type = 'text'
                                                       component={this.renderField}
+                                                      value = {this.props.user.mobile}
                                                />
                                            </div>
 
@@ -212,6 +214,7 @@ class UserProfile extends Component {
                                                       id="AddressBox"
                                                       type = 'textarea'
                                                       component={this.renderField}
+                                                      value = {this.props.user.address}
                                                />
                                            </div>
                                         <div className="medium-7 columns right-40">
@@ -235,7 +238,7 @@ class UserProfile extends Component {
                                             <div className='row'><div className="medium-12 columns">
 
                                             <label>Current Email</label>
-                                            <div className='email-form-oldemail'><p>Old Email ID</p></div>
+                                            <div className='email-form-oldemail'><p>{this.props.user.email}</p></div>
                                         </div></div>
                                            <div className='row'> <div className="medium-12 columns">
 
@@ -496,10 +499,21 @@ class UserProfile extends Component {
     // return errors;
 // }
 
+function mapDispatchToProps(dispatch){
+    return {
+        ...bindActionCreators({
+            changeEmail, changePassword, changeBasicInfo,
+            savePaymentMethod, changeImage,
+            getUserDetails
+        },dispatch)
+    }
+}
 
-
+function mapStateToProps(state){
+    return({user: state.userProfile})
+}
 
 export default reduxForm({
     // validate,
     form: 'userForms'
-}) (connect(null,{})(UserProfile));
+}) (connect(mapStateToProps,mapDispatchToProps)(UserProfile));

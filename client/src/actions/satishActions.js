@@ -18,7 +18,10 @@ export const USER_DETAILS_SUCCESS = "USER_DETAILS_SUCCESS";
 export const USER_DETAILS_ERROR = "USER_DETAILS_ERROR";
 export const FETCH_USER = "FETCH_USER";
 export const FETCH_USER_NULL = "FETCH_USER_NULL";
+export const UPLOAD_SUCCESS = "UPLOAD_SUCCESS";
+export const UPLOAD_FAILED = "UPLOAD_FAILED";
 
+axios.defaults.withCredentials = true;
 
 export function signin(values){
     return function(dispatch) {
@@ -101,14 +104,12 @@ export function getUserDetails(){
         axios.get(`${ROOT_URL}/user/userDetails`)
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res.data);
-                dispatch({type:USER_DETAILS_SUCCESS, payload:res.data});
+                dispatch({type:USER_DETAILS_SUCCESS, payload:res.data.user});
             })
             .catch((error) => {
                 dispatch({type:USER_DETAILS_ERROR, payload:error})
             });
-
     }
-
 }
 
 
@@ -117,9 +118,8 @@ export function changeBasicInfo(userdata){
         console.log("Inside the sign up actions");
         axios.post(`${ROOT_URL}/user/basicInfo`, userdata)
             .then((res) => {
-                console.log("Inside actions 'Response'-> ", res.data);
-
-                dispatch({type:BASIC_INFO_SUCCESS, payload:res.data});
+                console.log("Inside actions 'Response'-> ", res.data.user);
+                dispatch({type:BASIC_INFO_SUCCESS, payload:res.data.user});
             })
             .catch((error) => {
                 dispatch({type:BASIC_INFO_ERROR, payload:error})
@@ -187,5 +187,30 @@ export function deletePaymentMethod(userdata){
                 dispatch({type:DELETE_PAYMENT_ERROR, payload:error})
             });
 
+    }
+}
+
+export function changeImage(userdata){
+    return function (dispatch) {
+        let formData = new FormData();
+        formData.append('name', userdata.picname);
+        formData.append('myfile', userdata.newfile[0]);
+        console.log("Inside the sign up actions");
+        axios(`${ROOT_URL}/user/upload`, {
+            method: "post",
+            data: formData,
+            config: { headers: {'Content-Type': 'multipart/form-data' }},
+            withCredentials: true
+        }).then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+            if(res.status == 201){
+                alert("profile updated successfully");
+                history.push('/dashboard');
+            }
+                dispatch({type:UPLOAD_SUCCESS, payload:res.data});
+            })
+            .catch((error) => {
+                dispatch({type:UPLOAD_FAILED, payload:error})
+            });
     }
 }

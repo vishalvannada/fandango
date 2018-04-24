@@ -13,7 +13,8 @@ router.get('/fetchuser',function(req,res){
         res.status(202).json({user: null});
 
     }
-});router.post('/signin', function(req, res, next) {
+});
+router.post('/signin', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
         if (!user) {
@@ -27,10 +28,11 @@ router.get('/fetchuser',function(req,res){
                 }
                 else{
                     req.session.save(function(err){
-                        console.log(req.user);
+                        console.log("login user",req.user);
                         console.log(req.isAuthenticated());
-                        req.session.username = req.user;
-                        return res.status(201).json({username: req.user});
+                        req.session.email = req.user.user.email;
+                        console.log("session email",req.session.email);
+                        return res.status(201).json({username: req.user.user});
                     });
                 }
             });
@@ -38,6 +40,30 @@ router.get('/fetchuser',function(req,res){
 
     })(req, res, next);
 });
+
+router.get('/userDetails',function (req,res) {
+    kafka.make_request('userDetails',{"email":req.session.email}, function(err,results){
+        console.log('in result');
+        console.log(results.user);
+        if(err){
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else
+        {
+            if(results.code === 201){
+                console.log("Inside the success criteria");
+                res.status(201).json({message: "User details retrieved successfully",user:results.user});
+            }
+            else {
+                res.status(401).json({message: "user details not available"});
+
+            }
+        }
+    });
+
+});
+
+
 
 router.post('/signup', function (req, res) {
     kafka.make_request('signup',{"user":req.body}, function(err,results){
@@ -63,6 +89,7 @@ router.post('/signup', function (req, res) {
 
 router.get('/signout', function (req, res) {
     console.log("Authenticated:",req.user);
+
      req.logout();
     req.session.destroy(function (err) {
         if (!err) {
@@ -76,7 +103,8 @@ router.get('/signout', function (req, res) {
 });
 
 router.post('/basicInfo', function (req, res) {
-    kafka.make_request('basicInfo',{"user":req.body}, function(err,results){
+    console.log("session email",req.session.email);
+    kafka.make_request('basicInfo',{"user":req.body,"email":req.session.email}, function(err,results){
         console.log('in result');
         console.log(results);
         if(err){
@@ -86,7 +114,7 @@ router.post('/basicInfo', function (req, res) {
         {
             if(results.code === 201){
                 console.log("Inside the success criteria");
-                res.status(201).json({message: "User Basic info Saved successfully"});
+                res.status(201).json({message: "User Basic info Saved successfully",user:results.user});
             }
             else {
                 res.status(401).json({message: "user Basic info update failed"});
@@ -120,27 +148,6 @@ router.post('/email', function (req, res) {
 
 });
 
-router.post('/password', function (req, res) {
-    kafka.make_request('changePassword',{"user":req.body}, function(err,results){
-        console.log('in result');
-        console.log(results);
-        if(err){
-            res.status(401).json({message: "Unexpected error occured"});
-        }
-        else
-        {
-            if(results.code === 201){
-                console.log("Inside the success criteria");
-                res.status(201).json({message: "User Basic info Saved successfully"});
-            }
-            else {
-                res.status(401).json({message: "user Basic info update failed"});
-
-            }
-        }
-    });
-
-});
 
 router.post('/password', function (req, res) {
     kafka.make_request('changePassword',{"user":req.body}, function(err,results){

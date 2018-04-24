@@ -44,6 +44,13 @@ consumer.on('message', function (message) {
                 return;
             });
             break;
+        case 'userDetails':
+            user.userDetails(data.data, function (err, res) {
+                console.log("res: ",res);
+                response(data, res);
+                return;
+            });
+            break;
         case 'loadDataFromAPI':
             dummyData.handle_request(data.data, function(err,res) {
                 response(data, res);
@@ -69,6 +76,13 @@ consumer.on('message', function (message) {
                 return;
             });
             break;
+        case 'deletePayment':
+            user.deletePayment(data.data, function (err, res) {
+                console.log("res: ",res);
+                response(data, res);
+                return;
+            });
+            break;
         case 'basicInfo':
             user.basicInfo(data.data, function(err,res) {
                 response(data, res);
@@ -82,7 +96,13 @@ consumer.on('message', function (message) {
             })
             break;
         case 'changePassword':
-            user,changePassword(data.data, function(err,res){
+            user.changePassword(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break
+        case 'userDetails':
+            user.userDetails(data.data, function(err,res){
                 response(data,res);
                 return;
             })

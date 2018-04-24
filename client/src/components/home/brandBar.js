@@ -9,7 +9,7 @@ import {fetchUser} from "../../actions/satishActions";
 
 class BrandBar extends Component{
     componentDidMount(){
-        this.props.fetchUser();
+       // this.props.fetchUser();
     }
 
     handleSignout(){
@@ -17,7 +17,8 @@ class BrandBar extends Component{
     }
 
     render() {
-        var isLoggedIn = this.props.user.isLoggedIn;
+       var isLoggedIn = window.localStorage.getItem('isLoggedIn');
+       // var isLoggedIn = this.props.user.isLoggedIn;
         console.log('isloggeIn',isLoggedIn);
 
         return (
