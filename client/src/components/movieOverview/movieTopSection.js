@@ -1,15 +1,25 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import Rating from './rating'
 import moment from "moment";
+import ReactStars from 'react-stars';
+import {Link} from 'react-router-dom';
+import _ from 'lodash';
+import ReactDOM from 'react-dom';
 
 class MovieTopSection extends Component {
+
+    // handleScrollToElement(event) {
+    //     const tesNode = ReactDOM.findDOMNode(this.refs.reviewsTest)
+    //     window.scrollTo(0, tesNode.offsetTop);
+    // }
+
 
     render() {
 
         var divStyle = {
-            backgroundImage: `url(http://image.tmdb.org/t/p/original/nIrDm42dy5PaXtUAzUfPmxM4mQm.jpg)`,
+            backgroundImage: `url(http://image.tmdb.org/t/p/original${this.props.movie.poster_path})`,
         }
+
 
         console.log()
         const url = `https://www.youtube.com/embed/${this.props.movie.youtube_trailer}`;
@@ -21,6 +31,17 @@ class MovieTopSection extends Component {
                         <div className="fandango-container">
                             <br/>
                             <h1 className="font-condensed-bold-white">{this.props.movie.title}</h1>
+
+
+                            <nav className="nav-movie-top my-3">
+                                <a href="#">overview</a>
+                                <a href="#">movietimes+tickets</a>
+                                <a href="#">synopsis</a>
+                                <a href="#">movie reviews</a>
+                                <a href="#">trailers</a>
+                                <a href="#">more</a>
+                            </nav>
+
                             <div className="row">
                                 <div className="col-md-3">
                                     <div className="movieDetail-image-div">
@@ -29,25 +50,56 @@ class MovieTopSection extends Component {
                                             className="image-movie-detail image"/>
                                     </div>
                                     <div className="movieDetail-release-date text-center">
-                                        <br/>
                                         <span
-                                            className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.status}</span>
+                                            className="font-size-13 font-timesNewRoman mt-1 color-ccc">{this.props.movie.status}</span>
                                         <h5 className="font-condensed-bold-white">{moment(this.props.movie.release_date).format('MMM DD, YYYY')}</h5>
                                         <small
                                             className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.rating} {this.props.movie.runtime} minutes
                                         </small>
                                         <br/>
-                                        <small className="font-size-13 font-timesNewRoman color-ccc">Suspense/Thriller
+                                        <small
+                                            className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.genre}
                                         </small>
                                         <span></span>
                                         {/*<Rating/>*/}
 
+                                        <div
+                                            onClick={() => this.props.history.push(`/movie-review/${this.props.movie.tmdbid}`)}
+                                            className="rating-stars mt-2">
+                                            <ReactStars
+                                                edit={false}
+                                                count={5}
+                                                size={24}
+                                                half={false}
+                                                value={this.props.movie.reviews ? _.sumBy(this.props.movie.reviews, 'stars') / this.props.movie.reviews.length : 0}
+                                                color2={'#ffd700'}/>
+                                        </div>
+
+                                        <small
+                                            className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.reviews ? this.props.movie.reviews.length : ''} Voters
+                                        </small>
+                                        <br/>
+
+                                        <span
+                                            class="icon icon-rottom-fresh rotten-tomatoes__icon text-center"></span><br/>
+                                        <small className="font-size-13 font-timesNewRoman color-ccc ">Rotten Tomatoes
+                                        </small>
+                                        <br/>
                                     </div>
 
 
                                     <div className="movie-showtimes">
+                                        <div className="movie-showtimes-icon"></div>
+                                        <h3 className="font-condensed-bold-white">BUY MOVIE TICKETS</h3>
 
+                                        <br/>
+                                        <Link to="/somewhere"><span className="font-weight-700 font-size-14">SOME ALL MOVIE THEATRES + MOVIES</span></Link><br/>
+                                        {/*<small className="font-color-white">Movie Times for Tuesday, April 17, 2018*/}
+                                        {/*<br/>*/}
+                                        {/*Closed caption  Luxury Lounger Recliners Reserved seating</small>*/}
                                     </div>
+
+
                                 </div>
 
                                 <div className="col-md-7 p-0">
@@ -67,7 +119,7 @@ class MovieTopSection extends Component {
                     </div>
                 </div>
 
-                <div className="movieDetail-release-date">
+                <div className="movieDetail-synopsis-big">
                     <div className="movieDetail-synopsis">
                         <br/>
                         <p>{this.props.movie.title} Synopsis</p>

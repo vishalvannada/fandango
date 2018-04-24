@@ -1,9 +1,11 @@
+
 import React, {Component} from 'react';
 import BrandBar from './home/brandBar'
 import MegaDropDownHeader from './home/megaDropDownHeader';
 import MovieTopSection from './movietime/movieTimeTheatre';
 import {connect} from "react-redux";
 import {demo} from "../actions/vishalActions";
+
 
 
 
@@ -30,3 +32,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(null, null)(Movietime);
+

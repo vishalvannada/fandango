@@ -1,8 +1,8 @@
 {
   "development": {
 
-    "username": "test",
-    "password": "pass",
+    "username": "root",
+    "password": "sreedevi",
     "database": "fandango",
     "host": "localhost",
     "dialect": "mysql"

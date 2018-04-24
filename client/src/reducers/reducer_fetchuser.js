@@ -6,7 +6,7 @@ export default function (state = {
     isLoggedIn : false,
     username: null
 }, action) {
-    console.log("Inside Reducer",action.payload);
+    // console.log("Inside Reducer",action.payload);
     switch (action.type) {
         case FETCH_USER:
             return {...state, isLoggedIn:true, username: action.payload.user.user};

@@ -9,6 +9,13 @@ var producer = connection.getProducer();
 var consumer = connection.getConsumer();
 
 
+var saveReview = require('./services/saveReview');
+var adminMovieSearch = require('./services/adminMovieSearch');
+var updateMovieAdmin = require('./services/updateMovieAdmin');
+
+
+var getMoviesSearchHandle = require('./services/getMoviesSearchHandle') ;
+
 
 console.log('server is running');
 
@@ -31,6 +38,62 @@ consumer.on('message', function (message) {
 
 
     switch (message.topic){
+        case 'loadDataFromAPI_topic':
+            dummyData.handle_request(data.data, function(err,res) {
+                response(data, res);
+                return;
+            });
+            break;
+        case 'getMoviesInHomePageCarousel_topic':
+            getMoviesInHomePageCarousel.handle_request(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+        case 'getMovieOverview_topic':
+            getMovieOverview.handle_request(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+
+        case 'getMoviesInSearchPage_topic':
+            getMoviesSearchHandle.handle_request(data.data, function(err,res) {
+                response(data, res);
+                return;
+            });
+            break;
+        case 'getMoviesnHalls_topic':
+            getMoviesSearchHandle.handle_MoviesnHalls(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+        case 'addmovies_topic':
+            getMoviesSearchHandle.handle_addMovies(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+        case 'saveReview_topic':
+            saveReview.handle_request(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+        case 'getSearchedMoviesAdmin_topic':
+            adminMovieSearch.handle_request(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+
+        case 'UpdateMovieAdmin_topic':
+            updateMovieAdmin.handle_request(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
         case 'signup':
             user.signup(data.data, function (err, res) {
                 response(data, res);
@@ -50,24 +113,6 @@ consumer.on('message', function (message) {
                 response(data, res);
                 return;
             });
-            break;
-        case 'loadDataFromAPI':
-            dummyData.handle_request(data.data, function(err,res) {
-                response(data, res);
-                return;
-            });
-            break;
-        case 'getMoviesInHomePageCarousel':
-            getMoviesInHomePageCarousel.handle_request(data.data, function(err,res){
-                response(data,res);
-                return;
-            })
-            break;
-        case 'getMovieOverview':
-            getMovieOverview.handle_request(data.data, function(err,res){
-                response(data,res);
-                return;
-            })
             break;
         case 'savePayment':
             user.savePayment(data.data, function (err, res) {
@@ -101,12 +146,7 @@ consumer.on('message', function (message) {
                 return;
             })
             break
-        case 'userDetails':
-            user.userDetails(data.data, function(err,res){
-                response(data,res);
-                return;
-            })
-            break;
+
     }
 });
 

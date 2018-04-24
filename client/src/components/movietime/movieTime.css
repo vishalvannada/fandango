@@ -1,3 +1,4 @@
+
 .fd-movie {
     position: relative;
     background-color: #fff;
@@ -8,9 +9,15 @@
     height:186px;
 }
 
+
+.fd-movie__poster{
+    max-width: inherit;
+}
+
 .fd-movie__details{
     font-family: alternate-gothic-no-1-d,"Futura Condensed","Arial Narrow",Arial,sans-serif;
     color:black;
+    padding: 10px;
 
 }
 .fd-theater__header {
@@ -30,23 +37,22 @@
 
 }
 .showtime-btn {
-    width: 89px;
-    padding: 13px 0;
-    margin: 2px;
+    padding: 10px 10px !important;
+    margin: 4px;
     text-align: center;
 }
-.btn {
-    background: #f15500;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 16px;
-    overflow: hidden;
-    padding: 10px 20px;
-    -webkit-transition: all .3s;
-    -moz-transition: all .3s;
-    -ms-transition: all .3s;
-    transition: all .3s;
-}
+/*.btn {*/
+    /*background: #f15500;*/
+    /*border-radius: 4px;*/
+    /*color: #fff;*/
+    /*font-size: 16px;*/
+    /*overflow: hidden;*/
+    /*padding: 10px 20px;*/
+    /*-webkit-transition: all .3s;*/
+    /*-moz-transition: all .3s;*/
+    /*-ms-transition: all .3s;*/
+    /*transition: all .3s;*/
+/*}*/
 .icon.icon-ticket {
     width: 25px;
     height: 19px;
@@ -61,39 +67,36 @@
     direction: ltr;
     background-color: transparent;
 }
-.btn, .icon {
-    display: inline-block;
-}
-.icon, img {
-    vertical-align: middle;
-}
-.btn, .icon {
-    display: inline-block;
-}
-.btn, .cta {
-    cursor: pointer;
-    font-weight: 700;
-}
-.btn, body {
-    font-family: proxima-nova,Helvetica,Arial,sans-serif;
-}
-.btn, input[type=checkbox] {
-    box-shadow: none;
-}
+/*.btn, .icon {*/
+    /*display: inline-block;*/
+/*}*/
+/*.icon, img {*/
+    /*vertical-align: middle;*/
+/*}*/
+/*.btn, .icon {*/
+    /*display: inline-block;*/
+/*}*/
+/*.btn, .cta {*/
+    /*cursor: pointer;*/
+    /*font-weight: 700;*/
+/*}*/
+/*.btn, body {*/
+    /*font-family: proxima-nova,Helvetica,Arial,sans-serif;*/
+/*}*/
+/*.btn, input[type=checkbox] {*/
+    /*box-shadow: none;*/
+/*}*/
 .fd-movie__btn-list-item{
     display:inline-block;
 }
 .headerResultsPincode{
     background-image: url("./bg-header.jpg");
-
+    width: 100%;
 }
+
 .heading-size-xl{
     color:white;
 }
-
-
-
-
 
 .light {
     color: #FFF;

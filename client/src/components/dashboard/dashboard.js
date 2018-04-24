@@ -19,20 +19,20 @@ class Dashboard extends Component {
     }
 
 
-    onSubmit=()=>{
+    onSubmit = () => {
         console.log("Delete");
         //this.props.doDelete();
 
     };
 
-        render(){
-        return(
+    render() {
+        return (
 
             <div>
                 <BrandBar/>
                 <MegaDropDownHeader/>
                 <FandangoVIPHeader/>
-                <div className="row" >
+                <div className="row">
                     <div className="large-9 columns dashboard-conatiner">
 
 
@@ -46,12 +46,14 @@ class Dashboard extends Component {
                                             <img id="AvatarImage" className="user-avatar-thumb"
                                                  src="https://images.fandango.com/r1.0.431/redesign/areas/profile/img/no-image-account-profile.png"/>{/* Write Image Source*/}
 
-                                                <h2 className="heading-style-1"> Display Name Here </h2>
+                                            <h2 className="heading-style-1"> Display Name Here </h2>
 
-                                                <a href="#"
-                                                   className="points-ledger-link">See My VIP+ Points</a>
+                                            <a href="#"
+                                               className="points-ledger-link">See My VIP+ Points</a>
 
-                                            <button id='delete' className="heading-style-2 btn-danger" onClick={()=>{this.onSubmit()}}>Delete
+                                            <button id='delete' className="heading-style-2 btn-danger" onClick={() => {
+                                                this.onSubmit()
+                                            }}>Delete
 
                                             </button>
 
@@ -106,7 +108,7 @@ class Dashboard extends Component {
 
                         <div className="row insider-perks">
                             <div className="large-12 columns">
-                                <h2 className="section-header inline">My Insider Perks</h2>
+                                <h2 className="mt-4 section-header inline">My Insider Perks</h2>
 
                                 <div className="panel">
                                     <section className="module-standard offers-module">
@@ -114,24 +116,23 @@ class Dashboard extends Component {
                                         <div className="insider-perk-container">
                                             <div className="large-4 medium-4 small-6 columns insider-perk">
                                                 <article>
-                                                    <a id="ImageLink"
-                                                       href="https://www.fandango.com/deadpool-2-200520/movie-times?intcmp=IMA_Deadpool2GWP_perks"><img
+                                                    <img
                                                         id="MainImage"
                                                         src="http://images.fandango.com/images/homepage/content/FD_Deadpool2_300x150_offerstrip_v1.png"
                                                         alt="'Deadpool 2' Gift with Purchase"
                                                         // style="height:150px;width:300px;"
                                                     />
-                                                        <h4 className="content-title"><b>'Deadpool 2' Gift with
-                                                            Purchase</b></h4>
-                                                    </a>
+                                                    <h4 className="content-title"><b>'Deadpool 2' Gift with
+                                                        Purchase</b></h4>
+
                                                     <p>Receive a FREE* exclusive 'Deadpool 2' poster with ticket
                                                         purchase (*shipping &amp; handling not included).
                                                         <br/>
-                                                            <a id="CtaLink"
-                                                               href="https://www.fandango.com/deadpool-2-200520/movie-times?intcmp=IMA_Deadpool2GWP_perks">
+                                                        <a id="CtaLink"
+                                                           href="https://www.fandango.com/deadpool-2-200520/movie-times?intcmp=IMA_Deadpool2GWP_perks">
                                                                 <span
                                                                     className="content-call-to-action">BUY TICKETS</span>
-                                                            </a>
+                                                        </a>
                                                     </p>
                                                 </article>
                                             </div>
@@ -152,11 +153,11 @@ class Dashboard extends Component {
                                                     <p>Choose 1 of 5 FREE* exclusive posters with ticket purchase
                                                         (*shipping &amp; handling not included).
                                                         <br/>
-                                                            <a id="CtaLink"
-                                                               href="https://www.fandango.com/avengers-infinity-war-199925/movie-times?intcmp=IMA_InfinityWarGWP_perks">
+                                                        <a id="CtaLink"
+                                                           href="https://www.fandango.com/avengers-infinity-war-199925/movie-times?intcmp=IMA_InfinityWarGWP_perks">
                                                                 <span
                                                                     className="content-call-to-action">BUY TICKETS</span>
-                                                            </a>
+                                                        </a>
                                                     </p>
                                                 </article>
                                             </div>
@@ -177,11 +178,6 @@ class Dashboard extends Component {
                                                     <p>Receive a FREE* exclusive 'Ready Player One' poster with ticket
                                                         purchase (*shipping &amp; handling not included).
                                                         <br/>
-                                                            <a id="CtaLink"
-                                                               href="https://www.fandango.com/ready-player-one-204139/movie-times?intcmp=IMA_RPOGWP_perks">
-                                                                <span
-                                                                    className="content-call-to-action">BUY TICKETS</span>
-                                                            </a>
                                                     </p>
                                                 </article>
                                             </div>
@@ -189,34 +185,25 @@ class Dashboard extends Component {
 
                                     </section>
                                 </div>
-                                <a id="SeeAllLink" className="cta see-all"
-                                   href="https://www.fandango.com/account/insiderperks">See All Perks</a>
 
 
                             </div>
                         </div>
 
 
-
-
-
-
                     </div>
 
 
-
                 </div>
-                <Footer/>
-                <UtilityFooter/>
-
+                {/*<Footer/>*/}
+                {/*<UtilityFooter/>*/}
 
 
             </div>
         )
-        }
+    }
 
 }
-
 
 
 function mapStateToProps(store) {

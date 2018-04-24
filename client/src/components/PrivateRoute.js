@@ -5,6 +5,6 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => (
         window.localStorage.getItem('isLoggedIn')
             ? <Component {...props} />
-            : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+            : <Redirect to={{ pathname: '/signin', state: { from: props.location } }} />
     )} />
 )

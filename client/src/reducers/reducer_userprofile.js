@@ -16,7 +16,7 @@ export default function (state={
         case BASIC_INFO_SUCCESS:
             // sessionStorage.setItem("islogin", true);
             // sessionStorage.setItem("username", action.payload.data.username);
-            console.log("fghjks")
+
             return  {user: action.payload};
             break;
         case BASIC_INFO_ERROR:

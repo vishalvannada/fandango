@@ -1,397 +1,274 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import "./movieTime.css"
-import StarRatings from 'react-star-ratings';
+import {getMoviesInSearchPage} from "../../actions/pranithActions";
+import Slider from "react-slick";
+import _ from 'lodash';
+import moment from 'moment';
+import {Link} from 'react-router-dom';
 
 class MovieTopSection extends Component {
+    state = {
+        movieSearch: "",
+        Date: moment(new Date()).format()
+    }
+
+    setDate(values) {
+        //console.log(values);
+        this.setState({Date: values})
+        console.log("i consoled this", this.state);
+        this.props.getMoviesInSearchPage(this.state);
+
+    }
+
+    searchMovie() {
+        console.log(this.state);
+        this.props.getMoviesInSearchPage(this.state);
+    }
+
+
+    renderDates() {
+
+        var arrayDates = [];
+
+        for (var i = 0; i < 15; i++) {
+            let newDate = new Date();
+            newDate.setDate(newDate.getDate() + i);
+            arrayDates.push(newDate);
+            //  console.log(newDate);
+        }
+
+        //  console.log(arrayDates)
+
+
+        return (_.map(arrayDates, Date => {
+            return (
+                <div key={Date}>
+
+                    <div className="background-white text-center carousel-date" onClick={() => {
+                        this.setDate(moment(Date).format())
+                    }}>
+
+                        <span className="font-timesNewRoman font-size-15">{moment(Date).format('ddd')}</span>
+                        <br/>
+                        <h3 className="color-darkgray mt-2 font-condensed-bold">{moment(Date).format('MMM')}</h3>
+                        <h2 className="color-darkgray pb-2 font-condensed-bold">{moment(Date).format('DD')}</h2>
+                    </div>
+                </div>
+            )
+        }))
+
+    }
 
     render() {
 
-        var divStyle = {
-            //backgroundImage: 'url(http://image.tmdb.org/t/p/original/nIrDm42dy5PaXtUAzUfPmxM4mQm.jpg)',
-            backgroundColor: "white"
+        var settings = {
+            slidesToShow: 7,
+            slidesToScroll: 3,
+            infinite: false,
+        };
+
+        if (this.props.movietime.moviesTheatres.moviemap.length == 0) {
+            return (
+                <div>No Movies Found</div>
+            )
         }
 
-        return (
-            <div className="background-movie-top" style={divStyle}>
-                <div className="fandango-container">
-                    <div className="searchboxResults">
-                        <section className="subnav">
-                            <div className="row headerResultsPincode" >
-                                <div className="width-100">
-                                    <h1 className="subnav__title heading-style-1 heading-size-xl">
+        if (this.props.movietime.moviesTheatres.moviemap[0].type != "test") {
+            return (
+                <div>
 
-                                        Movie times + Tickets
+                    <div className="width-100 headerResultsPincode">
 
+                        <div className="fandango-container">
 
-                                        <span className="subnav__title--accent">
-                        near
-                        <span className="js-subnav__user-location">95126</span>
-                    </span>
+                            <h1 className="font-condensed-bold-white pt-3">
+                                MOVIE TIMES + TICKETS
+                                <span className="font-color-fandango"> NEAR 95126</span>
+                            </h1>
 
+                            <nav class="nav-movie-top pb-2">
+                                <a href="#">All theaters</a>
+                                <a href="#">Fandango Ticketing Theaters</a>
+                                <a href="#">My theaters</a>
+                            </nav>
 
-                                    </h1>
-
-                                    <div className="headerSubMenuUL">
-                                        <ul className="subnav__link-list">
-                                            <li className="subnav__link-item">
-                                                <a className="subnav__link subnav__link--active"
-                                                   href="/95126_movietimes?mode=general&amp;q=95126">
-                                                    All theaters
-                                                </a>
-                                            </li>
-                                            <li className="subnav__link-item">
-                                                <a className="subnav__link"
-                                                   href="/95126_movietimes?mode=general&amp;q=95126&amp;ticketedonly=true">
-                                                    Fandango Ticketing Theaters
-                                                </a>
-                                            </li>
-                                            <li className="subnav__link-item">
-                                                <a className="subnav__link"
-                                                   href="/95126_movietimes?mode=general&amp;q=95126&amp;mytheaters=true">
-                                                    My theaters
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </section>
-                        <span>
-                            <br/>
-                            <div className="date-picker__location">
-    <div className="date-picker__error js-date-picker__error hide"></div>
-
-
-
-    <span className="date-picker__location-text">ENTER CITY, STATE OR ZIP CODE</span>
-    <input className="date-picker__location-input js-date-input" placeholder="City, State or Zip Code" type="text"/>
-    <a href="#" className="date-picker__location-submit js-date-picker-btn">GO</a>
-</div>
-                        </span>
+                        </div>
                     </div>
 
-                    <div className="moviesTheatres col-10" id="moviesTheatres">
-                        <ul>
+                    <br/>
+
+                    <div className="carousel-dates">
+                        <Slider {...settings}>
+                            {this.renderDates()}
+                        </Slider>
+
+                    </div>
+
+                    <div className="fandango-container">
+                        <br/>
+                        <div className="date-picker__location">
+                            <span className="date-picker__location-text">ENTER CITY, STATE OR ZIP CODE</span>
+                            <input className="date-picker__location-input js-date-input"
+                                   placeholder="City, State or Zip Code" type="text"
+                                   onChange={(event) => {
+                                       this.setState({
+                                           movieSearch: event.target.value
+                                       });
+                                   }}/>
+                            <button type="button" onClick={() => {
+                                this.searchMovie()
+                            }} className="btn date-picker__location-submit js-date-picker-btn">GO
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="fandango-container">
+                        {this.props.movietime.moviesTheatres.moviemap.map((item) => {
+                            return (
+                                <div className="moviesTheatres col-10" id="moviesTheatres">
+                                    <ul>
+                                        <div className="fd-theater__header">
+                                            <h4 className="font-condensed-bold-white">
+                                                <a className="light">{item.type} Cinemas</a>
+                                            </h4>
 
 
-                            <div className="fd-theater__header">
-                                <div className="fd-theater__promoted-amenity-wrap">
-
-
-                                <span
-                                    className="icon icon-amenity-mobile-tickets fd-theater__promoted-amenity js-amenity"
-                                    data-amenity-name="Mobile Tickets"
-                                    data-amenity-desc="Send your ticket to your mobile device, go directly to the ticket taker and skip the box office line at many theaters.">Mobile Tickets
-                                </span>
-
-                                    <span
-                                        className="icon icon-amenity-print-at-home-tickets fd-theater__promoted-amenity js-amenity"
-                                        data-amenity-name="Print at Home Tickets"
-                                        data-amenity-desc="Print your tickets, go directly to the ticket taker and skip the box office line at many theaters.">Print at Home Tickets
-                                </span>
-
-
-                                </div>
-
-                                <div className="fd-theater__name-wrap">
-                                    <h3 className="fd-theater__name font-sans-serif font-lg font-300 uppercase">
-                                        <a className="light" href="/towne-3-cinemas-AAFRF/theater-page">Towne 3
-                                            Cinemas</a>
-
-                                        <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_addtheater&amp;action=addtheater&amp;id=AAFRF"
-                                           className="icon icon-follow-white fd-theater__follow-icon js-heartsAndStars-heart"
-                                           data-type="Theater" data-id="AAFRF" data-name="Towne 3 Cinemas"
-                                           data-is-favorite="false">
-                                        </a>
-
-                                    </h3>
-                                </div>
-
-                                <div className="fd-theater__address-wrap">
-
-                                    <span>1433 The Alameda,</span>
-
-                                    <span>
-
-                                San Jose,
-
-
-                                CA
-
-
-                                95126
-
-                        </span>
-                                </div>
-                                <div className="fd-theater__links">
-                                    <a href="//www.fandango.com/maps/DrivingDirections.aspx?tid=AAFRF" target="_blank"
-                                       rel="nofollow" className="font-sans-serif-cond font-sm">MAP</a>
-
-                                    <a className="fd-theater__amenities js-amenity font-sans-serif-cond font-sm"
-                                       href="#"
-                                       data-amenity-name="Theater Amenities"
-                                       data-amenity-desc="<ul class=&quot;fd-theater__amenities-list&quot;><li>Mobile Tickets</li><li>Print at Home Tickets</li></ul>">AMENITIES</a>
-
-                                </div>
-                            </div>
-
-                            <div className="fd-movie">
-                                <div className="fd-movie__poster">
-
-                                        <img
-                                            src="//images.fandango.com/ImageRenderer/200/0/redesign/static/img/default_poster.png/0/images.fandango.com/ImageRenderer/100/0/redesign/static/img/default_poster.png/0/redesign/static/img/default_poster.png"
-                                            alt="" href="/ameerpet-2-america-211110/movie-overview"/>
-
-
-
-                                </div>
-                                <div className="fd-movie__details">
-                                    <h3 className="fd-movie__title font-sans-serif font-lg font-300 uppercase">
-                                        <a className="dark font-sans-serif" href="/ameerpet-2-america-211110/movie-overview">AMEERPET 2
-                                            AMERICA</a>
-
-                                        <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_addmovie&amp;action=addmovie&amp;id=211110"
-                                           className="icon icon-follow-gray fd-movie__follow-icon js-heartsAndStars-heart"
-                                           data-type="Movie" data-id="211110" data-name="AMEERPET 2 AMERICA"
-                                           data-is-favorite="false">
-                                        </a>
-                                        <div className="buyer-reputation-stars">
-                            <span className="Rating-total">
-                                 <span className="Rating-progress ratingstar">  2.45   </span>
-                                      <StarRatings
-                                          rating={2.45}
-                                          starDimension="18px"
-                                          starSpacing="5px"
-                                      />
-                            </span>
+                                            <p className="color-ccc font-family-roboto">
+                                                {item.data[0].theatreCity}, {item.data[0].theatreState}, {item.data[0].theatreZip}
+                                                <a className="ml-3" href="">MAP</a> |
+                                                <a href=""> AMENITIES</a>
+                                            </p>
                                         </div>
 
-                                    </h3>
+
+                                        {item.data.map((movie) => {
+                                            return (
+
+                                                <div className="fd-movie">
+                                                    <div className="fd-movie__poster">
+                                                        <Link to={`/movie-overview/${movie.movie.movieId}`}>
+                                                            <img
+                                                                src={`http://image.tmdb.org/t/p/w200${movie.movie.poster_path}`}
+                                                                className="image-theatres image"/>
+                                                        </Link>
 
 
-                                    <div className="fd-star-rating__container">
-                                        <div className="js-fd-star-rating fd-star-rating " data-star-rating="4">
+                                                    </div>
+                                                    <div className="fd-movie__details">
+                                                        <h3 className="fd-movie__title font-sans-serif font-lg font-300 p-2 uppercase">
+                                                            <Link className="dark font-condensed-bold"
+                                                                  to={`/movie-overview/${movie.movie.movieId}`}>{movie.movie.MovieName}</Link>
+                                                        </h3>
+                                                    </div>
+                                                    <ul className="fd-movie__showtimes">
 
-                                            <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_ratemovie&amp;action=ratereviewmovie&amp;id=211110&amp;rating=5"
-                                               className="fd-star-rating__star icon icon-star-rating-small js-heartsAndStars-star"
-                                               data-action="rate" data-id="211110" data-isnew="true"
-                                               data-show-caption="true" data-value="5" title="Loved It">
-                                            </a>
 
-                                            <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_ratemovie&amp;action=ratereviewmovie&amp;id=211110&amp;rating=4"
-                                               className="fd-star-rating__star icon icon-star-rating-small js-heartsAndStars-star"
-                                               data-action="rate" data-id="211110" data-isnew="true"
-                                               data-show-caption="true" data-value="4" title="Really Liked It">
-                                            </a>
+                                                        <li className="fd-movie__showtimes-variant">
 
-                                            <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_ratemovie&amp;action=ratereviewmovie&amp;id=211110&amp;rating=3"
-                                               className="fd-star-rating__star icon icon-star-rating-small js-heartsAndStars-star"
-                                               data-action="rate" data-id="211110" data-isnew="true"
-                                               data-show-caption="true" data-value="3" title="Liked It">
-                                            </a>
 
-                                            <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_ratemovie&amp;action=ratereviewmovie&amp;id=211110&amp;rating=2"
-                                               className="fd-star-rating__star icon icon-star-rating-small js-heartsAndStars-star"
-                                               data-action="rate" data-id="211110" data-isnew="true"
-                                               data-show-caption="true" data-value="2" title="Disliked It">
-                                            </a>
+                                                            <h3 className="fd-movie__showtimes__tick-headline pt-3 font-serif">
+                                                                <span className="icon icon-ticket"></span>
+                                                                Select a movie time to buy Standard Showtimes
+                                                            </h3>
 
-                                            <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_ratemovie&amp;action=ratereviewmovie&amp;id=211110&amp;rating=1"
-                                               className="fd-star-rating__star icon icon-star-rating-small js-heartsAndStars-star"
-                                               data-action="rate" data-id="211110" data-isnew="true"
-                                               data-show-caption="true" data-value="1" title="Hated It">
-                                            </a>
 
-                                        </div>
-                                    </div>
+                                                            <ul className="fd-movie__amentiy-list">
 
-                                    <p className="fd-movie__rating-runtime">
-                                        2 hr <br/>
-                                        Drama
-                                    </p>
+
+                                                            </ul>
+                                                            <ol className="fd-movie__btn-list">
+
+                                                                <li className="fd-movie__btn-list-item">
+
+
+                                                                    <span className="btn showtime-btn">4:00p</span>
+
+
+                                                                </li>
+
+
+                                                                <li className="fd-movie__btn-list-item">
+
+
+                                                                    <span className="btn showtime-btn">6:15p</span>
+
+
+                                                                </li>
+
+
+                                                                <li className="fd-movie__btn-list-item">
+
+
+                                                                    <span className="btn showtime-btn">8:30p</span>
+
+
+                                                                </li>
+
+
+                                                                <li className="fd-movie__btn-list-item">
+
+
+                                                                    <span className="btn showtime-btn">10:45p</span>
+
+
+                                                                </li>
+
+                                                            </ol>
+                                                        </li>
+
+
+                                                    </ul>
+                                                </div>
+
+                                            )
+                                        })}
+                                    </ul>
+                                    <br/>
                                 </div>
-                                <ul className="fd-movie__showtimes">
+                            )
 
-
-                                    <div className="fd-movie__showtimes-variant">
-
-
-                                        <h3 className="fd-movie__showtimes__tick-headline font-serif">
-                                            <span className="icon icon-ticket"></span>
-                                            Select a movie time to buy Standard Showtimes
-                                        </h3>
-
-
-                                        <ul className="fd-movie__amentiy-list">
-
-
-                                            <li className="fd-movie__amenity-icon-wrap">
-                                                <a href="#" className=" fd-movie__amenity-icon js-amenity"
-                                                   data-amenity-desc="This film is presented in Telugu."
-                                                   data-amenity-name="Telugu">Telugu</a>
-                                            </li>
-
-
-                                        </ul>
-                                        <ol className="fd-movie__btn-list">
-
-                                            <li className="fd-movie__btn-list-item">
-
-
-                                                <a className="btn showtime-btn showtime-btn--available"
-                                                   href="https://tickets.fandango.com/Transaction/Ticketing/ticketboxoffice.aspx?row_count=221139421&amp;tid=AAFRF&amp;sdate=2018-04-16+23:00&amp;mid=211110&amp;from=mov_det_showtimes">11:00p</a>
-
-
-                                            </li>
-
-                                        </ol>
-                                    </div>
-
-
-                                </ul>
-                            </div>
-
-                            <div className="fd-movie">
-                                <div className="fd-movie__poster">
-                                    <a href="/mercury-2018-210358/movie-overview">
-                                        <img
-                                            src="//images.fandango.com/ImageRenderer/200/0/redesign/static/img/default_poster.png/0/images/MasterRepository/fandango/210358/mercury-Vertical3.jpg"
-                                            alt=""/>
-                                    </a>
-
-
-                                </div>
-                                <div className="fd-movie__details">
-                                    <h3 className="fd-movie__title font-sans-serif font-lg font-300 uppercase">
-                                        <a className="dark" href="/mercury-2018-210358/movie-overview">Mercury
-                                            (2018)</a>
-
-                                        <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_addmovie&amp;action=addmovie&amp;id=210358"
-                                           className="icon icon-follow-gray fd-movie__follow-icon js-heartsAndStars-heart"
-                                           data-type="Movie" data-id="210358" data-name="Mercury (2018)"
-                                           data-is-favorite="false">
-                                        </a>
-
-                                    </h3>
-
-
-                                    <div className="fd-star-rating__container">
-                                        <div className="js-fd-star-rating fd-star-rating " data-star-rating="5">
-
-                                            <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_ratemovie&amp;action=ratereviewmovie&amp;id=210358&amp;rating=5"
-                                               className="fd-star-rating__star icon icon-star-rating-small js-heartsAndStars-star"
-                                               data-action="rate" data-id="210358" data-isnew="true"
-                                               data-show-caption="true" data-value="5" title="Loved It">
-                                            </a>
-
-                                            <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_ratemovie&amp;action=ratereviewmovie&amp;id=210358&amp;rating=4"
-                                               className="fd-star-rating__star icon icon-star-rating-small js-heartsAndStars-star"
-                                               data-action="rate" data-id="210358" data-isnew="true"
-                                               data-show-caption="true" data-value="4" title="Really Liked It">
-                                            </a>
-
-                                            <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_ratemovie&amp;action=ratereviewmovie&amp;id=210358&amp;rating=3"
-                                               className="fd-star-rating__star icon icon-star-rating-small js-heartsAndStars-star"
-                                               data-action="rate" data-id="210358" data-isnew="true"
-                                               data-show-caption="true" data-value="3" title="Liked It">
-                                            </a>
-
-                                            <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_ratemovie&amp;action=ratereviewmovie&amp;id=210358&amp;rating=2"
-                                               className="fd-star-rating__star icon icon-star-rating-small js-heartsAndStars-star"
-                                               data-action="rate" data-id="210358" data-isnew="true"
-                                               data-show-caption="true" data-value="2" title="Disliked It">
-                                            </a>
-
-                                            <a href="https://www.fandango.com/account/joinnow?from=https%3A%2F%2Fwww.fandango.com%2Fsan%2Bjose_ca_movietimes&amp;source=web_multiple_ratemovie&amp;action=ratereviewmovie&amp;id=210358&amp;rating=1"
-                                               className="fd-star-rating__star icon icon-star-rating-small js-heartsAndStars-star"
-                                               data-action="rate" data-id="210358" data-isnew="true"
-                                               data-show-caption="true" data-value="1" title="Hated It">
-                                            </a>
-
-                                        </div>
-                                    </div>
-
-                                    <p className="fd-movie__rating-runtime">
-                                        1 hr 48 min <br/>
-                                        Drama, Suspense/Thriller
-                                    </p>
-                                </div>
-                                <ul className="fd-movie__showtimes">
-
-
-                                    <li className="fd-movie__showtimes-variant">
-
-
-                                        <h3 className="fd-movie__showtimes__tick-headline font-serif">
-                                            <span className="icon icon-ticket"></span>
-                                            Select a movie time to buy Standard Showtimes
-                                        </h3>
-
-
-                                        <ul className="fd-movie__amentiy-list">
-
-
-                                        </ul>
-                                        <ol className="fd-movie__btn-list">
-
-                                            <li className="fd-movie__btn-list-item">
-
-
-                                            <span className="btn showtime-btn showtime-btn--expired js-amenity"
-                                                  data-amenity-desc="Looks like this movie has already started – let’s try another showtime."
-                                                  data-amenity-name="Ticket Availability">4:00p</span>
-
-
-                                            </li>
-
-                                            <li className="fd-movie__btn-list-item">
-
-
-                                            <span className="btn showtime-btn showtime-btn--expired js-amenity"
-                                                  data-amenity-desc="Looks like this movie has already started – let’s try another showtime."
-                                                  data-amenity-name="Ticket Availability">6:15p</span>
-
-
-                                            </li>
-
-                                            <li className="fd-movie__btn-list-item">
-
-
-                                                <a className="btn showtime-btn showtime-btn--available"
-                                                   href="https://tickets.fandango.com/Transaction/Ticketing/ticketboxoffice.aspx?row_count=221139418&amp;tid=AAFRF&amp;sdate=2018-04-16+20:30&amp;mid=210358&amp;from=mov_det_showtimes">8:30p</a>
-
-
-                                            </li>
-
-                                            <li className="fd-movie__btn-list-item">
-
-
-                                                <a className="btn showtime-btn showtime-btn--available"
-                                                   href="https://tickets.fandango.com/Transaction/Ticketing/ticketboxoffice.aspx?row_count=221139419&amp;tid=AAFRF&amp;sdate=2018-04-16+22:45&amp;mid=210358&amp;from=mov_det_showtimes">10:45p</a>
-
-
-                                            </li>
-
-                                        </ol>
-                                    </li>
-
-
-                                </ul>
-                            </div>
-
-
-
-                        </ul>
+                        })}
                     </div>
 
                 </div>
-            </div>
-        )
+            )
+        }
+        else {
+            return (
+
+                <div id="initialLoad">
+                    <div className="searchboxResults">
+                        <br/>
+                        <div className="date-picker__location">
+                            <div className="date-picker__error js-date-picker__error hide"></div>
+
+
+                            <span className="date-picker__location-text">ENTER CITY, STATE OR ZIP CODE</span>
+                            <input className="date-picker__location-input js-date-input"
+                                   placeholder="City, State or Zip Code" type="text"
+                                   onChange={(event) => {
+                                       this.setState({
+                                           movieSearch: event.target.value
+                                       });
+                                   }}/>
+                            <button type="button" onClick={() => {
+                                this.searchMovie()
+                            }} className="btn date-picker__location-submit js-date-picker-btn">GO
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>)
+        }
     }
 }
 
+function mapStateToProps(state) {
+    return {movietime: state.moviesSearchPagePK}
+}
 
-export default connect(null, null)(MovieTopSection);
+
+export default connect(mapStateToProps, {getMoviesInSearchPage})(MovieTopSection);
+

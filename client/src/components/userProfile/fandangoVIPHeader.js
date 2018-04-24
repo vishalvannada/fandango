@@ -37,7 +37,7 @@ class FandangoVIPHeader extends Component {
                             <li className="page-navigation-item"><Link className="page-navigation-link"
                                                                     to="#">Purchase
                                 History</Link></li>
-                            <li className="page-navigation-item"><Link className="page-navigation-link is-selected"
+                            <li className="page-navigation-item"><Link className="page-navigation-link"
                                                                     to="/userprofile">Account
                                 Settings</Link></li>
                             <li className="page-navigation-item"><Link className="page-navigation-link"

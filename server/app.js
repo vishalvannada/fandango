@@ -11,7 +11,10 @@ require('./routes/passport')(passport);
 
 var index = require('./routes/vishal/index');
 var movies = require('./routes/vishal/movies');
-var user = require('./routes/satish/users')
+var admin = require('./routes/vishal/admin');
+
+var movietheatres = require('./routes/pranith/movietheatre');
+var user = require('./routes/satish/users');
 
 
 var mongoSessionURL = "mongodb://cmpe273:sreedevi@ds139929.mlab.com:39929/freelancer_lab2";
@@ -51,8 +54,8 @@ app.use(function (req, res, next) {
 
 var options = {
     host: 'localhost',
-    user: 'test',
-    password: 'pass',
+    user: 'root',
+    password: 'sreedevi',
     database: 'fandango',
     port: 3306
 };
@@ -86,10 +89,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/user',user);//satish
 
 app.use('/', index); //vishal
 app.use('/movies', movies); //vishal
-app.use('/user',user);//satish
+app.use('/admin', admin); //vishal
+app.use('/movietheatres',movietheatres); //pranith
 
 // catch 404 and forward to error handlers
 app.use(function(req, res, next) {
@@ -110,3 +115,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+
+

@@ -7,6 +7,7 @@ export default function (state={
     username: '',
     message: '',
     posted: false,
+    type : '',
     imgupload: false,
 }, action){
     // if(action.error){
@@ -17,7 +18,7 @@ export default function (state={
         case SIGN_IN:
             // sessionStorage.setItem("islogin", true);
             // sessionStorage.setItem("username", action.payload.data.username);
-            console.log("fghjks")
+
             return  {...state, isLoggedIn:true, isCheckedIn: true, username: action.payload.data, };
             break;
         case SIGN_IN_ERROR:

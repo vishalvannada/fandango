@@ -6,8 +6,8 @@ var mysql = require('mysql2');
 var pool = mysql.createPool({
     connectionLimit: 20,
     host: 'localhost',
-    user: 'test',
-    password: 'pass',
+    user: 'root',
+    password: 'sreedevi',
     database: 'fandango',
     port: 3306
 });

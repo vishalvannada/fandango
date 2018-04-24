@@ -33,12 +33,13 @@ export function signin(values){
                 window.localStorage.setItem('user', res.data.user);
                 window.localStorage.setItem('isLoggedIn', true);
                 console.log("response received");
-                history.push('/');
+                history.push('/home');
                 dispatch({type:SIGN_IN, payload:request});
             }
             else {
                 if (res.status === 200) {
                     console.log("response received");
+                    console.log(request)
                     dispatch({type:SIGN_IN, payload:request});
                 }
             }

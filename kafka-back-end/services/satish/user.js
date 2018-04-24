@@ -107,7 +107,7 @@ function userDetails(msg,callback){
 }
 
 function basicInfo(msg,callback){
-    console.log("userdata",msg.user);
+    console.log("userdata",msg.user, msg.email);
     var firstName = msg.user.firstname;
     var lastName = msg.user.lastname;
     var displayName = msg.user.displayname;

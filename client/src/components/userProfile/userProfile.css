@@ -1,5 +1,12 @@
 #profile_block{
-    margin-left: 30px;
+    /*margin-left: 30px;*/
+
+}
+
+#profile_block p{
+    /*margin-left: 30px;*/
+    color: black !important;
+
 }
 
 
@@ -25,12 +32,10 @@
 }
 
 .collapse-element{
-
     padding :15px;
 }
 
 .footer-elements{
-
     margin-left: 15px;
 
 }
@@ -50,9 +55,9 @@
 }
 
 .panel{
-
+    /*padding: 20px;*/
     background: none repeat scroll 0 0 #f8f9fa;
-    padding-left: 10px;
+    /*padding-left: 10px;*/
 }
 .email-form{
     padding-left: 10px;
