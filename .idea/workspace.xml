@@ -1,0 +1,1463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="982ce0ac-13dc-4c7b-bbc0-4c7df3eb6c2c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fandango" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/apple.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/fandango.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/package-lock.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/home_dog.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/manifest.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/satish/foundation.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-abacus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-adjustment-horizon.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-adjustment-vertical.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-air-balloon.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-airplane-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-airplane.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-alarm-clock.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-alien.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-aligh-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-align-center.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-align-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-align-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-ambulance.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-anchor.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-android.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-angle-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-angle-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-antenna-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-apron.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-backward.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-change.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-circle-rycycle.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-forward.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-four-way.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-fullscreen-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-fullscreen.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-left-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-move.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-reload.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-resize-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-resize-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-resize-3.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-resize-4.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-resize-5.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-resize-6.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-shuffle.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thick-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thick-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thick-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thick-thin-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thick-thin-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thick-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thin-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thin-left-bottom.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thin-left-top.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thin-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thin-right-bottom.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thin-right-top.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thin-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-thin-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-three-way-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-three-way-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-triangle-recycle.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-two-left-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-two-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-two-way-left-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-two-way-right-bottom.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-two-way-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-two-way.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-up-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-arrow-wave.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-art-board.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-askterisk.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-atm-card.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-axe.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-baby-milk-botl.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-baby-stroller.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-baby-troller.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-baby.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-back-pack.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-backward-page.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-badge-name.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bag-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bag-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bag.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-balance.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-balloon.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bandage.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bank.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-barcode.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-barrier.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-baseball-stick.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-baseball.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-basket-arrow-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-basket-arrow-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-basket-arrow-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-basket-arrow-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-basket-checked.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-basket-error.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-basket-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-basket-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-basket.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-basketball.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-battery-charging.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-battery-empty.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-battery-full.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-battery-half-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-battery-half.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-battery-low.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bed.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bell.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bicycle-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bicycle-3.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bicycle-man.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bikini.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-billiard-ball.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-binocular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-birthday-cake.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-biscuit.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-blender.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-blood-bag.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bluetooth.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-board.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-boat.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bolt.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bomb-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bomb-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bone.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-book-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-book-3.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-book-4.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-book-@.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-book-open.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-book-person.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bookcase.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bookmark.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-botl-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-botl-milk.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bow-tie.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-box-download.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-box-upload.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-box.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bread.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-briefcase-person.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-briefcase.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-brightness.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-brush-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-brush-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-brush-and-pencil.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bubble-chat.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bubble-message-dot-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bubble-message-dot.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bubble-message-hi.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bubble-message-quote.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bubble-message-talk.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bubble-message-text.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bubble-message.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bucket.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bug.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-building.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bullet-checked-list.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bullet-list-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bullet-list.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-bus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-arrow-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-arrow-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-arrow-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-arrow-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-buy.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-error.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-hd.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-play.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-sale.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-sell.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-starburst.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-triangle-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-button-tv.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cabin-cable.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cabinet.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-calculator-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-calculator.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-calendar-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-calendar-3.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-calendar-empty.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-call-forward.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-call-reply.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-call.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-camera-projector.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-camera-security.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-camera.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-can-water.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-candle.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-candy-stick.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-candy.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-car-garage.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-car.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-casette.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cashier-machine.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-castle.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-caterpillar-machine.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cente-justify.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-chair-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-chair-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-champion-cup.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-chart-column-decrease.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-chart-column-increase.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-chart-column.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-chart-decrease.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-chart-piece.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-checked.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cheese.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cherry.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-christmas-mistletoe.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-christmass-ball.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-christmass-egg.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-christmass-hat.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-christmass-tree.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-backward.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-control-pad.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-drashed.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-error.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-forward.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-help.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-info.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-load-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-load-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-star.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-triangle-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-triangle-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle-triangle-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-circle.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-city.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-clamp.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-clapboard-play.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-clapboard.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-clip.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-clipboard-checked.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-clipboard.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-clock.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-close.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cloud-cloud.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cloud-download.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cloud-heavy-rain.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cloud-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cloud-rain-heavy-rain.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cloud-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cloud-snow.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cloud-sun.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cloud-thunder.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cloud-upload.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cloud.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-clover.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cock-pot.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cocktail.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-coconut.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-code.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-coffee-machine.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-color-picker.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-column-decrease.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-column-increase.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-column-wave.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-comb.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-compass.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cone.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-congratulation-hat.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-connect-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-connect-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-contact-book.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-contacter.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-contrast.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-control-pad-.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-corkscrew.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-corner-flag.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cover-flow.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cover-food.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cow.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cpu.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cran.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-crop.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cross-hair-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cross-hair.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-crown.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cruise.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cubic.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-cup-cake.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-curtain.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-customer-support.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dashboard.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-data-arrow-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-database-download.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-database-error.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-database-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-database-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-database-share.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-database-upload.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-database.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-delete.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-delicious-circle.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-deny.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-desktop.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dial-number-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dial-number.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-diamond.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dice-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dice-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dice-3.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dice-5.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dice-6-.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dice-6.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-disc-add.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-disc-deny.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-disc-download.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-disc-error.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-disc-pause.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-disc-play-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-disc-play.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-disc-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-disc-stop.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-disc-upload.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-disc.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dish.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-disk-antenna.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dna.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-arrow-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-arrow-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-arrow-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-arrow-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-backward.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-bullet-list.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-checked.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-copy.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-doc.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-edit.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-error.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-forward.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-help.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-music.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-pdf.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-rss.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-search.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-star.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document-warning.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-document.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dog.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-door.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-downstair.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-downwards-arrow-to-bar.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-drill.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-drop-water.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-dropbox.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-drum.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-easal.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-edit.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-egg.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-eject.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-electron.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-elevator-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-elevator-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-emoticon.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-end-page.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-erase.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-euro.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-excavator.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-extinguisher.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-eye-drop.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-eye-glass.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-factory.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-faucet.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-feather.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-female.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-fence-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-fence.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-file-box.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-file-download.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-file-upload.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-film-35mm.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-film.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-finder.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-finger-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-fire-alarm.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-fire-hydrant.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-fire-wood.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-fire.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-first-aid-briefcase.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-fish.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-flag.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-float.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-floppy-disk.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-flower-pot.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-flower.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-folder-contact.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-folder-error.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-folder-music.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-folder-open.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-folder-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-folder-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-folder-rss.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-folder-search.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-folder-share.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-folder-warning.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-folder.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-foot-sign.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-forcus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-forklift.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-forward-page.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-fridge.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-fullscreen.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-game-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-game-controll.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-gas-station.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-gate.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-gear-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-gear.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-ghost.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-gift.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-glass-water.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-global.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-globe.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-glove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-golf-ball.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-golf-flag.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-guitar.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hamburger.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hammer-and-wrench.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hammer.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hand-lamp.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hand-switch.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hand.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-handcuff.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hanger.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hardware.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hat-chef.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hat.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-head-set.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-head.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-heart-delete.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-heart-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-heart-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-heart-signal.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-heart.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-helicopter-pad.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-helicopter.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-helm-wheel.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-helmet.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hightheel.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-history.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hockey.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-home-page.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-horse-shoe.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-horse.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-hospital.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-house.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-ice-cream.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-id-badge.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-image.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-in-columns.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-inbox-download.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-inbox-upload.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-infinity-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-infinity.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-info.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-ipod.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-iron.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-jump-backward.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-jump-double-page-left-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-jump-forward.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-jump-page-left-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-jump-page-up-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-kette.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-key-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-key.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-keyboard.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-knife.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-ladder-pool.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-lamp-desk.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-lamp.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-lavabo.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-law-hammer.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-layout-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-layout-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-layout-3.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-layout-4.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-leaf.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-left-justify.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-leftwards-arrow-to-bar.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-light-alarm.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-light-bulb.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-light-house.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-like-unlike.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-like.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-line-two-angle-point.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-link-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-link-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-link-3.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-load.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-lock-unlock.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-lock.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-louder-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-louder-speaker.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-magnet.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-magnifier-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-magnifier.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mail-box.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mail-empty.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mail-has-mail.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mail-inbox.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mail-send.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mail.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-male.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-man-doctor.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-map-3.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-map-square.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mark-snorker.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mask-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mask-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-medal-star.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-microphone-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-microphone-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-microscope.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mobile.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mocule.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-money-$.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-money-3.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-money-bag.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-money-coin.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-moon-star.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-motobike.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mountain.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-movie-play.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-movie-projector.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-multifunction-knife.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mushrooms.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-music-note.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-music.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-mustache.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-network-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-network.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-newspaper.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-no-dog.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-no-smoke.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-note-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-note.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-old-phone.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-open.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pallette.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-paper-clip.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-paper-plane.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-paper-roll.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-paper-shredder.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pause.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pawn.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-paypal.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pen-nib.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pen.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pencil.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-percent.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person-checked.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person-door-man.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person-error.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person-man.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person-people.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person-prison.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person-public.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person-talk.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person-woman.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-person.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pet-carrier.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-phone-fax.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-phone-number.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-piano.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pick.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-picture-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-picture-copy.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-picture.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-piggy-bank.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pill.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pin-location-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pin-location-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pin-location-add.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pin-location-delete.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pin-location-love.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pin-location-map.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pin-location-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pin-location.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pin-map.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-ping-pong-racket.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pipe.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-pizza.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-plugin.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-podium.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-poker-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-poker-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-poker-3.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-poker-4.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-print.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-puzzle.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-quote-close.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-quote-open.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-radio.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-radioactive.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-record.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-reduce.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-reel-audio.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-reel-film.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-repeat.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-resize-in-frame.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-resize-out-frame.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-retroeexcavadora.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-ribbon.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-right-justify.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-rightwards-arrow-to-bar.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-ring.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-road.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-rocket.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-roller.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-rss.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-rugby-ball.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-ruler.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-safe-box.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-safe-pin.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-satellite.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-saw.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-scissor-line-cut.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-scissor.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-screen-ful.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-screen-scale.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-screw-driver.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-screw.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sd-card.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-seriff.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sewing-machine.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sewing-roll.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-share-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-share-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-share-3.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-share-5.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sheep.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-shield-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-shield-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-shield-star.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-shield.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-shovel.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-shower.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sign-board.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sign-foot.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sign-in.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sign-out.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sign-p.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sign-road-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sign-road-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-signal-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-signal-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-signal-3.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-site-map-revert.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-site-map.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-skateboard.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-skull.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sleep.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-slide-show.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-smartphone.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sms.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-snow.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-soccer-yard.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sock.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-socket.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-solar-blind.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sos.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sound-mute.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-sound.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-space-ship.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-spanner.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-spoon-fork.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-spray.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-square-checked.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-square-dashed-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-square-dashed-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-square-delicious.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-square-eight-angle-point.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-square-four-angle-point.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-square-four.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-square-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-square-star.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-square.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-stamps.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-star-cross.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-star-stick.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-stele.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-stelescope.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-stereo-jack.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-stethoscope.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-store.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-stove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-strawberry.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-street-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-strolley-arrow-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-strolley-arrow-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-strolley-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-strolley-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-strolley.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-subway.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-suitcase-person.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-suitcase.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-syringe.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-t-shirt.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tablet.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tag-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tag-one-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tag-price.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tag.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tank.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-targer.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tea-cup.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-teeth.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-telephone-box.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-telescope.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-television.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tennis-racket-ball.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tent-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tent-camp.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-test-tube-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-test-tube-empty.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-test-tube.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-text-search.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-thermometer.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-three-ball.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tic-tac-toe.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-time-glass.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-time-reload.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-timer.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-toilet.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tool-box.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-traffic-light.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-train-rail.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-train.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-trash.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-tree.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-trees.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-triangle-double-arrow-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-triangle-double-arrow-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-triangle-double-arrow-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-triangle-double-arrow-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-triangle-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-triangle-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-triangle-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-triangle-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-trolley-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-trolley-arrow-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-trolley-arrow-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-trolley-briefcase.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-trolley-error.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-trolley-full.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-trolley-plus.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-trolley-remove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-truck.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-trumpet.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-turn-off.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-two-arrow-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-two-arrow-in-down-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-two-arrow-in-left-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-two-arrow-left.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-two-arrow-right.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-typewriter.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-umberlla-chair.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-umbrella-close.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-umbrella-open.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-umbrella-sea.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-upstair.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-upwards-arrow-to-bar.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-upwards-arrow-with-loop.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-usb.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-view.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wacom-tablet.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wall.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wallet.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wash-machine-2.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wash-machine.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-watch.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-webcam.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-weight-down.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-weight-kilograms.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-weight-up.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wheel-chair.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wheel-steel.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wieght.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wifi-1.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wind-turbines.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-window.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wood-stove.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wrench-screwdriver.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-wrench.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-yen.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-ying-yang.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-zip.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-zoom-in.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/public/svg/si-glyph-zoom-out.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/App.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/actions/rishithActions.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/actions/satishActions.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/actions/vishalActions.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/api/API.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/PrivateRoute.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/Signin/fandango-logo.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/Signin/offers.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/Signin/signin.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/Signin/signinBody.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/Signin/signinForm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/Signin/signinNavbar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/Signin/signup.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/dashboard/dashboard.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/dashboard/dashboard.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/home.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/home/brandBar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/home/carousel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/home/megaDropDownHeader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/home/underBrand.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/movieOverview.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/movieOverview/castCrewCarousel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/movieOverview/movieTopSection.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/movieOverview/rating.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/movietime.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/movietime/bg-header.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/movietime/movieTime.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/movietime/movieTimeTheatre.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/movietime/ticket.PNG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/secretPage.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/signUp.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/signin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/userProfile/fandangoVIPHeader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/userProfile/footer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/userProfile/userProfile.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/userProfile/userProfile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/userProfile/utilityFooter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/components/userProfile/vipheader.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/reducers/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/reducers/reducer_fetchuser.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/reducers/reducer_home.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/reducers/reducer_movie_overview.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/reducers/reducer_user.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/config/config.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/kafka/Connection.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/models/User.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/models/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/package-lock.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/server.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/services/dummyData.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/services/getMovieOverview.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/services/getMoviesInHomePageCarousel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/services/mongo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/services/mongoConnPool.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/services/mysql.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/kafka-back-end/services/satish/user.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/app.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/bin/www" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/package-lock.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/rahulvannada-1522311959623vishal-resume-cloud.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/rahulvannada-152231195962513119.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/rahulvannada-1522313209882IMG_0101.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/rahulvannada-1522313209959IMG_0146.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/rahulvannada-1522313210059vishal-resume-cloud.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/rahulvannada-1522314938189vishal-resume-cloud.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/rahulvannada-15227533156962018-03-24 (2).png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/rahulvannada-15227533464822018-03-24 (5).png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/sreedevi-15227554909582018-03-24 (4).png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/sreedevi-1523080695901.jpeg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/sreedevi-1523497746451vishal-resume-other.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/sreedevi-1523497746454vishal-resume-updated.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/vishal-1522229269981.jpeg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/vishal-1522229581548.jpeg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/vishal-1522229684340.jpeg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/vishal-1522360772537vishal-resume-cloud.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/vishal-1522360772538vishal-resume-sap.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/vishal-152236088979513119.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/vishal-1522360889796Picture 008.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/vishal-1522889068177.jpeg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/vishal-1523058787658vishal-resume-updated.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/images/vishalvannada-1523522020446.jpeg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/public/stylesheets/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/routes/kafka/Connection.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/routes/kafka/client.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/routes/kafka/kafkarpc.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/routes/mysql.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/routes/passport.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/routes/satish/users.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/routes/vishal/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/routes/vishal/movies.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/test/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/views/error.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/views/index.ejs" afterPath="" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="PrivateRoute.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fandango/client/src/components/PrivateRoute.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/models/User.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dummyData.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/services/dummyData.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getMovieOverview.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/services/getMovieOverview.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getMoviesInHomePageCarousel.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/services/getMoviesInHomePageCarousel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getMoviesSearchHandle.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/services/getMoviesSearchHandle.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fandango/client/src/components/home.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/fandango/client/src/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3">
+              <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/fandango/client/src/reducers/index.js" />
+        <option value="$PROJECT_DIR$/fandango/server/routes/passport.js" />
+        <option value="$PROJECT_DIR$/fandango/kafka-back-end/models/User.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/fandango/client/node_modules" />
+    <handled-path value="$PROJECT_DIR$/fandango/kafka-back-end/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="531" />
+    <option name="y" value="23" />
+    <option name="width" value="958" />
+    <option name="height" value="733" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="fandango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fandango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fandango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fandango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fandango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fandango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka-back-end" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fandango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka-back-end" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fandango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka-back-end" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fandango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="fandango" type="462c0819:PsiDirectoryNode" />
+              <item name="kafka-back-end" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/fandango/kafka-back-end" />
+      <recent name="$PROJECT_DIR$/fandango/server/routes" />
+      <recent name="$PROJECT_DIR$/fandango/client/src/reducers" />
+      <recent name="$PROJECT_DIR$/fandango/client/src/components" />
+      <recent name="$PROJECT_DIR$/fandango/client/src/components/home" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="982ce0ac-13dc-4c7b-bbc0-4c7df3eb6c2c" name="Default" comment="" />
+      <created>1524300604711</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1524300604711</updated>
+      <workItem from="1524300605954" duration="9453000" />
+      <workItem from="1524527215340" duration="1267000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="10720000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="531" y="23" width="958" height="733" extended-state="0" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1430096" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3291536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/components/PrivateRoute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/models/User.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="60" lean-forward="true" selection-start-line="7" selection-start-column="60" selection-end-line="7" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md" />
+    <entry file="file://$PROJECT_DIR$/kafka-back-end/kafka/Connection.js" />
+    <entry file="file://$PROJECT_DIR$/.gitignore" />
+    <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/kafka/Connection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="109" column="3" lean-forward="true" selection-start-line="109" selection-start-column="3" selection-end-line="109" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/components/home/brandBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="49" column="1" lean-forward="true" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/actions/rishithActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="18" column="3" lean-forward="false" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/components/home/carousel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-382">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/components/movieOverview/castCrewCarousel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1002">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/components/dashboard/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/components/userProfile/footer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/components/secretPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/server/routes/passport.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-57">
+          <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/config/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/models/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/server/routes/satish/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/server/routes/kafka/Connection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/reducers/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="4" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#38#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/reducers/reducer_fetchuser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/components/PrivateRoute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/models/User.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/services/dummyData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/services/getMovieOverview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/services/getMoviesInHomePageCarousel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/kafka-back-end/services/getMoviesSearchHandle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/components/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fandango/client/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3">
+          <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
