@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 import {fetchUser} from "./actions/satishActions"
 import createBrowserHistory from 'history/createBrowserHistory';
-import {PrivateRoute} from "./components/PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute";
 import Signin from "./components/signin";
 import SignUp from "./components/signUp";
 import UserProfile from "./components/userProfile/userProfile";
@@ -37,6 +37,11 @@ class App extends Component {
         this.props.fetchUser();
     }
 
+    // requireAuth(){
+    //     console.log("hgfdg")
+    //     this.props.fetchUser();
+    // }
+
     render() {
         //var logStat = this.props.user.isLoggedIn;
         var logStat = this.props.user.isLoggedIn;
@@ -62,8 +67,7 @@ class App extends Component {
 
                                 <PrivateRoute path="/movietime" component={MovieTime} props={logStat}/>
                                 <PrivateRoute path="/secret" component={SecretPage} props={logStat}/>
-                                <PrivateRoute path="/dashboard" component={Dashboard} props={logStat}
-                                              user={this.props.user}/>
+                                <PrivateRoute path="/dashboard" component={Dashboard}/>
                                 <Route path="/check-out" component={CheckOut}/>
                                 <PrivateRoute path="/check-out-payment" component={CheckOutPayment} props={logStat}/>
                                 <PrivateRoute path="/addmovie" component={AddMovie}/>
