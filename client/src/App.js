@@ -65,11 +65,11 @@ class App extends Component {
                                 <PrivateRoute path="/dashboard" component={Dashboard} props={logStat}
                                               user={this.props.user}/>
                                 <Route path="/check-out" component={CheckOut}/>
-                                <PrivateRoute path="/check-out-payment" component={CheckOutPayment}/>
+                                <PrivateRoute path="/check-out-payment" component={CheckOutPayment} props={logStat}/>
                                 <PrivateRoute path="/addmovie" component={AddMovie}/>
                                 <Route path="/admin-movies" component={AdminMovieSearch}/>
                                 <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
-                                <PrivateRoute path="/movie-review/:tmdbid" component={MovieRating}/>
+                                <PrivateRoute path="/movie-review/:tmdbid" component={MovieRating} props={logStat}/>
                                 <Route path="/admin-movie-edit/:tmdbid" component={AdminMovieEdit}/>
                                 <Route path="/admin-login" component={AdminLogin}/>
                                 <Route path="/secret" component={SecretPage}/>
@@ -78,7 +78,8 @@ class App extends Component {
                                     return <SignUp/>
                                 }}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
                                 <PrivateRoute exact path='/userprofile'
-                                              component={UserProfile}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
+                                              component={UserProfile}
+                                              props={logStat}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
                                 <Route path="/home" component={Home}/>
                                 <Route path="*" component={Error}/>
                             </Switch>

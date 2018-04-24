@@ -121,7 +121,7 @@ class UserProfile extends Component {
             <div>
                 <BrandBar/>
                 <MegaDropDownHeader/>
-                <FandangoVIPHeader/>
+                <FandangoVIPHeader name='account'/>
                 {/*Profile Component - Dropdown*/}
                 <div className='row'>
 

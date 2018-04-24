@@ -17,6 +17,10 @@ body {
     text-transform: uppercase;
 }
 
+.font-size-30{
+    font-size: 30px;
+}
+
 .fandango-button{
     background-color: #FD7D15;
     padding: 8px !important;
@@ -545,4 +549,8 @@ ul.breadcrumb {
     /*border is optional*/
     border-bottom:1px solid #444;
     cursor: pointer;
+}
+
+hr{
+    border : 1px solid #CCCCCC !important;
 }

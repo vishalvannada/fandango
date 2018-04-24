@@ -5,6 +5,9 @@ var kafka = require('../kafka/client');
 
 
 router.get('/fetchuser', function (req, res) {
+
+    console.log(req.user)
+
     if (req.user) {
         res.status(201).json({user: req.user});
     }
@@ -97,7 +100,6 @@ router.get('/signout', function (req, res) {
         } else {
             // handle error case...
         }
-
     });
 
 });

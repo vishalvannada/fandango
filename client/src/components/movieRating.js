@@ -68,7 +68,7 @@ class MovieRating extends Component {
                     {...field.input}
                     placeholder={field.label}
                     type={field.type}
-                    rows="8"
+                    rows="6"
                 />
                 <div className="note-submit-review">Note: Your review will appear publicly
                     on our site.
@@ -120,11 +120,11 @@ class MovieRating extends Component {
                             <div className="row">
                                 <div className="col-md-3">
                                     <Link to={`/movie-overview/${this.props.movie.movie.tmdbid}`}>
-                                    <div className="movieDetail-image-div">
-                                        <img
-                                            src={`http://image.tmdb.org/t/p/w200${this.props.movie.movie.poster_path}`}
-                                            className="image-movie-detail image"/>
-                                    </div>
+                                        <div className="movieDetail-image-div">
+                                            <img
+                                                src={`http://image.tmdb.org/t/p/w200${this.props.movie.movie.poster_path}`}
+                                                className="image-movie-detail image"/>
+                                        </div>
                                     </Link>
                                     <div className="movieDetail-release-date text-center">
                                         <span
@@ -183,15 +183,15 @@ class MovieRating extends Component {
 
                                         <div className="row">
 
-                                            <div className="col-md-10">
-                                                <h2 className="font-condensed-bold pt-2 px-3">PLEASE RATE THIS MOVIE
+                                            <div className="col-md-9">
+                                                <h2 className="font-condensed-bold font-size-30 p-3">PLEASE RATE THIS MOVIE
                                                     FROM 1-5
                                                     STARS</h2>
                                             </div>
-                                            <div className="col-md-2 pt-2 px-2">
+                                            <div className="col-md-3 p-3">
                                                 <ReactStars
                                                     count={5}
-                                                    size={24}
+                                                    size={30}
                                                     half={false}
                                                     color2={'#ffd700'}
                                                     onChange={ratingChanged}
@@ -202,11 +202,11 @@ class MovieRating extends Component {
 
                                         <hr/>
 
-                                        <h2 className="font-condensed-bold pt-2 px-3">WRITE A REVIEW</h2>
+                                        <h2 className="font-size-30 font-condensed-bold p-3">WRITE A REVIEW</h2>
 
                                         <form className="pt-3 px-4" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
-                                            <small>Title:</small>
+                                            <span className="font-family-roboto font-weight-700">Title:</span>
                                             <Field
                                                 name="projectName"
                                                 component={this.renderField}
@@ -214,16 +214,19 @@ class MovieRating extends Component {
                                             />
 
 
-                                            <small>Body:</small>
+                                            <span className="font-family-roboto font-weight-700">Body:</span>
                                             <Field
                                                 name="projDesc"
                                                 component={this.renderText}/>
 
 
-                                            <button className="btn btn-primary align-right" type="submit">
+                                            <button className="btn align-right" type="submit">
                                                 Save Review
                                             </button>
 
+                                            <br/>
+                                            <br/>
+                                            <br/>
                                             <br/>
                                             <br/>
                                             <br/>
@@ -237,7 +240,6 @@ class MovieRating extends Component {
                         </div>
                     </div>
                 </div>
-
 
 
             </div>

@@ -34,7 +34,7 @@ class Dashboard extends Component {
             <div>
                 <BrandBar/>
                 <MegaDropDownHeader/>
-                <FandangoVIPHeader/>
+                <FandangoVIPHeader name='dashboard'/>
                 <div className="row">
                     <div className="large-9 columns dashboard-conatiner">
 
@@ -49,14 +49,14 @@ class Dashboard extends Component {
                                             <img id="AvatarImage" className="user-avatar-thumb"
                                                  src="https://images.fandango.com/r1.0.431/redesign/areas/profile/img/no-image-account-profile.png"/>{/* Write Image Source*/}
 
-                                            <h2 className="heading-style-1"> Display Name Here </h2>
+                                            <h3 className="font-condensed-bold">{this.props.user.username.firstname}</h3>
 
-                                            <a href="#"
-                                               className="points-ledger-link">See My VIP+ Points</a>
-
-                                            <button id='delete' className="heading-style-2 btn-danger" onClick={() => {
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <button id='delete' className="font-family-roboto btn-danger" onClick={() => {
                                                 this.onSubmit()
-                                            }}>Delete
+                                            }}>Delete Account
 
                                             </button>
 
