@@ -26,6 +26,9 @@ class Dashboard extends Component {
     };
 
     render() {
+
+        console.log(this.state, this.props)
+
         return (
 
             <div>

@@ -41,6 +41,17 @@ class App extends Component {
         //var logStat = this.props.user.isLoggedIn;
         var logStat = this.props.user.isLoggedIn;
         //  console.log(this.props.user.isLoggedIn);
+
+        console.log(this.props)
+
+        if (this.props.user.isLoggingIn) {
+            return (
+                <div>
+                    Loading
+                </div>
+            )
+        }
+
         return (
             <div className="App">
 
@@ -49,15 +60,15 @@ class App extends Component {
                         <div>
                             <Switch>
 
-
                                 <PrivateRoute path="/movietime" component={MovieTime} props={logStat}/>
                                 <PrivateRoute path="/secret" component={SecretPage} props={logStat}/>
-                                <PrivateRoute path="/dashboard" component={Dashboard} props={logStat}/>
+                                <PrivateRoute path="/dashboard" component={Dashboard} props={logStat}
+                                              user={this.props.user}/>
                                 <Route path="/check-out" component={CheckOut}/>
                                 <PrivateRoute path="/check-out-payment" component={CheckOutPayment}/>
                                 <PrivateRoute path="/addmovie" component={AddMovie}/>
                                 <Route path="/admin-movies" component={AdminMovieSearch}/>
-                                <PrivateRoute path="/movie-overview/:tmdbid" component={MovieDetail}/>
+                                <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
                                 <PrivateRoute path="/movie-review/:tmdbid" component={MovieRating}/>
                                 <Route path="/admin-movie-edit/:tmdbid" component={AdminMovieEdit}/>
                                 <Route path="/admin-login" component={AdminLogin}/>

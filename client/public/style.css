@@ -361,6 +361,7 @@ body {
 .movieDetail-release-date{
     background-color: #262626;
     height: 246px;
+    line-height: 1.8;
 }
 
 p{

@@ -11,7 +11,7 @@ export default function (state={
     // if(action.error){
     //     action.type = LOGIN_ERROR;
     // }
-    console.log("Inside Reducer",action.payload);
+    // console.log("Inside Reducer",action.payload);
     switch (action.type){
         case BASIC_INFO_SUCCESS:
             // sessionStorage.setItem("islogin", true);

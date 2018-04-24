@@ -1,4 +1,4 @@
-import {SIGN_IN,SIGN_OUT,SIGN_IN_ERROR} from "../actions/satishActions";
+import {SIGN_IN,SIGN_OUT,SIGN_IN_ERROR, FETCH_USER, FETCH_USER_NULL} from "../actions/satishActions";
 import {SIGN_UP_ERROR,SIGN_UP_SUCCESS} from "../actions/rishithActions";
 
 export default function (state={
@@ -13,7 +13,7 @@ export default function (state={
     // if(action.error){
     //     action.type = LOGIN_ERROR;
     // }
-   console.log("Inside Reducer",action.payload);
+   // console.log("Inside Reducer",action.payload);
     switch (action.type){
         case SIGN_IN:
             // sessionStorage.setItem("islogin", true);

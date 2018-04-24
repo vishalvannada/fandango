@@ -60,12 +60,12 @@ class MovieTopSection extends Component {
                                         <small
                                             className="font-size-13 font-timesNewRoman color-ccc">{this.props.movie.genre}
                                         </small>
-                                        <span></span>
+
                                         {/*<Rating/>*/}
 
                                         <div
                                             onClick={() => this.props.history.push(`/movie-review/${this.props.movie.tmdbid}`)}
-                                            className="rating-stars mt-2">
+                                            className="rating-stars mt-1">
                                             <ReactStars
                                                 edit={false}
                                                 count={5}
@@ -109,8 +109,8 @@ class MovieTopSection extends Component {
                                         </div>
 
                                         <div className="details">
-                                            <h4 className="font-condensed-bold-white pt-2">{this.props.movie.title} :
-                                                TRAILER</h4>
+                                            <h3 className="font-condensed-bold-white pt-2 mb-2">{this.props.movie.title} :
+                                                TRAILER</h3>
                                         </div>
                                     </div>
                                 </div>
