@@ -31,7 +31,7 @@ class MovieReview extends Component {
 
         console.log(this.props.reviews)
         return (
-            <div id='reviews-bottom'>
+            <div ref ='reviewsTest'>
                 <br/>
                 <div className="fandango-container">
                     <div className="row">

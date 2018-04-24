@@ -4,14 +4,22 @@ import moment from "moment";
 import ReactStars from 'react-stars';
 import {Link} from 'react-router-dom';
 import _ from 'lodash';
+import ReactDOM from 'react-dom';
 
 class MovieTopSection extends Component {
+
+    // handleScrollToElement(event) {
+    //     const tesNode = ReactDOM.findDOMNode(this.refs.reviewsTest)
+    //     window.scrollTo(0, tesNode.offsetTop);
+    // }
+
 
     render() {
 
         var divStyle = {
             backgroundImage: `url(http://image.tmdb.org/t/p/original${this.props.movie.poster_path})`,
         }
+
 
         console.log()
         const url = `https://www.youtube.com/embed/${this.props.movie.youtube_trailer}`;
@@ -25,7 +33,7 @@ class MovieTopSection extends Component {
                             <h1 className="font-condensed-bold-white">{this.props.movie.title}</h1>
 
 
-                            <nav class="nav-movie-top my-3">
+                            <nav className="nav-movie-top my-3">
                                 <a href="#">overview</a>
                                 <a href="#">movietimes+tickets</a>
                                 <a href="#">synopsis</a>
