@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Router, Route, Redirect, Switch} from "react-router-dom";
 import {connect} from "react-redux";
-
 import {fetchUser} from "./actions/satishActions"
 import createBrowserHistory from 'history/createBrowserHistory';
 import PrivateRoute from "./components/PrivateRoute";
@@ -9,12 +8,9 @@ import Signin from "./components/signin";
 import SignUp from "./components/signUp";
 import UserProfile from "./components/userProfile/userProfile";
 import Dashboard from "./components/dashboard/dashboard";
-
 import Home from './components/home';
-
 import MovieTime from './components/movietime';
 import AddMovie from './components/addMovie';
-
 import AdminLogin from './components/admin/adminLogin';
 import MovieDetail from './components/movieOverview';
 import MovieRating from './components/movieRating';
@@ -23,6 +19,8 @@ import CheckOut from './components/payment/checkout';
 import CheckOutPayment from './components/payment/checkoutPayment';
 import AdminMovieSearch from './components/admin/adminMovieSearch';
 import AdminMovieEdit from './components/admin/adminMovieSearch/movieEdit';
+import EditMovieHallListing from './components/editMovieHallListing';
+import EditMovieHall from './components/editmovie';
 import Error from './components/404Error';
 
 
@@ -72,6 +70,9 @@ class App extends Component {
                                 <Route path="/check-out" component={CheckOut}/>
                                 <PrivateRoute path="/check-out-payment" component={CheckOutPayment} props={logStat}/>
                                 <PrivateRoute path="/addmovie" component={AddMovie}/>
+                                <PrivateRoute path="/editmoviehall" component={EditMovieHall}/>
+
+                                <PrivateRoute path="/editmoviehalllisting" component={EditMovieHallListing}/>
                                 <Route path="/admin-movies" component={AdminMovieSearch}/>
                                 <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
                                 <PrivateRoute path="/movie-review/:tmdbid" component={MovieRating} props={logStat}/>
@@ -102,4 +103,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {fetchUser})(App);
-
