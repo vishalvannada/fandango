@@ -26,7 +26,6 @@ import {
 
 class Image extends Component {
 
-
     handleFileUpload = (event) => {
 
         const payload = new FormData();
@@ -37,6 +36,7 @@ class Image extends Component {
         console.log(event.target.files[0])
         console.log(payload.get('mypic'))
 
+        this.props.uploadImage(payload)
 
     };
 
@@ -44,6 +44,11 @@ class Image extends Component {
     render() {
 
         const {handleSubmit, load, pristine, reset, submitting} = this.props;
+
+        let src = 'https://images.fandango.com/r1.0.431/redesign/areas/profile/img/no-image-account-profile.png';
+        if (this.props.image) {
+            src = 'http://localhost:3001/images/' + this.props.image;
+        }
 
         return (
 
@@ -64,6 +69,14 @@ class Image extends Component {
                                 <div className="panel accordion-body " id="change-image-form">
                                     <div className="row">
                                         <form className="image-form">
+
+                                            <div className="profile-div-propic thumbnail">
+                                                <img
+                                                    // src="https://www.buira.org/assets/images/shared/default-profile.png"
+                                                    alt="..." className="d-block profile-profilepic"
+                                                    src={src}
+                                                />
+                                            </div>
 
                                             <div>
                                                 <label htmlFor="file-upload" className="custom-file-upload">

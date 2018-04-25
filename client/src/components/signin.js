@@ -6,9 +6,13 @@ import SigninBody from "./Signin/signinBody";
 import {fetchUser} from "../actions/satishActions";
 
 class Signin extends Component{
+
+
     componentDidMount(){
     //  this.props.fetchUser();
     }
+
+
     render(){
 
         return(
