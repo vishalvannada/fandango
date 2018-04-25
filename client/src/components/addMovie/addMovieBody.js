@@ -115,11 +115,13 @@ class MovieTopSection extends Component {
         )
     }*/
     onSubmit(values) {
-           console.log("on submit");
+          // console.log("on submit");
          //  var d = new Date();
-        for (var i=0;i<11;i++) {
+        //let i=0;
+        //for ( i=0;i<10;i++)
+        {
            // d.setDate(d.getDate() + 1);
-            values.Date=i;
+            //values.Date=i;
             console.log(values);
             this.props.addMovie(values);
         }
@@ -150,15 +152,16 @@ class MovieTopSection extends Component {
     }
 
     render() {
-        console.log(this.props.addMovies);
+        console.log(this.props);
         if(this.props.addMovies.addMovies==true)
         {
             swal("Movie Added");
 
         }
-        const colors = [ { color: 'Red', value: 'ff0000' },
-            { color: 'Green', value: '00ff00' },
-            { color: 'Blue', value: '0000ff' } ]
+        else if(this.props.addMovies.addMovies=="movies not added"){
+
+            swal("Movie not added");
+        }
         // console.log(this.props);
         //console.log(this.props.movietime.moviesTheatres.moviemap);
       //  console.log(this.props.movietime.moviesTheatres.moviemap[0].type);
@@ -167,7 +170,7 @@ class MovieTopSection extends Component {
             //backgroundImage: 'url(http://image.tmdb.org/t/p/original/nIrDm42dy5PaXtUAzUfPmxM4mQm.jpg)',
             backgroundColor: "white"
         };
-        console.log(this.props.moviesDropdown.movies.moviemap);
+        //console.log(this.props.moviesDropdown.movies.moviemap);
 
 
 
@@ -201,7 +204,10 @@ class MovieTopSection extends Component {
                                                     <Field
                                                         name="theatre"
                                                         component={this.renderDropdown}
-                                                        data={this.props.moviesDropdown.movies.movietheatre}
+                                                        data={this.props.moviesDropdown.movies.movietheatre.filter(function (task) {
+                                                            console.log(task.data[0].user)
+                                                            return task.data[0].user == "pranithkouda@gmail.com";
+                                                        })}
                                                         valueField="type"
                                                         type="DropdownList"
                                                         textField="type"
