@@ -98,7 +98,7 @@ router.post('/signup', function (req, res) {
                 res.status(201).json({message: "User Details Saved successfully"});
             }
             else {
-                res.status(401).json({message: "SignUp failed"});
+                res.status(401).json({message: results.message});
 
             }
         }
