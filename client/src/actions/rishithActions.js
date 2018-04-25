@@ -20,9 +20,9 @@ export function doSignUp(userdata) {
                 dispatch({type:SIGN_UP_SUCCESS, payload:res.data});
             })
             .catch((error) => {
+              console.log("Inside error 'Response'->", error);
                 dispatch({type:SIGN_UP_ERROR, payload:error})
             });
 
     }
 }
-

@@ -42,13 +42,14 @@ export function signin(values) {
                 if (res.status === 200) {
                     console.log("response received");
                     console.log(request)
-                    dispatch({type: SIGN_IN, payload: request});
+                    // dispatch({type: SIGN_IN, payload: request});
                 }
             }
         });
         request.catch(function (err) {
             // dtype = {message:'error received'}
             console.log("caught:", err.response);
+            dispatch({type: SIGN_IN_ERROR, payload: request});
         });
         console.log(action_type);
     }
