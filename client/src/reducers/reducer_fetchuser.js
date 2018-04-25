@@ -9,6 +9,7 @@ export default function (state = {
     type: 'user',
 }, action) {
     switch (action.type) {
+
         case FETCH_USER:
             return {...state, isLoggingIn: false, isLoggedIn: true, username: action.payload.user.user};
         case FETCH_USER_NULL:

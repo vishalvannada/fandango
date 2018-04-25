@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Route, withRouter, Link} from 'react-router-dom';
-
+import Edit from 'material-ui/svg-icons/editor/mode-edit';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -21,13 +22,13 @@ import {
     savePaymentMethod,
     changeImage
 } from "../../actions/satishActions";
+import Image from './image';
 
 class UserProfile extends Component {
 
     constructor(props) {
         super(props);
         this.onSubmit_change_image = this.onSubmit_change_image.bind(this)
-
     }
 
     componentDidMount() {
@@ -38,6 +39,30 @@ class UserProfile extends Component {
     onSubmit_change_image(values) {
         this.props.changeImage(values)
     }
+
+
+    handleFileUpload = (event) => {
+
+        const payload = new FormData();
+
+        console.log(payload)
+        payload.append('mypic', event.target.files[0]);
+        console.log(event.target.files)
+        console.log(event.target.files[0])
+        console.log(payload.get('mypic'))
+
+        // this.props.uploadImage(payload);
+
+        // API.uploadFile(payload)
+        //     .then((status) => {
+        //         if (status === 204) {
+        //             console.log("vishl")
+        //         }
+        //     }).catch((error) => {
+        //     console.log("shdvASYTD")
+        // });
+
+    };
 
 
     /* Passing Values from form-1: Basic Information  */
@@ -117,6 +142,12 @@ class UserProfile extends Component {
         console.log("props", this.props.user);
         const {handleSubmit, load, pristine, reset, submitting} = this.props;
 
+        if (this.props.user.user) {
+            if (!this.props.user.user.email) {
+                return (<div></div>)
+            }
+        }
+
         return (
             <div>
                 <BrandBar/>
@@ -128,35 +159,8 @@ class UserProfile extends Component {
 
                     <div id='profile_block' className="medium-9 columns">
 
-                        {/*Change Profile Image*/}
-                        <div className='collapse-element'>
-                            <Collapsible className="panel accordion-head well" trigger="CHANGE IMAGE">
 
-
-                                <div className="panel-group">
-
-
-                                    <div className="panel accordion-body " id="change-image-form">
-                                        <div className="row">
-                                            <form className="image-form">
-                                                <div className="medium-8 columns" id='image-information'>
-                                                    <Field name="image"
-                                                           className="form-control form-control-lg image-form-image"
-                                                           id="FileBox"
-                                                           type='file'
-                                                           component={this.customFileInput}
-                                                    />
-                                                    <button id="save-basic file" onClick={() => {
-                                                        this.onSubmit_change_image()
-                                                    }} className="btn btn-default">Save
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Collapsible>
-                        </div>
+                        <Image image={this.props.user.user} />
 
                         {/*Basic Information*/}
                         <div className='collapse-element'><Collapsible className="panel accordion-head well"
