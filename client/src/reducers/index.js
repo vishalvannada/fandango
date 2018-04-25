@@ -5,6 +5,10 @@ import MovieOverviewReducer from './reducer_movie_overview'
 import  MovieSearchPage from './reducer_movie_search_page'
 import moviesDropdown from './reducer_moviesnHalls'
 import MoviesAdded from './reducer_addMovie'
+import EditMovieHall from './reducer_getMovieHallListing'
+import editMovieSaved from './reducer_editHallSave'
+
+
 
 
 
@@ -14,6 +18,8 @@ const rootReducer = combineReducers({
     moviesSearchPagePK:MovieSearchPage,
     moviesDropdown:moviesDropdown,
     addMovies:MoviesAdded,
+    editMoviehall:EditMovieHall,
+    editMovieSaved:editMovieSaved,
     form : formReducer
 });
 

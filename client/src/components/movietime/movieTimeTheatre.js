@@ -34,7 +34,7 @@ class MovieTopSection extends Component {
             let newDate = new Date();
             newDate.setDate(newDate.getDate() + i);
             arrayDates.push(newDate);
-            //  console.log(newDate);
+            // console.log(newDate);
         }
 
         //  console.log(arrayDates)
@@ -118,7 +118,7 @@ class MovieTopSection extends Component {
                                    }}/>
                             <button type="button" onClick={() => {
                                 this.searchMovie()
-                            }} className="btn date-picker__location-submit js-date-picker-btn">GO
+                            }} className="my-2 my-sm-0 header-button-go">GO
                             </button>
                         </div>
                     </div>

@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import BrandBar from './home/brandBar'
 import MegaDropDownHeader from './home/megaDropDownHeader';
-import MovieTopSection from './addMovie/addMovieBody';
+import EditMovieBody from './editMovieHall/editMovieHall';
 import {connect} from "react-redux";
 import {demo} from "../actions/vishalActions";
 
 
 
 
-class Addmovie extends Component {
+class Movietime extends Component {
 
 
     // componentDidMount(){
@@ -20,7 +20,7 @@ class Addmovie extends Component {
             <div>
                 <BrandBar/>
                 <MegaDropDownHeader/>
-                <MovieTopSection history={this.props.history}/>
+                <EditMovieBody history={this.props.history}/>
             </div>
         )
     }
@@ -30,4 +30,4 @@ function mapStateToProps(state) {
     return {home: state.home}
 }
 
-export default connect(null, null)(Addmovie);
+export default connect(null, null)(Movietime);
