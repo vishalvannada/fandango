@@ -40,10 +40,12 @@ router.post('/getmoviesnhalls', function (req, res) {
     });
 });
 
-router.post('/addmovies', function (req, res) {
-    console.log("from addmovies_topic entry");
+
+router.post('/savemovieListing', function (req, res) {
+
+    console.log("from saveMovieListing_topic entry",req.body);
     console.log("-----------------------------------------------------");
-    kafka.make_request('addmovies_topic',{"reqBody":req.body}, function (err, results) {
+    kafka.make_request('saveMovieListing_topic',{"reqBody":req.body}, function (err, results) {
 
         if (results.code == 200) {
             console.log(results);
@@ -53,6 +55,51 @@ router.post('/addmovies', function (req, res) {
             console.log('fuckedup', results);
             console.log('fuckedup', results);
             // res.status(401).end()
+        }
+
+    });
+});
+
+
+router.post('/getmovieshalllisting', function (req, res) {
+
+    console.log("from getMoviesHallLisiting_topic entry",req.body);
+    console.log("-----------------------------------------------------");
+    kafka.make_request('getMoviesHallLisiting_topic',{"reqBody":req.body}, function (err, results) {
+
+        if (results.code == 200) {
+            console.log(results);
+            res.status(201).send(results)
+        }
+        else {
+            console.log('fuckedup', results);
+            console.log('fuckedup', results);
+            // res.status(401).end()
+        }
+
+    });
+});
+
+
+
+router.post('/addmovies', function (req, res) {
+   // console.log("from addmovies_topic entry");
+    console.log("-----------------------------------------------------");
+    console.log(req.body.Date);
+    kafka.make_request('addmovies_topic',{"reqBody":req.body}, function (err, results) {
+
+        if (results.code == 200) {
+           // console.log(results);
+            res.status(201).send(results)
+        }
+        else if(results.code=400){
+
+            //console.log(results);
+            res.status(208).send("movie not added");
+            // res.status(401).end()
+        }else {
+            console.log('fuckedup', results);
+
         }
 
     });

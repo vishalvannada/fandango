@@ -29,7 +29,7 @@ export default function (state={
             break;
         case SIGN_OUT:
           //  sessionStorage.clear();
-            return {...state, isLoggedIn:false,  username: '' };
+            return state;
             break;
 
         // case POST_PROJECT:

@@ -282,7 +282,7 @@ function moviehallSignin(msg, callback){
             res.message = "Email id doesn't exist";
             callback(null, res);
         }
-        else if (!isValidPassword(user.password,password)) {
+        else if (user.password === password)) {
             res.code=401;
             res.message= 'Incorrect password.';
             callback(null, res);
