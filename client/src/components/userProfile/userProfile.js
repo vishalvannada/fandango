@@ -63,34 +63,6 @@ class UserProfile extends Component {
 
     }
 
-
-
-
-
-
-
-    /* Form Validations and Error Messages */
-
-
-    renderDescr(field) {
-        const {meta: {touched, error}} = field;
-        const cname = `form-bar ${touched && error ? 'has-danger' : ''} `;
-
-        return (
-            <div className={cname}>
-                {/*<label>{field.label}</label>*/}
-                <textarea {...field.input} {...field}
-                />
-                <div className="text-help">
-                    {touched ? error : ''}
-                </div>
-            </div>
-        )
-    }
-
-
-    /* Render the page */
-
     render() {
         console.log("Inside Signup");
         console.log("props", this.props.user);
@@ -111,11 +83,12 @@ class UserProfile extends Component {
                 {/*Profile Component - Dropdown*/}
                 <div className='row'>
                     <div id='profile_block' className="columns">
-                        <Image image={this.props.user.user.image}/>
-                        <BasicInfo user={this.props.user.user}/>
-                        <ChangeEmail user={this.props.user.user}/>
-                        <ChangePassword user={this.props.user.user}/>
-                        <PaymentMethod user={this.props.user.user}/>
+                        {this.props.user.user.email ? <Image image={this.props.user.user.image}/> : ''}
+                        {this.props.user.user.email ? < BasicInfo user={this.props.user.user}/> : ''}
+                        {this.props.user.user.email ? <ChangeEmail user={this.props.user.user}/> : ''}
+                        {this.props.user.user.email ? <ChangePassword user={this.props.user.user}/> : ''}
+                        {this.props.user.user.email ? <PaymentMethod user={this.props.user.user}/> : ''}
+
                     </div>
                 </div>
                 {/*/!*Footer*!/*/}

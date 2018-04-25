@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Route, withRouter, Link} from 'react-router-dom';
 import Edit from 'material-ui/svg-icons/editor/mode-edit';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm, initialize} from 'redux-form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {DropDownMenu} from 'material-ui'
@@ -41,6 +41,27 @@ class BasicInfo extends Component {
             </div>
         )
 
+    }
+
+
+    componentWillMount() {
+        console.log("yes")
+        this.insertValues();
+        console.log(this.props.user)
+    }
+
+    insertValues() {
+
+        console.log(this.props.user)
+        const data = {
+            "firstname": this.props.user.firstname,
+            "lastname": this.props.user.lastname,
+            "displayname": this.props.user.displayname,
+            "mobile": this.props.user.mobile,
+            "address": this.props.user.address
+        }
+
+        this.props.initialize(data);
     }
 
     /* Passing Values from form-1: Basic Information  */
@@ -82,28 +103,26 @@ class BasicInfo extends Component {
                                           className="update-form">
                                         <div className="medium-5 columns" id='basic-information'>
 
-                                            <label>First Name</label>
+                                            <label className="font-condensed-bold">First Name</label>
                                             <Field name="firstname"
                                                    className="form-control form-control-lg update-form-firstname"
                                                    id="FirstNameBox"
                                                    type='text'
                                                    component={this.renderField}
-                                                   value={this.props.user.firstname}
                                             />
                                         </div>
                                         <div className="medium-5 columns">
 
-                                            <label>Last Name</label>
+                                            <label className='font-condensed-bold'>Last Name</label>
                                             <Field name="lastname"
                                                    className="form-control form-control-lg update-form-lastname"
                                                    id="LastNameBox"
                                                    type='text'
                                                    component={this.renderField}
-                                                   value={this.props.user.lastname}
                                             />
                                         </div>
                                         <div className="medium-5 columns">
-                                            <label className="display-name" htmlFor="">Display Name</label>
+                                            <label className="font-condensed-bold" htmlFor="">Display Name</label>
                                             <div className="special-note">This name will appear publicly when you
                                                 rate and
                                                 review movies.
@@ -113,31 +132,28 @@ class BasicInfo extends Component {
                                                    id="DisplayName"
                                                    type='text'
                                                    component={this.renderField}
-                                                   value={this.props.user.displayname}
                                             />
                                         </div>
                                         <div className="medium-5 columns">
 
-                                            <label>Phone Number</label>
+                                            <label className='font-condensed-bold'>Phone Number</label>
 
                                             <Field name="mobile"
                                                    className="form-control form-control-lg update-form-mobile"
                                                    id="MobileBox"
                                                    type='text'
                                                    component={this.renderField}
-                                                   value={this.props.user.mobile}
                                             />
                                         </div>
 
-                                        <div className="medium-11 columns">
+                                        <div className="medium-10 columns">
 
-                                            <label>Address</label>
+                                            <label className='font-condensed-bold'>Address</label>
                                             <Field name="address"
                                                    className="form-control form-control-lg update-form-address"
                                                    id="AddressBox"
                                                    type='textarea'
                                                    component={this.renderField}
-                                                   value={this.props.user.address}
                                             />
                                         </div>
                                         <div className="medium-7 columns right-40">
@@ -159,8 +175,28 @@ class BasicInfo extends Component {
 }
 
 
+function validate(values) {
+
+    const errors = {};
+
+    // console.log(values)
+
+    if (values.mobile) {
+        if (isNaN(values.mobile)) {
+            errors.mobile = "Please Enter a valid phone number"
+        }
+
+        if (values.mobile.length != 10) {
+            errors.mobile = "Phone Number must be 10 digits"
+        }
+    }
+    return errors;
+}
+
+
 export default reduxForm({
-    form: 'image'
+    validate,
+    form: 'basicInfo'
 })(
     connect(null, {changeBasicInfo})(BasicInfo)
 );
