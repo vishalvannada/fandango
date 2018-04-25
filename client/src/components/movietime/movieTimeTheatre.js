@@ -12,10 +12,11 @@ class MovieTopSection extends Component {
         movieSearch: "",
         Date: moment(new Date()).format()
     }
-    setDate(values){
+
+    setDate(values) {
         //console.log(values);
-        this.setState({Date:values})
-        console.log("i consoled this",this.state);
+        this.setState({Date: values})
+        console.log("i consoled this", this.state);
         this.props.getMoviesInSearchPage(this.state);
 
     }
@@ -67,9 +68,8 @@ class MovieTopSection extends Component {
             infinite: false,
         };
 
-        if(this.props.movietime.moviesTheatres.moviemap.length==0)
-        {
-            return(
+        if (this.props.movietime.moviesTheatres.moviemap.length == 0) {
+            return (
                 <div>No Movies Found</div>
             )
         }
@@ -271,3 +271,4 @@ function mapStateToProps(state) {
 
 
 export default connect(mapStateToProps, {getMoviesInSearchPage})(MovieTopSection);
+

@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import BrandBar from './home/brandBar'
 import MegaDropDownHeader from './home/megaDropDownHeader';
@@ -31,3 +32,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(null, null)(Movietime);
+

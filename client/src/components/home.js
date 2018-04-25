@@ -7,11 +7,10 @@ import {connect} from "react-redux";
 import {getMoviesInHomePageCarousel} from "../actions/vishalActions";
 
 
-
 class Home extends Component {
 
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.getMoviesInHomePageCarousel()
     }
 

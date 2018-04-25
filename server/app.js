@@ -11,9 +11,18 @@ require('./routes/passport')(passport);
 
 var index = require('./routes/vishal/index');
 var movies = require('./routes/vishal/movies');
-var movietheatres=require('./routes/pranith/movietheatre');
-var mongoSessionURL = "mongodb://cmpe273:sreedevi@ds139929.mlab.com:39929/freelancer_lab2";
+var admin = require('./routes/vishal/admin');
+
+var movietheatres = require('./routes/pranith/movietheatre');
+var user = require('./routes/satish/users');
+
+
+var mongoSessionURL = "mongodb://cmpe273:sreedevi@ds149613.mlab.com:49613/fandango";
+
+
+
 var expressSessions = require("express-session");
+// var MysqlStore = require('express-mysql-session')(expressSessions);
 var mongoStore = require("connect-mongo")(expressSessions);
 
 var app = express();
@@ -46,20 +55,31 @@ app.use(function (req, res, next) {
 //     activeDuration : 20*60*1000
 // }));
 
+var options = {
+
+    username: "test",
+    password: "pass",
+    database: "fandango",
+    host: "fandango.coiprk9rsjrx.us-west-1.rds.amazonaws.com",
+    port: 3306,
+};
+
+
 app.use(expressSessions({
-    secret: "CMPE273_passport",
+    secret: 'CMPE273_fandango',
+    cookie: {secure: false},
+    httpOnly: true,
+    secure: false,
+    maxAge: null,
+    duration: 30 * 60 * 1000,    //setting the time for active session
+    activeDuration: 5 * 60 * 1000,
     resave: false,
-    //Forces the session to be saved back to the session store, even if the session was never modified during the request
-    saveUninitialized: false, //force to save uninitialized session to db.
-    //A session is uninitialized when it is new but not modified.
-    duration: 30 * 60 * 1000,
-    activeDuration: 5 * 6 * 1000,
     store: new mongoStore({
         url: mongoSessionURL
-    })
+    }),
+    saveUninitialized: false,
+    unset: 'destroy'
 }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -69,30 +89,39 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/user', user);//satish
 
 app.use('/', index); //vishal
 app.use('/movies', movies); //vishal
-app.use('/movietheatres',movietheatres); //pranith
+app.use('/admin', admin); //vishal
+app.use('/movietheatres', movietheatres); //pranith
 
 // catch 404 and forward to error handlers
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
+
+
+
+

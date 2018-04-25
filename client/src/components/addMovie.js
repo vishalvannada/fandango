@@ -5,9 +5,6 @@ import MovieTopSection from './addMovie/addMovieBody';
 import {connect} from "react-redux";
 import {demo} from "../actions/vishalActions";
 
-
-
-
 class Addmovie extends Component {
 
 
