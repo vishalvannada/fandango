@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Router, Route, Redirect, Switch} from "react-router-dom";
 import {connect} from "react-redux";
-
 import {fetchUser} from "./actions/satishActions"
 import createBrowserHistory from 'history/createBrowserHistory';
 import PrivateRoute from "./components/PrivateRoute";
@@ -9,12 +8,9 @@ import Signin from "./components/signin";
 import SignUp from "./components/signUp";
 import UserProfile from "./components/userProfile/userProfile";
 import Dashboard from "./components/dashboard/dashboard";
-
 import Home from './components/home';
-
 import MovieTime from './components/movietime';
 import AddMovie from './components/addMovie';
-
 import AdminLogin from './components/admin/adminLogin';
 import MovieDetail from './components/movieOverview';
 import MovieRating from './components/movieRating';
@@ -102,4 +98,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {fetchUser})(App);
-
