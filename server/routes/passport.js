@@ -17,7 +17,7 @@ module.exports = function (passport) {
         // });
     });
 
-    passport.use(new LocalStrategy({
+    passport.use('user',new LocalStrategy({
             usernameField: 'email',
             passwordField: 'password'
         }, function (username, password, done) {
@@ -44,6 +44,57 @@ module.exports = function (passport) {
         }
     ));
 
+    passport.use('moviehall',new LocalStrategy({
+            usernameField: 'email',
+            passwordField: 'password'
+        }, function (username, password, done) {
+            console.log(username);
+            console.log(password);
+            kafka.make_request('moviehallsignin', {"email": username, "password": password}, function (err, results) {
+                console.log('in result');
+                console.log(results);
+                if (err) {
+                    done(err, {});
+                }
+                console.log("results status", results.code);
+                if (results.code === 401) {
+                    console.log("hello strategy");
+                    done(null, false, {message: results.message});
+                }
+                else {
+                    console.log("I dont know");
+                    done(null, results);
+                }
+            });
+        }
+    ));
+
+    passport.use('adminSignin',new LocalStrategy({
+            usernameField: 'email',
+            passwordField: 'password'
+        }, function (username, password, done) {
+            console.log(username);
+            console.log(password);
+            kafka.make_request('adminsignin', {"email": username, "password": password}, function (err, results) {
+                console.log('in result');
+                console.log(results);
+                if (err) {
+                    done(err, {});
+                }
+                console.log("results status", results.code);
+                if (results.code === 401) {
+                    console.log("hello strategy");
+                    done(null, false, {message: results.message});
+                }
+                else {
+                    console.log("I dont know");
+                    done(null, results);
+                }
+            });
+        }
+    ));
+
 }
+
 
 

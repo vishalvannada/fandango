@@ -1,23 +1,18 @@
-var bcrypt = require('bcryptjs');
-const saltRounds = 10;
 
 module.exports = function (sequelize, Sequelize) {
 
-    var User = sequelize.define('user', {
+    var Admin = sequelize.define('admin', {
         id: {autoIncrement: true, primaryKey: true, type: Sequelize.INTEGER},
         firstname: {type: Sequelize.STRING, notEmpty: true},
         lastname: {type: Sequelize.STRING},
-        displayname: {type: Sequelize.STRING},
         email: {type: Sequelize.STRING, validate: {isEmail: true}, unique: true},
         password: {type: Sequelize.STRING, allowNull: false},
-        mobile: {type: Sequelize.INTEGER},
+        mobile: {type: Sequelize.STRING},
         address: {type: Sequelize.STRING},
-        cardnumber: {type: Sequelize.INTEGER},
-        cardmonth: {type: Sequelize.INTEGER},
-        cardyear: {type: Sequelize.INTEGER},
+        city: {type: Sequelize.STRING},
+        State:{type: Sequelize.STRING},
         zipcode: {type: Sequelize.INTEGER},
-        last_login: {type: Sequelize.DATE},
-        image: {type: Sequelize.STRING}
+        last_login: {type: Sequelize.DATE}
     });
-    return User;
+    return Admin;
 }

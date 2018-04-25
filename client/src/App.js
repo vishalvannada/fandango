@@ -22,6 +22,7 @@ import AdminMovieEdit from './components/admin/adminMovieSearch/movieEdit';
 import EditMovieHallListing from './components/editMovieHallListing';
 import EditMovieHall from './components/editmovie';
 import Error from './components/404Error';
+import MovieHallSiginin from "./components/moviehallSignin";
 
 
 export const history = createBrowserHistory();
@@ -80,6 +81,7 @@ class App extends Component {
                                 <Route path="/admin-login" component={AdminLogin}/>
                                 <Route path="/secret" component={SecretPage}/>
                                 <Route path="/signin" component={Signin}/> {/*satish*/}
+                                <Route path="/moviehallSignin" component={MovieHallSiginin}/> {/*satish*/}
                                 <Route exact path="/signup" render={(props) => {
                                     return <SignUp/>
                                 }}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
@@ -88,6 +90,7 @@ class App extends Component {
                                               props={logStat}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
                                 <Route path="/home" component={Home}/>
                                 <Route path="*" component={Error}/>
+
                             </Switch>
                         </div>
 

@@ -17,7 +17,7 @@ class PrivateRoute extends Component {
         console.log(this.props.component)
         console.log(this.props.computedMatch.params.tmdbid)
 
-        console.log(this.props)
+        console.log("user email",this.props.user.email)
 
         const Here = this.props.component;
 
