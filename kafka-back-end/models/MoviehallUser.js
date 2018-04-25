@@ -3,7 +3,7 @@ const saltRounds = 10;
 
 module.exports = function (sequelize, Sequelize) {
 
-    var User = sequelize.define('user', {
+    var MoviehallUser = sequelize.define('moviehalluser', {
         id: {autoIncrement: true, primaryKey: true, type: Sequelize.INTEGER},
         firstname: {type: Sequelize.STRING, notEmpty: true},
         lastname: {type: Sequelize.STRING},
@@ -12,12 +12,8 @@ module.exports = function (sequelize, Sequelize) {
         password: {type: Sequelize.STRING, allowNull: false},
         mobile: {type: Sequelize.INTEGER},
         address: {type: Sequelize.STRING},
-        cardnumber: {type: Sequelize.INTEGER},
-        cardmonth: {type: Sequelize.INTEGER},
-        cardyear: {type: Sequelize.INTEGER},
-        zipcode: {type: Sequelize.INTEGER},
         last_login: {type: Sequelize.DATE},
         image: {type: Sequelize.STRING}
     });
-    return User;
+    return MoviehallUser;
 }

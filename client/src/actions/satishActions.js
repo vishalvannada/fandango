@@ -22,6 +22,11 @@ export const FETCH_USER_NULL = "FETCH_USER_NULL";
 export const UPLOAD_SUCCESS = "UPLOAD_SUCCESS";
 export const UPLOAD_FAILED = "UPLOAD_FAILED";
 
+export const MOVIEHALL_SIGN_IN_SUCCESS = "MOVIEHALL_SIGN_IN_SUCCESS";
+export const MOVIEHALL_SIGN_IN_ERROR = "MOVIEHALL_SIGN_IN_ERROR"
+
+export const IMAGE_SUCCESS = "IMAGE_SUCCESS";
+
 axios.defaults.withCredentials = true;
 
 export function signin(values) {
@@ -57,19 +62,22 @@ export function signin(values) {
 
 export function signout(values) {
     console.log(values);
-    const request = axios.get(`${ROOT_URL}/user/signout`, {withCredentials: true});
 
-    console.log("Action creator called");
-    console.log("request :", request);
-    request.then(function (res) {
-        if (res.message === "Success")
-            console.log("session cleared");
-        window.localStorage.clear();
-        history.push('/signin');
-    });
-    return {
-        type: SIGN_OUT,
-        payload: request
+    return (dispatch) => {
+        const response = axios.get(`${ROOT_URL}/user/signout`)
+            .then(response => {
+                console.log(response.data);
+                window.localStorage.clear();
+                history.push('/signin');
+                dispatch(() => {
+                    return {
+                        type: SIGN_OUT,
+                        payload: response
+                    }
+                })
+            }).catch(error => {
+                console.log(error);
+            });
     }
 }
 
@@ -135,7 +143,7 @@ export function changeEmail(userdata) {
         console.log("Inside the sign up actions");
         axios.post(`${ROOT_URL}/user/email`, userdata)
             .then((res) => {
-                console.log("Inside actions 'Response'-> ", res.data);
+                console.log("Inside actions 'Response'-> ", res);
                 dispatch({type: EMAIL_SUCCESS, payload: res.data});
             })
             .catch((error) => {
@@ -146,16 +154,22 @@ export function changeEmail(userdata) {
 }
 
 
-export function uploadImage(userdata) {
+export function uploadImage(payload) {
     return function (dispatch) {
         console.log("Inside the sign up actions");
-        axios.post(`${ROOT_URL}/user/email`, userdata)
+        axios.post(`${ROOT_URL}/user/image`, payload, {
+            headers: {
+                'accept': 'application/json',
+                'Accept-Language': 'en-US,en;q=0.8',
+                'Content-Type': payload.get('mypic').type,
+            }
+        })
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res.data);
-                dispatch({type: EMAIL_SUCCESS, payload: res.data});
+                dispatch({type: IMAGE_SUCCESS, payload: res.data});
             })
             .catch((error) => {
-                dispatch({type: EMAIL_ERROR, payload: error})
+                // dispatch({type: EMAIL_ERROR, payload: error})
             });
 
     }
@@ -233,5 +247,59 @@ export function changeImage(userdata) {
             .catch((error) => {
                 dispatch({type: UPLOAD_FAILED, payload: error})
             });
+    }
+}
+
+export function movieHallSignin(values) {
+    return function (dispatch) {
+        const request = axios.post(`${ROOT_URL}/user/movieHallSignin`, values, {withCredentials: true});
+        var action_type = null;
+        request.then(function (res) {
+            console.log("res", res.status);
+            if (res.status == 201) {
+                console.log("response received",res);
+                history.push('/home');
+                dispatch({type: SIGN_IN, payload: request});
+            }
+            else {
+                if (res.status === 200) {
+                    console.log("response received");
+                    console.log(request)
+                    dispatch({type: SIGN_IN_ERROR, payload: request});
+                }
+            }
+        });
+        request.catch(function (err) {
+            // dtype = {message:'error received'}
+            console.log("caught:", err.response);
+        });
+        console.log(action_type);
+    }
+}
+
+export function adminSignin(values) {
+    return function (dispatch) {
+        const request = axios.post(`${ROOT_URL}/user/adminSignin`, values, {withCredentials: true});
+        var action_type = null;
+        request.then(function (res) {
+            console.log("res", res.status);
+            if (res.status === 201) {
+                console.log("Admin response received",res);
+                history.push('/home');
+                dispatch({type: SIGN_IN, payload: request});
+            }
+            else {
+                if (res.status === 200) {
+                    console.log("Admin error received");
+                    console.log(request)
+                    dispatch({type: SIGN_IN_ERROR, payload: request});
+                }
+            }
+        });
+        request.catch(function (err) {
+            // dtype = {message:'error received'}
+            console.log("caught:", err.response);
+        });
+        console.log(action_type);
     }
 }

@@ -15,9 +15,9 @@ export default function (state = {
         case FETCH_USER_NULL:
             return {...state, isLoggingIn: false, isLoggedIn: false, username: ''};
             break;
-        case SIGN_OUT:
-            return {...state, isLoggingIn: false, isLoggedIn: false, username: ''};
-            break;
+        // case SIGN_OUT:
+        //     return {...state, isLoggingIn: false, isLoggedIn: false, username: ''};
+        //     break;
         default:
             return state;
     }
