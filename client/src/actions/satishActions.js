@@ -21,6 +21,7 @@ export const FETCH_USER = "FETCH_USER";
 export const FETCH_USER_NULL = "FETCH_USER_NULL";
 export const UPLOAD_SUCCESS = "UPLOAD_SUCCESS";
 export const UPLOAD_FAILED = "UPLOAD_FAILED";
+export const IMAGE_SUCCESS = "IMAGE_SUCCESS";
 
 axios.defaults.withCredentials = true;
 
@@ -57,20 +58,40 @@ export function signin(values) {
 
 export function signout(values) {
     console.log(values);
-    const request = axios.get(`${ROOT_URL}/user/signout`, {withCredentials: true});
 
-    console.log("Action creator called");
-    console.log("request :", request);
-    request.then(function (res) {
-        if (res.message === "Success")
-            console.log("session cleared");
-        window.localStorage.clear();
-        history.push('/signin');
-    });
-    return {
-        type: SIGN_OUT,
-        payload: request
+    return (dispatch) => {
+        const response = axios.get(`${ROOT_URL}/user/signout`)
+            .then(response => {
+                console.log(response.data);
+                window.localStorage.clear();
+                history.push('/signin');
+                dispatch(() => {
+                    return {
+                        type: SIGN_OUT,
+                        payload: response
+                    }
+                })
+            }).catch(error => {
+                console.log(error);
+            });
     }
+
+
+    // const request = axios.get(`${ROOT_URL}/user/signout`, {withCredentials: true});
+    //
+    // console.log("Action creator called");
+    // console.log("request :", request);
+    // request.then(function (res) {
+    //     if (res.message === "Success")
+    //         console.log("session cleared");
+    //     window.localStorage.clear();
+    //     history.push('/signin');
+    //     return {
+    //         type: SIGN_OUT,
+    //         payload: request
+    //     }
+    // });
+
 }
 
 export function fetchUser() {
@@ -146,16 +167,22 @@ export function changeEmail(userdata) {
 }
 
 
-export function uploadImage(userdata) {
+export function uploadImage(payload) {
     return function (dispatch) {
         console.log("Inside the sign up actions");
-        axios.post(`${ROOT_URL}/user/email`, userdata)
+        axios.post(`${ROOT_URL}/user/image`, payload, {
+            headers: {
+                'accept': 'application/json',
+                'Accept-Language': 'en-US,en;q=0.8',
+                'Content-Type': payload.get('mypic').type,
+            }
+        })
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res.data);
-                dispatch({type: EMAIL_SUCCESS, payload: res.data});
+                dispatch({type: IMAGE_SUCCESS, payload: res.data});
             })
             .catch((error) => {
-                dispatch({type: EMAIL_ERROR, payload: error})
+                // dispatch({type: EMAIL_ERROR, payload: error})
             });
 
     }

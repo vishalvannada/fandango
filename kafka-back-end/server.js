@@ -146,6 +146,13 @@ consumer.on('message', function (message) {
                 return;
             })
             break
+        case 'uploadimage':
+            user.uploadImage(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break
+
 
     }
 });

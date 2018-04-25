@@ -5,14 +5,15 @@ var kafka = require('./kafka/client');
 
 module.exports = function (passport) {
     passport.serializeUser(function (user, cb) {
-        console.log('user:' + user);
+        console.log('user:' + user.email);
         cb(null, user);
     });
 
 // used to deserialize the user
-    passport.deserializeUser(function (user, cb) {
-        //mysql.query('SELECT * FROM users WHERE id = ?', [id], function(err, rows) {
-        cb(null, user);
+    passport.deserializeUser(function (email, done) {
+        // User.findOne({'email': email}, function (err, user) {
+        //     console.log('deserialize', user);
+            done(null , email);
         // });
     });
 

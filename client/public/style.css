@@ -576,3 +576,9 @@ hr{
 .display-none{
     display: none;
 }
+
+.profile-div-propic {
+    height: 200px;
+    width: 200px;
+    padding: auto;
+}

@@ -11,9 +11,10 @@ import MoviesSearchListAdmin from './reducer_search_movies_admin';
 import UserReducer from "./reducer_user";
 import fetchUserReducer from "./reducer_fetchuser";
 import userProfile from "./reducer_userprofile";
+import {SIGN_OUT} from "../actions/satishActions";
 
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
     user: UserReducer,
     getUser: fetchUserReducer,
     userProfile: userProfile,
@@ -26,6 +27,15 @@ const rootReducer = combineReducers({
     form : formReducer
 
 });
+
+const rootReducer = (state, action) => {
+    if (action.type === SIGN_OUT) {
+        console.log(action)
+        state = undefined;
+        console.log(state);
+    }
+    return appReducer(state, action)
+}
 
 export default rootReducer;
 
