@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Route, withRouter, Link} from 'react-router-dom';
 import Edit from 'material-ui/svg-icons/editor/mode-edit';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm, initialize} from 'redux-form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {DropDownMenu} from 'material-ui'
@@ -24,6 +24,8 @@ import {
     uploadImage
 } from "../../actions/satishActions";
 
+// export const email = this.props.user.email;
+
 class ChangeEmail extends Component {
 
     renderField(field) {
@@ -43,6 +45,22 @@ class ChangeEmail extends Component {
 
     }
 
+    componentWillMount() {
+        console.log("yes")
+        this.insertValues();
+        console.log(this.props.user)
+    }
+
+    insertValues() {
+
+        console.log(this.props.user)
+        const data = {
+            "oldemail": this.props.user.email
+        }
+
+        this.props.initialize(data);
+    }
+
 
     /* Passing Values from form-2: Email Change  */
     onSubmit_email(values) {
@@ -50,7 +68,6 @@ class ChangeEmail extends Component {
         this.props.changeEmail(values)
 
     }
-
 
 
     render() {
@@ -80,15 +97,23 @@ class ChangeEmail extends Component {
                                         <div className='row'>
                                             <div className="medium-12 columns">
 
-                                                <label>Current Email</label>
-                                                <div className='email-form-oldemail'><p>{this.props.user.email}</p>
-                                                </div>
+                                                <label className='font-condensed-bold'>Current Email</label>
+                                                {/*<div className='email-form-oldemail'><p>{this.props.user.email}</p>*/}
+
+                                                <Field name="oldemail"
+                                                       className="form-control form-control-lg update-form-newemail"
+                                                       id="NewEmailBox"
+                                                       type='email'
+                                                       component={this.renderField}
+                                                       disabled
+                                                />
+
                                             </div>
                                         </div>
                                         <div className='row'>
                                             <div className="medium-12 columns">
 
-                                                <label>New Email</label>
+                                                <label className='font-condensed-bold'>New Email</label>
                                                 <Field name="newemail"
                                                        className="form-control form-control-lg update-form-newemail"
                                                        id="NewEmailBox"
@@ -99,7 +124,7 @@ class ChangeEmail extends Component {
                                         </div>
                                         <div className='row'>
                                             <div className="medium-12 columns">
-                                                <label className="" htmlFor="">Confirm Email</label>
+                                                <label className='font-condensed-bold' htmlFor="">Confirm Email</label>
                                                 {/*<div className="special-note">This name will appear publicly when you rate and*/}
                                                 {/*review movies.*/}
                                                 {/*</div>*/}
@@ -133,8 +158,46 @@ class ChangeEmail extends Component {
 }
 
 
+function validate(values) {
+
+    //object that returns errors, if errors is empty the form will be submitted, else it wont be submitted
+    //if errors has any properties, redux from assumes that form is invalid
+    const errors = {};
+
+    console.log(values)
+    //names are associated to fields in the redux form names
+    if (!values.newemail) {
+        errors.newemail = "Field Can't be Empty";
+    }
+
+    if (!values.confirmemail) {
+        errors.confirmemail = "Field Can't be Empty"
+    }
+
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.newemail)) {
+        errors.newemail = "Please enter a valid email address";
+    }
+
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.confirmemail)) {
+        errors.confirmemail = "Please enter a valid email address";
+    }
+
+    console.log(values.oldemail)
+    if (values.newemail == values.oldemail) {
+        errors.newemail = "Email cannot be same as old"
+    }
+
+    if (values.newemail != values.confirmemail) {
+        errors.confirmemail = "Both the email should be equal";
+    }
+
+    return errors;
+}
+
+
 export default reduxForm({
-    form: 'image'
+    validate,
+    form: 'changeEmail'
 })(
     connect(null, {changeBasicInfo})(ChangeEmail)
 );

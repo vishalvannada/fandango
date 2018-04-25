@@ -69,10 +69,10 @@ class App extends Component {
                                 <PrivateRoute path="/dashboard" component={Dashboard}/>
                                 <Route path="/check-out" component={CheckOut}/>
                                 <PrivateRoute path="/check-out-payment" component={CheckOutPayment} props={logStat}/>
-                                <PrivateRoute path="/addmovie" component={AddMovie}/>
-                                <PrivateRoute path="/editmoviehall" component={EditMovieHall}/>
+                                <Route path="/addmovie" component={AddMovie}/>
+                                <Route path="/editmoviehall" component={EditMovieHall}/>
 
-                                <PrivateRoute path="/editmoviehalllisting" component={EditMovieHallListing}/>
+                                <Route path="/editmoviehalllisting" component={EditMovieHallListing}/>
                                 <Route path="/admin-movies" component={AdminMovieSearch}/>
                                 <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
                                 <PrivateRoute path="/movie-review/:tmdbid" component={MovieRating} props={logStat}/>
