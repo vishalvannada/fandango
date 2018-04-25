@@ -14,7 +14,7 @@ export function doSignUp(userdata) {
         axios.post(`${ROOT_URL}/user/signup`, userdata)
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res.data);
-                window.localStorage.setItem('user',res.data.user);
+
                 window.localStorage.setItem('isLoggedIn',true);
                 history.push('/home')
                 dispatch({type:SIGN_UP_SUCCESS, payload:res.data});

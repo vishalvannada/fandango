@@ -150,7 +150,7 @@ class SignUp extends Component {
 
                                                 <span className="registration-caption hide-for-small-only">(And become eligible for VIP+ Points)</span>
                                                 <span className="registration-caption show-for-small-only">(And become eligible for VIP+ Points)</span>
-                                                <span className="registration-caption hide-for-small-only">{this.props.error}</span>
+                                                <span className="registration-caption hide-for-small-only text-danger">{this.props.error}</span>
 
                                             </p>
                                             <div className='form-group'>

@@ -291,4 +291,3 @@ class MegaDropDownHeader extends Component {
 // }
 
 export default connect(null, null)(MegaDropDownHeader);
-
