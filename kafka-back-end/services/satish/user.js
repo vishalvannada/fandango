@@ -3,7 +3,9 @@ var mysql = require('mysql2');
 var sequelize = require('sequelize');
 var models = require('../../models');
 var User = require('../../models/User')(models.sequelize, models.Sequelize);
-var UserProfile = require('../../models/User')(models.sequelize, models.Sequelize);
+var MoviehallUser = require("../../models/MoviehallUser")(models.sequelize, models.Sequelize);
+var Admin = require("../../models/Admin")(models.sequelize, models.Sequelize);
+
 
 function signin(msg, callback) {
 
@@ -134,6 +136,7 @@ function basicInfo(msg, callback) {
 }
 
 
+
 function uploadImage(msg, callback) {
     // console.log("userdata", msg.user, msg.email);
     // var firstName = msg.user.firstname;
@@ -185,8 +188,10 @@ function changeEmail(msg, callback) {
 
 }
 
-function changePassword(msg, callback) {
-    console.log("userdata", msg.user);
+
+function changePassword(msg,callback){
+    var res={};
+    console.log("userdata",msg.user);
     var oldPassword = msg.user.oldPassword;
     var newPassword = msg.user.newPassword;
 
@@ -245,8 +250,9 @@ function changePassword(msg, callback) {
     });
 }
 
-function savePayment(msg, callback) {
-    console.log("userdata", msg.user);
+
+function savePayment(msg,callback){
+    var res={};
     var cardnumber = msg.user.cardnumber;
     var month = msg.user.cardmonth;
     var year = msg.user.cardyear;
@@ -270,7 +276,11 @@ function savePayment(msg, callback) {
         )
 }
 
+
+
+
 function deletePayment(msg, callback) {
+    var res={};
     console.log("userdata", msg.user);
     var cardnumber = "";
     var month = "";
@@ -295,6 +305,79 @@ function deletePayment(msg, callback) {
         )
 }
 
+
+function moviehallSignin(msg, callback){
+
+    var res = {};
+    var email=msg.email;
+    var password=msg.password;
+
+    MoviehallUser.findOne({ where: {email:email }}).then(function (user) {
+        if(!user){
+            console.log('error');
+            res.code = 401;
+            res.message = "Email id doesn't exist";
+            callback(null, res);
+        }
+        else if (user.password === password) {
+            res.code=401;
+            res.message= 'Incorrect password.';
+            callback(null, res);
+        }
+        else {
+            var data = user.get();
+            console.log('user',data);
+            res.code=201;
+            res.user = data;
+            callback(null,res);
+        }
+
+    }).catch(function (err) {
+        console.log("Error:",err);
+        res.code=401;
+        res.message= 'Something went wrong with your Signin';
+        callback(null, res);
+    });
+
+}
+
+
+function adminSignin(msg, callback){
+    var res = {};
+    var email=msg.email;
+    var password=msg.password;
+
+
+    Admin.findOne({ where: {email:email }}).then(function (user) {
+        console.log("userpassword",password);
+        console.log("dbpassword",user.password);
+        if(!user){
+            console.log('error');
+            res.code = 401;
+            res.message = "Email id doesn't exist";
+            callback(null, res);
+        }
+        else if (user.password !== password) {
+            res.code=401;
+            res.message= 'Incorrect password.';
+            callback(null, res);
+        }
+        else {
+            var data = user.get();
+            console.log('user',data);
+            res.code=201;
+            res.user = data;
+            callback(null,res);
+        }
+    }).catch(function (err) {
+        console.log("Error:",err);
+        res.code=401;
+        res.message= 'Something went wrong with your Signin';
+        callback(null, res);
+    });
+}
+
+
 exports.signin = signin;
 exports.signup = signup;
 exports.basicInfo = basicInfo;
@@ -303,4 +386,6 @@ exports.changePassword = changePassword;
 exports.savePayment = savePayment;
 exports.userDetails = userDetails;
 exports.deletePayment = deletePayment;
+exports.moviehallSignin = moviehallSignin;
 exports.uploadImage = uploadImage;
+exports.adminSignin = adminSignin;

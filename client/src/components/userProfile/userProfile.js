@@ -63,34 +63,6 @@ class UserProfile extends Component {
 
     }
 
-
-
-
-
-
-
-    /* Form Validations and Error Messages */
-
-
-    renderDescr(field) {
-        const {meta: {touched, error}} = field;
-        const cname = `form-bar ${touched && error ? 'has-danger' : ''} `;
-
-        return (
-            <div className={cname}>
-                {/*<label>{field.label}</label>*/}
-                <textarea {...field.input} {...field}
-                />
-                <div className="text-help">
-                    {touched ? error : ''}
-                </div>
-            </div>
-        )
-    }
-
-
-    /* Render the page */
-
     render() {
         console.log("Inside Signup");
         console.log("props", this.props.user);
@@ -110,67 +82,25 @@ class UserProfile extends Component {
                 <FandangoVIPHeader name='account'/>
                 {/*Profile Component - Dropdown*/}
                 <div className='row'>
-
-
                     <div id='profile_block' className="columns">
-
-
-                        <Image image={this.props.user.user.image}/>
-                        <BasicInfo user={this.props.user.user}/>
-                        <ChangeEmail user={this.props.user.user}/>
-                        <ChangePassword user={this.props.user.user}/>
-                        <PaymentMethod user={this.props.user.user}/>
+                        {this.props.user.user.email ? <Image image={this.props.user.user.image}/> : ''}
+                        {this.props.user.user.email ? < BasicInfo user={this.props.user.user}/> : ''}
+                        {this.props.user.user.email ? <ChangeEmail user={this.props.user.user}/> : ''}
+                        {this.props.user.user.email ? <ChangePassword user={this.props.user.user}/> : ''}
+                        {this.props.user.user.email ? <PaymentMethod user={this.props.user.user}/> : ''}
 
                     </div>
-
-
                 </div>
                 {/*/!*Footer*!/*/}
                 {/*<Footer/>*/}
                 {/*/!*Utility Footer*!/*/}
                 {/*<UtilityFooter/>*/}
-
-
             </div>
         )
     }
 
 
 }
-
-
-// export default connect(mapStateToProps, mapDispatchToProps)(signUp)
-// function validate(values) {
-//     const errors = {};
-
-// let regEx_email = "/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i";
-// //validate input from values
-//
-//
-// if (!values.firstname || values.firstname.length < 5) {
-//     errors.firstname = "Please enter username of min 5 characters\n ";
-// }
-//
-//
-// if (!values.email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-//     errors.email = "Please enter a valid Email-ID\n ";
-// }
-//
-// if (!values.password || values.password.length<8){
-//     errors.password = "Please enter a valid password\n";
-// }
-//
-// if (!values.confirm_password) {
-//     errors.confirm_password = 'Confirm Password is empty\n';
-// }
-// if (values.password !==values.confirm_password){
-//     errors.confirm_password = 'Passwords doesn\'t match\n';
-// }
-//
-// //if errors is empty , the form is fine to submit
-// //if errors has *any* properties, redux form assumes that form is invalid
-// return errors;
-// }
 
 function mapDispatchToProps(dispatch) {
     return {

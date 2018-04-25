@@ -19,7 +19,7 @@ export default function (state={
             // sessionStorage.setItem("islogin", true);
             // sessionStorage.setItem("username", action.payload.data.username);
 
-            return  {...state, isLoggedIn:true, message:action.payload.data.message, isCheckedIn: true, username: action.payload.data, };
+            return  {...state, isLoggedIn:true, message:action.payload.data.message, isCheckedIn: true, user: action.payload.data.username};
             break;
         case SIGN_IN_ERROR:
             return {...state, isLoggedIn:false, username: '', message:action.payload.data.message };
@@ -34,7 +34,7 @@ export default function (state={
 
         case SIGN_OUT:
           //  sessionStorage.clear();
-            return {...state, isLoggedIn:false,  username: '' };
+            return state;
             break;
 
         // case POST_PROJECT:

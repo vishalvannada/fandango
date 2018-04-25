@@ -79,7 +79,7 @@ class ChangePassword extends Component {
                                         <div className='row'>
                                             <div className="medium-12 columns">
 
-                                                <label>Old Password</label>
+                                                <label className='font-condensed-bold'>Old Password</label>
                                                 <Field name="oldpassword"
                                                        className="form-control form-control-lg password-form-oldpassword"
                                                        id="OldPasswordBox"
@@ -91,7 +91,7 @@ class ChangePassword extends Component {
                                         <div className='row'>
                                             <div className="medium-12 columns">
 
-                                                <label>New Password</label>
+                                                <label className='font-condensed-bold'>New Password</label>
                                                 <Field name="newpassword"
                                                        className="form-control form-control-lg password-form-newpassword"
                                                        id="NewPasswordBox"
@@ -102,7 +102,8 @@ class ChangePassword extends Component {
                                         </div>
                                         <div className='row'>
                                             <div className="medium-12 columns">
-                                                <label className="" htmlFor="">Confirm Password</label>
+                                                <label className='font-condensed-bold' htmlFor="">Confirm
+                                                    Password</label>
                                                 {/*<div className="special-note">This name will appear publicly when you rate and*/}
                                                 {/*review movies.*/}
                                                 {/*</div>*/}
@@ -131,12 +132,51 @@ class ChangePassword extends Component {
 
         )
     }
-
-
 }
 
 
+function validate(values) {
+
+    //object that returns errors, if errors is empty the form will be submitted, else it wont be submitted
+    //if errors has any properties, redux from assumes that form is invalid
+    const errors = {};
+
+    //names are associated to fields in the redux form names
+    if (!values.username) {
+        errors.username = "UserName can't be empty";
+    }
+
+    if (values.username) {
+        if (values.username.length < 6) {
+            errors.username = "Username should be of 6 letters or more!";
+        }
+    }
+
+    if (!values.email) {
+        errors.email = "Email can't be empty";
+    }
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = "Please enter a valid email address";
+    }
+
+    if (values.phoneNumber) {
+        if (isNaN(values.phoneNumber)) {
+            errors.phoneNumber = "Please Enter a valid phone number"
+        }
+
+        if (values.phoneNumber.length != 10) {
+            errors.phoneNumber = "Phone Number must be 10 digits"
+        }
+    }
+
+    return errors;
+}
+
+
+
+
 export default reduxForm({
+    validate,
     form: 'image'
 })(
     connect(null, {changeBasicInfo})(ChangePassword)
