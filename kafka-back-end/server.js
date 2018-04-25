@@ -145,8 +145,14 @@ consumer.on('message', function (message) {
                 response(data,res);
                 return;
             })
-            break
-
+            break;
+        case 'moviehallsignin':
+            user.moviehallSignin(data.data, function (err, res) {
+                console.log("res: ",res);
+                response(data, res);
+                return;
+            });
+            break;
     }
 });
 

@@ -5,9 +5,7 @@ var kafka = require('../kafka/client');
 
 
 router.get('/fetchuser', function (req, res) {
-
     console.log(req.user)
-
     if (req.user) {
         res.status(201).json({user: req.user});
     }
@@ -18,7 +16,7 @@ router.get('/fetchuser', function (req, res) {
 });
 
 router.post('/signin', function (req, res, next) {
-    passport.authenticate('local', function (err, user, info) {
+    passport.authenticate('user', function (err, user, info) {
         if (err) {
             return next(err);
         }
@@ -66,6 +64,36 @@ router.get('/userDetails', function (req, res) {
         }
     });
 
+});
+
+
+router.post('/movieHallSignin', function (req, res, next) {
+    passport.authenticate('moviehall', function (err, user, info) {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            console.log("here", info)
+            return res.status(200).json({message: info.message});
+        }
+        else {
+            req.logIn(user, function (err) {
+                if (err) {
+                    console.log(err);
+                    return res.status(401);
+                }
+                else {
+                    req.session.save(function (err) {
+                        console.log("movie hall user", req.user);
+                        console.log(req.isAuthenticated());
+                        req.session.email = req.user.user.email;
+                        console.log("session email", req.session.email);
+                        return res.status(201).json({username: req.user.user});
+                    });
+                }
+            });
+        }
+    })(req, res, next);
 });
 
 

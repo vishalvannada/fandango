@@ -3,7 +3,7 @@ var mysql = require('mysql2');
 var sequelize = require('sequelize');
 var models = require('../../models');
 var User = require('../../models/User')(models.sequelize, models.Sequelize);
-var UserProfile = require('../../models/User')(models.sequelize, models.Sequelize);
+var MoviehallUser = require("../../models/MoviehallUser")(models.sequelize, models.Sequelize);
 
 function signin(msg, callback){
 
@@ -266,6 +266,45 @@ function deletePayment(msg,callback){
         )
 }
 
+
+function moviehallSignin(msg, callback){
+
+    var res = {};
+    var email=msg.email;
+    var password=msg.password;
+    var isValidPassword = function(userpass,password){
+        return bcrypt.compareSync(password, userpass);
+    }
+    MoviehallUser.findOne({ where: {email:email }}).then(function (user) {
+        if(!user){
+            console.log('error');
+            res.code = 401;
+            res.message = "Email id doesn't exist";
+            callback(null, res);
+        }
+        else if (!isValidPassword(user.password,password)) {
+            res.code=401;
+            res.message= 'Incorrect password.';
+            callback(null, res);
+        }
+        else {
+            var data = user.get();
+            console.log('user',data);
+            res.code=201;
+            res.user = data;
+            callback(null,res);
+        }
+
+    }).catch(function (err) {
+        console.log("Error:",err);
+        res.code=401;
+        res.message= 'Something went wrong with your Signin';
+        callback(null, res);
+    });
+
+}
+
+
 exports.signin = signin;
 exports.signup= signup;
 exports.basicInfo = basicInfo;
@@ -274,3 +313,4 @@ exports.changePassword = changePassword;
 exports.savePayment = savePayment;
 exports.userDetails = userDetails;
 exports.deletePayment = deletePayment;
+exports.moviehallSignin = moviehallSignin;

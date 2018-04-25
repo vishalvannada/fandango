@@ -21,6 +21,8 @@ export const FETCH_USER = "FETCH_USER";
 export const FETCH_USER_NULL = "FETCH_USER_NULL";
 export const UPLOAD_SUCCESS = "UPLOAD_SUCCESS";
 export const UPLOAD_FAILED = "UPLOAD_FAILED";
+export const MOVIEHALL_SIGN_IN_SUCCESS = "MOVIEHALL_SIGN_IN_SUCCESS";
+export const MOVIEHALL_SIGN_IN_ERROR = "MOVIEHALL_SIGN_IN_ERROR"
 
 axios.defaults.withCredentials = true;
 
@@ -234,4 +236,32 @@ export function changeImage(userdata) {
                 dispatch({type: UPLOAD_FAILED, payload: error})
             });
     }
+}
+
+export function movieHallSignin(values) {
+    return function (dispatch) {
+        const request = axios.post(`${ROOT_URL}/user/movieHallSignin`, values, {withCredentials: true});
+        var action_type = null;
+        request.then(function (res) {
+            console.log("res", res.status);
+            if (res.status == 201) {
+                console.log("response received",res);
+                history.push('/home');
+                dispatch({type: SIGN_IN, payload: request});
+            }
+            else {
+                if (res.status === 200) {
+                    console.log("response received");
+                    console.log(request)
+                    dispatch({type: SIGN_IN_ERROR, payload: request});
+                }
+            }
+        });
+        request.catch(function (err) {
+            // dtype = {message:'error received'}
+            console.log("caught:", err.response);
+        });
+        console.log(action_type);
+    }
+
 }
