@@ -47,7 +47,7 @@ function handle_request(msg, callback) {
 
 
         var queryJson = {
-            "HallID": new RegExp(msg.reqBody.movieSearch), "Date": {"$gte": new Date(d), "$lte": new Date(d2)}
+            "movie.MovieName": new RegExp(msg.reqBody.movieSearch), "Date": {"$gte": new Date(d), "$lte": new Date(d2)}
         };
 
         MongoConPool.find('movieHall', queryJson, function (err, movie) {
@@ -455,6 +455,100 @@ function handle_getMovieListing(msg, callback) {
 }
 
 
+function handle_saveMovieListing(msg, callback) {
+
+    // winston.remove(winston.transports.Console);
+    // winston.add(winston.transports.File, { filename: './public/LogFiles/KayakAnalysis.json' });
+    // winston.log('info', 'Flight Page Viewed', { page_name : 'Flights_page'});
+      console.log("-----------------------------------------in handle_saveMovieListing--",msg);
+    var showtimes = [];
+    for (let i = 0; i < msg.reqBody.showTimes.length; i++) {
+        var showSeats = {};
+        showSeats[msg.reqBody.showTimes[i]] = msg.reqBody.noOfSeats;
+        showtimes.push(showSeats);
+    }
+console.log(showtimes);
+
+    // console.log(showtimes, "--------------------------------------");
+    var res = {};
+    var i = 0;
+
+
+    var d = new Date();
+    var arrayDates =[];
+    var queryJsonArray=[];
+
+
+    console.log(arrayDates);
+  //  for (let i = 0; i < 6; i++)
+
+    {
+
+        //console.log(d,"??????????????????????????????????????????????????????????????????????????????????");
+        var queryJsonInsert = {
+            $set:{
+                // "_id":parseInt(randomInt(9,1000000))
+                "Showtimes": showtimes,
+                "NoofSeats": msg.reqBody.noOfSeats,
+                "TicketPrice": 10,
+            }
+
+        };
+
+     //   queryJsonArray.push(queryJson);
+
+    }
+   // console.log(queryJsonArray);
+    {
+        // console.log(msg.reqBody,"????????????????????????????????????????????????????");
+        try {
+
+            //  console.log("msg is-----------------------------------------------");
+
+
+            var queryJsonSearch = {
+                "ID": parseInt(msg.reqBody.ID)
+            }
+
+
+            console.log(msg.reqBody);
+
+                MongoConPool.updateOne('movieHall', queryJsonSearch, queryJsonInsert, function (err, movie) {
+                    if (err) {
+                        res.code = "401";
+                        callback(null, res);
+                        //  console.log("into error===============================================", err)
+                    }
+                    else {
+                        // if (movie == null)
+                        {
+                            console.log("????????????????????????????????????????",movie);
+                            res.code=200;
+                            callback(null,res);
+                        }
+
+
+                    }
+
+                });
+
+        }
+
+
+        catch
+            (e) {
+            res.code = "401";
+            callback(null, res);
+        }
+    }
+
+
+
+    // winston.remove(winston.transports.File);
+    // winston.add(winston.transports.Console);
+}
+
+
 
 
 
@@ -463,3 +557,4 @@ exports.handle_request = handle_request;
 exports.handle_MoviesnHalls = handle_MoviesnHalls;
 exports.handle_addMovies = handle_addMovies;
 exports.handle_getMovieListing=handle_getMovieListing;
+exports.handle_saveMovieListing=handle_saveMovieListing;

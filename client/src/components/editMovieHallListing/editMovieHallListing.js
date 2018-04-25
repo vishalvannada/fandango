@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import swal from 'sweetalert'
 //import "./movieTime.css"
 import {Field, reduxForm,initialize} from "redux-form";
-import {getMoviesInSearchPage,GetMoviesHallListing,addMovie} from "../../actions/pranithActions";
+import {getMoviesInSearchPage,GetMoviesHallListing,addMovie,saveMovieListing} from "../../actions/pranithActions";
 import moment from 'moment';
 
 import DropdownList from 'react-widgets/lib/DropdownList'
@@ -16,18 +16,6 @@ class EditMovieHallBody extends Component {
 
     componentWillMount()
     {
-        var idgrp = (this.props.location.pathname).split('/');
-        var id = idgrp[2];
-        //var projName = idgrp[3];
-        var idg = {
-            id: id
-        };
-        if (id != null) {
-            console.log(id);
-            console.log("calling movie hall editing");
-
-            this.props.GetMoviesHallListing(idg);
-        }
 
 
 
@@ -66,13 +54,13 @@ class EditMovieHallBody extends Component {
     renderField(field) {
         const className = `form-control input-login ${field.meta.touched && field.meta.error ? 'border-red' : ''}`
         return (
-            <div className="form-group form-group-custom">
+            <div className="form-group font-family-roboto form-group-custom">
+                <small className='font-weight-700'>{field.label}</small>
                 <input
                     className={className}
                     {...field.input}
                     placeholder={field.label}
                     type={field.type}
-                    defaultValue={field.inpVal}
                 />
                 <div className="error-message">
                     {field.meta.touched ? field.meta.error : ''}
@@ -160,12 +148,23 @@ class EditMovieHallBody extends Component {
         {
            // d.setDate(d.getDate() + 1);
             //values.Date=i;
+            var idgrp = (this.props.location.pathname).split('/');
+            var id = idgrp[2];
+            values.ID=id;
             console.log(values);
-            //this.props.saveMovieListing(values);
+            this.props.saveMovieListing(values);
         }
 
 
     };
+    componentWillMount()
+    {
+        //if(this.props.editmovies.movies.code!==400)
+        {
+            this.insertValues();
+        }
+
+    }
 
     renderText(field) {
 
@@ -210,7 +209,21 @@ class EditMovieHallBody extends Component {
 
 
  if(this.props.editmovies.movies.code!==400) {
-     this.insertValues();
+     console.log(this.props.editMovieSaved);
+
+     console.log(this.props.editMovieSaved.editMovieSaved);
+
+
+     if(this.props.editMovieSaved.editMovieSaved==true){
+         swal("Movie Updated");
+         this.props.history.push("/");
+     }
+    /* else if(this.props.editMovieSaved.editMovieSaved==false)
+     {
+         swal("Movie not updated");
+         this.props.history.push("/");
+     }*/
+   //  this.insertValues();
      return (
          <div className="background-movie-top" style={divStyle}>
              <div className="fandango-container">
@@ -225,29 +238,34 @@ class EditMovieHallBody extends Component {
                                          <div className="form-group form-group-custom">
                                              <Field
                                                  name="theatre"
+                                                 label="Theatre Name"
                                                  component={this.renderField}
-
+                                                 type="text"
                                                  valuesProps={this.props.editmovies.movies.moviemap[0]}
                                                  placeholder="Select a Movie Hall "/>
                                          </div>
                                          <br/>
 
 
-                                         <div className="form-group form-group-custom">
+
                                              <Field
+                                                 label="Title"
                                                  name="movie"
                                                  component={this.renderField}
-                                                 textField="movie"
-                                                 placeholder="Select a Movie name"/>
-                                         </div>
+                                                 type="text"
+                                             />
+
+
 
                                          <br/>
 
                                          <Field
                                              name="showTimes"
                                              component={this.renderMultiselect}
+                                             label="Showtimes"
                                             /* data={["9:30a", "12:30p", "3:30p", "9:30p"]}*/
                                              placeholder="Select Show time"
+
                                          />
                                          <br/>
                                          <Field
@@ -265,7 +283,7 @@ class EditMovieHallBody extends Component {
                          <div className="card profile-body-right">
                              <div className="card-header">
                                  <button className="edit-profile-button"
-                                         type="submit">Edit Movie Listing
+                                         type="submit">Save Movie Listing
                                  </button>
                                  <br/>
                                  <br/>
@@ -310,12 +328,14 @@ function mapStateToProps(state) {
         movietime: state.moviesSearchPagePK,
         moviesDropdown:state.moviesDropdown,
         addMovies:state.addMovies,
-        editmovies:state.editMoviehall}
+        editmovies:state.editMoviehall,
+        editMovieSaved:state.editMovieSaved
+    }
 }
 
 
 export default
 reduxForm({
     validate,
-    form: 'AddMovie'
-})(connect(mapStateToProps, {getMoviesInSearchPage,GetMoviesHallListing,addMovie})(EditMovieHallBody));
+    form: 'editMovieHallListing'
+})(connect(mapStateToProps, {getMoviesInSearchPage,GetMoviesHallListing,addMovie,saveMovieListing})(EditMovieHallBody));

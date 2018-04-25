@@ -47,6 +47,35 @@ export function GetMoviesHallListing(values) {
     }
 }
 
+
+export function saveMovieListing(values) {
+    console.log("from action saveMovieListing");
+    let i=0;
+    // for(i=0;i<7;i++)
+    {
+        //console.log(i,"-------------------------------------------");
+        return (dispatch) => {
+            //console.log("kjhg",values);
+
+            //  values.Date=i;
+            //console.log(values);
+            const response = axios.post(`${ROOT_URL}/movietheatres/savemovieListing`, values)
+                .then(response => {
+                    console.log(response.data);
+
+                    //   console.log(response.data)
+                    if (response.data.code == 200)
+                        dispatch(editMoviesReducer(true));
+                    else if (response.data = "movies not added")
+                        dispatch(editMoviesReducer(false));
+
+                }).catch(error => {
+                    console.log(error);
+                });
+        }
+    }
+}
+
 export function addMovie(values) {
     console.log("from action addMovie");
     let i=0;
@@ -85,6 +114,14 @@ function addMoviesReducer(response){
     return {
         type: "MOVIES_ADD",
         payload: response
+    }
+}
+function editMoviesReducer(response){
+    return{
+        type: "MOVIES_HALL_LIST_EDIT",
+        payload: response
+
+
     }
 }
 
