@@ -137,7 +137,7 @@ export function changeEmail(userdata) {
         console.log("Inside the sign up actions");
         axios.post(`${ROOT_URL}/user/email`, userdata)
             .then((res) => {
-                console.log("Inside actions 'Response'-> ", res.data);
+                console.log("Inside actions 'Response'-> ", res);
                 dispatch({type: EMAIL_SUCCESS, payload: res.data});
             })
             .catch((error) => {

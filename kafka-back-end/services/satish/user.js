@@ -134,14 +134,17 @@ function basicInfo(msg,callback){
 }
 
 function changeEmail(msg,callback){
+    var res={};
     console.log("userdata",msg.user);
-    var email = msg.user.email;
+    var email = msg.user.newemail;
+    console.log("changed email",email);
     User.update(
-        {  email:email},
+        {email:email},
         {returning: true, where: {email: msg.email}}
     )
         .then(function(results) {
-            User.find({where: {email:msg.email}})
+            console.log("results",results);
+            User.find({where: {email:email}})
                 .then(function(user){
                     res.user = user;
                     res.code = 201;
@@ -157,6 +160,7 @@ function changeEmail(msg,callback){
 }
 
 function changePassword(msg,callback){
+    var res={};
     console.log("userdata",msg.user);
     var oldPassword = msg.user.oldPassword;
     var newPassword = msg.user.newPassword;
@@ -217,6 +221,7 @@ function changePassword(msg,callback){
 }
 
 function savePayment(msg,callback){
+    var res={};
     console.log("userdata",msg.user);
     var cardnumber = msg.user.cardnumber;
     var month = msg.user.cardmonth;
@@ -242,6 +247,7 @@ function savePayment(msg,callback){
 }
 
 function deletePayment(msg,callback){
+    var res={};
     console.log("userdata",msg.user);
     var cardnumber = "";
     var month = "";
@@ -282,7 +288,7 @@ function moviehallSignin(msg, callback){
             res.message = "Email id doesn't exist";
             callback(null, res);
         }
-        else if (user.password === password)) {
+        else if (user.password === password) {
             res.code=401;
             res.message= 'Incorrect password.';
             callback(null, res);

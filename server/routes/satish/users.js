@@ -151,12 +151,13 @@ router.post('/basicInfo', function (req, res) {
             }
         }
     });
-
 });
 
 
 router.post('/email', function (req, res) {
-    kafka.make_request('changeEmail', {"user": req.body}, function (err, results) {
+    console.log("session email", req.session.email);
+    console.log("req user",req.user);
+    kafka.make_request('changeEmail', {"user": req.body,"email":req.session.email}, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -165,7 +166,9 @@ router.post('/email', function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
-                res.status(201).json({message: "User email Saved successfully"});
+                req.session.email= results.user.email;
+                req.user= results.user;
+                res.status(201).json({message: "User email Saved successfully",user:results.user});
             }
             else {
                 res.status(401).json({message: "user email update failed"});

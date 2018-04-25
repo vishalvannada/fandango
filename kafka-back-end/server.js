@@ -157,6 +157,7 @@ consumer.on('message', function (message) {
             break;
         case 'changeEmail':
             user.changeEmail(data.data, function(err,res){
+                console.log("Inside chhange email siwhc case",res);
                 response(data,res);
                 return;
             })
