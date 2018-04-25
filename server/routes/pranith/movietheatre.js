@@ -39,6 +39,26 @@ router.post('/getmoviesnhalls', function (req, res) {
 
     });
 });
+router.post('/getmovieshalllisting', function (req, res) {
+
+    console.log("from getMoviesHallLisiting_topic entry",req.body);
+    console.log("-----------------------------------------------------");
+    kafka.make_request('getMoviesHallLisiting_topic',{"reqBody":req.body}, function (err, results) {
+
+        if (results.code == 200) {
+            console.log(results);
+            res.status(201).send(results)
+        }
+        else {
+            console.log('fuckedup', results);
+            console.log('fuckedup', results);
+            // res.status(401).end()
+        }
+
+    });
+});
+
+
 
 router.post('/addmovies', function (req, res) {
    // console.log("from addmovies_topic entry");

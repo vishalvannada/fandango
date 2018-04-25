@@ -253,76 +253,37 @@ class EditMovieBody extends Component {
                                                                                           to={`/movie-overview/${movie.movie.movieId}`}>{movie.movie.MovieName}</Link>
                                                                                 </h3>
                                                                                     </div>
+                                                                                    <div className="fd-movie__details">
+                                                                                        <h3 className="fd-movie__title font-sans-serif font-lg font-300 p-2 uppercase">
+                                                                                            <Link className="dark font-condensed-bold"
+                                                                                                  to={`/movie-overview/${movie.movie.movieId}`}>Date : {moment(movie.Date).format("YYYY-MM-DD")}</Link>
+                                                                                        </h3>
+                                                                                    </div>
                                                                                     <ul className="fd-movie__showtimes">
 
 
                                                                                         <li className="fd-movie__showtimes-variant">
 
-
-                                                                                            <h3 className="fd-movie__showtimes__tick-headline pt-3 font-serif">
-                                                                                                <span
-                                                                                                    className="icon icon-ticket"></span>
-                                                                                                Select a movie time to
-                                                                                                buy Standard Showtimes
-                                                                                            </h3>
-
-
-                                                                                            <ul className="fd-movie__amentiy-list">
-
-
-                                                                                            </ul>
                                                                                             <ol className="fd-movie__btn-list">
 
                                                                                                 <li className="fd-movie__btn-list-item">
 
 
-                                                                                                    <span
-                                                                                                        className="btn showtime-btn">9:30a </span>
+                                                                                                    <Link
+                                                                                                        className="btn showtime-btn" to={"/editmoviehalllisting/"+movie.ID}>Edit </Link>
                                                                                                     <br/>
-                                                                                                      <span>Seats: {(movie.Showtimes[0]!=undefined)?movie.Showtimes[0]["9:30a"]:0}</span>
 
-
-                                                                                                </li>
-
-
-                                                                                                <li className="fd-movie__btn-list-item">
-
-
-                                                                                                    <span
-                                                                                                        className="btn showtime-btn">12:30p </span>
-                                                                                                    <br/>
-                                                                                                    <span>Seats: {(movie.Showtimes[1]!=undefined)?movie.Showtimes[1]["12:30p"]:0}</span>
 
 
                                                                                                 </li>
 
-
-                                                                                                <li className="fd-movie__btn-list-item">
-
-
-                                                                                                    <span
-                                                                                                        className="btn showtime-btn">3:30p</span>
-                                                                                                    <br/> <span>Seats: {(movie.Showtimes[2]!=undefined)?movie.Showtimes[2]["3:30p"]:0}</span>
-
-
-                                                                                                </li>
-
-
-                                                                                                <li className="fd-movie__btn-list-item">
-
-
-                                                                                                    <span
-                                                                                                        className="btn showtime-btn">9:30p</span>
-                                                                                                    <br/> <span>Seats: {(movie.Showtimes[3]!=undefined)?movie.Showtimes[3]["9:30p"]:0}</span>
-
-
-                                                                                                </li>
 
                                                                                             </ol>
                                                                                         </li>
 
 
                                                                                     </ul>
+
                                                                                 </div>
 
                                                                             )

@@ -32,6 +32,21 @@ export function GetMoviesnHalls() {
             });
     }
 }
+export function GetMoviesHallListing(values) {
+    console.log("from action GetMoviesHallListing",values);
+    return (dispatch) => {
+        //console.log("kjhg")
+        const response = axios.post(`${ROOT_URL}/movietheatres/getmovieshalllisting`,values)
+            .then(response => {
+
+             //   console.log(response.data)
+                dispatch(GetMoviesHallListingReducer(response.data))
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+}
+
 export function addMovie(values) {
     console.log("from action addMovie");
     let i=0;
@@ -46,7 +61,7 @@ export function addMovie(values) {
             const response = axios.post(`${ROOT_URL}/movietheatres/addmovies`, values)
                 .then(response => {
 
-                    console.log(response.data)
+                 //   console.log(response.data)
                     if (response.data.code == 200)
                         dispatch(addMoviesReducer(true));
                     else if (response.data = "movies not added")
@@ -72,9 +87,17 @@ function addMoviesReducer(response){
         payload: response
     }
 }
+
 function GetMoviesnHallsReducer(response){
     return {
         type: "MOVIES_SEARCH_DROPDOWN",
+        payload: response
+    }
+}
+function GetMoviesHallListingReducer(response){
+    //console.log(response);
+    return {
+        type: "MOVIES_HALL_LISTING_EDIT",
         payload: response
     }
 }
