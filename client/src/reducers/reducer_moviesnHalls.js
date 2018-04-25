@@ -1,8 +1,17 @@
 const home = {
-    movies:{
-        moviemap:[]
+    movies: {
+        moviemap: [
+            {movietheatre: [{"townie": 3}, {"towniee": 4}]},
+            {moviemap: []}
+        ],
+        movietheatre: [
+            {
+                data: [{"user": 3}, {"user": 4}]
+            }
+
+        ]
     }
-    }
+}
 
 export default function (state = home, action) {
     switch (action.type) {

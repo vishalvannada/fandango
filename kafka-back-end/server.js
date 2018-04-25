@@ -9,9 +9,15 @@ var producer = connection.getProducer();
 var consumer = connection.getConsumer();
 
 
+
+var topic_name3 = 'getMovieOverview_topic';
+var consumer3 = connection.getConsumer(topic_name3);
+
+
 var saveReview = require('./services/saveReview');
 var adminMovieSearch = require('./services/adminMovieSearch');
 var updateMovieAdmin = require('./services/updateMovieAdmin');
+
 
 
 var getMoviesSearchHandle = require('./services/getMoviesSearchHandle') ;
@@ -35,7 +41,6 @@ consumer.on('message', function (message) {
     console.log(JSON.stringify(message.value));
 
     var data = JSON.parse(message.value);
-
 
     switch (message.topic){
         case 'loadDataFromAPI_topic':
@@ -69,6 +74,20 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
+        case 'getMoviesHallLisiting_topic':
+            getMoviesSearchHandle.handle_getMovieListing(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+            case 'saveMovieListing_topic':
+            getMoviesSearchHandle.handle_saveMovieListing(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+
+
         case 'addmovies_topic':
             getMoviesSearchHandle.handle_addMovies(data.data, function(err,res){
                 response(data,res);
@@ -94,6 +113,8 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
+
+
         case 'signup':
             user.signup(data.data, function (err, res) {
                 response(data, res);
@@ -145,7 +166,7 @@ consumer.on('message', function (message) {
                 response(data,res);
                 return;
             })
-            break
+            break;
 
     }
 });

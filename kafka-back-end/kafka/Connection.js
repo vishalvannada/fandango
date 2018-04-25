@@ -17,6 +17,10 @@ function ConnectionProvider() {
             {topic: 'getMoviesInSearchPage_topic', partition: 0},
             {topic: 'getMoviesnHalls_topic', partition: 0},
             {topic: 'addmovies_topic', partition: 0},
+            {topic: 'saveMovieListing_topic', partition: 0},
+            {topic: 'getMoviesHallLisiting_topic', partition: 0},
+
+
 
             {topic: 'signup', partition: 0},
             {topic: 'signin', partition: 0},
