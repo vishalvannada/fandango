@@ -8,7 +8,7 @@ import {demo} from "../actions/vishalActions";
 
 
 
-class Movietime extends Component {
+class EditMovieHall extends Component {
 
 
     // componentDidMount(){
@@ -30,4 +30,4 @@ function mapStateToProps(state) {
     return {home: state.home}
 }
 
-export default connect(null, null)(Movietime);
+export default connect(null, null)(EditMovieHall);

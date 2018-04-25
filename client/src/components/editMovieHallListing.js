@@ -8,7 +8,7 @@ import {getMoviesInSearchPage,GetMoviesHallListing,addMovie} from "../actions/pr
 
 
 
-class editMovieHallListing extends Component {
+class EditMovieHallListing extends Component {
     componentWillMount()
     {
         var idgrp = (this.props.location.pathname).split('/');
@@ -69,4 +69,4 @@ function mapStateToProps(state) {
     }
 }
 
-    export default connect(mapStateToProps, {getMoviesInSearchPage,GetMoviesHallListing,addMovie})(editMovieHallListing);
+    export default connect(mapStateToProps, {getMoviesInSearchPage,GetMoviesHallListing,addMovie})(EditMovieHallListing);

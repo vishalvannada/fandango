@@ -19,6 +19,8 @@ import CheckOut from './components/payment/checkout';
 import CheckOutPayment from './components/payment/checkoutPayment';
 import AdminMovieSearch from './components/admin/adminMovieSearch';
 import AdminMovieEdit from './components/admin/adminMovieSearch/movieEdit';
+import EditMovieHallListing from './components/editMovieHallListing';
+import EditMovieHall from './components/editmovie';
 import Error from './components/404Error';
 
 
@@ -68,6 +70,9 @@ class App extends Component {
                                 <Route path="/check-out" component={CheckOut}/>
                                 <PrivateRoute path="/check-out-payment" component={CheckOutPayment} props={logStat}/>
                                 <PrivateRoute path="/addmovie" component={AddMovie}/>
+                                <PrivateRoute path="/editmoviehall" component={EditMovieHall}/>
+
+                                <PrivateRoute path="/editmoviehalllisting" component={EditMovieHallListing}/>
                                 <Route path="/admin-movies" component={AdminMovieSearch}/>
                                 <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
                                 <PrivateRoute path="/movie-review/:tmdbid" component={MovieRating} props={logStat}/>

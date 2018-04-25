@@ -216,7 +216,7 @@ class EditMovieHallBody extends Component {
 
      if(this.props.editMovieSaved.editMovieSaved==true){
          swal("Movie Updated");
-         this.props.history.push("/");
+         this.props.history.push("/home");
      }
     /* else if(this.props.editMovieSaved.editMovieSaved==false)
      {
