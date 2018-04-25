@@ -53,9 +53,9 @@ app.use(function (req, res, next) {
 // }));
 
 var options = {
-    host: 'localhost',
-    user: 'root',
-    password: 'sreedevi',
+    host: 'fandango.coiprk9rsjrx.us-west-1.rds.amazonaws.com',
+    user: 'test',
+    password: 'pass',
     database: 'fandango',
     port: 3306
 };
