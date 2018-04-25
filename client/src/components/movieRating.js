@@ -22,7 +22,7 @@ class MovieRating extends Component {
     }
 
     componentWillMount() {
-        const {tmdbid} = this.props.match.params;
+        const {tmdbid} = this.props;
         console.log(tmdbid)
         this.props.getMovieOverview(tmdbid);
     }
@@ -88,6 +88,8 @@ class MovieRating extends Component {
         var divStyle = {
             backgroundImage: `url(http://image.tmdb.org/t/p/original${this.props.movie.movie.poster_path})`,
         }
+
+        console.log(this.props)
 
         const {handleSubmit} = this.props;
 

@@ -19,10 +19,10 @@ export default function (state={
             // sessionStorage.setItem("islogin", true);
             // sessionStorage.setItem("username", action.payload.data.username);
 
-            return  {...state, isLoggedIn:true, isCheckedIn: true, username: action.payload.data, };
+            return  {...state, isLoggedIn:true, message:action.payload.data.message, isCheckedIn: true, username: action.payload.data, };
             break;
         case SIGN_IN_ERROR:
-            return {...state, isLoggedIn:false, username: '',message:action.payload.data.message };
+            return {...state, isLoggedIn:false, username: '', message:action.payload.data.message };
             break;
         case SIGN_UP_SUCCESS:
             return  {...state, isLoggedIn:true, username: action.payload.data.username};

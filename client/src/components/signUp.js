@@ -270,7 +270,7 @@ function validate(values) {
         errors.email = "Please enter a valid Email-ID\n ";
     }
 
-    if (!values.password || values.password.length<8){
+    if (!values.password){
         errors.password = "Please enter a valid password\n";
     }
 

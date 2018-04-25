@@ -1,10 +1,9 @@
 {
   "development": {
-
-    "username": "root",
-    "password": "sreedevi",
+    "username": "test",
+    "password": "pass",
     "database": "fandango",
-    "host": "localhost",
+    "host": "fandango.coiprk9rsjrx.us-west-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {

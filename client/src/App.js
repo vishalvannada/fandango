@@ -29,6 +29,7 @@ import Error from './components/404Error';
 export const history = createBrowserHistory();
 
 class App extends Component {
+
     constructor(props) {
         super(props);
     }
