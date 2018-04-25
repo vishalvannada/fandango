@@ -143,7 +143,22 @@ export function changeEmail(userdata) {
             });
 
     }
+}
 
+
+export function uploadImage(userdata) {
+    return function (dispatch) {
+        console.log("Inside the sign up actions");
+        axios.post(`${ROOT_URL}/user/email`, userdata)
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                dispatch({type: EMAIL_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: EMAIL_ERROR, payload: error})
+            });
+
+    }
 }
 
 export function changePassword(userdata) {
