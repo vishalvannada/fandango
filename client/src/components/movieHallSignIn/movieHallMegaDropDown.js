@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {signoutMovieHall} from '../../actions/satishActions';
 
 
 class MovieHallMegaDropDownHeader extends Component {
+
+
+    handleSignout() {
+        this.props.signoutMovieHall()
+    }
 
     render() {
 
@@ -17,7 +23,7 @@ class MovieHallMegaDropDownHeader extends Component {
                             <img className="megaDropDown-brand"
                                  src="https://images.fandango.com/mobile/web/img/assets/logo-fandango.svg"/>
                         </Link>
-                        <h3><span className="page-header-emphasis">MOVIE HALL ADMIN</span></h3>
+                        <h3><span className="page-header-emphasis font-weight-bold">MOVIE HALL ADMIN</span></h3>
 
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -50,7 +56,8 @@ class MovieHallMegaDropDownHeader extends Component {
                                             <a className="dropdown-item" href="#">Search Halls</a>
                                             <a className="dropdown-item" href="#">Movie Statistics</a>
                                             <div className="dropdown-divider"></div>
-                                            <a className="dropdown-item" href="#">Sign Out</a>
+                                            <a className="dropdown-item" href="#"
+                                               onClick={this.handleSignout.bind(this)}>Sign Out</a>
                                         </div>
                                     </div>
 
@@ -94,5 +101,5 @@ class MovieHallMegaDropDownHeader extends Component {
 //     return {dashboard: state.dashboard}
 // }
 
-export default connect(null, null)(MovieHallMegaDropDownHeader);
+export default connect(null, {signoutMovieHall})(MovieHallMegaDropDownHeader);
 

@@ -592,7 +592,7 @@ hr{
 }
 
 .moviehall-admin-dropdown a{
-    color: white !important;
+    color: #fe7900 !important;
 }
 
 .width-200px{
@@ -601,4 +601,8 @@ hr{
 
 .float-left{
     float: left !important;
+}
+
+.font-weight-bold{
+    font-weight: bold !important;
 }

@@ -33,7 +33,7 @@ class PrivateRoute extends Component {
 
 
             <Route render={props => (
-                this.props.user.isLoggedIn ?
+                this.props.user.isLoggedIn && this.props.user.user.accountType === "user"?
                     <Here tmdbid={this.props.computedMatch.params.tmdbid} {...this.props} {...props}
                           user={this.props.user}/> :
                     <Redirect to={{pathname: '/signin', props: props, state: {from: props.location}}}/>

@@ -5,6 +5,7 @@ var models = require('../../models');
 var User = require('../../models/User')(models.sequelize, models.Sequelize);
 var MoviehallUser = require("../../models/MoviehallUser")(models.sequelize, models.Sequelize);
 var Admin = require("../../models/Admin")(models.sequelize, models.Sequelize);
+var transactions = require("../../models/UserTransaction")(models.sequelize, models.Sequelize);
 
 
 function signin(msg, callback) {
@@ -95,6 +96,46 @@ function signup(msg, callback) {
     });
 }
 
+
+function saveTransaction(msg, callback) {
+
+
+    console.log("msg value", msg);
+    var res = {};
+
+    // var data =
+    //     {
+    //         transactionid: { primaryKey: true, type: Sequelize.INTEGER},
+    //         displayname: {type: Sequelize.STRING},
+    //         email: {type: Sequelize.STRING, validate: {isEmail: true}, unique: true},
+    //         moviename: {type: Sequelize.STRING, allowNull: false},
+    //         moviehall: {type: Sequelize.STRING},
+    //         screenno: {type: Sequelize.STRING},
+    //         movietime: {type: Sequelize.STRING},
+    //         Amount : {type: Sequelize.INTEGER},
+    //         tax:  {type: Sequelize.INTEGER},
+    //         last_login: {type: Sequelize.DATE},
+    //         image: {type: Sequelize.STRING}
+    //     };
+
+
+    transactions.create(data).then(function (newUser, created) {
+        if (!newUser) {
+            res.message = 'Transaction not Saved';
+            callback(null, res);
+        }
+        if (newUser) {
+            res.code = 201;
+            res.message = 'Transaction Saved';
+            res.user = newUser;
+            callback(null, res);
+        }
+
+    });
+
+}
+
+
 function userDetails(msg, callback) {
     var res = {};
     console.log("email", msg.email);
@@ -134,7 +175,6 @@ function basicInfo(msg, callback) {
             callback(null, err)
         )
 }
-
 
 
 function uploadImage(msg, callback) {
@@ -189,9 +229,9 @@ function changeEmail(msg, callback) {
 }
 
 
-function changePassword(msg,callback){
-    var res={};
-    console.log("userdata",msg.user);
+function changePassword(msg, callback) {
+    var res = {};
+    console.log("userdata", msg.user);
     var oldPassword = msg.user.oldPassword;
     var newPassword = msg.user.newPassword;
 
@@ -251,8 +291,8 @@ function changePassword(msg,callback){
 }
 
 
-function savePayment(msg,callback){
-    var res={};
+function savePayment(msg, callback) {
+    var res = {};
     var cardnumber = msg.user.cardnumber;
     var month = msg.user.cardmonth;
     var year = msg.user.cardyear;
@@ -277,10 +317,8 @@ function savePayment(msg,callback){
 }
 
 
-
-
 function deletePayment(msg, callback) {
-    var res={};
+    var res = {};
     console.log("userdata", msg.user);
     var cardnumber = "";
     var month = "";
@@ -306,73 +344,73 @@ function deletePayment(msg, callback) {
 }
 
 
-function moviehallSignin(msg, callback){
+function moviehallSignin(msg, callback) {
 
     var res = {};
-    var email=msg.email;
-    var password=msg.password;
+    var email = msg.email;
+    var password = msg.password;
 
-    MoviehallUser.findOne({ where: {email:email }}).then(function (user) {
-        if(!user){
-            console.log('error');
-            res.code = 401;
-            res.message = "Email id doesn't exist";
-            callback(null, res);
-        }
-        else if (user.password === password) {
-            res.code=401;
-            res.message= 'Incorrect password.';
-            callback(null, res);
-        }
-        else {
-            var data = user.get();
-            console.log('user',data);
-            res.code=201;
-            res.user = data;
-            callback(null,res);
-        }
-
-    }).catch(function (err) {
-        console.log("Error:",err);
-        res.code=401;
-        res.message= 'Something went wrong with your Signin';
-        callback(null, res);
-    });
-
-}
-
-
-function adminSignin(msg, callback){
-    var res = {};
-    var email=msg.email;
-    var password=msg.password;
-
-
-    Admin.findOne({ where: {email:email }}).then(function (user) {
-        console.log("userpassword",password);
-        console.log("dbpassword",user.password);
-        if(!user){
+    MoviehallUser.findOne({where: {email: email}}).then(function (user) {
+        if (!user) {
             console.log('error');
             res.code = 401;
             res.message = "Email id doesn't exist";
             callback(null, res);
         }
         else if (user.password !== password) {
-            res.code=401;
-            res.message= 'Incorrect password.';
+            res.code = 401;
+            res.message = 'Incorrect password.';
             callback(null, res);
         }
         else {
             var data = user.get();
-            console.log('user',data);
-            res.code=201;
+            console.log('user', data);
+            res.code = 201;
             res.user = data;
-            callback(null,res);
+            callback(null, res);
+        }
+
+    }).catch(function (err) {
+        console.log("Error:", err);
+        res.code = 401;
+        res.message = 'Something went wrong with your Signin';
+        callback(null, res);
+    });
+
+}
+
+
+function adminSignin(msg, callback) {
+    var res = {};
+    var email = msg.email;
+    var password = msg.password;
+
+
+    Admin.findOne({where: {email: email}}).then(function (user) {
+        console.log("userpassword", password);
+        console.log("dbpassword", user.password);
+        if (!user) {
+            console.log('error');
+            res.code = 401;
+            res.message = "Email id doesn't exist";
+            callback(null, res);
+        }
+        else if (user.password !== password) {
+            res.code = 401;
+            res.message = 'Incorrect password.';
+            callback(null, res);
+        }
+        else {
+            var data = user.get();
+            console.log('user', data);
+            res.code = 201;
+            res.user = data;
+            callback(null, res);
         }
     }).catch(function (err) {
-        console.log("Error:",err);
-        res.code=401;
-        res.message= 'Something went wrong with your Signin';
+        console.log("Error:", err);
+        res.code = 401;
+        res.message = 'Something went wrong with your Signin';
         callback(null, res);
     });
 }

@@ -27,9 +27,10 @@ class MoviehallSigninForm extends Component {
     }
 
     renderError() {
+        console.log("herekfghj",this.props.error)
         if (this.props.error) {
             return (
-                <div className="text-help">
+                <div className="error-msg">
                     {this.props.error}
                 </div>
             );
@@ -59,8 +60,8 @@ class MoviehallSigninForm extends Component {
                                 src="//images.fandango.com/cms/assets/aced1350-33b7-11e8-8eca-fd26e4965c58--vip-registration-banner.png"
                                 alt=""/>
                         </div>
-                        <div id="ErrorMessageWrapper" className=" hide">
-                            <div id="signin-error" className="error-msg" component={this.renderError}></div>
+                        <div id="ErrorMessageWrapper">
+                            <div id="signin-error">{this.renderError()}</div>
                         </div>
                         <label htmlFor="UsernameBox">Email Address</label>
                         <Field name="email" type="text" id="UsernameBox" component={this.renderField}/>
