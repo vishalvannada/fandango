@@ -387,7 +387,7 @@ function purchaseHistory(msg,callback){
     var res= {};
     console.log("Search user function");
     var email = msg.email;
-    UserTransaction.findAll({
+    transactions.findAll({
         where: {
             email: email}
     }).then(function(transactions) {

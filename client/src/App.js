@@ -23,16 +23,14 @@ import EditMovieHallListing from './components/editMovieHallListing';
 import EditMovieHall from './components/editmovie';
 import Error from './components/404Error';
 import MovieHallSiginin from "./components/moviehallSignin";
-<<<<<<< HEAD
+
 import MoviehallHome from "./components/Adminedit/FindUsers";
 import PurchaseHistory from "./components/purchases/purchases";
-=======
 import AdminHome from './components/admin/adminHome';
 import MovieAdminHome from './components/movieHallSignIn/movieHallAdminHome';
 import PrivateRouteMovieHallAdmin from './components/PrivateRouteMovieHall';
 import ConditionalRouteMovieHall from './components/ConditionalRouteMovieHall';
 import ConditionalRouteUser from './components/ConditionalRouteUser';
->>>>>>> 82939ac7930632163b4a22a273989253d1272138
 
 
 export const history = createBrowserHistory();
@@ -99,7 +97,7 @@ class App extends Component {
                                 <Route path="/admin-movie-edit/:tmdbid" component={AdminMovieEdit}/>
                                 <Route path="/admin-login" component={AdminLogin}/>
                                 <Route path="/secret" component={SecretPage}/>
-<<<<<<< HEAD
+
                                 <Route path="/signin" component={Signin}/> {/*satish*/}
                                 <Route path="/moviehallSignin" component={MovieHallSiginin}/> {/*satish*/}
                                 <Route exact path="/signup" render={(props) => {
@@ -109,15 +107,14 @@ class App extends Component {
                                               component={UserProfile}
                                               props={logStat}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
                                 <Route path="/home" component={Home}/>
-                                <Route path="/moviehallHome" component={MoviehallHome}/>
-                                <Route path="/purchaseHistory" component={PurchaseHistory}/>
-=======
-                                <Route path="/admin-home" component={AdminHome}/>
+                                <Route path="/moviehallHome" component={MoviehallHome}/>{/*satish*/}
+                                <Route path="/purchaseHistory" component={PurchaseHistory}/>{/*satish*/}
+                                <Route path="/admin-home" component={AdminHome}/>{/*satish*/}
 
 
                                 <ConditionalRouteUser exact path="/signup" component={SignUp}/>
                                 <PrivateRoute exact path='/userprofile' component={UserProfile} props={logStat}/>
->>>>>>> 82939ac7930632163b4a22a273989253d1272138
+
                                 <Route path="*" component={Error}/>
 
                             </Switch>
