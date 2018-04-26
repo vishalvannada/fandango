@@ -14,7 +14,7 @@ class moviehallSignin extends Component{
         return(
             <div className="site-wrap signin vipsignin">
                 <SigninNavbar/>
-                <div className="page registration " role="main">
+                <div className="page registration" role="main">
                     <div className="row">
                         <div className="double-type large-8 medium-10 small-12 large-centered medium-centered small-centered columns">
                             <div className="panel-group row">

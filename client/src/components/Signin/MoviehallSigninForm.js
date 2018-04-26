@@ -50,7 +50,7 @@ class MoviehallSigninForm extends Component {
             <div className="panel sign-up-form large-6 medium-6 small-12 columns">
                 <div className="sub-panel">
                     <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                        <p className="join-header">FANDANGO<span className="page-header-emphasis">VIP</span>
+                        <p className="join-header">FANDANGO<span className="page-header-emphasis">MOVIEHALLADMIN</span>
                             <span className="registration-caption hide-for-small-only"></span>
                             <span className="registration-caption show-for-small-only"></span>
                         </p>

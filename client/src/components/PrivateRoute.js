@@ -17,7 +17,7 @@ class PrivateRoute extends Component {
         console.log(this.props.component)
         console.log(this.props.computedMatch.params.tmdbid)
 
-        console.log("user email",this.props.user.email)
+        console.log("user email", this.props.user)
 
         const Here = this.props.component;
 
@@ -33,7 +33,9 @@ class PrivateRoute extends Component {
 
 
             <Route render={props => (
-                this.props.user.isLoggedIn ? <Here tmdbid={this.props.computedMatch.params.tmdbid} {...this.props} {...props} user={this.props.user}/> :
+                this.props.user.isLoggedIn ?
+                    <Here tmdbid={this.props.computedMatch.params.tmdbid} {...this.props} {...props}
+                          user={this.props.user}/> :
                     <Redirect to={{pathname: '/signin', props: props, state: {from: props.location}}}/>
             )}/>
 

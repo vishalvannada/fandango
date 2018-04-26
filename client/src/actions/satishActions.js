@@ -88,7 +88,7 @@ export function fetchUser() {
         const request = axios.get(`${ROOT_URL}/user/fetchuser`, {withCredentials: true});
         request.then(function (res) {
             if (res.status == 201) {
-                console.log('response received');
+                console.log('response received', res);
                 dtype = request;
                 dispatch({type: FETCH_USER, payload: res.data});
             }

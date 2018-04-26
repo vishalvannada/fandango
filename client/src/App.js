@@ -23,6 +23,9 @@ import EditMovieHallListing from './components/editMovieHallListing';
 import EditMovieHall from './components/editmovie';
 import Error from './components/404Error';
 import MovieHallSiginin from "./components/moviehallSignin";
+import AdminHome from './components/admin/adminHome';
+import MovieAdminHome from './components/movieHallSignIn/movieHallAdminHome';
+import PrivateRouteMovieHallAdmin from './components/PrivateRouteMovieHall';
 
 
 export const history = createBrowserHistory();
@@ -70,7 +73,9 @@ class App extends Component {
                                 <PrivateRoute path="/dashboard" component={Dashboard}/>
                                 <Route path="/check-out" component={CheckOut}/>
                                 <PrivateRoute path="/check-out-payment" component={CheckOutPayment} props={logStat}/>
-                                <Route path="/addmovie" component={AddMovie}/>
+
+
+                                <PrivateRouteMovieHallAdmin path="/addmovie" component={AddMovie}/>
                                 <Route path="/editmoviehall" component={EditMovieHall}/>
 
                                 <Route path="/editmoviehalllisting" component={EditMovieHallListing}/>
@@ -81,7 +86,12 @@ class App extends Component {
                                 <Route path="/admin-login" component={AdminLogin}/>
                                 <Route path="/secret" component={SecretPage}/>
                                 <Route path="/signin" component={Signin}/> {/*satish*/}
-                                <Route path="/moviehallSignin" component={MovieHallSiginin}/> {/*satish*/}
+                                <Route path="/moviehallSignin" component={MovieHallSiginin}/>
+
+                                <Route path="/movieHall-home" component={MovieAdminHome}/>
+                                <Route path="/admin-home" component={AdminHome}/>
+
+                                {/*satish*/}
                                 <Route exact path="/signup" render={(props) => {
                                     return <SignUp/>
                                 }}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
