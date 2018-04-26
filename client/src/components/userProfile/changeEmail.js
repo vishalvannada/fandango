@@ -138,7 +138,7 @@ class ChangeEmail extends Component {
 
 
                                             <div className="medium-7 columns right-40">
-                                                <button id="save-basic" className="btn save-button">Save</button>
+                                                <button id="save-basic-email" className="btn save-button">Save</button>
                                             </div>
                                         </div>
                                     </form>
