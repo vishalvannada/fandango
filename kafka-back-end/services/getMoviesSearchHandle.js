@@ -71,8 +71,10 @@ function handle_request(msg, callback) {
                     carsJSON.ScreenNo = movie[i].ScreenNo;
                     carsJSON.Showtimes = movie[i].Showtimes;
                     carsJSON.NoofSeats = movie[i].NoofSeats;
-                    carsJSON.TicketPrice = movie[i].Price;
+                    carsJSON.TicketPrice = movie[i].TicketPrice;
                     carsJSON.user = movie[i].user;
+                    carsJSON.Date = movie[i].Date;
+
 
                     //carsJSON.Company=cars[i].Company;
                     i = i + 1;

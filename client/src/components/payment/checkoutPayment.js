@@ -9,6 +9,7 @@ class CheckOutPayment extends Component {
 
 
     render() {
+        console.log(this.props.location.state);
         return (
             <div>
                 <div className="background-fandango-checkout">
