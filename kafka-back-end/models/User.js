@@ -8,7 +8,7 @@ module.exports = function (sequelize, Sequelize) {
         firstname: {type: Sequelize.STRING, notEmpty: true},
         lastname: {type: Sequelize.STRING},
         displayname: {type: Sequelize.STRING},
-        email: {type: Sequelize.STRING, validate: {isEmail: true}, unique: true},
+        email: {type: Sequelize.STRING, validate: {isEmail: true},  primaryKey: true},
         password: {type: Sequelize.STRING, allowNull: false},
         mobile: {type: Sequelize.INTEGER},
         address: {type: Sequelize.STRING},

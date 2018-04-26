@@ -24,8 +24,11 @@ export const UPLOAD_FAILED = "UPLOAD_FAILED";
 
 export const MOVIEHALL_SIGN_IN_SUCCESS = "MOVIEHALL_SIGN_IN_SUCCESS";
 export const MOVIEHALL_SIGN_IN_ERROR = "MOVIEHALL_SIGN_IN_ERROR"
-
+export const SEARCH_USERS_SUCCESS = "SEARCH_USERS_SUCCESS";
+export const SEARCH_USERS_ERROR = "SEARCH_USERS_SUCCESS";
 export const IMAGE_SUCCESS = "IMAGE_SUCCESS";
+export const PURCHASE_SUCCESS = "PURCHASE_SUCCESS";
+export const PURCHASE_ERROR = "PURCHASE_ERROR";
 
 axios.defaults.withCredentials = true;
 
@@ -108,6 +111,41 @@ export function fetchUser() {
 
 }
 
+
+export function searchUsers(value) {
+    if(value==null){
+        value = '';
+    }
+    return function (dispatch) {
+        console.log("Inside the Search user actions",value);
+        axios.get(`${ROOT_URL}/user/searchusers?user=${value}`)
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                dispatch({type: SEARCH_USERS_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: SEARCH_USERS_ERROR, payload: error})
+            });
+    }
+}
+
+
+export function searchMoviehallUsers(value) {
+    return function (dispatch) {
+        console.log("Inside the Search user actions");
+        axios.get(`${ROOT_URL}/user/searchMoviehallUsers?user=${value}`)
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                dispatch({type: SEARCH_USERS_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: SEARCH_USERS_ERROR, payload: error})
+            });
+    }
+}
+
+
+
 export function getUserDetails() {
     return function (dispatch) {
         console.log("Inside the sign up actions");
@@ -181,7 +219,6 @@ export function changePassword(userdata) {
         axios.post(`${ROOT_URL}/user/password`, userdata)
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res.data);
-
                 dispatch({type: PASSWORD_SUCCESS, payload: res.data});
             })
             .catch((error) => {
@@ -301,5 +338,20 @@ export function adminSignin(values) {
             console.log("caught:", err.response);
         });
         console.log(action_type);
+    }
+}
+
+export function purchaseHistory() {
+
+    return function (dispatch) {
+        console.log("Inside the Search user actions");
+        axios.get(`${ROOT_URL}/user/purchaseHistory`)
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                dispatch({type: PURCHASE_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: PURCHASE_ERROR, payload: error})
+            });
     }
 }

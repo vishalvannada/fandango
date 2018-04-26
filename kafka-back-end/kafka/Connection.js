@@ -20,20 +20,22 @@ function ConnectionProvider() {
             {topic: 'saveMovieListing_topic', partition: 0},
             {topic: 'getMoviesHallLisiting_topic', partition: 0},
 
-
             //satish
             {topic: 'signup', partition: 0},
             {topic: 'signin', partition: 0},
             {topic: 'moviehallsignin', partition: 0},
             {topic: 'adminsignin', partition: 0},
+            {topic: 'purchaseHistory', partition: 0},
 
+            {topic: 'searchMoviehallUsers', partition: 0},
             {topic: 'basicInfo', partition: 0},
             {topic: 'changeEmail', partition: 0},
             {topic: 'changePassword', partition: 0},
             {topic: 'savePayment', partition: 0},
             {topic: 'userDetails', partition: 0},
             {topic: 'deletePayment', partition: 0},
-            {topic: 'uploadimage', partition: 0}
+            {topic: 'uploadimage', partition: 0},
+            {topic: 'searchusers', partition: 0}
 
         ]);
         this.client.on('ready', function () {

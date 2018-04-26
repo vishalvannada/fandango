@@ -5,7 +5,7 @@ var models = require('../../models');
 var User = require('../../models/User')(models.sequelize, models.Sequelize);
 var MoviehallUser = require("../../models/MoviehallUser")(models.sequelize, models.Sequelize);
 var Admin = require("../../models/Admin")(models.sequelize, models.Sequelize);
-
+var UserTransaction = require("../../models/userTransaction")(models.sequelize, models.Sequelize);
 
 function signin(msg, callback) {
 
@@ -108,6 +108,68 @@ function userDetails(msg, callback) {
     });
 }
 
+function searchUsers(msg,callback){
+    var res={};
+    var user= msg.user+"%";
+    console.log("Search user function");
+    User.findAll({
+        where: {
+            email: {$like: user}
+        },
+        order: [['createdAt', 'ASC']]
+    }).then(function(users) {
+        console.log("users",users.length);
+        if (users.length === 0) {
+            console.log('error');
+            res.code = 401;
+            res.message = "user details not found";
+            callback(null, res);
+        }
+        else if(users){
+            console.log("users details found");
+            res.code = 201;
+            res.users= users;
+            res.messsage = "users details found";
+            callback(null, res);
+        }
+    }).catch(err =>
+        callback(null,err)
+    );
+}
+
+
+function searchMoviehallUsers(msg,callback){
+    var res= {};
+    var user = msg.user+"%";
+    console.log("Search user function");
+    MoviehallUser.findAll({
+        where: {
+            email: {$like: user}
+        },
+        order: [['createdAt', 'ASC']]
+    }).then(function(users) {
+        console.log("users",users.length);
+        if (users.length === 0) {
+            console.log('error');
+            res.code = 401;
+            res.message = "user details not found";
+            callback(null, res);
+        }
+        else if(users){
+            console.log("users details found");
+            res.code = 201;
+            res.users= users;
+            res.messsage = "users details found";
+            callback(null, res);
+        }
+    }).catch(err =>
+        callback(null,err)
+    );
+}
+
+
+
+
 function basicInfo(msg, callback) {
     console.log("userdata", msg.user, msg.email);
     var firstName = msg.user.firstname;
@@ -168,6 +230,12 @@ function uploadImage(msg, callback) {
 function changeEmail(msg, callback) {
     console.log("userdata", msg.user);
     var email = msg.user.email;
+    User.User.find({where: {email: msg.email}})
+        .then(function (user) {
+            res.code = 401;
+            res.message= "Email already linked with another account"
+            callback(null,res);
+        });
     User.update(
         {email: email},
         {returning: true, where: {email: msg.email}}
@@ -192,18 +260,17 @@ function changeEmail(msg, callback) {
 function changePassword(msg,callback){
     var res={};
     console.log("userdata",msg.user);
-    var oldPassword = msg.user.oldPassword;
-    var newPassword = msg.user.newPassword;
+    var oldPassword = msg.user.oldpassword;
+    var newPassword = msg.user.newpassword;
 
     var res = {};
     var email = msg.email;
-    var password = msg.password;
 
     var isValidPassword = function (userpass, password) {
         return bcrypt.compareSync(password, userpass);
     }
 
-    bcrypt.hash(reqPassword, 10, function (err, hash) {
+    bcrypt.hash(newPassword, 10, function (err, hash) {
         if (err) {
             res.status = 401;
             res.message = 'password encryption failed';
@@ -220,19 +287,20 @@ function changePassword(msg,callback){
                 }
                 else if (!isValidPassword(user.password, oldPassword)) {
                     res.code = 401;
-                    res.message = 'Incorrect password.';
+                    res.message = 'Incorrect old password.';
                     callback(null, res);
                 }
                 else {
                     User.update(
                         {password: hash},
-                        {returning: true, where: {email: msg.email}}
+                        {returning: true, where: {email: email}}
                     )
                         .then(function (results) {
                             var data = user.get();
                             console.log('user', data);
                             res.code = 201;
                             res.user = data;
+                            callback(null, res);
                         })
                         .catch(err =>
                             callback(null, err)
@@ -254,8 +322,8 @@ function changePassword(msg,callback){
 function savePayment(msg,callback){
     var res={};
     var cardnumber = msg.user.cardnumber;
-    var month = msg.user.cardmonth;
-    var year = msg.user.cardyear;
+    var month = msg.user.month;
+    var year = msg.user.year;
     var zipcode = msg.user.zipcode;
     User.update(
         {cardnumber: cardnumber, cardmonth: month, cardyear: year, zipcode: zipcode},
@@ -276,7 +344,32 @@ function savePayment(msg,callback){
         )
 }
 
-
+function purchaseHistory(msg,callback){
+    var res= {};
+    console.log("Search user function");
+    var email = msg.email;
+    UserTransaction.findAll({
+        where: {
+            email: email}
+    }).then(function(transactions) {
+        console.log("users",transactions.length);
+        if (transactions.length === 0) {
+            console.log('error');
+            res.code = 401;
+            res.message = "purchase History not available";
+            callback(null, res);
+        }
+        else if(transactions){
+            console.log("purchase  History found");
+            res.code = 201;
+            res.transactions= transactions;
+            res.messsage = "purchase  History  found";
+            callback(null, res);
+        }
+    }).catch(err =>
+        callback(null,err)
+    );
+}
 
 
 function deletePayment(msg, callback) {
@@ -304,7 +397,6 @@ function deletePayment(msg, callback) {
             callback(null, err)
         )
 }
-
 
 function moviehallSignin(msg, callback){
 
@@ -389,3 +481,6 @@ exports.deletePayment = deletePayment;
 exports.moviehallSignin = moviehallSignin;
 exports.uploadImage = uploadImage;
 exports.adminSignin = adminSignin;
+exports.searchUsers = searchUsers;
+exports.searchMoviehallUsers = searchMoviehallUsers;
+exports.purchaseHistory = purchaseHistory;

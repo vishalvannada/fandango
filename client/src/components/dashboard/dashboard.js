@@ -15,22 +15,15 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
-
     }
-
-
     onSubmit = () => {
         console.log("Delete");
         //this.props.doDelete();
-
     };
 
     render() {
-
         console.log(this.state, this.props)
-
         return (
-
             <div>
                 <BrandBar/>
                 <MegaDropDownHeader/>

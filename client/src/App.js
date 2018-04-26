@@ -23,6 +23,8 @@ import EditMovieHallListing from './components/editMovieHallListing';
 import EditMovieHall from './components/editmovie';
 import Error from './components/404Error';
 import MovieHallSiginin from "./components/moviehallSignin";
+import MoviehallHome from "./components/Adminedit/FindUsers";
+import PurchaseHistory from "./components/purchases/purchases";
 
 
 export const history = createBrowserHistory();
@@ -89,6 +91,8 @@ class App extends Component {
                                               component={UserProfile}
                                               props={logStat}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
                                 <Route path="/home" component={Home}/>
+                                <Route path="/moviehallHome" component={MoviehallHome}/>
+                                <Route path="/purchaseHistory" component={PurchaseHistory}/>
                                 <Route path="*" component={Error}/>
 
                             </Switch>
