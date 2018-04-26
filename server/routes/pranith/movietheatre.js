@@ -39,6 +39,24 @@ router.post('/getmoviesnhalls', function (req, res) {
 
     });
 });
+router.post('/editmoviesearch', function (req, res) {
+    console.log("from geteditmoviesearch_topic entry");
+    console.log("-----------------------------------------------------");
+    kafka.make_request('geteditmoviesearch_topic',{"reqBody":req.body}, function (err, results) {
+
+        if (results.code == 200) {
+            console.log(results);
+            res.status(201).send(results)
+        }
+        else {
+            console.log('fuckedup', results);
+            console.log('fuckedup', results);
+            // res.status(401).end()
+        }
+
+    });
+});
+
 
 
 router.post('/savemovieListing', function (req, res) {

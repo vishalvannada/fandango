@@ -5,15 +5,14 @@ import {FETCH_USER, SIGN_OUT, FETCH_USER_NULL} from "../actions/satishActions";
 export default function (state = {
     isLoggedIn: false,
     isLoggingIn: true,
-    username: null,
-    type: 'user',
+    user: {},
 }, action) {
     switch (action.type) {
 
         case FETCH_USER:
-            return {...state, isLoggingIn: false, isLoggedIn: true, username: action.payload.user.user};
+            return {...state, isLoggingIn: false, isLoggedIn: true, user: action.payload.user.user};
         case FETCH_USER_NULL:
-            return {...state, isLoggingIn: false, isLoggedIn: false, username: ''};
+            return {...state, isLoggingIn: false, isLoggedIn: false, user: {}};
             break;
         // case SIGN_OUT:
         //     return {...state, isLoggingIn: false, isLoggedIn: false, username: ''};

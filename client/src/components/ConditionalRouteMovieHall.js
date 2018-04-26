@@ -4,7 +4,7 @@ import {onComponentDidMount} from 'react-redux-lifecycle';
 import {connect} from "react-redux";
 import {fetchUser} from "../actions/satishActions";
 
-class PrivateRouteMovieHall extends Component {
+class ConditionalRouteMovieHall extends Component {
 
 
     componentDidMount() {
@@ -33,10 +33,10 @@ class PrivateRouteMovieHall extends Component {
 
 
             <Route render={props => (
-                    this.props.user.isLoggedIn && this.props.user.user.accountType === "MoviehallAdmin" ?
+                this.props.user.isLoggedIn && this.props.user.user.accountType === "MoviehallAdmin" ?
+                    <Redirect to={{pathname: '/movieHall-home', props: props, state: {from: props.location}}}/> :
                     <Here tmdbid={this.props.computedMatch.params.tmdbid} {...this.props} {...props}
-                          user={this.props.user}/> :
-                    <Redirect to={{pathname: '/moviehallSignin', props: props, state: {from: props.location}}}/>
+                          user={this.props.user}/>
             )}/>
 
 
@@ -49,4 +49,4 @@ function mapStateToProps(state) {
     return ({user: state.getUser})
 }
 
-export default connect(mapStateToProps, {fetchUser})(PrivateRouteMovieHall)
+export default connect(mapStateToProps, {fetchUser})(ConditionalRouteMovieHall)
