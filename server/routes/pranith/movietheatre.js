@@ -20,6 +20,27 @@ console.log(req,req.body,"-----------------------------------------------------"
     });
 });
 
+// Get Movies by Genre Search
+// Rishith
+
+router.get('/getMoviesGenreInSearchPage', function (req, res) {
+console.log("from getMoviesGenreInSearchPage_topic entry: 'Request -> '", req.query.action);
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('getMoviesGenereInSearchPage_topic', {"reqBody":req.query.action}, function (err, results) {
+
+        if (results.code == 200) {
+            console.log(results);
+            res.status(201).send(results)
+        }
+        else {
+            console.log('fuckedup', results);
+            console.log('fuckedup', results);
+            // res.status(401).end()
+        }
+
+    });
+});
+
 // getmoviesnhalls
 
 router.post('/getmoviesnhalls', function (req, res) {

@@ -46,17 +46,17 @@ class ChangeEmail extends Component {
     }
 
     componentWillMount() {
-        console.log("yes")
+        console.log("yes");
         this.insertValues();
         console.log(this.props.user)
     }
 
     insertValues() {
 
-        console.log(this.props.user)
+        console.log(this.props.user);
         const data = {
             "oldemail": this.props.user.email
-        }
+        };
 
         this.props.initialize(data);
     }
@@ -102,7 +102,7 @@ class ChangeEmail extends Component {
 
                                                 <Field name="oldemail"
                                                        className="form-control form-control-lg update-form-newemail"
-                                                       id="NewEmailBox"
+                                                       id="OldEmailBox"
                                                        type='email'
                                                        component={this.renderField}
                                                        disabled

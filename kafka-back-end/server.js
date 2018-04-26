@@ -19,6 +19,7 @@ var updateMovieAdmin = require('./services/updateMovieAdmin');
 
 
 var getMoviesSearchHandle = require('./services/getMoviesSearchHandle');
+var getMoviesGenreInSearchHandle = require('./services/getMoviesGenreInSearchHandle')
 
 
 console.log('server is running');
@@ -66,6 +67,13 @@ consumer.on('message', function (message) {
                 return;
             });
             break;
+        case 'getMoviesGenereInSearchPage_topic':
+                getMoviesGenreInSearchHandle.handle_request(data.data, function (err, res) {          //Rishith
+                    console.log("Inside Server: ", data.data);
+                    response(data, res);
+                    return;
+                });
+                break;
         case 'getMoviesnHalls_topic':
             getMoviesSearchHandle.handle_MoviesnHalls(data.data, function (err, res) {
                 response(data, res);
