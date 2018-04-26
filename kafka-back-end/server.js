@@ -85,6 +85,13 @@ consumer.on('message', function (message) {
             })
             break;
 
+        case 'geteditmoviesearch_topic':
+            getMoviesSearchHandle.handle_geteditmoviesearch(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+
 
         case 'addmovies_topic':
             getMoviesSearchHandle.handle_addMovies(data.data, function (err, res) {

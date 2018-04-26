@@ -46,6 +46,21 @@ export function GetMoviesHallListing(values) {
             });
     }
 }
+export function editMovieSearch(values) {
+    console.log("from action editMovieSearch",values);
+    return (dispatch) => {
+        //console.log("kjhg")
+        const response = axios.post(`${ROOT_URL}/movietheatres/editmoviesearch`,values)
+            .then(response => {
+
+                  console.log(response.data)
+                dispatch(GetMoviesHallListingReducer(response.data))
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+}
+
 
 
 export function saveMovieListing(values) {
