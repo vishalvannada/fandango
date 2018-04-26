@@ -32,7 +32,7 @@ class AdminMovieSearch extends Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <input value={this.state.term} onChange={(e) => this.setState({term: e.target.value})}/>
-                    <button type="submit" className="btn m-2">Go</button>
+                    <button type="submit" className="btn btn-primary m-2">Go</button>
                 </form>
 
                 {this.props.moviesSearchList ?

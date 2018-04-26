@@ -101,7 +101,6 @@ function handle_request(msg, callback) {
 }
 
 
-
 function handle_addMovies(msg, callback) {
 
     // winston.remove(winston.transports.Console);
@@ -111,11 +110,7 @@ function handle_addMovies(msg, callback) {
     var showtimes = [];
     for (let i = 0; i < msg.reqBody.showTimes.length; i++) {
         var showSeats = {};
-        showSeats =
-            {
-                time: msg.reqBody.showTimes[i],
-                seats: msg.reqBody.noOfSeats
-            };
+        showSeats[msg.reqBody.showTimes[i]] = msg.reqBody.noOfSeats;
         showtimes.push(showSeats);
     }
 
@@ -136,7 +131,7 @@ function handle_addMovies(msg, callback) {
         //  console.log(newDate);
     }
 console.log(arrayDates);
-   for (let i = 0; i < 7; i++)
+   for (let i = 0; i < 6; i++)
 
    {
 
@@ -151,10 +146,10 @@ console.log(arrayDates);
                "poster_path": msg.reqBody.movie.poster_path,
                "MovieName": msg.reqBody.movie.movie
            },
-           "ScreenNo": msg.reqBody.screenNo,
+           "ScreenNo": 1,
            "Showtimes": showtimes,
            "NoofSeats": msg.reqBody.noOfSeats,
-           "TicketPrice": msg.reqBody.tktPrice,
+           "TicketPrice": 10,
            "Date": arrayDates[i],
            "user": "pranithkouda@gmail.com"
        };
@@ -174,7 +169,15 @@ console.log(arrayDates);
             var queryJsonSearch = {
                 "HallID": msg.reqBody.theatre.data[0].theatreName + "|" + msg.reqBody.theatre.data[0].theatreCity + "|" +
                 msg.reqBody.theatre.data[0].theatreState + "|" + msg.reqBody.theatre.data[0].theatreZip,
-                "ScreenNo": msg.reqBody.screenNo,
+                "movie": {
+                    "movieId": msg.reqBody.movie.tmdbid,
+                    "poster_path": msg.reqBody.movie.poster_path,
+                    "MovieName": msg.reqBody.movie.movie
+                },
+                "ScreenNo": 1,
+                "Showtimes": showtimes,
+                "NoofSeats": msg.reqBody.noOfSeats,
+                "TicketPrice": 10,
                 "Date": {$lte:d}
             };
 
@@ -277,92 +280,6 @@ console.log(arrayDates);
 
 
 
-function handle_geteditmoviesearch(msg, callback) {
-
-    // winston.remove(winston.transports.Console);
-    // winston.add(winston.transports.File, { filename: './public/LogFiles/KayakAnalysis.json' });
-    // winston.log('info', 'Flight Page Viewed', { page_name : 'Flights_page'});
-    var d2=new Date(moment(msg.reqBody.dateSelected).format("YYYY-MM-DD"));
-
-    var d = new Date(moment(msg.reqBody.dateSelected).format("YYYY-MM-DD"));
-    d.setDate(d.getDate() - 1);
-    console.log("---------------------------------------------",d,d2);
-
-    var res = {};
-    var i = 0;
-    try {
-        //  var date = new Date();
-        //   console.log("date is-----------------------------------------------");
-        // console.log(date);
-        console.log("msg is-----------------------------------------------", msg);
-        var queryJson = {
-            //  "Date": {$gte : new Date()}
-
-            //hard code
-            "user":"pranithkouda@gmail.com","Date": {"$gte": new Date(d), "$lte": new Date(d2)}
-        };
-
-
-        var queryMovies = {poster_path: new RegExp('/')};
-
-        MongoConPool.find('movieHall', queryJson, function (err, movies) {
-            if (err) {
-                res.code = "401";
-                callback(null, res);
-            }
-            else {
-
-                resArr1 = [];
-                //        console.log("error------------------------------------------------------");
-                //      console.log(movies);
-                resArr1 = movies.map(function (file) {
-                    var carsJSON = {};
-                    // carsJSON.id = movie[i].ID;
-                    var spl = file.HallID.split('|');
-                    carsJSON.theatreName = spl[0];
-                    carsJSON.theatreCity = spl[1];
-                    carsJSON.theatreState = spl[2];
-                    carsJSON.theatreZip = spl[3];
-                    carsJSON.user = file.user;
-                    carsJSON.movie = file.movie;
-                    carsJSON.ScreenNo = file.ScreenNo;
-                    carsJSON.Showtimes = file.Showtimes;
-                    carsJSON.NoofSeats = file.NoofSeats;
-                    carsJSON.TicketPrice = file.TicketPrice;
-                    carsJSON.user = file.user;
-                    carsJSON.ID = file.ID;
-                    carsJSON.Date = file.Date;
-
-
-                    //carsJSON.Company=cars[i].Company;
-                    i = i + 1;
-                    return carsJSON;
-                });
-                var resmap1 = groupBy(resArr1, "theatreName");
-                //  console.log("---------------------------------------------------=========================-------------")
-                //    console.log(resmap1);
-
-                res.code = 200;
-                //res.movietheatre = resArr1;
-                res.movietheatre = resmap1;
-                console.log("movie theatres are",resmap1);
-                callback(null, res);
-            }
-        });
-
-
-
-
-
-    }
-    catch
-        (e) {
-        res.code = "401";
-        callback(null, res);
-    }
-    // winston.remove(winston.transports.File);
-    // winston.add(winston.transports.Console);
-}
 
 function handle_MoviesnHalls(msg, callback) {
 
@@ -465,7 +382,7 @@ function handle_MoviesnHalls(msg, callback) {
                         res.code = 200;
                         //res.movietheatre = resArr1;
                         res.movietheatre = resmap1;
-                        console.log("movie theatres are",resmap1);
+                        //console.log("movie theatres are",resArr1);
                         callback(null, res);
                     }
                 });
@@ -547,8 +464,7 @@ function handle_saveMovieListing(msg, callback) {
     var showtimes = [];
     for (let i = 0; i < msg.reqBody.showTimes.length; i++) {
         var showSeats = {};
-        //showSeats[msg.reqBody.showTimes[i]] = msg.reqBody.noOfSeats;
-        showSeats={"time":msg.reqBody.showTimes[i],"seats":msg.reqBody.noOfSeats}
+        showSeats[msg.reqBody.showTimes[i]] = msg.reqBody.noOfSeats;
         showtimes.push(showSeats);
     }
 console.log(showtimes);
@@ -574,8 +490,7 @@ console.log(showtimes);
                 // "_id":parseInt(randomInt(9,1000000))
                 "Showtimes": showtimes,
                 "NoofSeats": msg.reqBody.noOfSeats,
-                "TicketPrice": parseInt(msg.reqBody.tktPrice),
-                "ScreenNo":msg.reqBody.screenNo
+                "TicketPrice": 10,
             }
 
         };
@@ -643,4 +558,3 @@ exports.handle_MoviesnHalls = handle_MoviesnHalls;
 exports.handle_addMovies = handle_addMovies;
 exports.handle_getMovieListing=handle_getMovieListing;
 exports.handle_saveMovieListing=handle_saveMovieListing;
-exports.handle_geteditmoviesearch=handle_geteditmoviesearch;

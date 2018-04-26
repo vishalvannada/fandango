@@ -27,7 +27,6 @@ class MovieTopSection extends Component {
         const className = `form-control input-login ${field.meta.touched && field.meta.error ? 'border-red' : ''}`
         return (
             <div className="form-group form-group-custom">
-                <small className='font-weight-700 font-size-14'>{field.label}</small>
                 <input
                     className={className}
                     {...field.input}
@@ -41,12 +40,11 @@ class MovieTopSection extends Component {
             </div>
         )
     }
-    renderMultiselect = ({input, data, valueField, textField, meta,label}) => {
+    renderMultiselect = ({input, data, valueField, textField, meta}) => {
 
         const className = `${meta.touched && meta.error ? 'border-red' : ''}`
         return (
             <div>
-                <small className='font-weight-700 font-size-14'>{label}</small>
                 <Multiselect {...input}
                              className={className}
                              onBlur={() => input.onBlur()}
@@ -73,12 +71,11 @@ class MovieTopSection extends Component {
 
 
 
-    renderDropdown = ({input, data, valueField, textField, meta,placeholder,label}) => {
+    renderDropdown = ({input, data, valueField, textField, meta,placeholder}) => {
 
         const className = `${meta.touched && meta.error ? 'border-red' : ''}`
         return (
             <div>
-                <small className='font-weight-700 font-size-14'>{label}</small>
                 <DropdownList {...input}
                              className={className}
                              onBlur={() => input.onBlur()}
@@ -189,6 +186,20 @@ class MovieTopSection extends Component {
 
                                         <div className="col-md-7">
                                             <div className="mt-4 ml-0 pl-0">
+
+
+                                                <div className="form-group form-group-custom">
+                                                <Field
+                                                    name="movie"
+                                                    component={this.renderDropdown}
+                                                    data={this.props.moviesDropdown.movies.moviemap}
+                                                    valueField="movie"
+                                                    type="DropdownList"
+                                                    textField="movie"
+                                                placeholder="Select a Movie name"/>
+                                                </div>
+
+                                                <br/>
                                                 <div className="form-group form-group-custom">
                                                     <Field
                                                         name="theatre"
@@ -200,57 +211,19 @@ class MovieTopSection extends Component {
                                                         valueField="type"
                                                         type="DropdownList"
                                                         textField="type"
-                                                        label="Movie Hall name"
                                                         placeholder="Select a Movie Hall "/>
                                                 </div>
-                                                <br/>
-
-
-                                                <div className="form-group form-group-custom">
-                                                <Field
-                                                    name="movie"
-                                                    component={this.renderDropdown}
-                                                    data={this.props.moviesDropdown.movies.moviemap}
-                                                    valueField="movie"
-                                                    type="DropdownList"
-                                                    textField="movie"
-                                                    label="Movie Name"
-                                                placeholder="Select a Movie name"/>
-                                                </div>
-                                                <br/>
-
-
-
                                                 <Field
                                                     name="showTimes"
                                                     component={this.renderMultiselect}
                                                     data={["9:30a","12:30p","3:30p","9:30p"]}
                                                     placeholder="Select Show time"
-                                                    label="Show Times"
-                                                />
-
-                                                <br/>
-                                                <Field
-                                                    name="screenNo"
-                                                    component={this.renderDropdown}
-                                                    data={["1","2","3","4"]}
-                                                    placeholder="Select Screen Number for the screen"
-                                                    label="Screen Number"
                                                 />
                                                 <br/>
                                                 <Field
-                                                    label="Seats"
+                                                    label="Please enter number of seats "
                                                     name="noOfSeats"
                                                     component={this.renderField}
-                                                    placeholder="Enter number of seats"
-                                                    type="text"
-                                                />
-                                                <br/>
-                                                <Field
-                                                    label="Ticket Price"
-                                                    name="tktPrice"
-                                                    component={this.renderField}
-                                                    placeholder="Enter the price of ticket"
                                                     type="text"
                                                 />
                                                 <br/>

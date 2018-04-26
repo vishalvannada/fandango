@@ -108,8 +108,7 @@ router.post('/movieHallSignin', function (req, res, next) {
                         req.session.accountType = "MoviehallAdmin";
                         req.user.user.accountType = "MoviehallAdmin";
                         console.log("session email", req.session.email);
-                        return res.status(201).
-                        json({username: req.user.user,accountType:"MoviehallAdmin"});
+                        return res.status(201).json({username: req.user.user,accountType:"MoviehallAdmin"});
                     });
                 }
             });
@@ -137,8 +136,8 @@ router.post('/adminSignin', function (req, res, next) {
                         console.log("movie hall user", req.user);
                         console.log(req.isAuthenticated());
                         req.session.email = req.user.user.email;
-                        req.session.accountType = "Admin";
-                        req.user.user.accountType = "Admin";
+                        // req.session.accountType = "Admin";
+                        // req.user.user.accountType = "Admin";
                         console.log("session email", req.session.email);
                         return res.status(201).json({username: req.user.user,accountType:"Admin"});
                     });
