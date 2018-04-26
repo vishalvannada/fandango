@@ -32,7 +32,9 @@ class EditMovieHallListing extends Component {
     // }
 
     render() {
-        if (this.props.editmovies.movies.code !== 400) {
+        console.log(this.props.editmovies);
+        if (this.props.editmovies.movies.code != 400) {
+            console.log(this.props.editmovies);
             return (
                 <div>
                     <BrandBar/>
