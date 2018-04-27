@@ -19,9 +19,7 @@ function ConnectionProvider() {
             {topic: 'addmovies_topic', partition: 0},
             {topic: 'saveMovieListing_topic', partition: 0},
             {topic: 'getMoviesHallLisiting_topic', partition: 0},
-            {topic: 'geteditmoviesearch_topic', partition: 0},
-
-
+            {topic: 'getMoviesGenereInSearchPage_topic',partition:0}, //Rishith
 
 
             //satish

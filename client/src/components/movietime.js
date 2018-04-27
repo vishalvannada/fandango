@@ -21,7 +21,7 @@ class Movietime extends Component {
             <div>
                 <BrandBar/>
                 <MegaDropDownHeader/>
-                <MovieTopSection history={this.props.history}/>
+                <MovieTopSection/>
             </div>
         )
     }
