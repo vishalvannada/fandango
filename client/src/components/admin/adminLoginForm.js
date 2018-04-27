@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Field, reduxForm} from "redux-form";
 import "../Signin/signin.css";
 import {bindActionCreators} from "redux";
-import {signin} from "../../actions/satishActions";
+import {adminSignin} from "../../actions/satishActions";
 
 
 class AdminLoginForm extends Component {
@@ -37,7 +37,7 @@ class AdminLoginForm extends Component {
 
     onSubmit(values) {
         console.log(values);
-        this.props.signin(values);
+        this.props.adminSignin(values);
     }
 
     render() {
@@ -112,7 +112,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         ...bindActionCreators({
-            signin
+            adminSignin
         }, dispatch)
 
     };

@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom';
@@ -7,20 +6,20 @@ import {signout} from "../../actions/satishActions";
 import {fetchUser} from "../../actions/satishActions";
 
 
-
-class BrandBar extends Component{
-    componentDidMount(){
-       // this.props.fetchUser();
+class BrandBar extends Component {
+    componentDidMount() {
+        this.props.fetchUser();
     }
 
-    handleSignout(){
+    handleSignout() {
         this.props.signout(null);
     }
 
     render() {
-       var isLoggedIn = window.localStorage.getItem('isLoggedIn');
-       // var isLoggedIn = this.props.user.isLoggedIn;
-        console.log('isloggeIn',isLoggedIn);
+        var isLoggedIn = window.localStorage.getItem('isLoggedIn');
+        // var isLoggedIn = this.props.user.isLoggedIn;
+        console.log('isloggeIn', isLoggedIn);
+        console.log("user", this.props.user);
 
         return (
             <div>
@@ -30,12 +29,12 @@ class BrandBar extends Component{
                         <nav className="text-right">
                             <a href="/fandango-gift-cards">Gift Cards</a> |
                             <a href="/freemovietickets"> Offers</a> |
-                                {isLoggedIn ? (
-                                    <button  className="show-logged-in" onClick={this.handleSignout.bind(this)} >
-                                        Sign Out </button>
-                                ) : (
-                                    <Link to="/signin" className="hide-logged-in"> Sign In</Link>
-                                )}
+                            {isLoggedIn ? (
+                                <button className="show-logged-in" onClick={this.handleSignout.bind(this)}>
+                                    Sign Out </button>
+                            ) : (
+                                <Link to="/signin" className="hide-logged-in"> Sign In</Link>
+                            )}
                             {/* |<a href="/signout" className="show-logged-in"> Sign Out</a>*/}
                         </nav>
                     </div>
@@ -51,12 +50,12 @@ function mapStateToProps(state) {
     return ({user: state.getUser})
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
     return {
         ...bindActionCreators({
             signout, fetchUser
-        },dispatch)
+        }, dispatch)
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(BrandBar);
+export default connect(mapStateToProps, mapDispatchToProps)(BrandBar);

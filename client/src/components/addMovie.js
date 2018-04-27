@@ -17,7 +17,7 @@ class Addmovie extends Component {
             <div>
                 <BrandBar/>
                 <MegaDropDownHeader/>
-                <MovieTopSection/>
+                <MovieTopSection history={this.props.history}/>
             </div>
         )
     }

@@ -49,7 +49,7 @@ class Dashboard extends Component {
                                             <img id="AvatarImage" className="user-avatar-thumb"
                                                  src="https://images.fandango.com/r1.0.431/redesign/areas/profile/img/no-image-account-profile.png"/>{/* Write Image Source*/}
 
-                                            <h3 className="font-condensed-bold">{this.props.user.username.firstname}</h3>
+                                            <h3 className="font-condensed-bold">{this.props.user.user.firstname}</h3>
 
                                             <br/>
                                             <br/>

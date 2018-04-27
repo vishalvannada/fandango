@@ -17,9 +17,20 @@ function ConnectionProvider() {
             {topic: 'getMoviesInSearchPage_topic', partition: 0},
             {topic: 'getMoviesnHalls_topic', partition: 0},
             {topic: 'addmovies_topic', partition: 0},
+            {topic: 'saveMovieListing_topic', partition: 0},
+            {topic: 'getMoviesHallLisiting_topic', partition: 0},
+            {topic: 'geteditmoviesearch_topic', partition: 0},
+            {topic: 'savePayment_topic', partition: 0},
 
+
+
+
+
+            //satish
             {topic: 'signup', partition: 0},
             {topic: 'signin', partition: 0},
+            {topic: 'moviehallsignin', partition: 0},
+            {topic: 'adminsignin', partition: 0},
 
             {topic: 'basicInfo', partition: 0},
             {topic: 'changeEmail', partition: 0},
@@ -28,11 +39,15 @@ function ConnectionProvider() {
             {topic: 'userDetails', partition: 0},
             {topic: 'deletePayment', partition: 0},
 
+
             //mangesh
             {topic: 'usertracking_topic', partition: 0},
             {topic: 'pageclicks_topic', partition: 0},
             {topic: 'movieclicks_topic', partition: 0},
             {topic: 'usertrackclose_topic', partition: 0}            
+
+            {topic: 'uploadimage', partition: 0}
+
 
         ]);
         this.client.on('ready', function () {

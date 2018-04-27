@@ -17,17 +17,19 @@ class MovieTopSection extends Component {
     componentWillMount()
     {
         console.log("calling movie halls");
-        this.props.GetMoviesnHalls();
+        this.props.GetMoviesnHalls({email:this.props.user.user.email});
 
     }
     state = {
-        movieSearch: ""
+        movieSearch: "",
+        userEmail:""
     }
 
     renderField(field) {
         const className = `form-control input-login ${field.meta.touched && field.meta.error ? 'border-red' : ''}`
         return (
             <div className="form-group form-group-custom">
+                <small className='font-weight-700 font-size-14'>{field.label}</small>
                 <input
                     className={className}
                     {...field.input}
@@ -41,11 +43,12 @@ class MovieTopSection extends Component {
             </div>
         )
     }
-    renderMultiselect = ({input, data, valueField, textField, meta}) => {
+    renderMultiselect = ({input, data, valueField, textField, meta,label}) => {
 
         const className = `${meta.touched && meta.error ? 'border-red' : ''}`
         return (
             <div>
+                <small className='font-weight-700 font-size-14'>{label}</small>
                 <Multiselect {...input}
                              className={className}
                              onBlur={() => input.onBlur()}
@@ -72,11 +75,12 @@ class MovieTopSection extends Component {
 
 
 
-    renderDropdown = ({input, data, valueField, textField, meta,placeholder}) => {
+    renderDropdown = ({input, data, valueField, textField, meta,placeholder,label}) => {
 
         const className = `${meta.touched && meta.error ? 'border-red' : ''}`
         return (
             <div>
+                <small className='font-weight-700 font-size-14'>{label}</small>
                 <DropdownList {...input}
                              className={className}
                              onBlur={() => input.onBlur()}
@@ -116,11 +120,15 @@ class MovieTopSection extends Component {
         )
     }*/
     onSubmit(values) {
-           console.log("on submit");
+          // console.log("on submit");
          //  var d = new Date();
-        for (var i=0;i<11;i++) {
+        //let i=0;
+        //for ( i=0;i<10;i++)
+        {
            // d.setDate(d.getDate() + 1);
-            values.Date=i;
+            //values.Date=i;
+
+            values.userEmail=this.props.user.user.email;
             console.log(values);
             this.props.addMovie(values);
         }
@@ -149,17 +157,46 @@ class MovieTopSection extends Component {
             </div>
         )
     }
+    movieFilter = (filterPrice) => {
+        console.log("filter email is : "+filterPrice);
+        // this.setState({filterPrice: filterPrice});
+
+        var movieFiltered = this.props.moviesDropdown.movies.movietheatre.filter(function (task) {
+            console.log(task.data[0].user);
+            //console.log(this.state);
+
+            return task.data[0].user == filterPrice;
+        });
+        /*
+        var priceFilterArray = this.state.totalHotelResults.filter(val => {return val.price < filterPrice;});
+        if(priceFilterArray.length <= 0 ){
+            console.log("Empty array ");
+            this.setState({emptyResults: true});
+        }
+        else{
+            this.setState({emptyResults: false});
+        }
+        console.log("After Filter in cars: "+priceFilterArray);
+        this.setState({hotelResults: priceFilterArray});*/
+        return(movieFiltered);
+    };
 
     render() {
-        console.log(this.props.addMovies);
+        console.log(this.props.user);
+       /* if(this.props.user.username!=null && this.state.userEmail=="")
+        {
+            this.setState({userEmail:this.props.user.username.email})
+        }*/
+
         if(this.props.addMovies.addMovies==true)
         {
             swal("Movie Added");
 
         }
-        const colors = [ { color: 'Red', value: 'ff0000' },
-            { color: 'Green', value: '00ff00' },
-            { color: 'Blue', value: '0000ff' } ]
+        else if(this.props.addMovies.addMovies=="movies not added"){
+
+            swal("Movie not added");
+        }
         // console.log(this.props);
         //console.log(this.props.movietime.moviesTheatres.moviemap);
       //  console.log(this.props.movietime.moviesTheatres.moviemap[0].type);
@@ -168,7 +205,7 @@ class MovieTopSection extends Component {
             //backgroundImage: 'url(http://image.tmdb.org/t/p/original/nIrDm42dy5PaXtUAzUfPmxM4mQm.jpg)',
             backgroundColor: "white"
         };
-        console.log(this.props.moviesDropdown.movies.moviemap);
+        //console.log(this.props.moviesDropdown.movies.moviemap);
 
 
 
@@ -184,6 +221,20 @@ class MovieTopSection extends Component {
 
                                         <div className="col-md-7">
                                             <div className="mt-4 ml-0 pl-0">
+                                                <div className="form-group form-group-custom">
+                                                    <Field
+                                                        name="theatre"
+                                                        component={this.renderDropdown}
+                                                        data={this.movieFilter(this.props.user.user.email)
+
+                                                            }
+                                                        valueField="type"
+                                                        type="DropdownList"
+                                                        textField="type"
+                                                        label="Movie Hall name"
+                                                        placeholder="Select a Movie Hall "/>
+                                                </div>
+                                                <br/>
 
 
                                                 <div className="form-group form-group-custom">
@@ -194,31 +245,43 @@ class MovieTopSection extends Component {
                                                     valueField="movie"
                                                     type="DropdownList"
                                                     textField="movie"
+                                                    label="Movie Name"
                                                 placeholder="Select a Movie name"/>
                                                 </div>
-
                                                 <br/>
-                                                <div className="form-group form-group-custom">
-                                                    <Field
-                                                        name="theatre"
-                                                        component={this.renderDropdown}
-                                                        data={this.props.moviesDropdown.movies.movietheatre}
-                                                        valueField="type"
-                                                        type="DropdownList"
-                                                        textField="type"
-                                                        placeholder="Select a Movie Hall "/>
-                                                </div>
+
+
+
                                                 <Field
                                                     name="showTimes"
                                                     component={this.renderMultiselect}
                                                     data={["9:30a","12:30p","3:30p","9:30p"]}
                                                     placeholder="Select Show time"
+                                                    label="Show Times"
+                                                />
+
+                                                <br/>
+                                                <Field
+                                                    name="screenNo"
+                                                    component={this.renderDropdown}
+                                                    data={["1","2","3","4"]}
+                                                    placeholder="Select Screen Number for the screen"
+                                                    label="Screen Number"
                                                 />
                                                 <br/>
                                                 <Field
-                                                    label="Please enter number of seats "
+                                                    label="Seats"
                                                     name="noOfSeats"
                                                     component={this.renderField}
+                                                    placeholder="Enter number of seats"
+                                                    type="text"
+                                                />
+                                                <br/>
+                                                <Field
+                                                    label="Ticket Price"
+                                                    name="tktPrice"
+                                                    component={this.renderField}
+                                                    placeholder="Enter the price of ticket"
                                                     type="text"
                                                 />
                                                 <br/>
@@ -267,7 +330,8 @@ function mapStateToProps(state) {
     return {
         movietime: state.moviesSearchPagePK,
         moviesDropdown:state.moviesDropdown,
-        addMovies:state.addMovies}
+        addMovies:state.addMovies,
+        user:state.getUser}
 }
 
 

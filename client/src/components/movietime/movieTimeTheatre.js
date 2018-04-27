@@ -35,7 +35,7 @@ class MovieTopSection extends Component {
             let newDate = new Date();
             newDate.setDate(newDate.getDate() + i);
             arrayDates.push(newDate);
-            //  console.log(newDate);
+            // console.log(newDate);
         }
 
         //  console.log(arrayDates)
@@ -62,6 +62,7 @@ class MovieTopSection extends Component {
 
     render() {
 
+        console.log(this.props);
         var settings = {
             slidesToShow: 7,
             slidesToScroll: 3,
@@ -118,7 +119,7 @@ class MovieTopSection extends Component {
                                    }}/>
                             <button type="button" onClick={() => {
                                 this.searchMovie()
-                            }} className="btn date-picker__location-submit js-date-picker-btn">GO
+                            }} className="my-2 my-sm-0 header-button-go">GO
                             </button>
                         </div>
                     </div>
@@ -182,7 +183,11 @@ class MovieTopSection extends Component {
                                                                 <li className="fd-movie__btn-list-item">
 
 
-                                                                    <span className="btn showtime-btn">4:00p</span>
+                                                                    <button onClick={() => this.props.history.push({
+                                                                        pathname: '/check-out',
+                                                                        state: {movie : movie, showtime : '9:30a'}
+                                                                    })}
+                                                                          className="btn showtime-btn">9:30a</button>
 
 
                                                                 </li>
@@ -191,7 +196,13 @@ class MovieTopSection extends Component {
                                                                 <li className="fd-movie__btn-list-item">
 
 
-                                                                    <span className="btn showtime-btn">6:15p</span>
+                                                                    <button
+                                                                        onClick={() => this.props.history.push({
+                                                                            pathname: '/check-out',
+                                                                            state: {movie : movie, showtime : '12:30p'}
+                                                                        })}
+                                                                        className="btn showtime-btn">12:30p
+                                                                    </button>
 
 
                                                                 </li>
@@ -200,7 +211,13 @@ class MovieTopSection extends Component {
                                                                 <li className="fd-movie__btn-list-item">
 
 
-                                                                    <span className="btn showtime-btn">8:30p</span>
+                                                                    <button
+                                                                        onClick={() => this.props.history.push({
+                                                                            pathname: '/check-out',
+                                                                            state: {movie : movie, showtime : '3:30p'}
+                                                                        })}
+
+                                                                          className="btn showtime-btn">3:30p</button>
 
 
                                                                 </li>
@@ -209,7 +226,11 @@ class MovieTopSection extends Component {
                                                                 <li className="fd-movie__btn-list-item">
 
 
-                                                                    <span className="btn showtime-btn">10:45p</span>
+                                                                    <button onClick={() => this.props.history.push({
+                                                                        pathname: '/check-out',
+                                                                        state: {movie : movie, showtime : '9:30p'}
+                                                                    })}
+                                                                          className="btn showtime-btn">9:30p</button>
 
 
                                                                 </li>
