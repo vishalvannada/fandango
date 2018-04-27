@@ -9,7 +9,7 @@ export default function (state = home, action) {
         case "MOVIES_HALL_LISTING_EDIT":
             return {
                 movies: action.payload
-            }
+            };
         default:
             return state;
     }

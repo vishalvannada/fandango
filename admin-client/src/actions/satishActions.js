@@ -1,5 +1,6 @@
 import axios from "axios";
 import {history} from "../App";
+import swal from "sweetalert";
 
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
@@ -24,8 +25,14 @@ export const UPLOAD_FAILED = "UPLOAD_FAILED";
 
 export const MOVIEHALL_SIGN_IN_SUCCESS = "MOVIEHALL_SIGN_IN_SUCCESS";
 export const MOVIEHALL_SIGN_IN_ERROR = "MOVIEHALL_SIGN_IN_ERROR"
-
+export const SEARCH_USERS_SUCCESS = "SEARCH_USERS_SUCCESS";
+export const SEARCH_USERS_ERROR = "SEARCH_USERS_SUCCESS";
 export const IMAGE_SUCCESS = "IMAGE_SUCCESS";
+export const PURCHASE_SUCCESS = "PURCHASE_SUCCESS";
+export const PURCHASE_ERROR = "PURCHASE_ERROR";
+export const DELETE_USERS_SUCCESS = "DELETE_USERS_SUCCESS";
+export const DELETE_USERS_ERROR = "DELETE_USERS_SUCCESS";
+
 
 axios.defaults.withCredentials = true;
 
@@ -39,6 +46,7 @@ export function signin(values) {
                 window.localStorage.setItem('user', res.data.user);
                 window.localStorage.setItem('isLoggedIn', true);
                 console.log("response received");
+                swal("Signin Succesful");
                 history.push('/home');
                 dispatch({type: SIGN_IN, payload: request});
             }
@@ -64,7 +72,7 @@ export function signout(values) {
     console.log(values);
 
     return (dispatch) => {
-        const response = axios.get(`${ROOT_URL}/user/signout`)
+        const response = axios.get(`${ROOT_URL}/user/signout`,{withCredentials: true})
             .then(response => {
                 console.log(response.data);
                 window.localStorage.clear();
@@ -86,7 +94,7 @@ export function signoutMovieHall(values) {
     console.log(values);
 
     return (dispatch) => {
-        const response = axios.get(`${ROOT_URL}/user/signout`)
+        const response = axios.get(`${ROOT_URL}/user/signout`,{withCredentials: true})
             .then(response => {
                 console.log(response.data);
                 window.localStorage.clear();
@@ -131,13 +139,81 @@ export function fetchUser() {
 
 }
 
+export function deleteUser(value) {
+    return function (dispatch) {
+        console.log("Inside the Search user actions",value,{withCredentials: true});
+        axios.delete(`${ROOT_URL}/user/deleteuser?email=${value}`)
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                window.location.reload();
+                dispatch({type: DELETE_USERS_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: DELETE_USERS_ERROR, payload: error})
+            });
+    }
+}
+
+
+export function editUserAccount(userdata){
+
+    return function (dispatch) {
+        console.log("Inside the sign up actions");
+        axios.post(`${ROOT_URL}/user/editUserAccount`, userdata,{withCredentials: true})
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                history.push("/findUsers");
+               // dispatch({type: BASIC_INFO_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: BASIC_INFO_ERROR, payload: error})
+            });
+
+    }
+}
+
+
+export function searchUsers(value) {
+    if(value==null){
+        value = '';
+    }
+    return function (dispatch) {
+        console.log("Inside the Search user actions",value);
+        axios.get(`${ROOT_URL}/user/searchusers?user=${value}`,{withCredentials: true})
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                dispatch({type: SEARCH_USERS_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: SEARCH_USERS_ERROR, payload: error})
+            });
+    }
+}
+
+
+export function searchMoviehallUsers(value) {
+    return function (dispatch) {
+        console.log("Inside the Search user actions");
+        axios.get(`${ROOT_URL}/user/searchMoviehallUsers?user=${value}`,{withCredentials: true})
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                dispatch({type: SEARCH_USERS_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: SEARCH_USERS_ERROR, payload: error})
+            });
+    }
+}
+
+
+
 export function getUserDetails() {
     return function (dispatch) {
         console.log("Inside the sign up actions");
-        axios.get(`${ROOT_URL}/user/userDetails`)
+        axios.get(`${ROOT_URL}/user/userDetails`,{withCredentials: true})
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res.data);
-                dispatch({type: USER_DETAILS_SUCCESS, payload: res.data.user});
+                dispatch({type: USER_DETAILS_SUCCESS, payload: res.data});
             })
             .catch((error) => {
                 dispatch({type: USER_DETAILS_ERROR, payload: error})
@@ -149,7 +225,7 @@ export function getUserDetails() {
 export function changeBasicInfo(userdata) {
     return function (dispatch) {
         console.log("Inside the sign up actions");
-        axios.post(`${ROOT_URL}/user/basicInfo`, userdata)
+        axios.post(`${ROOT_URL}/user/basicInfo`, userdata,{withCredentials: true})
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res.data.user);
                 dispatch({type: BASIC_INFO_SUCCESS, payload: res.data.user});
@@ -163,7 +239,7 @@ export function changeBasicInfo(userdata) {
 
 export function changeEmail(userdata) {
     return function (dispatch) {
-        console.log("Inside the sign up actions");
+        console.log("Inside the sign up actions",{withCredentials: true});
         axios.post(`${ROOT_URL}/user/email`, userdata)
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res);
@@ -179,7 +255,7 @@ export function changeEmail(userdata) {
 
 export function uploadImage(payload) {
     return function (dispatch) {
-        console.log("Inside the sign up actions");
+        console.log("Inside the sign up actions",{withCredentials: true});
         axios.post(`${ROOT_URL}/user/image`, payload, {
             headers: {
                 'accept': 'application/json',
@@ -201,10 +277,9 @@ export function uploadImage(payload) {
 export function changePassword(userdata) {
     return function (dispatch) {
         console.log("Inside the sign up actions");
-        axios.post(`${ROOT_URL}/user/password`, userdata)
+        axios.post(`${ROOT_URL}/user/password`, userdata,{withCredentials: true})
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res.data);
-
                 dispatch({type: PASSWORD_SUCCESS, payload: res.data});
             })
             .catch((error) => {
@@ -218,7 +293,7 @@ export function changePassword(userdata) {
 export function savePaymentMethod(userdata) {
     return function (dispatch) {
         console.log("Inside the sign up actions");
-        axios.post(`${ROOT_URL}/user/savePayment`, userdata)
+        axios.post(`${ROOT_URL}/user/savePayment`, userdata,{withCredentials: true})
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res.data);
 
@@ -235,7 +310,7 @@ export function savePaymentMethod(userdata) {
 export function deletePaymentMethod(userdata) {
     return function (dispatch) {
         console.log("Inside the sign up actions");
-        axios.post(`${ROOT_URL}/user/delPayment`, userdata)
+        axios.post(`${ROOT_URL}/user/delPayment`, userdata,{withCredentials: true})
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res.data);
 
@@ -324,5 +399,20 @@ export function adminSignin(values) {
             console.log("caught:", err.response);
         });
         console.log(action_type);
+    }
+}
+
+export function purchaseHistory() {
+
+    return function (dispatch) {
+        console.log("Inside the Search user actions");
+        axios.get(`${ROOT_URL}/user/purchaseHistory`,{withCredentials: true})
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                dispatch({type: PURCHASE_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: PURCHASE_ERROR, payload: error})
+            });
     }
 }

@@ -1,0 +1,28 @@
+.userProfile-List{
+    padding-left: 50px;
+    padding-bottom: 20px;
+}
+
+.user-List-card{
+    background-color: white;
+}
+
+.List-user-name{
+    color: #4c4c4c;
+    font-size: 28px;
+
+}
+
+.list-user-email {
+    padding-top: 20px;
+    font-size: large;
+    font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
+    font-weight: bold;
+}
+
+.List-user-heading{
+    padding-left: 50px;
+    padding-bottom:30px;
+    font-weight: 700;
+    font-size: 48px;
+}

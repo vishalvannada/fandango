@@ -9,6 +9,7 @@ import Notifications from "views/Notifications/Notifications";
 import Upgrade from "views/Upgrade/Upgrade";
 
 import MovieEdit from '../admin/adminMovieSearch/movieEdit';
+import FindUsers from "../components/Adminedit/FindUsers"
 
 
 const dashboardRoutes = [
@@ -17,6 +18,10 @@ const dashboardRoutes = [
      path : "/admin-movie-edit/:tmdbid",
         component : MovieEdit,
 
+    },
+    {
+        path: "/findUsers",
+        component: FindUsers,
     },
 
   {

@@ -44,7 +44,8 @@ router.post('/signin', function (req, res, next) {
             req.logIn(user, function (err) {
                 if (err) {
                     console.log(err);
-                    return res.status(401);
+
+                    return res.status(401).json({message:"Invalid Credentials"});
                 }
                 else {
                     req.session.save(function (err) {
@@ -158,10 +159,10 @@ router.post('/signup', function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
-                res.status(201).json({message: "User Details Saved successfully"});
+                res.status(201).json({username:results.user,message: "User Details Saved successfully",accountType:"User"});
             }
             else {
-                res.status(401).json({message: "SignUp failed"});
+                res.status(401).json({message: results.message});
 
             }
         }
@@ -204,6 +205,57 @@ router.post('/basicInfo', function (req, res) {
     });
 });
 
+router.delete('/deleteuser',function(req,res){
+    var email = req.query.email;
+    console.log("user email",req.query.email);
+    kafka.make_request('deleteuser', {"email":email}, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else {
+            if (results.code === 201) {
+                console.log("Inside the success criteria");
+                res.status(201).json({message: "User account deleted successfully"});
+            }
+            else {
+                res.status(401).json({message: results.message});
+
+            }
+        }
+    });
+
+
+})
+
+router.post('/editUserAccount', function (req, res) {
+    // console.log("req user",req.user);
+    console.log("session email", req.session.email);
+    // console.log("req user",req.user);
+    var email = req.body.oldemail;
+    kafka.make_request('editUserAccount', {"user": req.body,"email":email}, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else {
+            if (results.code === 201) {
+                console.log("Inside the success criteria");
+                req.session.email= results.user.email;
+                req.user= results.user;
+                res.status(201).json({message: "user Account Saved successfully",user:results.user});
+            }
+            else {
+                res.status(401).json({message: results.message});
+
+            }
+        }
+    });
+
+});
+
 
 router.post('/email', function (req, res) {
     console.log("session email", req.session.email);
@@ -222,17 +274,18 @@ router.post('/email', function (req, res) {
                 res.status(201).json({message: "User email Saved successfully",user:results.user});
             }
             else {
-                res.status(401).json({message: "user email update failed"});
+                res.status(401).json({message: results.message});
 
             }
         }
     });
 
 });
+
 
 
 router.post('/password', function (req, res) {
-    kafka.make_request('changePassword', {"user": req.body}, function (err, results) {
+    kafka.make_request('changePassword', {"user": req.body,"email":req.session.email}, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -241,10 +294,10 @@ router.post('/password', function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
-                res.status(201).json({message: "User Basic info Saved successfully"});
+                res.status(201).json({message: "password Saved successfully",user:results.user});
             }
             else {
-                res.status(401).json({message: "user Basic info update failed"});
+                res.status(401).json({message: "password update failed"});
 
             }
         }
@@ -252,8 +305,10 @@ router.post('/password', function (req, res) {
 
 });
 
-router.post('/savePayment', function (req, res) {
-    kafka.make_request('savePayment', {"user": req.body}, function (err, results) {
+
+router.get('/searchusers',function(req,res){
+    var user = req.query.user;
+    kafka.make_request('searchusers', {"user": user}, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -262,10 +317,76 @@ router.post('/savePayment', function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
-                res.status(201).json({message: "User Basic info Saved successfully"});
+                res.status(201).json({message: "Users details found", users: results.users});
             }
             else {
-                res.status(401).json({message: "user Basic info update failed"});
+                res.status(401).json({message: "users  details not found "});
+
+            }
+        }
+    });
+});
+
+
+router.get('/searchMoviehallUsers',function(req,res){
+    var user = req.query.user;
+    kafka.make_request('searchMoviehallUsers', {"user": user}, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else {
+            if (results.code === 201) {
+                console.log("Inside the success criteria");
+                res.status(201).json({message: "Movie hall Users details found", users: results.users});
+            }
+            else {
+                res.status(401).json({message: "Movie hall users  details not found "});
+
+            }
+        }
+    });
+});
+
+
+router.get('/purchaseHistory',function (req, res) {
+    var email = req.session.email;
+
+    kafka.make_request('purchaseHistory', {"email": email}, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else {
+            if (results.code === 201) {
+                console.log("Inside the success criteria");
+                res.status(201).json({message: "Purchase History found", purchase: results.transactions});
+            }
+            else {
+                res.status(401).json({message: "Purchase History not available "});
+
+            }
+        }
+    });
+});
+
+
+router.post('/savePayment', function (req, res) {
+    kafka.make_request('savePayment', {"user": req.body,"email":req.session.email}, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else {
+            if (results.code === 201) {
+                console.log("Inside the success criteria");
+                res.status(201).json({message: "payment details Saved successfully"});
+            }
+            else {
+                res.status(401).json({message: "payment details failed "});
 
             }
         }
@@ -299,7 +420,7 @@ router.post('/image', type, function (req, res) {
         }
     });
 
-});0
+});
 
 
 module.exports = router;

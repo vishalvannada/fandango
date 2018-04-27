@@ -98,3 +98,22 @@ export const updateEditedMovieAdmin = (values) =>
             console.log("This is error");
             return error;
         });
+
+//adminSignin
+export const searchUsers = (values) =>
+
+    fetch(`${api}/user/searchusers?user=${values}`,  {
+        method: 'GET',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+    }).then(res => {
+        //console.log(res.json());
+        return res.json();
+    })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
