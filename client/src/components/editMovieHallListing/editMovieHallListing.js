@@ -12,17 +12,15 @@ import Multiselect from 'react-widgets/lib/Multiselect'
 import 'react-widgets/dist/css/react-widgets.css';
 
 class EditMovieHallBody extends Component {
+
+
     componentWillMount()
     {
-        if(this.props.editmovies.movies.moviemap)
-        {
-            this.insertValues();
-        }
 
-    }
 
 
 
+    }
     state = {
         movieListed: false,
     }
@@ -35,7 +33,7 @@ class EditMovieHallBody extends Component {
         var times=[];
         for(let t=0;t<ks.length;t++)
         {
-            let k= ks[t].time;
+            let k= Object.keys(ks[t]);
             //console.log(k);
             times.push(k);
         }
@@ -44,9 +42,7 @@ class EditMovieHallBody extends Component {
             "movie":this.props.editmovies.movies.moviemap[0].movie.MovieName,
             "theatre": this.props.editmovies.movies.moviemap[0].HallID.split('|')[0],
             "showTimes": times,
-            "noOfSeats":this.props.editmovies.movies.moviemap[0].NoofSeats,
-            "screenNo":this.props.editmovies.movies.moviemap[0].ScreenNo,
-            "tktPrice":this.props.editmovies.movies.moviemap[0].TicketPrice
+            "noOfSeats":this.props.editmovies.movies.moviemap[0].NoofSeats
             /*
             "aboutMe": this.props.profile.aboutMe,
             "skills": this.props.profile.skills*/
@@ -59,7 +55,7 @@ class EditMovieHallBody extends Component {
         const className = `form-control input-login ${field.meta.touched && field.meta.error ? 'border-red' : ''}`
         return (
             <div className="form-group font-family-roboto form-group-custom">
-                <small className='font-weight-700 font-size-14'>{field.label}</small>
+                <small className='font-weight-700'>{field.label}</small>
                 <input
                     className={className}
                     {...field.input}
@@ -103,17 +99,16 @@ class EditMovieHallBody extends Component {
 
 
 
-    renderDropdown = ({label, data, valueField, textField, meta,placeholder,input}) => {
+    renderDropdown = ({input, data, valueField, textField, meta,placeholder}) => {
 
         const className = `${meta.touched && meta.error ? 'border-red' : ''}`
         return (
             <div>
-                <small className='font-weight-700 font-size-14'>{label}</small>
                 <DropdownList {...input}
                              className={className}
                              onBlur={() => input.onBlur()}
                              //value={input.value || []} // requires value to be an array
-                             data={["1","2","3","4"]}
+                             data={data}
                              valueField={valueField}
                              textField={textField}
                             placeholder={placeholder}
@@ -162,7 +157,14 @@ class EditMovieHallBody extends Component {
 
 
     };
+    componentWillMount()
+    {
+        //if(this.props.editmovies.movies.code!==400)
+        {
+            this.insertValues();
+        }
 
+    }
 
     renderText(field) {
 
@@ -247,7 +249,7 @@ class EditMovieHallBody extends Component {
 
 
                                              <Field
-                                                 label="Movie Title"
+                                                 label="Title"
                                                  name="movie"
                                                  component={this.renderField}
                                                  type="text"
@@ -273,21 +275,7 @@ class EditMovieHallBody extends Component {
                                              type="text"
                                          />
                                          <br/>
-                                         <Field
-                                             label="Please select the Screen Number "
-                                             name="screenNo"
-                                             component={this.renderDropdown}
-                                             type="text"
-                                         />
-                                         <br/>
 
-                                         <Field
-                                             label="Please enter the ticket price "
-                                             name="tktPrice"
-                                             component={this.renderField}
-                                             type="text"
-                                         />
-                                         <br/>
                                      </div>
                                  </div>
                              </div>

@@ -165,7 +165,7 @@ class PaymentMethod extends Component {
                                                 />
                                             </div>
                                             <div className="medium-6 columns right-40">
-                                                <button id="save-basic" className="btn save-button">Save</button>
+                                                <button id="save-basic-card" className="btn save-button">Save</button>
                                             </div>
                                         </div>
                                     </form>

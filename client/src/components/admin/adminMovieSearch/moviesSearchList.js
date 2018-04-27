@@ -11,7 +11,7 @@ class MoviesSearchList extends Component {
             console.log("vishal")
             return (
                 <div key={movie.title} className="movie-search-list p-1 m-1 background-white">
-                    <div className='row admin-movie-list-edit'>
+                    <div className='row'>
                         <div className='col-md-2'>
                             <img
                                 src={`http://image.tmdb.org/t/p/w200${movie.poster_path}`}
@@ -21,7 +21,6 @@ class MoviesSearchList extends Component {
 
                         <div className='col-md-8'>
                             <h3 className="font-condensed-bold">{movie.title}</h3>
-                            <br/>
                             <p className="font-family-roboto text-justify font-italic font-size-14">{movie.overview}</p>
                         </div>
 
@@ -46,7 +45,7 @@ class MoviesSearchList extends Component {
                             </small>
                             <br/>
                             <br/>
-                            <button className="btn"
+                            <button className="btn btn-primary"
                                     onClick={() => this.props.history.push(`/admin-movie-edit/${movie.tmdbid}`)}>
                                 Edit
                             </button>

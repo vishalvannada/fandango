@@ -46,13 +46,14 @@ export function signin(values) {
                 if (res.status === 200) {
                     console.log("response received");
                     console.log(request)
-                    dispatch({type: SIGN_IN, payload: request});
+                    // dispatch({type: SIGN_IN, payload: request});
                 }
             }
         });
         request.catch(function (err) {
             // dtype = {message:'error received'}
             console.log("caught:", err.response);
+            dispatch({type: SIGN_IN_ERROR, payload: request});
         });
         console.log(action_type);
     }
@@ -81,29 +82,6 @@ export function signout(values) {
     }
 }
 
-
-export function signoutMovieHall(values) {
-    console.log(values);
-
-    return (dispatch) => {
-        const response = axios.get(`${ROOT_URL}/user/signout`)
-            .then(response => {
-                console.log(response.data);
-                window.localStorage.clear();
-                history.push('/moviehallSignin');
-                dispatch(() => {
-                    return {
-                        type: SIGN_OUT,
-                        payload: response
-                    }
-                })
-            }).catch(error => {
-                console.log(error);
-            });
-    }
-}
-
-
 export function fetchUser() {
     return function (dispatch) {
         let rtype = null;
@@ -111,7 +89,7 @@ export function fetchUser() {
         const request = axios.get(`${ROOT_URL}/user/fetchuser`, {withCredentials: true});
         request.then(function (res) {
             if (res.status == 201) {
-                console.log('response received', res);
+                console.log('response received');
                 dtype = request;
                 dispatch({type: FETCH_USER, payload: res.data});
             }
@@ -281,7 +259,7 @@ export function movieHallSignin(values) {
             console.log("res", res.status);
             if (res.status == 201) {
                 console.log("response received",res);
-                history.push('/movieHall-home');
+                history.push('/home');
                 dispatch({type: SIGN_IN, payload: request});
             }
             else {

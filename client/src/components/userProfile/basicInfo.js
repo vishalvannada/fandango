@@ -157,7 +157,7 @@ class BasicInfo extends Component {
                                             />
                                         </div>
                                         <div className="medium-7 columns right-40">
-                                            <button id="save-basic" className="btn save-button">Save</button>
+                                            <button id="save-basic-info" className="btn save-button">Save</button>
                                         </div>
                                     </form>
                                 </div>

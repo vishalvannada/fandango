@@ -1,3 +1,7 @@
+
+
+
+
 const home = {
     moviesTheatres: {
 
@@ -13,14 +17,16 @@ const home = {
         }],
             type:"test"
     }]
-}}
+}};
 
 export default function (state = home, action) {
     switch (action.type) {
         case "MOVIES_SEARCH_PAGE":
             return {
                 moviesTheatres: action.payload
-            }
+            };
+
+
         default:
             return state;
     }

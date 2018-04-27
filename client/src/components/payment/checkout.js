@@ -12,8 +12,6 @@ class CheckOut extends Component {
     // }
 
     render() {
-
-        console.log(this.props.location.state)
         return (
             <div>
                 <div className="background-fandango-checkout">
@@ -67,8 +65,7 @@ class CheckOut extends Component {
                                     <div className="col-md-5">
 
                                         <img className="width-100"
-                                             src={`http://image.tmdb.org/t/p/w200${this.props.location.state.movie.movie.poster_path}`}
-                                             />
+                                             src="http://image.tmdb.org/t/p/w200/jnAtRqnP4mVZZmrJd2AOtU6t1zu.jpg"/>
 
                                     </div>
 

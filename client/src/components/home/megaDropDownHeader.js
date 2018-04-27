@@ -26,12 +26,12 @@ class MegaDropDownHeader extends Component {
 
 
                             <form className="form-inline ml-5 my-lg-0">
-                                <input className="form-control font-size-14 mt-3 header-form-input" type="search"
+                                <input className="form-control font-size-14  mr-sm-2 header-form-input" type="search"
                                        placeholder="Enter City + State, ZIP Code, or Movie"
                                        aria-label="Search"/>
                                 <button
-                                    className="my-2 my-sm-0 ml-4 header-button-go"
-                                    type="submit"> GO
+                                    className="my-2 my-sm-0 header-button-go"
+                                    type="submit">GO
                                 </button>
                             </form>
 
@@ -291,4 +291,3 @@ class MegaDropDownHeader extends Component {
 // }
 
 export default connect(null, null)(MegaDropDownHeader);
-
