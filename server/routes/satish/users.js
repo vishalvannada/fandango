@@ -228,6 +228,38 @@ router.delete('/deleteuser',function(req,res){
 
 })
 
+
+router.delete('/deleteSelfuser',function(req,res){
+    var email = req.query.email;
+    console.log("user email",req.query.email);
+    kafka.make_request('deleteuser', {"email":email}, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else {
+            if (results.code === 201) {
+                console.log("Inside the success criteria");
+                req.logout();
+                req.session.destroy(function (err) {
+                    if (!err) {
+                        res.status(201).clearCookie('connect.sid').json({message: "User account deleted successfully"});
+                    } else {
+                        // handle error case...
+                    }
+                });
+            }
+            else {
+                res.status(401).json({message: results.message});
+
+            }
+        }
+    });
+
+
+})
+
 router.post('/editUserAccount', function (req, res) {
     // console.log("req user",req.user);
     console.log("session email", req.session.email);
@@ -254,6 +286,36 @@ router.post('/editUserAccount', function (req, res) {
     });
 
 });
+
+
+
+router.post('/editMoviehallUserAccount', function (req, res) {
+    // console.log("req user",req.user);
+    console.log("session email", req.session.email);
+    // console.log("req user",req.user);
+    var email = req.body.oldemail;
+    kafka.make_request('editMoviehallUserAccount', {"user": req.body,"email":email}, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else {
+            if (results.code === 201) {
+                console.log("Inside the success criteria");
+                req.session.email= results.user.email;
+                req.user= results.user;
+                res.status(201).json({message: "Movie hall user Account Saved successfully",user:results.user});
+            }
+            else {
+                res.status(401).json({message: results.message});
+
+            }
+        }
+    });
+
+});
+
 
 
 router.post('/email', function (req, res) {
@@ -347,6 +409,8 @@ router.get('/searchMoviehallUsers',function(req,res){
         }
     });
 });
+
+
 
 
 router.get('/purchaseHistory',function (req, res) {
