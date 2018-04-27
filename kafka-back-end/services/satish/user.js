@@ -197,14 +197,14 @@ function searchMoviehallUsers(msg,callback){
         if (users.length === 0) {
             console.log('error');
             res.code = 401;
-            res.message = "user details not found";
+            res.message = "Movie Hall user details not found";
             callback(null, res);
         }
         else if(users){
-            console.log("users details found");
+            console.log("Movie users details found");
             res.code = 201;
             res.users= users;
-            res.messsage = "users details found";
+            res.messsage = "Movie Hall users details found";
             callback(null, res);
         }
     }).catch(err =>
