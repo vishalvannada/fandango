@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import swal from 'sweetalert'
 
 
 class MegaDropDownHeader extends Component {
@@ -31,7 +32,13 @@ class MegaDropDownHeader extends Component {
                                        aria-label="Search"/>
                                 <button
                                     className="my-2 my-sm-0 ml-4 header-button-go"
-                                    type="submit"> GO
+                                    type="button" onClick={(event)=>{
+                                        console.log("pranith Clcikdef")
+                                        console.log(event);
+                                        //swal("value is ", event.target);
+
+                                    this.props.history.push("/movietime");
+                                }}> GO
                                 </button>
                             </form>
 

@@ -97,6 +97,13 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
+        case 'addMovieHallAdmin_topic':
+            user.addMovieHallAdmin(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break;
+
 
         case 'geteditmoviesearch_topic':
             getMoviesSearchHandle.handle_geteditmoviesearch(data.data, function(err,res){
