@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import {Route, withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import "./ListCard.css";
+import {deleteUser} from "../../actions/satishActions"
+
 
 
 class ListCard extends Component {
-
     constructor(props) {
         super(props);
 
@@ -13,63 +15,57 @@ class ListCard extends Component {
     state={
         moviename:"Gurdians of Galaxy",
         poster_path:"",
-        username:"Rishith",
+        displayname:"Rishith",
+        email:this.props.user.email,
         movietime:"3:30 PM",
         cost:'12$',
         theatername:'Town Three Hall',
         transactionid:'XXXX323425',
         screenno:'33'
     };
-
+    deleteUserAccount(){
+        this.props.deleteUser(this.state.email);
+    }
 
     render(){
+        console.log(this.props);
         return(
             <div>
-                <div className='row'>
-                    <div className='medium-7 columns'><div className='Purchase-container card container'>
-                    <div id='purchase-card' className='row'>
-                        <div className='Purchase-item medium-10 columns'>
+                <div className='row userProfile-List'>
+                    <div className='medium-9 columns'>
+                        <div className='user-List-card container'>
+                            <div id='purchase-card' className='row'>
                                 <div className='Purchase-item medium-12 columns '>
                                       <div className='row'>
-                                          <div id='card-heading' className='Purchase-movie-name'>{this.state.moviename}</div>
-
+                                          <a className='List-user-name font-condensed-bold'>{this.props.user.firstname}</a>
+                                      </div>
+                                      <div className='row'>
+                                        <div className=' medium-8 columns'>
+                                             <div id='list-email' className='list-user-email'>{this.props.user.email}</div>
+                                        </div>
+                                         <div className='Purchase-item medium-2 columns'>
+                                             <button className="btn "
+                                                     onClick={()=> {console.log(this.props.user)
+                                                         this.props.history.push({
+                                                             pathname: '/Admin-userEdit',
+                                                             state: {user: this.props.user,test:"test"}
+                                                         })}
+                                                     }>
+                                                 Edit
+                                             </button>
+                                         </div>
+                                          <div className='Purchase-item medium-2 columns'>
+                                              <button className="btn " onClick={this.deleteUserAccount.bind(this)}>Delete</button>
 
                                           </div>
-                                    <div className='row'>
-                                        <div id='card-user' className='Purchase-user-name'>Name: {this.state.username}</div>
-                                    </div>
-                                      <div id = 'card-movie' className='Purchase-movie-time'>
-                                         <p id = 'timings' >Movie time: <div className='movie-time'>{this.state.movietime}</div></p>
-                                     </div>
-                                    <div className='Purchase-movie-theater'>
-                                        <p>Movie Theater: <div id='theater-name'>{this.state.theatername} - Screen No: {this.state.screenno}</div></p>
-                                    </div>
-
-
+                                      </div>
                                 </div>
-
-                            </div>
-                            <div>
-
-
+                                <div>
                             </div>
 
                         </div>
 
-                        <div className='Purchase-item medium-2 columns'>
-                            <div id = 'transaction-div' className='row'>
-                                <div>Transaction ID: <div id='transaction-id'>{this.state.transactionid}</div></div>
-                            </div>
 
-                            <div id='ticket-div'  className='row'>
-                                <div>Amount: <div id='ticket-cost'  >{this.state.cost}</div></div>
-                            </div>
-
-                            <div id = 'tax-div' className='row'>
-                                <div>Tax: 12%</div>
-                            </div>
-
-                        </div>
                     </div>
                 </div>
                 </div>
@@ -78,13 +74,13 @@ class ListCard extends Component {
     }
 }
 
-function mapStateToProps(store) {
+function mapStateToProps() {
     return ({});
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        ...bindActionCreators({}, dispatch)
+        ...bindActionCreators({deleteUser}, dispatch)
     }
 }
 

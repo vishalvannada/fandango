@@ -11,9 +11,6 @@ class TransactionCard extends Component {
         super(props);
 
     }
-
-
-
     state={
         moviename: this.props.purchase,            //"Gurdians of Galaxy",
         poster_path:"",
@@ -24,8 +21,6 @@ class TransactionCard extends Component {
         transactionid:'XXXX323425',
         screenno:'33'
     };
-
-
     render(){
         console.log("purchase",this.props.purchase);
         return(
@@ -38,16 +33,11 @@ class TransactionCard extends Component {
                                 <div className='medium-3 columns'>
                                     <img id = 'purchase-image' src = 'http://t2.gstatic.com/images?q=tbn:ANd9GcQW3LbpT94mtUG1PZIIzJNxmFX399wr_NcvoppJ82k7z99Hx6in'>
                                     </img>
-
-
                                 </div>
-
                                 <div className='Purchase-item medium-9 columns '>
 
                                       <div className='row'>
-
                                           <div id='card-heading' className='Purchase-movie-name'>{this.props.purchase.moviename}</div>
-
 
                                           </div>
                                     <div className='row'>
@@ -68,10 +58,7 @@ class TransactionCard extends Component {
 
                             </div>
                             <div>
-
-
                             </div>
-
                         </div>
 
                         <div className='Purchase-item medium-2 columns'>
@@ -80,21 +67,13 @@ class TransactionCard extends Component {
                             </div>
 
                             <div id='ticket-div'  className='row'>
-                                <div>Amount: <div id='ticket-cost'  >{this.props.purchase.Amount}</div></div>
+                                <div>Amount: <div id='ticket-cost'  >${this.props.purchase.Amount}</div></div>
                             </div>
 
                             <div id = 'tax-div' className='row'>
-                                <div>Tax: 12%</div>
+                                <div>Tax: ${this.props.purchase.tax}</div>
                             </div>
-
                         </div>
-
-
-
-
-
-
-
                     </div>
 
                 </div></div>

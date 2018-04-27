@@ -158,7 +158,7 @@ router.post('/signup', function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
-                res.status(201).json({message: "User Details Saved successfully"});
+                res.status(201).json({message: "User Details Saved successfully",accountType:"User"});
             }
             else {
                 res.status(401).json({message: "SignUp failed"});
@@ -204,6 +204,57 @@ router.post('/basicInfo', function (req, res) {
     });
 });
 
+router.delete('/deleteuser',function(req,res){
+    var email = req.query.email;
+    console.log("user email",req.query.email);
+    kafka.make_request('deleteuser', {"email":email}, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else {
+            if (results.code === 201) {
+                console.log("Inside the success criteria");
+                res.status(201).json({message: "User account deleted successfully"});
+            }
+            else {
+                res.status(401).json({message: results.message});
+
+            }
+        }
+    });
+
+
+})
+
+router.post('/editUserAccount', function (req, res) {
+    // console.log("req user",req.user);
+    console.log("session email", req.session.email);
+    // console.log("req user",req.user);
+    var email = req.body.oldemail;
+    kafka.make_request('editUserAccount', {"user": req.body,"email":email}, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else {
+            if (results.code === 201) {
+                console.log("Inside the success criteria");
+                req.session.email= results.user.email;
+                req.user= results.user;
+                res.status(201).json({message: "user Account Saved successfully",user:results.user});
+            }
+            else {
+                res.status(401).json({message: results.message});
+
+            }
+        }
+    });
+
+});
+
 
 router.post('/email', function (req, res) {
     console.log("session email", req.session.email);
@@ -229,6 +280,7 @@ router.post('/email', function (req, res) {
     });
 
 });
+
 
 
 router.post('/password', function (req, res) {

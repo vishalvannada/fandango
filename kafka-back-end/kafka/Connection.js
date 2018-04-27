@@ -23,12 +23,16 @@ function ConnectionProvider() {
 
 
 
+
             //satish
             {topic: 'signup', partition: 0},
             {topic: 'signin', partition: 0},
             {topic: 'moviehallsignin', partition: 0},
             {topic: 'adminsignin', partition: 0},
             {topic: 'purchaseHistory', partition: 0},
+            {topic: 'deleteuser', partition: 0},
+            {topic: 'editUserAccount', partition: 0},
+
 
             {topic: 'searchMoviehallUsers', partition: 0},
             {topic: 'basicInfo', partition: 0},

@@ -3,10 +3,10 @@ import _ from 'lodash';
 
 export default function (state={
     message : '',
-    users: ''
+    history: ''
 
 },action){
-    console.log("inside Search users reducer",action.payload);
+    // console.log("inside Search users reducer",action.payload);
     switch(action.type){
         case PURCHASE_SUCCESS:
             return {...state, message: action.payload.message, history: _.mapKeys(action.payload.purchase,'transactionid')};
@@ -15,6 +15,6 @@ export default function (state={
             return {...state, messsage: action.payload.message};
             break;
         default:
-            return state;
+            return {...state};
     }
 }

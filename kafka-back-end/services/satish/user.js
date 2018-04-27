@@ -239,6 +239,55 @@ function basicInfo(msg, callback) {
         )
 }
 
+function editUserAccount(msg,callback){
+    console.log("userdata", msg.user, msg.email,msg.user.password);
+    var firstName = msg.user.firstname;
+    var lastName = msg.user.lastname;
+    var displayName = msg.user.displayname;
+    var address = msg.user.address;
+    var mobile = msg.user.mobile;
+    var newPassword = msg.user.password;
+    var email = msg.user.email;
+    var oldPassword = msg.user.oldpassword;
+    var res = {};
+    var hashnew = oldPassword;
+
+    console.log("user",displayName);
+
+    if(newPassword===null){
+        bcrypt.hash(newPassword, 10, function (err, hash) {
+            if (err) {
+                res.status = 401;
+                res.message = 'password encryption failed';
+                callback(null, res);
+                console.log("encryption failed");
+            }
+            else{
+                hashnew = hash;
+            }
+        });
+    }
+
+
+    User.update(
+        {firstname: firstName, lastname: lastName, address: address, displayname: displayName, mobile: mobile, password:hashnew , email:email},
+        {returning: true, where: {email: msg.email}}
+    )
+        .then(function (results) {
+            User.find({where: {email: msg.email}})
+                .then(function (user) {
+                    res.user = user;
+                    res.code = 201;
+                    callback(null, res);
+                }).catch(function (err) {
+                console.log(['error'], err.stack);
+            });
+        })
+        .catch(err =>
+            callback(null, err)
+        )
+}
+
 
 function uploadImage(msg, callback) {
     // console.log("userdata", msg.user, msg.email);
@@ -271,7 +320,7 @@ function uploadImage(msg, callback) {
 function changeEmail(msg, callback) {
     console.log("userdata", msg.user);
     var email = msg.user.email;
-    User.User.find({where: {email: msg.email}})
+    User.find({where: {email: msg.email}})
         .then(function (user) {
             res.code = 401;
             res.message= "Email already linked with another account"
@@ -437,6 +486,22 @@ function deletePayment(msg, callback) {
 }
 
 
+function deleteUser(msg,callback){
+    var res={};
+    console.log("email",msg.email);
+    User.destroy({
+        where: {
+            email: msg.email
+        }
+    }).then(function(result){
+        res.code = 201;
+        res.message= "Delete User Successful";
+        callback(null,res);
+    }).catch( err =>
+        callback(null,err)
+    );
+}
+
 function moviehallSignin(msg, callback) {
 
     var res = {};
@@ -523,3 +588,5 @@ exports.adminSignin = adminSignin;
 exports.searchUsers = searchUsers;
 exports.searchMoviehallUsers = searchMoviehallUsers;
 exports.purchaseHistory = purchaseHistory;
+exports.deleteUser = deleteUser;
+exports.editUserAccount = editUserAccount;

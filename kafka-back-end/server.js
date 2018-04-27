@@ -215,6 +215,18 @@ consumer.on('message', function (message) {
                 response(data, res);
             });
             break;
+        case 'deleteuser':
+            user.deleteUser(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            })
+            break;
+        case 'editUserAccount':
+            user.editUserAccount(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            })
+            break;
     }
 });
 
