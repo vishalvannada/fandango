@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 // var session = require('client-sessions');
+var router = express.Router();
+var kafka = require('./routes/kafka/client');
 
 var passport = require('passport');
 require('./routes/passport')(passport);
@@ -12,6 +14,7 @@ require('./routes/passport')(passport);
 var index = require('./routes/vishal/index');
 var movies = require('./routes/vishal/movies');
 var admin = require('./routes/vishal/admin');
+var usertracking = require('./routes/mangesh/usertracking');
 
 var movietheatres = require('./routes/pranith/movietheatre');
 var user = require('./routes/satish/users');
@@ -102,6 +105,54 @@ app.use('/', index); //vishal
 app.use('/movies', movies); //vishal
 app.use('/admin', admin); //vishal
 app.use('/movietheatres', movietheatres); //pranith
+//app.use('/usertracking', usertracking); //mangesh
+
+
+// delete it later
+
+
+app.post('/usertrack', function (req, res) {
+console.log("from usertracking_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('usertracking_topic', {"reqBody":req.body}, function (err, results) {
+        console.log('Results: ', results);
+        res.status(201).send(results)       
+        
+    });
+});
+
+app.post('/usertrackclose', function (req, res) {
+console.log("from usertrackclose_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('usertrackclose_topic', {"reqBody":req.body}, function (err, results) {
+        console.log('Results: ', results);
+        res.status(201).send(results)       
+        
+    });
+});
+
+app.post('/pageclicks', function (req, res) {
+console.log("from pageclicks_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('pageclicks_topic', {"reqBody":req.body}, function (err, results) {
+        
+        console.log('Results: ', results);
+        res.status(201).send(results);       
+        
+    });
+});
+
+app.post('/movieclicks', function (req, res) {
+console.log("from movieclicks_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('movieclicks_topic', {"reqBody":req.body}, function (err, results) {
+        
+        console.log('Results: ', results);
+        res.status(201).send(results);       
+        
+    });
+});
+
 
 // catch 404 and forward to error handlers
 app.use(function (req, res, next) {
@@ -120,6 +171,7 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
 
 module.exports = app;
 

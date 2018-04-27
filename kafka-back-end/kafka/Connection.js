@@ -26,7 +26,14 @@ function ConnectionProvider() {
             {topic: 'changePassword', partition: 0},
             {topic: 'savePayment', partition: 0},
             {topic: 'userDetails', partition: 0},
-            {topic: 'deletePayment', partition: 0}
+            {topic: 'deletePayment', partition: 0},
+
+            //mangesh
+            {topic: 'usertracking_topic', partition: 0},
+            {topic: 'pageclicks_topic', partition: 0},
+            {topic: 'movieclicks_topic', partition: 0},
+            {topic: 'usertrackclose_topic', partition: 0}            
+
         ]);
         this.client.on('ready', function () {
             console.log('client ready!')

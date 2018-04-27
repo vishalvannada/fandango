@@ -12,6 +12,7 @@ var consumer = connection.getConsumer();
 var saveReview = require('./services/saveReview');
 var adminMovieSearch = require('./services/adminMovieSearch');
 var updateMovieAdmin = require('./services/updateMovieAdmin');
+var usertracking = require('./services/usertracking');
 
 
 var getMoviesSearchHandle = require('./services/getMoviesSearchHandle') ;
@@ -142,6 +143,32 @@ consumer.on('message', function (message) {
             break;
         case 'changePassword':
             user.changePassword(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break
+        case 'usertracking_topic':
+            usertracking.usertrack(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break
+        case 'usertrackclose_topic':
+            usertracking.usertrackclose(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break
+        case 'pageclicks_topic':
+            console.log("reached pageclicks_topic");
+            usertracking.pageclicks(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break
+        case 'movieclicks_topic':
+            console.log("reached movieclicks_topic");
+            usertracking.movieclicks(data.data, function(err,res){
                 response(data,res);
                 return;
             })

@@ -24,6 +24,7 @@ import CheckOutPayment from './components/payment/checkoutPayment';
 import AdminMovieSearch from './components/admin/adminMovieSearch';
 import AdminMovieEdit from './components/admin/adminMovieSearch/movieEdit';
 import Error from './components/404Error';
+import checkFS from './components/adminTrial/checkFS';
 
 
 export const history = createBrowserHistory();
@@ -67,6 +68,7 @@ class App extends Component {
                             <Switch>
 
                                 <PrivateRoute path="/movietime" component={MovieTime} props={logStat}/>
+                                <PrivateRoute path="/checkfs" component={checkFS}/>
                                 <PrivateRoute path="/secret" component={SecretPage} props={logStat}/>
                                 <PrivateRoute path="/dashboard" component={Dashboard}/>
                                 <Route path="/check-out" component={CheckOut}/>
