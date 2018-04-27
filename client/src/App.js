@@ -32,7 +32,7 @@ import AdminUserEdit from './components/Adminedit/AdminUserEdit';
 import PrivateRouteMovieHallAdmin from './components/PrivateRouteMovieHall';
 import ConditionalRouteMovieHall from './components/ConditionalRouteMovieHall';
 import ConditionalRouteUser from './components/ConditionalRouteUser';
-import AddMovieHall from './components/addMovieHall'
+import AddMovieHall from './components/addMovieHall';
 
 
 export const history = createBrowserHistory();
@@ -75,6 +75,8 @@ class App extends Component {
                         <div>
                             <Switch>
 
+                                {/*Sample check Route*/}
+                                <Route path="/add-movie-hall" component={AddMovieHall}/>
 
                                 <ConditionalRouteUser path="/signin" component={Signin}/>
                                 <PrivateRoute path="/movietime" component={MovieTime} props={logStat}/>
@@ -113,8 +115,7 @@ class App extends Component {
 
                                 <Route path="*" component={Error}/>
 
-                                {/*Sample check Route*/}
-                                <Route path="*" component={}/>
+
 
 
 
