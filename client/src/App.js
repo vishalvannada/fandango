@@ -99,15 +99,7 @@ class App extends Component {
                                 <Route path="/admin-login" component={AdminLogin}/>
                                 <Route path="/secret" component={SecretPage}/>
 
-                                <Route path="/signin" component={Signin}/> {/*satish*/}
-                                <Route path="/moviehallSignin" component={MovieHallSiginin}/> {/*satish*/}
-                                <Route exact path="/signup" render={(props) => {
-                                    return <SignUp/>
-                                }}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
-                                <PrivateRoute exact path='/userprofile'
-                                              component={UserProfile}
-                                              props={logStat}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
-                                <Route path="/home" component={Home}/>
+
                                 <Route path="/findUsers" component={FindUsers}/>{/*satish*/}
                                 <Route path="/purchaseHistory" component={PurchaseHistory}/>{/*satish*/}
                                 <Route path="/admin-home" component={AdminHome}/>{/*satish*/}
