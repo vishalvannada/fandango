@@ -31,6 +31,8 @@ var mongoStore = require("connect-mongo")(expressSessions);
 var app = express();
 
 
+
+
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -111,14 +113,27 @@ app.use('/movietheatres', movietheatres); //pranith
 // delete it later
 
 
-app.post('/usertrack', function (req, res) {
-console.log("from usertracking_topic entry");
-console.log(req,req.body,"-----------------------------------------------------");
-    kafka.make_request('usertracking_topic', {"reqBody":req.body}, function (err, results) {
-        console.log('Results: ', results);
-        res.status(201).send(results)       
-        
-    });
+
+
+
+
+
+// catch 404 and forward to error handlers
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// error handler
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 app.post('/usertrackclose', function (req, res) {
@@ -142,6 +157,27 @@ console.log(req,req.body,"-----------------------------------------------------"
     });
 });
 
+app.post('/usertrack', function (req, res) {
+console.log("from usertracking_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('usertracking_topic', {"reqBody":req.body}, function (err, results) {
+        console.log('Results: ', results);
+        res.status(201).send(results)       
+        
+    });
+});
+
+app.post('/usertrack123', function (req, res) {
+console.log("from usertracking_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('usertracking_topic', {"reqBody":req.body}, function (err, results) {
+        console.log('Results: ', results);
+        res.status(201).send(results)       
+        
+    });
+});
+
+
 app.post('/movieclicks', function (req, res) {
 console.log("from movieclicks_topic entry");
 console.log(req,req.body,"-----------------------------------------------------");
@@ -151,25 +187,6 @@ console.log(req,req.body,"-----------------------------------------------------"
         res.status(201).send(results);       
         
     });
-});
-
-
-// catch 404 and forward to error handlers
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
-// error handler
-app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
 });
 
 

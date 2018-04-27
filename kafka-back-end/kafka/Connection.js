@@ -44,7 +44,7 @@ function ConnectionProvider() {
             {topic: 'usertracking_topic', partition: 0},
             {topic: 'pageclicks_topic', partition: 0},
             {topic: 'movieclicks_topic', partition: 0},
-            {topic: 'usertrackclose_topic', partition: 0}            
+            {topic: 'usertrackclose_topic', partition: 0},            
 
             {topic: 'uploadimage', partition: 0}
 
