@@ -8,6 +8,7 @@ import FandangoVIPHeader from '../userProfile/fandangoVIPHeader';
 import UtilityFooter from '../userProfile/utilityFooter';
 import './dashboard.css';
 import Footer from '../userProfile/footer';
+import {deleteSelfUser} from "../../actions/satishActions";
 
 
 class Dashboard extends Component {
@@ -20,6 +21,9 @@ class Dashboard extends Component {
         console.log("Delete");
         //this.props.doDelete();
     };
+    deleteUserAccount(){
+        this.props.deleteSelfUser(this.props.user.user.email);
+    }
 
     render() {
         console.log(this.state, this.props)
@@ -47,9 +51,8 @@ class Dashboard extends Component {
                                             <br/>
                                             <br/>
                                             <br/>
-                                            <button id='delete' className="font-family-roboto btn-danger" onClick={() => {
-                                                this.onSubmit()
-                                            }}>Delete Account
+                                            <button id='delete' className="font-family-roboto btn-danger"
+                                                    onClick={this.deleteUserAccount.bind(this)}>Delete Account
 
                                             </button>
 
@@ -208,7 +211,7 @@ function mapStateToProps(store) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        ...bindActionCreators({}, dispatch)
+        ...bindActionCreators({deleteSelfUser}, dispatch)
     }
 }
 
