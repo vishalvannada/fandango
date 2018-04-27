@@ -10,6 +10,7 @@ import logo from './Signin/fandango-logo.svg';
 import offer from './Signin/offers.png'
 import {fetchUser} from "../actions/satishActions";
 
+
 class SignUp extends Component {
     componentWillMount(){
         //    this.props.fetchUser();
@@ -148,9 +149,10 @@ class SignUp extends Component {
                                             <p className="join-header">JOIN FANDANGO<span
                                                 className="page-header-emphasis">VIP</span>
 
-                                                <span className="registration-caption hide-for-small-only">(And become eligible for VIP+ Points)</span>
-                                                <span className="registration-caption show-for-small-only">(And become eligible for VIP+ Points)</span>
                                                 <span className="registration-caption hide-for-small-only text-danger">{this.props.error}</span>
+
+
+
 
                                             </p>
                                             <div className='form-group'>

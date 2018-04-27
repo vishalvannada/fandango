@@ -48,7 +48,7 @@ export default function (state={
         //     return {...state, isLoggedIn:true, username: action.payload.data};
         //     break;
         default:
-            return state;
+            return {...state};
     }
 
 }

@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {history} from "../App";
+import swal from "sweetalert";
+
 
 // Signup Actions
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
@@ -24,6 +26,7 @@ export function doSignUp(userdata) {
                 console.log("Inside actions 'Response'-> ", res.data);
                 window.localStorage.setItem('user',res.data.user);
                 window.localStorage.setItem('isLoggedIn',true);
+                swal("Signup Successful");
                 history.push('/home')
                 dispatch({type:SIGN_UP_SUCCESS, payload:res.data});
             })

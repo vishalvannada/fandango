@@ -32,14 +32,20 @@ function ConnectionProvider() {
             {topic: 'signin', partition: 0},
             {topic: 'moviehallsignin', partition: 0},
             {topic: 'adminsignin', partition: 0},
+            {topic: 'purchaseHistory', partition: 0},
+            {topic: 'deleteuser', partition: 0},
+            {topic: 'editUserAccount', partition: 0},
 
+
+            {topic: 'searchMoviehallUsers', partition: 0},
             {topic: 'basicInfo', partition: 0},
             {topic: 'changeEmail', partition: 0},
             {topic: 'changePassword', partition: 0},
             {topic: 'savePayment', partition: 0},
             {topic: 'userDetails', partition: 0},
             {topic: 'deletePayment', partition: 0},
-            {topic: 'uploadimage', partition: 0}
+            {topic: 'uploadimage', partition: 0},
+            {topic: 'searchusers', partition: 0}
 
         ]);
         this.client.on('ready', function () {
