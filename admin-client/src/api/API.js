@@ -22,3 +22,79 @@ export const check = () =>
             console.log("This is error");
             return error;
 });
+
+//checklogin
+export const getSearchedMoviesAdmin = (term) =>
+    fetch(`${api}/admin/movieSearch?term=${term}`, {
+        method: 'GET',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        //body: JSON.stringify(payload)
+    }).then(res => {
+        //console.log(res.json());
+        return res.json();
+    })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+});
+
+//adminSignin
+export const adminSignin = (values) =>
+    fetch(`${api}/user/adminSignin`,  {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(values)
+    }).then(res => {
+        //console.log(res.json());
+        return res.json();
+    })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+});
+
+//adminSignin
+export const getMovieOverview = (tmdbid) =>
+    fetch(`${api}/movies/getMovieOverview?tmdbid=${tmdbid}`,  {
+        method: 'GET',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        //body: JSON.stringify(values)
+    }).then(res => {
+        //console.log(res.json());
+        return res.json();
+    })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+//adminSignin
+export const updateEditedMovieAdmin = (values) =>
+    fetch(`${api}/admin/saveMovie`,  {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(values)
+    }).then(res => {
+        //console.log(res.json());
+        return res.json();
+    })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });

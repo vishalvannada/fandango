@@ -5,23 +5,61 @@ import React, {Component} from 'react';
 // import CastCrewCarousel from './movieOverview/castCrewCarousel';
 import {connect} from "react-redux";
 // import {getSearchedMoviesAdmin} from "../../actions/vishalActions";
-// import MovieSearchList from './adminMovieSearch/moviesSearchList';
+import MovieSearchList from '../../admin/adminMovieSearch/moviesSearchList';
 // import swal from 'sweetalert';
+import * as API from '../../api/API';
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
+
+
 class Searchmovie extends Component {
+  constructor(props) {
+      super(props);
 
+      this.state = {
+          term: '',
+          searchmovies: []
+      };
+  }
+
+  handleSubmit = (evt) => {
+      evt.preventDefault();
+      API.getSearchedMoviesAdmin(this.state.term)
+        .then((res)=>{
+            console.log("resa----->"+JSON.stringify(res));
+            this.setState({
+              searchmovies: res
+            });
+
+        });
+      //
+      // function getSearchedMoviesAdmin(term) {
+      //     return (dispatch) => {
+      //         const response = axios.get(`${ROOT_URL}/admin/movieSearch?term=${term}`)
+      //             .then(response => {
+      //                 console.log(response.data)
+      //                 dispatch(adminMovies(response.data))
+      //             }).catch(error => {
+      //                 console.log(error);
+      //             });
+      //     }
+      // }
+  }
     render() {
-
+      console.log("rerer-------->"+this.state.searchmovies);
         return (
             <div>
 
-                <form >
-
+                <form onSubmit={this.handleSubmit}>
+                    <input value={this.state.term} onChange={(e) => this.setState({term: e.target.value})}/>
                     <button type="submit" className="btn m-2">Go</button>
                 </form>
+
+
+                {this.state.searchmovies.length>0 ?
+                    <MovieSearchList history={this.props.history} movies={this.state.searchmovies}/> : ''}
             </div>
         )
     }

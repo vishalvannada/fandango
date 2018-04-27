@@ -8,7 +8,17 @@ import Maps from "views/Maps/Maps";
 import Notifications from "views/Notifications/Notifications";
 import Upgrade from "views/Upgrade/Upgrade";
 
+import MovieEdit from '../admin/adminMovieSearch/movieEdit';
+
+
 const dashboardRoutes = [
+
+    {
+     path : "/admin-movie-edit/:tmdbid",
+        component : MovieEdit,
+
+    },
+
   {
     path: "/dashboard",
     name: "Dashboard",
@@ -40,6 +50,12 @@ const dashboardRoutes = [
     icon: "pe-7s-note2",
     component: ''
   },
+  {
+    path: "",
+    name: "Search User",
+    icon: "pe-7s-note2",
+    component: ''
+  },
 
   /*{
     path: "/typography",
@@ -62,7 +78,7 @@ const dashboardRoutes = [
     icon: "pe-7s-rocket",
     component: Upgrade
   },*/
-  { redirect: true, path: "/", to: "/dashboard", name: "Dashboard" }
+  // { redirect: true, path: "/", to: "/dashboard", name: "Dashboard" }
 ];
 
 export default dashboardRoutes;
