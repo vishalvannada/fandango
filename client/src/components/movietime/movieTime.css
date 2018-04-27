@@ -244,3 +244,6 @@ a {
     -o-transition: color .3s linear;
     transition: color .3s linear;
 }
+.display-inline-div{
+    display: inline-flex;
+}

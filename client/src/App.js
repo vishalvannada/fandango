@@ -19,6 +19,7 @@ import CheckOut from './components/payment/checkout';
 import CheckOutPayment from './components/payment/checkoutPayment';
 import AdminMovieSearch from './components/admin/adminMovieSearch';
 import AdminMovieEdit from './components/admin/adminMovieSearch/movieEdit';
+import AddMovieHallAdmin from './components/admin/addMovieHall';
 import EditMovieHallListing from './components/editMovieHallListing';
 import EditMovieHall from './components/editmovie';
 import Error from './components/404Error';
@@ -106,6 +107,7 @@ class App extends Component {
                                 <Route path="/admin-home" component={AdminHome}/>{/*satish*/}
 
                                 <Route path="/admin-useredit" component={AdminUserEdit}/>{/*satish*/}
+                                <Route path="/addmovieHallAdmin" component={AddMovieHallAdmin}/>
 
 
                                 <ConditionalRouteUser exact path="/signup" component={SignUp}/>

@@ -46,9 +46,9 @@ function handle_request(msg, callback) {
         d.setDate(d.getDate() - 1);
         console.log(d,d2);
 
-
+//'^win$'
         var queryJson = {
-            "movie.MovieName": new RegExp(msg.reqBody.movieSearch), "Date": {"$gte": new Date(d), "$lte": new Date(d2)}
+            "movie.MovieName": new RegExp("^"+msg.reqBody.movieSearch, "i"), "Date": {"$gte": new Date(d), "$lte": new Date(d2)}
         };
 
         MongoConPool.find('movieHall', queryJson, function (err, movie) {
@@ -266,6 +266,92 @@ console.log(arrayDates);
                      callback(null, res);
                  }
              });*/
+        }
+        catch
+            (e) {
+            res.code = "401";
+            callback(null, res);
+        }
+    }
+
+
+
+    // winston.remove(winston.transports.File);
+    // winston.add(winston.transports.Console);
+}
+function handle_addOwnerMovies(msg, callback) {
+
+    // winston.remove(winston.transports.Console);
+    // winston.add(winston.transports.File, { filename: './public/LogFiles/KayakAnalysis.json' });
+    // winston.log('info', 'Flight Page Viewed', { page_name : 'Flights_page'});
+    console.log("-----------------------------------------in add Ownermovies--");
+    var showtimes = [];
+
+
+
+    // console.log(showtimes, "--------------------------------------");
+    var res = {};
+    var i = 0;
+
+
+    var d = new Date();
+
+    {
+
+        //console.log(d,"??????????????????????????????????????????????????????????????????????????????????");
+        var queryJson = {
+            // "_id":parseInt(randomInt(9,1000000)),
+            "ID": randomInt(9,1000000),
+            "HallID": msg.reqBody.movietheatername + "|" + msg.reqBody.city + "|" +
+            msg.reqBody.state + "|" + msg.reqBody.zipcode,
+            "movie": {
+                "movieId": 427641,
+                "poster_path": "/30oXQKwibh0uANGMs0Sytw3uN22.jpg",
+                "MovieName": "Rampage"
+            },
+            "ScreenNo": 1,
+            "Showtimes": 1,
+            "NoofSeats": 15,
+            "TicketPrice": 10,
+            "Date": d,
+            "user": msg.reqBody.owner_email
+        };
+
+
+        //queryJsonArray.push(queryJson);
+
+    }
+
+    {
+        // console.log(msg.reqBody,"????????????????????????????????????????????????????");
+        try {
+
+
+            {
+
+
+
+                            // var batch = col.initializeOrderedBulkOp();
+                            // console.log("adding movie================================================");
+                            MongoConPool.insert('movieHall', queryJson, function (err, movie) {
+                                if (err) {
+                                    res.code = "401";
+                                    //  callback(null, res);
+                                    console.log(err);
+                                    console.log("error in adding movie-=-=============------------------------------=======")
+                                }
+                                else {
+
+                                    console.log("-moviea added-----------------------------------------------");
+                                    res.result = movie;
+
+                                    res.code = 200;
+                                    callback(null, res);
+                                }
+                            });
+
+                        }
+
         }
         catch
             (e) {
@@ -824,3 +910,4 @@ exports.handle_getMovieListing=handle_getMovieListing;
 exports.handle_saveMovieListing=handle_saveMovieListing;
 exports.handle_geteditmoviesearch=handle_geteditmoviesearch;
 exports.handle_savePayment=handle_savePayment;
+exports.handle_addOwnerMovies=handle_addOwnerMovies;

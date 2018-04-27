@@ -144,6 +144,29 @@ router.post('/getmovieshalllisting', function (req, res) {
     });
 });
 
+router.post('/addMovieHallAdmin', function (req, res) {
+    // console.log("from addmovies_topic entry");
+    console.log("-----------------------------------------------------");
+    console.log(req.body.Date);
+    kafka.make_request('addMovieHallAdmin_topic',{"reqBody":req.body}, function (err, results) {
+
+        if (results.code == 200) {
+            // console.log(results);
+            res.status(201).send(results)
+        }
+        else if(results.code=400){
+
+            //console.log(results);
+            res.status(208).send("movie not added");
+            // res.status(401).end()
+        }else {
+            console.log('fuckedup', results);
+
+        }
+
+    });
+});
+
 
 
 router.post('/addmovies', function (req, res) {

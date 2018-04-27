@@ -71,7 +71,21 @@ class MovieTopSection extends Component {
 
         if (this.props.movietime.moviesTheatres.moviemap.length == 0) {
             return (
-                <div>No Movies Found</div>
+                <div>
+                    <div className="form-inline ml-5 my-lg-0 display-inline-div">
+                        <input className="form-control font-size-14 mt-3 header-form-input"
+                               placeholder="Enter Movie Name" type="text"
+                               onChange={(event) => {
+                                   this.setState({
+                                       movieSearch: event.target.value
+                                   });
+                               }}/>
+                        <button type="button" onClick={() => {
+                            this.searchMovie()
+                        }} className="my-2 my-sm-0 ml-4 header-button-go ">GO
+                        </button>
+
+                    </div> <br/>No Movies Found</div>
             )
         }
 
@@ -84,8 +98,8 @@ class MovieTopSection extends Component {
                         <div className="fandango-container">
 
                             <h1 className="font-condensed-bold-white pt-3">
-                                MOVIE TIMES + TICKETS
-                                <span className="font-color-fandango"> NEAR 95126</span>
+                                MOVIE TIMES + TICKETS FOR
+                                <span className="font-color-fandango">  {(this.state.movieSearch).toUpperCase()}</span>
                             </h1>
 
                             <nav class="nav-movie-top pb-2">
@@ -108,10 +122,9 @@ class MovieTopSection extends Component {
 
                     <div className="fandango-container">
                         <br/>
-                        <div className="date-picker__location">
-                            <span className="date-picker__location-text">ENTER CITY, STATE OR ZIP CODE</span>
-                            <input className="date-picker__location-input js-date-input"
-                                   placeholder="City, State or Zip Code" type="text"
+                        <div className="form-inline ml-5 my-lg-0 display-inline-div">
+                            <input className="form-control font-size-14 mt-3 header-form-input"
+                                   placeholder="Enter Movie Name" type="text"
                                    onChange={(event) => {
                                        this.setState({
                                            movieSearch: event.target.value
@@ -119,7 +132,7 @@ class MovieTopSection extends Component {
                                    }}/>
                             <button type="button" onClick={() => {
                                 this.searchMovie()
-                            }} className="my-2 my-sm-0 header-button-go">GO
+                            }} className="my-2 my-sm-0 ml-4 header-button-go ">GO
                             </button>
                         </div>
                     </div>
@@ -261,13 +274,9 @@ class MovieTopSection extends Component {
                 <div id="initialLoad">
                     <div className="searchboxResults">
                         <br/>
-                        <div className="date-picker__location">
-                            <div className="date-picker__error js-date-picker__error hide"></div>
-
-
-                            <span className="date-picker__location-text">ENTER CITY, STATE OR ZIP CODE</span>
-                            <input className="date-picker__location-input js-date-input"
-                                   placeholder="City, State or Zip Code" type="text"
+                        <div className="form-inline ml-5 my-lg-0 display-inline-div">
+                            <input className="form-control font-size-14 mt-3 header-form-input"
+                                   placeholder="Enter Movie Name" type="text"
                                    onChange={(event) => {
                                        this.setState({
                                            movieSearch: event.target.value
@@ -275,7 +284,7 @@ class MovieTopSection extends Component {
                                    }}/>
                             <button type="button" onClick={() => {
                                 this.searchMovie()
-                            }} className="btn date-picker__location-submit js-date-picker-btn">GO
+                            }} className="my-2 my-sm-0 ml-4 header-button-go ">GO
                             </button>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ class Home extends Component {
         return (
             <div>
                 <BrandBar/>
-                <MegaDropDownHeader/>
+                <MegaDropDownHeader history = {this.props.history}/>
                 <UnderBrand/>
                 <Carousel home={this.props.home}/>
                 <img src="http://localhost:3000/home_dog.jpg" className="width-100"/>

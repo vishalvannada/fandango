@@ -98,6 +98,13 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
+        case 'addMovieHallAdmin_topic':
+            user.addMovieHallAdmin(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break;
+
 
         case 'getMoviesGenereInSearchPage_topic':
             getMoviesGenreInSearchHandle.handle_request(data.data, function (err, res) {          //Rishith

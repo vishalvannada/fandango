@@ -12,6 +12,7 @@ import MoviesSearchListAdmin from './reducer_search_movies_admin';
 
 import SearchUsersList from "./reducer_searchusers";
 import purchaseHistory from "./reducer_purchases";
+import addMoviesAdmin from "./reducer_adminadded"
 
 import SavePayments from './reducer_savePayments'
 import UserReducer from "./reducer_user";
@@ -34,6 +35,7 @@ const appReducer = combineReducers({
     searchUsers: SearchUsersList,
     purchases: purchaseHistory,
     savePayments:SavePayments,
+    addMoviesAdmin:addMoviesAdmin,
     genreSearchMovies: GenreSearchMovies,
     form : formReducer
 
