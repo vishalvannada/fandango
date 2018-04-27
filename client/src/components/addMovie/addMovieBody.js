@@ -16,7 +16,7 @@ class MovieTopSection extends Component {
     componentWillMount()
     {
         console.log("calling movie halls");
-        this.props.GetMoviesnHalls({email:this.props.user.username.email});
+        this.props.GetMoviesnHalls({email:this.props.user.user.email});
 
     }
     state = {
@@ -127,7 +127,7 @@ class MovieTopSection extends Component {
            // d.setDate(d.getDate() + 1);
             //values.Date=i;
 
-            values.userEmail=this.props.user.username.email;
+            values.userEmail=this.props.user.user.email;
             console.log(values);
             this.props.addMovie(values);
         }
@@ -224,7 +224,7 @@ class MovieTopSection extends Component {
                                                     <Field
                                                         name="theatre"
                                                         component={this.renderDropdown}
-                                                        data={this.movieFilter(this.props.user.username.email)
+                                                        data={this.movieFilter(this.props.user.user.email)
 
                                                             }
                                                         valueField="type"

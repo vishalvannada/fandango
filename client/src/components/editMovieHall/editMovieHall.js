@@ -19,17 +19,17 @@ class EditMovieBody extends Component {
     state = {
         movieSearch: "",
         moviesSelected:"",
-        email:this.props.user.username.email,
+        email:this.props.user.user.email,
         dateSelected: moment(new Date()).format()
         // values: selector('theatre')
     }
 
 
     componentWillMount() {
-        this.setState({email:this.props.user.username.email});
+        this.setState({email:this.props.user.user.email});
         console.log(this.state);
         console.log("calling movie halls");
-        this.props.GetMoviesnHalls({email:this.props.user.username.email});
+        this.props.GetMoviesnHalls({email:this.props.user.user.email});
         this.props.editMovieSearch(this.state);
 
     }
