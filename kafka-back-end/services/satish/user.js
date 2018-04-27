@@ -5,6 +5,8 @@ var models = require('../../models');
 var User = require('../../models/User')(models.sequelize, models.Sequelize);
 var MoviehallUser = require("../../models/MoviehallUser")(models.sequelize, models.Sequelize);
 var Admin = require("../../models/Admin")(models.sequelize, models.Sequelize);
+var transactions = require("../../models/UserTransaction")(models.sequelize, models.Sequelize);
+var randomInt = require('random-int');
 
 
 function signin(msg, callback) {
@@ -376,6 +378,43 @@ function adminSignin(msg, callback){
         callback(null, res);
     });
 }
+function saveTransaction(msg, callback) {
+    console.log("In save Transaction ===============================================")
+
+
+    console.log("msg value", msg);
+    var res = {};
+
+    var data =
+         {
+             transactionid: randomInt(9,1000000),
+           displayname: msg.reqBody.user.displayname,
+          email: msg.reqBody.user.email,
+             moviename: msg.reqBody.movies.movie.MovieName,
+             moviehall: msg.reqBody.movies.theatreName,
+             screenno: parseInt(msg.reqBody.movies.ScreenNo),
+             movietime: msg.reqBody.showtime,
+             Amount : parseInt(msg.reqBody.total.totalSum),
+             tax:  parseInt(msg.reqBody.total.tax),
+             image: msg.reqBody.movies.movie.poster_path
+         };
+
+
+    transactions.create(data).then(function (newUser, created) {
+        if (!newUser) {
+            res.message = 'Transaction not Saved';
+            callback(null, res);
+        }
+        if (newUser) {
+            res.code = 201;
+            res.message = 'Transaction Saved';
+            res.user = newUser;
+            callback(null, res);
+        }
+
+    });
+
+}
 
 
 exports.signin = signin;
@@ -389,3 +428,4 @@ exports.deletePayment = deletePayment;
 exports.moviehallSignin = moviehallSignin;
 exports.uploadImage = uploadImage;
 exports.adminSignin = adminSignin;
+exports.saveTransaction=saveTransaction;

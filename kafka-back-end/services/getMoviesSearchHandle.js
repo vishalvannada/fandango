@@ -4,6 +4,7 @@ var moment = require('moment');
 const delay = require('delay');
 var randomInt = require('random-int');
 var MongoClient = require('mongodb').MongoClient;
+var user = require("./satish/user");
 
 // var mongoURL = "mongodb://localhost:27017/KAYAK";
 // var winston = require('winston');
@@ -636,7 +637,181 @@ console.log(showtimes);
 }
 
 
+function handle_savePayment(msg, callback) {
 
+    console.log("-----------------------------------------in handle_savePayment--",msg);
+    var showtimes = [];
+
+    console.log(showtimes);
+
+    // console.log(showtimes, "--------------------------------------");
+    var res = {};
+    var i = 0;
+
+
+    var d = new Date();
+    var arrayDates =[];
+    var queryJsonArray=[];
+
+
+    //console.log(arrayDates);
+    //  for (let i = 0; i < 6; i++)
+
+    {
+
+        //console.log(d,"??????????????????????????????????????????????????????????????????????????????????");
+
+
+        //   queryJsonArray.push(queryJson);
+
+    }
+    // console.log(queryJsonArray);
+    {
+        // console.log(msg.reqBody,"????????????????????????????????????????????????????");
+        try {
+
+            //  console.log("msg is-----------------------------------------------");
+
+
+            var queryJsonSearch = {
+                "ID": parseInt(msg.reqBody.movies.id)
+            }
+
+
+            console.log(msg.reqBody);
+            console.log(queryJsonSearch)
+
+            MongoConPool.findOne('movieHall', queryJsonSearch, function (err, movie) {
+                if (err) {
+                    res.code = 401;
+                    callback(null, res);
+                    //  console.log("into error===============================================", err)
+                }
+                else {
+                   // if (movie[0] != null)
+                    {
+                        console.log("?????????????????????????????????????????????????????",movie[0],movie);
+                       console.log( parseInt(movie.NoofSeats),parseInt(msg.reqBody.total.noOfTickets));
+                     if(parseInt(movie.NoofSeats)>=parseInt(msg.reqBody.total.noOfTickets))
+                     {
+                         var seatsLeft=parseInt(movie.NoofSeats)-parseInt(msg.reqBody.total.noOfTickets);
+                         var queryJsonInsert = {
+                             $set:{
+                                 // "_id":parseInt(randomInt(9,1000000))
+
+                                 "NoofSeats": seatsLeft,
+
+                             }
+
+                         };
+
+                         MongoConPool.updateOne('movieHall',queryJsonSearch, queryJsonInsert, function (err, movie) {
+                             if (err) {
+                                 res.code = "401";
+                                 //  callback(null, res);
+                                 console.log(err);
+                                 console.log("error in adding movie-=-=============------------------------------=======")
+                             }
+                             else {
+
+                                 console.log("-moviea updated-----------------------------------------------");
+                                 res.result = movie;
+
+                                 user.saveTransaction(msg, function(err,status){
+                                     if (err) {
+                                         res.code = "401";
+                                         //  callback(null, res);
+                                         console.log(err);
+                                         console.log("error in adding movie-=-=============------------------------------=======")
+                                     }
+                                     else {
+                                         console.log(status);
+                                         res.code = 200;
+                                         callback(null, res);
+                                     }
+
+
+
+                                 });
+                                 //res.code = 200;
+
+                                //
+                             }
+                         });
+
+                     }
+                     else {
+                         res.code=209;
+                         callback(null,res);
+                     }
+
+                        // var batch = col.initializeOrderedBulkOp();
+                        // console.log("adding movie================================================");
+                  /*
+*/
+                    }
+
+
+                    //  res.result = movie;
+                    // res.code = 200;
+                    // callback(null, res);
+                }
+            });
+
+        }
+
+
+        /* MongoConPool.insert('movieHall', queryJson, function (err, movie) {
+             if (err) {
+                 res.code = "401";
+                 callback(null, res);
+             }
+             else {
+
+                 console.log(movie, "------------------------------------------------");
+                 res.result = movie;
+                 res.code = 200;
+                 callback(null, res);
+             }
+         });*/
+
+
+
+
+
+
+/*     MongoConPool.updateOne('movieHall', queryJsonSearch, queryJsonInsert, function (err, movie) {
+         if (err) {
+             res.code = "401";
+             callback(null, res);
+             //  console.log("into error===============================================", err)
+         }
+         else {
+             // if (movie == null)
+             {
+                 console.log("????????????????????????????????????????",movie);
+                 res.code=200;
+                 callback(null,res);
+             }
+
+
+         }
+
+     });
+*/
+
+
+
+        catch
+            (e) {
+            res.code = "401";
+           // callback(null, res);
+        }
+    }
+
+
+
+}
 
 
 
@@ -646,3 +821,4 @@ exports.handle_addMovies = handle_addMovies;
 exports.handle_getMovieListing=handle_getMovieListing;
 exports.handle_saveMovieListing=handle_saveMovieListing;
 exports.handle_geteditmoviesearch=handle_geteditmoviesearch;
+exports.handle_savePayment=handle_savePayment;
