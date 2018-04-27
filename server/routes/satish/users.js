@@ -44,7 +44,8 @@ router.post('/signin', function (req, res, next) {
             req.logIn(user, function (err) {
                 if (err) {
                     console.log(err);
-                    return res.status(401);
+
+                    return res.status(401).json({message:"Invalid Credentials"});
                 }
                 else {
                     req.session.save(function (err) {
@@ -161,7 +162,7 @@ router.post('/signup', function (req, res) {
                 res.status(201).json({username:results.user,message: "User Details Saved successfully",accountType:"User"});
             }
             else {
-                res.status(401).json({message: "SignUp failed"});
+                res.status(401).json({message: results.message});
 
             }
         }
