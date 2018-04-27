@@ -174,9 +174,9 @@ consumer.on('message', function (message) {
             });
             break;
         case 'changeEmail':
-            user.changeEmail(data.data, function(err,res){
-                console.log("Inside change email switch case",res);
-                response(data,res);
+            user.changeEmail(data.data, function (err, res) {
+                console.log("Inside change email switch case", res);
+                response(data, res);
                 return;
             })
             break;
@@ -195,19 +195,51 @@ consumer.on('message', function (message) {
 
         case 'moviehallsignin':
             user.moviehallSignin(data.data, function (err, res) {
-                console.log("res: ",res);
+                console.log("res: ", res);
                 response(data, res);
                 return;
             });
             break;
         case 'adminsignin':
             user.adminSignin(data.data, function (err, res) {
-                console.log("res: ",res);
+                console.log("res: ", res);
+                response(data, res);
+                return;
+            });
+            break;
+        case 'searchusers':
+            user.searchUsers(data.data, function (err, res) {
+                console.log("res: ", res);
                 response(data, res);
                 return;
             });
             break;
 
+        case 'searchMoviehallUsers':
+            user.searchMoviehallUsers(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+                return;
+            });
+            break;
+        case 'purchaseHistory':
+            user.purchaseHistory(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            });
+            break;
+        case 'deleteuser':
+            user.deleteUser(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            })
+            break;
+        case 'editUserAccount':
+            user.editUserAccount(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            })
+            break;
     }
 });
 
