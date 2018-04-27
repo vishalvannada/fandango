@@ -70,11 +70,11 @@ class SignUp extends Component {
                                 <div className="large-11 large-centered columns">
                                     <ul className="inline-items">
                                         <li className="site-logo">
-                                            <a className="fandango-logo" href="http://www.fandango.com/">
+                                            <Link className="fandango-logo" to='/home'>
                                                 <img
                                                     src={logo}
                                                     alt="Fandango Logo" className="brand-img"/>
-                                            </a>
+                                            </Link>
                                         </li>
                                     </ul>
                                     <div className="registration-mode right">
