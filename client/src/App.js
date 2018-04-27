@@ -113,8 +113,7 @@ class App extends Component {
 
                                 <Route path="*" component={Error}/>
 
-                                {/*Sample check Route*/}
-                                <Route path="*" component={}/>
+
 
 
 
