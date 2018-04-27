@@ -40,7 +40,7 @@ class FandangoVIPHeader extends Component {
                                     Perks</Link></li>
                                 <li className="page-navigation-item">
                                     <Link className="page-navigation-link"
-                                          to="#">Purchase
+                                          to="/purchaseHistory">Purchase
                                         History</Link></li>
                                 <li className="page-navigation-item">
                                     <Link

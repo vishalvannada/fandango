@@ -23,8 +23,12 @@ import EditMovieHallListing from './components/editMovieHallListing';
 import EditMovieHall from './components/editmovie';
 import Error from './components/404Error';
 import MovieHallSiginin from "./components/moviehallSignin";
+
+import FindUsers from "./components/Adminedit/FindUsers";
+import PurchaseHistory from "./components/purchases/purchases";
 import AdminHome from './components/admin/adminHome';
 import MovieAdminHome from './components/movieHallSignIn/movieHallAdminHome';
+import AdminUserEdit from './components/Adminedit/AdminUserEdit';
 import PrivateRouteMovieHallAdmin from './components/PrivateRouteMovieHall';
 import ConditionalRouteMovieHall from './components/ConditionalRouteMovieHall';
 import ConditionalRouteUser from './components/ConditionalRouteUser';
@@ -94,11 +98,26 @@ class App extends Component {
                                 <Route path="/admin-movie-edit/:tmdbid" component={AdminMovieEdit}/>
                                 <Route path="/admin-login" component={AdminLogin}/>
                                 <Route path="/secret" component={SecretPage}/>
-                                <Route path="/admin-home" component={AdminHome}/>
+
+                                <Route path="/signin" component={Signin}/> {/*satish*/}
+                                <Route path="/moviehallSignin" component={MovieHallSiginin}/> {/*satish*/}
+                                <Route exact path="/signup" render={(props) => {
+                                    return <SignUp/>
+                                }}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
+                                <PrivateRoute exact path='/userprofile'
+                                              component={UserProfile}
+                                              props={logStat}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
+                                <Route path="/home" component={Home}/>
+                                <Route path="/findUsers" component={FindUsers}/>{/*satish*/}
+                                <Route path="/purchaseHistory" component={PurchaseHistory}/>{/*satish*/}
+                                <Route path="/admin-home" component={AdminHome}/>{/*satish*/}
+
+                                <Route path="/admin-useredit" component={AdminUserEdit}/>{/*satish*/}
 
 
                                 <ConditionalRouteUser exact path="/signup" component={SignUp}/>
                                 <PrivateRoute exact path='/userprofile' component={UserProfile} props={logStat}/>
+
                                 <Route path="*" component={Error}/>
 
                             </Switch>

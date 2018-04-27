@@ -51,6 +51,15 @@ class PaymentMethod extends Component {
 
     }
 
+    renderSelect(field){
+        return(
+            <div>
+                <select {...field.input} {...field}/>
+                {field.touched && field.error && <div className="error">{field.error}</div>}
+            </div>
+        );
+    }
+
     render() {
 
         const {handleSubmit, load, pristine, reset, submitting} = this.props;
@@ -104,8 +113,7 @@ class PaymentMethod extends Component {
                                                     <Field name="month"
                                                            className="payment-form-month columns"
                                                            id="NewMonthBox"
-                                                           component='select'
-
+                                                           component={this.renderSelect}
                                                     >
                                                         <option defaultValue="">Month</option>
                                                         <option value="1">January</option>
@@ -120,17 +128,13 @@ class PaymentMethod extends Component {
                                                         <option value="10">October</option>
                                                         <option value="11">November</option>
                                                         <option value="12">December</option>
-
-
                                                     </Field>
 
 
                                                     <Field name="year"
                                                            className="payment-form-year ml-2 columns"
                                                            id="YearBox"
-                                                           component='select'
-
-                                                    >
+                                                           component={this.renderSelect}>
                                                         <option value="">Year</option>
                                                         <option value="2018">2018</option>
                                                         <option value="2019">2019</option>
@@ -143,8 +147,6 @@ class PaymentMethod extends Component {
                                                         <option value="2026">2026</option>
                                                         <option value="2027">2027</option>
                                                         <option value="2028">2028</option>
-
-
                                                     </Field>
 
 
@@ -181,13 +183,27 @@ class PaymentMethod extends Component {
 
         )
     }
-
-
 }
 
+function validate(values) {
+
+    //object that returns errors, if errors is empty the form will be submitted, else it wont be submitted
+    //if errors has any properties, redux from assumes that form is invalid
+    const errors = {};
+
+    //names are associated to fields in the redux form names
+    if (values.cardnumber){
+        if(values.cardnumber.length>16) {
+            errors.newpassword = "Credit card should be 16 numbers";
+
+         }
+        return errors;
+    }
+}
 
 export default reduxForm({
-    form: 'image'
+    validate,
+    form: 'paymentform'
 })(
-    connect(null, {changeBasicInfo})(PaymentMethod)
+    connect(null, {savePaymentMethod})(PaymentMethod)
 );

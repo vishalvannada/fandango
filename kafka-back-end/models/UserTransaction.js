@@ -13,5 +13,6 @@ module.exports = function (sequelize, Sequelize) {
         tax:  {type: Sequelize.INTEGER},
         image: {type: Sequelize.STRING}
     });
+
     return UserTransaction;
 }

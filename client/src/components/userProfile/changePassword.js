@@ -42,8 +42,6 @@ class ChangePassword extends Component {
         )
 
     }
-
-
     /* Passing Values from form-3: Password Change  */
     onSubmit_password(values) {
         console.log(values);
@@ -56,21 +54,13 @@ class ChangePassword extends Component {
         const {handleSubmit, load, pristine, reset, submitting} = this.props;
 
         return (
-
-
             <div className='row'>
-
-
                 <div id='profile_block' className="medium-9 columns">
 
                     {/*Password Change*/}
                     <div className='collapse-element'><Collapsible className="panel accordion-head well"
                                                                    trigger="CHANGE PASSWORD">
-
-
                         <div className="panel-group">
-
-
                             <div className="panel accordion-body " id="password-info-form">
                                 <div className="row">
                                     <form onSubmit={handleSubmit(this.onSubmit_password.bind(this))}
@@ -114,8 +104,6 @@ class ChangePassword extends Component {
                                                        component={this.renderField}
                                                 />
                                             </div>
-
-
                                             <div className="medium-7 columns right-40">
                                                 <button id="save-basic" className="btn save-button">Save</button>
                                             </div>
@@ -142,42 +130,32 @@ function validate(values) {
     const errors = {};
 
     //names are associated to fields in the redux form names
-    if (!values.username) {
-        errors.username = "UserName can't be empty";
+
+    if (!values.oldpassword) {
+        errors.oldpassword = "old password can't be empty";
+    }
+    if (!values.newpassword) {
+        errors.newpassword = "new password can't be empty";
+    }
+    if (!values.confirmpassword) {
+        errors.confirmpassword = "new password can't be empty";
     }
 
-    if (values.username) {
-        if (values.username.length < 6) {
-            errors.username = "Username should be of 6 letters or more!";
-        }
+    if (values.newpassword === values.oldpassword) {
+        errors.newpassword = "password cannot be same as old"
     }
 
-    if (!values.email) {
-        errors.email = "Email can't be empty";
-    }
-    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = "Please enter a valid email address";
-    }
-
-    if (values.phoneNumber) {
-        if (isNaN(values.phoneNumber)) {
-            errors.phoneNumber = "Please Enter a valid phone number"
-        }
-
-        if (values.phoneNumber.length != 10) {
-            errors.phoneNumber = "Phone Number must be 10 digits"
-        }
+    if (values.newpassword != values.confirmpassword) {
+        errors.confirmpassword = "Both the passwords should be equal";
     }
 
     return errors;
 }
 
 
-
-
 export default reduxForm({
     validate,
     form: 'image'
 })(
-    connect(null, {changeBasicInfo})(ChangePassword)
+    connect(null, {changePassword})(ChangePassword)
 );
