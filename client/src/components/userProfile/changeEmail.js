@@ -199,5 +199,5 @@ export default reduxForm({
     validate,
     form: 'changeEmail'
 })(
-    connect(null, {changeBasicInfo})(ChangeEmail)
+    connect(null, {changeEmail})(ChangeEmail)
 );

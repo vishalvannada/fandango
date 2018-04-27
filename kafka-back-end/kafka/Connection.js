@@ -31,7 +31,12 @@ function ConnectionProvider() {
             {topic: 'signin', partition: 0},
             {topic: 'moviehallsignin', partition: 0},
             {topic: 'adminsignin', partition: 0},
+            {topic: 'purchaseHistory', partition: 0},
+            {topic: 'deleteuser', partition: 0},
+            {topic: 'editUserAccount', partition: 0},
 
+
+            {topic: 'searchMoviehallUsers', partition: 0},
             {topic: 'basicInfo', partition: 0},
             {topic: 'changeEmail', partition: 0},
             {topic: 'changePassword', partition: 0},
@@ -40,13 +45,17 @@ function ConnectionProvider() {
             {topic: 'deletePayment', partition: 0},
 
 
+
             //mangesh
             {topic: 'usertracking_topic', partition: 0},
             {topic: 'pageclicks_topic', partition: 0},
             {topic: 'movieclicks_topic', partition: 0},
             {topic: 'usertrackclose_topic', partition: 0},            
 
-            {topic: 'uploadimage', partition: 0}
+            {topic: 'uploadimage', partition: 0},
+
+            {topic: 'uploadimage', partition: 0},
+            {topic: 'searchusers', partition: 0}
 
 
         ]);
