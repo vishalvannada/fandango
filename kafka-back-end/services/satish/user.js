@@ -77,6 +77,7 @@ function signup(msg, callback) {
                             email: reqEmail,
                             password: hash,
                             firstname: reqFirstname,
+                            displayname: reqFirstname
                         };
                     User.create(data).then(function (newUser, created) {
                         if (!newUser) {

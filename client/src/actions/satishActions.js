@@ -1,5 +1,6 @@
 import axios from "axios";
 import {history} from "../App";
+import swal from "sweetalert";
 
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
@@ -32,6 +33,7 @@ export const PURCHASE_ERROR = "PURCHASE_ERROR";
 export const DELETE_USERS_SUCCESS = "DELETE_USERS_SUCCESS";
 export const DELETE_USERS_ERROR = "DELETE_USERS_SUCCESS";
 
+
 axios.defaults.withCredentials = true;
 
 export function signin(values) {
@@ -44,6 +46,7 @@ export function signin(values) {
                 window.localStorage.setItem('user', res.data.user);
                 window.localStorage.setItem('isLoggedIn', true);
                 console.log("response received");
+                swal("Signin Succesful");
                 history.push('/home');
                 dispatch({type: SIGN_IN, payload: request});
             }

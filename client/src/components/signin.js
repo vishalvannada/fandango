@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import SigninNavbar from './Signin/signinNavbar';
 import SigninBody from "./Signin/signinBody";
 import {fetchUser} from "../actions/satishActions";
+import swal from "sweetalert";
 
 class Signin extends Component{
     componentDidMount(){
