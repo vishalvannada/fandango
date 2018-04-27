@@ -206,8 +206,7 @@ class Transaction extends Component {
             showtime:this.props.showtime,
             total:this.props.total,
             user:this.props.user.user
-
-        }
+     }
         this.props.savePaymentData(paymentData);
         // console.log(data)
         // console.log(data.payment.cardNumber)
