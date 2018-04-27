@@ -11,6 +11,7 @@ var consumer = connection.getConsumer();
 
 var topic_name3 = 'getMovieOverview_topic';
 var consumer3 = connection.getConsumer(topic_name3);
+var getMoviesGenreInSearchHandle = require('./services/getMoviesGenreInSearchHandle')
 
 
 var saveReview = require('./services/saveReview');
@@ -96,6 +97,14 @@ consumer.on('message', function (message) {
                 response(data, res);
                 return;
             })
+            break;
+
+        case 'getMoviesGenereInSearchPage_topic':
+            getMoviesGenreInSearchHandle.handle_request(data.data, function (err, res) {          //Rishith
+                console.log("Inside Server: ", data.data);
+                response(data, res);
+                return;
+            });
             break;
 
         case 'geteditmoviesearch_topic':
