@@ -4,7 +4,7 @@ var dummyData = require('./services/dummyData');
 var getMoviesInHomePageCarousel = require('./services/getMoviesInHomePageCarousel');
 var getMovieOverview = require('./services/getMovieOverview');
 var user = require('./services/satish/user');
-
+var ad = require('./services/mandip/ad');
 var producer = connection.getProducer();
 var consumer = connection.getConsumer();
 
@@ -206,6 +206,24 @@ consumer.on('message', function (message) {
                 response(data, res);
                 return;
             });
+            break;
+            case 'login_topic':
+                    ad.check_request(data.data, function(err,res){
+                      console.log('after getProjectsthatbidbyfreelancer_request handle-->'+JSON.stringify(res));
+                      var payloads = [
+                          { topic: data.replyTo,
+                              messages:JSON.stringify({
+                                  correlationId:data.correlationId,
+                                  data : res
+                              }),
+                              partition : 0
+                          }
+                      ];
+                      producer.send(payloads, function(err, data){
+                          console.log(data);
+                      });
+                      return;
+                    });
             break;
 
     }
