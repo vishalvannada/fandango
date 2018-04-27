@@ -72,6 +72,13 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
+        case 'savePayment_topic':
+            getMoviesSearchHandle.handle_savePayment(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break;
+
         case 'getMoviesHallLisiting_topic':
             getMoviesSearchHandle.handle_getMovieListing(data.data, function (err, res) {
                 response(data, res);
@@ -80,6 +87,12 @@ consumer.on('message', function (message) {
             break;
         case 'saveMovieListing_topic':
             getMoviesSearchHandle.handle_saveMovieListing(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break;
+        case 'saveTransaction_topic':
+            user.saveTransaction(data.data, function (err, res) {
                 response(data, res);
                 return;
             })

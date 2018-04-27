@@ -341,7 +341,8 @@ function mapStateToProps(state) {
         moviesDropdown:state.moviesDropdown,
         addMovies:state.addMovies,
         editmovies:state.editMoviehall,
-        editMovieSaved:state.editMovieSaved
+        editMovieSaved:state.editMovieSaved,
+        user:state.getUser
     }
 }
 

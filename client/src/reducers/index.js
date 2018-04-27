@@ -9,7 +9,7 @@ import editMovieSaved from './reducer_editHallSave'
 import moviesDropdown from './reducer_moviesnHalls';
 import MoviesAdded from './reducer_addMovie';
 import MoviesSearchListAdmin from './reducer_search_movies_admin';
-
+import SavePayments from './reducer_savePayments'
 import UserReducer from "./reducer_user";
 import fetchUserReducer from "./reducer_fetchuser";
 import userProfile from "./reducer_userprofile";
@@ -28,6 +28,7 @@ const appReducer = combineReducers({
     editMoviehall:EditMovieHall,
     editMovieSaved:editMovieSaved,
     moviesSearchList : MoviesSearchListAdmin,
+    savePayments:SavePayments,
     form : formReducer
 
 });

@@ -16,11 +16,12 @@ class MovieTopSection extends Component {
     componentWillMount()
     {
         console.log("calling movie halls");
-        this.props.GetMoviesnHalls();
+        this.props.GetMoviesnHalls({email:this.props.user.username.email});
 
     }
     state = {
-        movieSearch: ""
+        movieSearch: "",
+        userEmail:""
     }
 
     renderField(field) {
@@ -125,6 +126,8 @@ class MovieTopSection extends Component {
         {
            // d.setDate(d.getDate() + 1);
             //values.Date=i;
+
+            values.userEmail=this.props.user.username.email;
             console.log(values);
             this.props.addMovie(values);
         }
@@ -153,9 +156,37 @@ class MovieTopSection extends Component {
             </div>
         )
     }
+    movieFilter = (filterPrice) => {
+        console.log("filter email is : "+filterPrice);
+        // this.setState({filterPrice: filterPrice});
+
+        var movieFiltered = this.props.moviesDropdown.movies.movietheatre.filter(function (task) {
+            console.log(task.data[0].user);
+            //console.log(this.state);
+
+            return task.data[0].user == filterPrice;
+        });
+        /*
+        var priceFilterArray = this.state.totalHotelResults.filter(val => {return val.price < filterPrice;});
+        if(priceFilterArray.length <= 0 ){
+            console.log("Empty array ");
+            this.setState({emptyResults: true});
+        }
+        else{
+            this.setState({emptyResults: false});
+        }
+        console.log("After Filter in cars: "+priceFilterArray);
+        this.setState({hotelResults: priceFilterArray});*/
+        return(movieFiltered);
+    };
 
     render() {
-        console.log(this.props);
+        console.log(this.props.user);
+       /* if(this.props.user.username!=null && this.state.userEmail=="")
+        {
+            this.setState({userEmail:this.props.user.username.email})
+        }*/
+
         if(this.props.addMovies.addMovies==true)
         {
             swal("Movie Added");
@@ -193,10 +224,9 @@ class MovieTopSection extends Component {
                                                     <Field
                                                         name="theatre"
                                                         component={this.renderDropdown}
-                                                        data={this.props.moviesDropdown.movies.movietheatre.filter(function (task) {
-                                                            console.log(task.data[0].user)
-                                                            return task.data[0].user == "pranithkouda@gmail.com";
-                                                        })}
+                                                        data={this.movieFilter(this.props.user.username.email)
+
+                                                            }
                                                         valueField="type"
                                                         type="DropdownList"
                                                         textField="type"
@@ -299,7 +329,8 @@ function mapStateToProps(state) {
     return {
         movietime: state.moviesSearchPagePK,
         moviesDropdown:state.moviesDropdown,
-        addMovies:state.addMovies}
+        addMovies:state.addMovies,
+        user:state.getUser}
 }
 
 

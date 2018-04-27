@@ -19,14 +19,17 @@ class EditMovieBody extends Component {
     state = {
         movieSearch: "",
         moviesSelected:"",
+        email:this.props.user.username.email,
         dateSelected: moment(new Date()).format()
         // values: selector('theatre')
     }
 
 
     componentWillMount() {
+        this.setState({email:this.props.user.username.email});
+        console.log(this.state);
         console.log("calling movie halls");
-        this.props.GetMoviesnHalls();
+        this.props.GetMoviesnHalls({email:this.props.user.username.email});
         this.props.editMovieSearch(this.state);
 
     }
@@ -174,10 +177,7 @@ class EditMovieBody extends Component {
                                                     <Field
                                                         name="theatre"
                                                         component={this.renderDropdown}
-                                                        data={this.props.moviesDropdown.movies.movietheatre.filter(function (task) {
-                                                            console.log(task.data[0].user)
-                                                            return task.data[0].user == "pranithkouda@gmail.com";
-                                                        })}
+                                                        data={this.props.moviesDropdown.movies.movietheatre}
                                                         valueField="type"
                                                         type="DropdownList"
                                                         textField="type"
@@ -378,7 +378,8 @@ function mapStateToProps(state) {
         movietime: state.moviesSearchPagePK,
         moviesDropdown: state.moviesDropdown,
         addMovies: state.addMovies,
-        editMoviehall:state.editMoviehall
+        editMoviehall:state.editMoviehall,
+        user:state.getUser
     }
 }
 

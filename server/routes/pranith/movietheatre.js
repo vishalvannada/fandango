@@ -21,7 +21,7 @@ console.log(req,req.body,"-----------------------------------------------------"
 });
 
 // getmoviesnhalls
-
+//savePayment
 router.post('/getmoviesnhalls', function (req, res) {
     console.log("from getMoviesInSearchPage_topic entry");
     console.log("-----------------------------------------------------");
@@ -35,6 +35,30 @@ router.post('/getmoviesnhalls', function (req, res) {
             console.log('fuckedup', results);
             console.log('fuckedup', results);
             // res.status(401).end()
+        }
+
+    });
+});
+router.post('/savePayment', function (req, res) {
+    console.log("from savePayment_topic entry");
+    console.log("-----------------------------------------------------");
+    kafka.make_request('savePayment_topic',{"reqBody":req.body}, function (err, results) {
+
+        if (results.code == 200) {
+            console.log(results);
+            res.booking=true;
+            res.status(201).send(results)
+        }
+        else if(results.code == 209) {
+            console.log(results);
+            res.booking=false;
+            res.status(206).send("no seats available")
+        }
+        else {
+            console.log('fuckedup', results);
+            console.log('fuckedup', results);
+            res.booking=false;
+             res.status(201).send()
         }
 
     });
