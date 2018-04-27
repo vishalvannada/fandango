@@ -159,13 +159,15 @@ console.log(arrayDates);
            "NoofSeats": msg.reqBody.noOfSeats,
            "TicketPrice": msg.reqBody.tktPrice,
            "Date": arrayDates[i],
-           "user": "pranithkouda@gmail.com"
+           "user": msg.reqBody.userEmail
        };
+
 
        queryJsonArray.push(queryJson);
 
    }
-   console.log(queryJsonArray);
+    console.log(queryJson)
+  // console.log(queryJsonArray);
     {
        // console.log(msg.reqBody,"????????????????????????????????????????????????????");
         try {
@@ -297,12 +299,12 @@ function handle_geteditmoviesearch(msg, callback) {
         //  var date = new Date();
         //   console.log("date is-----------------------------------------------");
         // console.log(date);
-        console.log("msg is-----------------------------------------------", msg);
+        console.log("msg is---------------------handle_geteditmoviesearch--------------------------", msg);
         var queryJson = {
             //  "Date": {$gte : new Date()}
 
             //hard code
-            "user":"pranithkouda@gmail.com","Date": {"$gte": new Date(d), "$lte": new Date(d2)}
+            "user":msg.reqBody.email,"Date": {"$gte": new Date(d), "$lte": new Date(d2)}
         };
 
 
@@ -379,12 +381,12 @@ function handle_MoviesnHalls(msg, callback) {
         var date = new Date();
         //   console.log("date is-----------------------------------------------");
         // console.log(date);
-        //console.log("msg is-----------------------------------------------", msg);
+        console.log("msg is-----------------------------------------------", msg.reqBody);
         var queryJson = {
             //  "Date": {$gte : new Date()}
 
             //hard code
-            "HallID": new RegExp("|"),"user":"pranithkouda@gmail.com"
+            "HallID": new RegExp("|"),"user":msg.reqBody.email
         };
 
         var queryMovies = {poster_path: new RegExp('/')};

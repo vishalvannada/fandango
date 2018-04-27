@@ -48,11 +48,11 @@ function savedPayment(values){
 
 
 }
-export function GetMoviesnHalls() {
+export function GetMoviesnHalls(values) {
     console.log("from action GetMoviesnHalls");
     return (dispatch) => {
         console.log("kjhg")
-        const response = axios.post(`${ROOT_URL}/movietheatres/getmoviesnhalls`)
+        const response = axios.post(`${ROOT_URL}/movietheatres/getmoviesnhalls`,values)
             .then(response => {
 
                 console.log(response.data)

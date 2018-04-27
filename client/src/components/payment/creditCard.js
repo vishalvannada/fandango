@@ -254,12 +254,12 @@ console.log(this.props);
 if(this.props.savePayments.booking===true)
 {
     swal("movie booked")
-    //this.props.history.push("/home");
+    this.props.history.push("/home");
 }
 else if(this.props.savePayments.booking===false)
 {
     swal("Boooking not completed");
-   // this.props.history.push("/home");
+   this.props.history.push("/home");
 }
         return (
             <div>
