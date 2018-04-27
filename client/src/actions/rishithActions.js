@@ -34,8 +34,6 @@ export function doSignUp(userdata) {
     }
 }
 
-
-
 export function searchGenre(userdata) {
     return function (dispatch) {
         console.log("Inside the Search Genre actions: ", userdata);

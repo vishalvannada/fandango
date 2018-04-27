@@ -12,7 +12,7 @@ import {fetchUser} from "../actions/satishActions";
 
 class SignUp extends Component {
     componentWillMount(){
-    //    this.props.fetchUser();
+        //    this.props.fetchUser();
     }
     /* Passing Values into action */
     onSubmit(values){
@@ -70,11 +70,11 @@ class SignUp extends Component {
                                 <div className="large-11 large-centered columns">
                                     <ul className="inline-items">
                                         <li className="site-logo">
-                                            <Link className="fandango-logo" to='/home'>
+                                            <a className="fandango-logo" href="http://www.fandango.com/">
                                                 <img
                                                     src={logo}
                                                     alt="Fandango Logo" className="brand-img"/>
-                                            </Link>
+                                            </a>
                                         </li>
                                     </ul>
                                     <div className="registration-mode right">
@@ -150,6 +150,7 @@ class SignUp extends Component {
 
                                                 <span className="registration-caption hide-for-small-only">(And become eligible for VIP+ Points)</span>
                                                 <span className="registration-caption show-for-small-only">(And become eligible for VIP+ Points)</span>
+                                                <span className="registration-caption hide-for-small-only text-danger">{this.props.error}</span>
 
                                             </p>
                                             <div className='form-group'>
@@ -261,7 +262,7 @@ function validate(values) {
     //validate input from values
 
 
-    if (!values.firstname || values.firstname.length < 5) {
+    if (!values.firstname) {
         errors.firstname = "Please enter username of min 5 characters\n ";
     }
 
@@ -288,7 +289,8 @@ function validate(values) {
 
 function mapStateToProps(state){
     return ({
-        user: state.getUser
+        user: state.getUser,
+        error:state.user.message
     })
 }
 

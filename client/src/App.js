@@ -101,6 +101,11 @@ class App extends Component {
                                 <PrivateRoute exact path='/userprofile' component={UserProfile} props={logStat}/>
                                 <Route path="*" component={Error}/>
 
+                                {/*Sample check Route*/}
+                                <Route path="*" component={Error}/>
+
+
+
                             </Switch>
                         </div>
 
