@@ -45,7 +45,7 @@ body {
 }
 
 .font-color-white{
-    color: white;
+    color: white !important;
 }
 
 .font-timesNewRoman {
@@ -581,4 +581,28 @@ hr{
     height: 200px;
     width: 200px;
     padding: auto;
+}
+
+.admin-movie-list-edit p{
+    color: #212529 !important;
+}
+
+.admin-movie-list-edit {
+    line-height: 1.8;
+}
+
+.moviehall-admin-dropdown a{
+    color: #fe7900 !important;
+}
+
+.width-200px{
+    width: 200px;
+}
+
+.float-left{
+    float: left !important;
+}
+
+.font-weight-bold{
+    font-weight: bold !important;
 }

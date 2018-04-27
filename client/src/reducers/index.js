@@ -9,11 +9,10 @@ import editMovieSaved from './reducer_editHallSave'
 import moviesDropdown from './reducer_moviesnHalls';
 import MoviesAdded from './reducer_addMovie';
 import MoviesSearchListAdmin from './reducer_search_movies_admin';
-import GenreSearchMovies from './reducer_genreSearchMovies';
+
 import UserReducer from "./reducer_user";
 import fetchUserReducer from "./reducer_fetchuser";
 import userProfile from "./reducer_userprofile";
-
 import {SIGN_OUT} from "../actions/satishActions";
 
 
@@ -29,8 +28,6 @@ const appReducer = combineReducers({
     editMoviehall:EditMovieHall,
     editMovieSaved:editMovieSaved,
     moviesSearchList : MoviesSearchListAdmin,
-    genreSearchMovies: GenreSearchMovies,
-
     form : formReducer
 
 });
@@ -42,7 +39,7 @@ const rootReducer = (state, action) => {
         console.log(state);
     }
     return appReducer(state, action)
-};
+}
 
 export default rootReducer;
 

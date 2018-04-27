@@ -150,7 +150,6 @@ class SignUp extends Component {
 
                                                 <span className="registration-caption hide-for-small-only">(And become eligible for VIP+ Points)</span>
                                                 <span className="registration-caption show-for-small-only">(And become eligible for VIP+ Points)</span>
-                                                <span className="registration-caption hide-for-small-only text-danger">{this.props.error}</span>
 
                                             </p>
                                             <div className='form-group'>
@@ -262,7 +261,7 @@ function validate(values) {
     //validate input from values
 
 
-    if (!values.firstname) {
+    if (!values.firstname || values.firstname.length < 5) {
         errors.firstname = "Please enter username of min 5 characters\n ";
     }
 
@@ -289,8 +288,7 @@ function validate(values) {
 
 function mapStateToProps(state){
     return ({
-        user: state.getUser,
-        error:state.user.message
+        user: state.getUser
     })
 }
 

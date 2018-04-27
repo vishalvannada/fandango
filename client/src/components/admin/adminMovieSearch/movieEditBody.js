@@ -245,7 +245,7 @@ class MovieEditAdminBody extends Component {
 
                             </div>
 
-                            <button className="save-profile"
+                            <button className="btn"
                                     type="submit">Save
                             </button>
                         </div>

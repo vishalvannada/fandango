@@ -43,7 +43,7 @@ class SigninForm extends Component {
 
     render() {
 
-        console.log('Inside the login Form: ',this.props.error)
+        console.log(this.props)
 
         const {handleSubmit, load, pristine, reset, submitting} = this.props;
         return (
@@ -51,7 +51,7 @@ class SigninForm extends Component {
                 <div className="sub-panel">
                     <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                         <p className="join-header">FANDANGO<span className="page-header-emphasis">VIP</span>
-                            <span className="registration-caption hide-for-small-only text-danger">{this.props.error}</span>
+                            <span className="registration-caption hide-for-small-only"></span>
                             <span className="registration-caption show-for-small-only"></span>
                         </p>
                         <div className="registration-promo-unit show-for-small-only">

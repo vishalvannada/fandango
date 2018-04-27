@@ -1,12 +1,9 @@
 #AvatarImage {
-  margin-top: 10px;
-  padding-bottom: 10px;
     height: 66px;
     width: 66px;
 }
 
 .dashboard-conatiner {
-  background: white;
 
     margin-left: 20px;
 }
