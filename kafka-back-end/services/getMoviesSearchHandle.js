@@ -46,9 +46,9 @@ function handle_request(msg, callback) {
         d.setDate(d.getDate() - 1);
         console.log(d,d2);
 
-
+//'^win$'
         var queryJson = {
-            "movie.MovieName": new RegExp(msg.reqBody.movieSearch), "Date": {"$gte": new Date(d), "$lte": new Date(d2)}
+            "movie.MovieName": new RegExp("^"+msg.reqBody.movieSearch, "i"), "Date": {"$gte": new Date(d), "$lte": new Date(d2)}
         };
 
         MongoConPool.find('movieHall', queryJson, function (err, movie) {

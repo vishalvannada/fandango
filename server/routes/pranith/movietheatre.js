@@ -124,6 +124,7 @@ router.post('/getmovieshalllisting', function (req, res) {
 
 
 
+
 router.post('/addmovies', function (req, res) {
    // console.log("from addmovies_topic entry");
     console.log("-----------------------------------------------------");
