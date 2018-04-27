@@ -23,15 +23,10 @@ export default function (state={
             break;
         case SIGN_IN_ERROR:
             return {...state, isLoggedIn:false, username: '', message:action.payload.data.message };
-            console.log('Inside user Reducer ',action.payload.data, action.payload.data.message);
             break;
         case SIGN_UP_SUCCESS:
-          console.log("Inside signup reducer: ", action.payload.message);
-            return  {...state, isLoggedIn:true, message: action.payload.message};
+            return  {...state, isLoggedIn:true, user: action.payload.data.username};
             break;
-        case SIGN_UP_ERROR:
-            return {...state, isLoggedIn:true, message:action.payload.response.data.message};
-
         case SIGN_OUT:
           //  sessionStorage.clear();
             return state;

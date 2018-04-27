@@ -20,27 +20,6 @@ console.log(req,req.body,"-----------------------------------------------------"
     });
 });
 
-// Get Movies by Genre Search
-// Rishith
-
-router.get('/getMoviesGenreInSearchPage', function (req, res) {
-console.log("from getMoviesGenreInSearchPage_topic entry: 'Request -> '", req.query.action);
-console.log(req,req.body,"-----------------------------------------------------");
-    kafka.make_request('getMoviesGenereInSearchPage_topic', {"reqBody":req.query.action}, function (err, results) {
-
-        if (results.code == 200) {
-            console.log(results);
-            res.status(201).send(results)
-        }
-        else {
-            console.log('fuckedup', results);
-            console.log('fuckedup', results);
-            // res.status(401).end()
-        }
-
-    });
-});
-
 // getmoviesnhalls
 
 router.post('/getmoviesnhalls', function (req, res) {
@@ -60,6 +39,24 @@ router.post('/getmoviesnhalls', function (req, res) {
 
     });
 });
+router.post('/editmoviesearch', function (req, res) {
+    console.log("from geteditmoviesearch_topic entry");
+    console.log("-----------------------------------------------------");
+    kafka.make_request('geteditmoviesearch_topic',{"reqBody":req.body}, function (err, results) {
+
+        if (results.code == 200) {
+            console.log(results);
+            res.status(201).send(results)
+        }
+        else {
+            console.log('fuckedup', results);
+            console.log('fuckedup', results);
+            // res.status(401).end()
+        }
+
+    });
+});
+
 
 
 router.post('/savemovieListing', function (req, res) {

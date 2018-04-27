@@ -62,6 +62,7 @@ class MovieTopSection extends Component {
 
     render() {
 
+        console.log(this.props);
         var settings = {
             slidesToShow: 7,
             slidesToScroll: 3,
@@ -182,7 +183,8 @@ class MovieTopSection extends Component {
                                                                 <li className="fd-movie__btn-list-item">
 
 
-                                                                    <span className="btn showtime-btn">4:00p</span>
+                                                                    <Link to={`/check-out/${movie.id}`}
+                                                                          className="btn showtime-btn">4:00p</Link>
 
 
                                                                 </li>
@@ -191,7 +193,13 @@ class MovieTopSection extends Component {
                                                                 <li className="fd-movie__btn-list-item">
 
 
-                                                                    <span className="btn showtime-btn">6:15p</span>
+                                                                    <button
+                                                                        onClick={() => this.props.history.push({
+                                                                            pathname: '/check-out',
+                                                                            state: {movie : movie, showtime : '6:15p'}
+                                                                        })}
+                                                                        className="btn showtime-btn">6:15p
+                                                                    </button>
 
 
                                                                 </li>
@@ -200,7 +208,8 @@ class MovieTopSection extends Component {
                                                                 <li className="fd-movie__btn-list-item">
 
 
-                                                                    <span className="btn showtime-btn">8:30p</span>
+                                                                    <Link to={`/check-out/${movie.id}`} state={movie}
+                                                                          className="btn showtime-btn">8:30p</Link>
 
 
                                                                 </li>
@@ -209,7 +218,8 @@ class MovieTopSection extends Component {
                                                                 <li className="fd-movie__btn-list-item">
 
 
-                                                                    <span className="btn showtime-btn">10:45p</span>
+                                                                    <Link to={`/check-out/${movie.id}`} state={movie}
+                                                                          className="btn showtime-btn">10:45p</Link>
 
 
                                                                 </li>
