@@ -32,6 +32,7 @@ import AdminUserEdit from './components/Adminedit/AdminUserEdit';
 import PrivateRouteMovieHallAdmin from './components/PrivateRouteMovieHall';
 import ConditionalRouteMovieHall from './components/ConditionalRouteMovieHall';
 import ConditionalRouteUser from './components/ConditionalRouteUser';
+import AddMovieHall from './components/addMovieHall'
 
 
 export const history = createBrowserHistory();
@@ -99,15 +100,7 @@ class App extends Component {
                                 <Route path="/admin-login" component={AdminLogin}/>
                                 <Route path="/secret" component={SecretPage}/>
 
-                                <Route path="/signin" component={Signin}/> {/*satish*/}
-                                <Route path="/moviehallSignin" component={MovieHallSiginin}/> {/*satish*/}
-                                <Route exact path="/signup" render={(props) => {
-                                    return <SignUp/>
-                                }}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
-                                <PrivateRoute exact path='/userprofile'
-                                              component={UserProfile}
-                                              props={logStat}/> {/* Added by Rishith */}{/*Need Conditional Rendering*/}
-                                <Route path="/home" component={Home}/>
+
                                 <Route path="/findUsers" component={FindUsers}/>{/*satish*/}
                                 <Route path="/purchaseHistory" component={PurchaseHistory}/>{/*satish*/}
                                 <Route path="/admin-home" component={AdminHome}/>{/*satish*/}
@@ -119,6 +112,10 @@ class App extends Component {
                                 <PrivateRoute exact path='/userprofile' component={UserProfile} props={logStat}/>
 
                                 <Route path="*" component={Error}/>
+
+
+
+
 
                             </Switch>
                         </div>
