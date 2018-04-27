@@ -12,7 +12,7 @@ import {Field, reduxForm, initialize} from 'redux-form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-class AddMovieHall extends Component {
+class AddMovieHallAdmin extends Component {
 
     constructor(props){
         super(props)
@@ -272,4 +272,4 @@ export default reduxForm({
     validate,
     form: 'movieHall'
 })
-(connect(null,{addMovieHallAdmin})(AddMovieHall));
+(connect(null,{addMovieHallAdmin})(AddMovieHallAdmin));
