@@ -24,7 +24,6 @@ class ConditionalRouteUser extends Component {
         if (this.props.user.isLoggingIn) {
             return (
                 <div>
-
                 </div>
             )
         }

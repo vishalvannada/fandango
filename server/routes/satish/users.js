@@ -158,7 +158,7 @@ router.post('/signup', function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
-                res.status(201).json({message: "User Details Saved successfully",accountType:"User"});
+                res.status(201).json({username:results.user,message: "User Details Saved successfully",accountType:"User"});
             }
             else {
                 res.status(401).json({message: "SignUp failed"});

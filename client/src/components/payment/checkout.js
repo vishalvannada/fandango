@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
+import moment from 'moment';
 import Seat from 'material-ui/svg-icons/notification/airline-seat-flat-angled';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class CheckOut extends Component {
+    state={
+        totalSum:0,
+        ticketValue:0,
+        tax:0,
+        noOfTickets:0
+
+    }
 
 
     // componentDidMount(){
@@ -47,8 +55,40 @@ class CheckOut extends Component {
                                 <hr/>
                                 <h4 className="font-condensed-bold color-darkgray">HOW MANY TICKETS?</h4>
                                 <hr/>
-                                <button className="btn font-size-13 align-right my-2">
-                                    Continue to Seat Selection
+                                <br/>
+                                <div className="form-group font-family-roboto form-group-custom">
+                                    <small className='font-weight-700 font-size-14'>Number of Tickets</small>
+                                    <input
+                                        className="form-control input-login"
+
+                                        placeholder="Enter number of tickets"
+                                        type="text"
+                                        onChange={(event)=>{
+                                            this.setState({noOfTickets:event.target.value});
+                                            var ticket_price_total=parseInt(this.props.location.state.movie.TicketPrice)*parseInt(event.target.value);
+                                            this.setState({ticketValue:ticket_price_total});
+                                            var tax = ticket_price_total*0.1;
+                                            this.setState({tax:tax});
+                                            var totalSum= ticket_price_total+tax;
+                                            this.setState({totalSum:totalSum})
+                                            console.log(this.state);
+
+
+                                }}
+                                    />
+                                    <small className='font-weight-700 font-size-14 align-right'>Ticket Value : {this.state.ticketValue}</small><br/>
+                                    <small className='font-weight-700 font-size-14 align-right'>Tax : {this.state.tax}</small><br/>
+                                    <small className='font-weight-700 font-size-14 align-right'> Total: {this.state.totalSum}</small><br/>
+
+                                </div>
+                                <button className="btn font-size-13 align-right my-2"
+                                onClick={()=> {console.log(this.props)
+                                    this.props.history.push({
+                                        pathname: '/check-out-payment',
+                                        state: {movie : this.props.location.state.movie, showtime : this.props.location.state.showtime, total: this.state}
+                                    })}
+                                }>
+                                    Continue to Payment
                                 </button>
                                 <br/>
                                 <br/>
@@ -74,14 +114,14 @@ class CheckOut extends Component {
 
                                     <div className="col-md-6">
 
-                                        <h3 className="font-condensed-bold color-darkgray">RAMPAGE</h3>
+                                        <h3 className="font-condensed-bold color-darkgray">{this.props.location.state.movie.movie.MovieName}</h3>
 
                                         <br/>
 
-                                        <h6 className="font-size-14 font-family-roboto font-weight-700 color-darkgray">Friday,
-                                            Apr
-                                            20<br/>
-                                            11:15 AM </h6>
+                                        <h6 className="font-size-14 font-family-roboto font-weight-700 color-darkgray">{moment(this.props.location.state.movie.Date).format("dddd")},
+                                          <br/>
+                                            {moment(this.props.location.state.movie.Date).format("MMMM")}  {moment(this.props.location.state.movie.Date).format("Do")}<br/>
+                                            {this.props.location.state.showtime}</h6>
 
 
                                         {/*<MuiThemeProvider>*/}
@@ -96,15 +136,15 @@ class CheckOut extends Component {
 
                                 <div className="theatre-info">
                                     <span
-                                        className="font-family-roboto font-weight-700">CineLux Almaden Cafe & Lounge</span>
+                                        className="font-family-roboto font-weight-700">{this.props.location.state.movie.theatreName}</span>
                                     <br/>
-                                    <span className="font-size-13 font-family-roboto">2306 Almaden Road</span>
+                                    <span className="font-size-13 font-family-roboto">{this.props.location.state.movie.theatreCity}</span>
                                     <br/>
-                                    <span className="font-size-13 font-family-roboto">San Jose, CA 95125</span>
+                                    <span className="font-size-13 font-family-roboto">{this.props.location.state.movie.theatreState}, {this.props.location.state.movie.theatreZip}</span>
                                     <br/>
                                     <br/>
                                     <span className="font-size-13 font-family-roboto">
-                                        Auditorium 7
+                                        Screen Number {this.props.location.state.movie.ScreenNo}
                                     </span>
                                 </div>
 

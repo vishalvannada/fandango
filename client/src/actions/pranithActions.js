@@ -18,11 +18,41 @@ export function getMoviesInSearchPage(values) {
             });
     }
 }
-export function GetMoviesnHalls() {
+export function  savePaymentData(values) {
+    console.log(values)
+    return (dispatch) => {
+        console.log("kjhg", values)
+        const response = axios.post(`${ROOT_URL}/movietheatres/savePayment`,values)
+            .then(response => {
+                console.log(response);
+                if(response.status==206){
+                    dispatch(savedPayment(false))
+                }
+                else {
+                    console.log(response.data)
+                    dispatch(savedPayment(true))
+                }
+            }).catch(error => {
+                console.log(error);
+                dispatch(savedPayment(false))
+            });
+    }
+
+}
+function savedPayment(values){
+    console.log(values);
+    return {
+        type: "MOVIES_SAVE_PAYMENT",
+        payload: values
+    }
+
+
+}
+export function GetMoviesnHalls(values) {
     console.log("from action GetMoviesnHalls");
     return (dispatch) => {
         console.log("kjhg")
-        const response = axios.post(`${ROOT_URL}/movietheatres/getmoviesnhalls`)
+        const response = axios.post(`${ROOT_URL}/movietheatres/getmoviesnhalls`,values)
             .then(response => {
 
                 console.log(response.data)

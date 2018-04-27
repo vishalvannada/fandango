@@ -183,8 +183,11 @@ class MovieTopSection extends Component {
                                                                 <li className="fd-movie__btn-list-item">
 
 
-                                                                    <Link to={`/check-out/${movie.id}`}
-                                                                          className="btn showtime-btn">4:00p</Link>
+                                                                    <button onClick={() => this.props.history.push({
+                                                                        pathname: '/check-out',
+                                                                        state: {movie : movie, showtime : '9:30a'}
+                                                                    })}
+                                                                          className="btn showtime-btn">9:30a</button>
 
 
                                                                 </li>
@@ -196,9 +199,9 @@ class MovieTopSection extends Component {
                                                                     <button
                                                                         onClick={() => this.props.history.push({
                                                                             pathname: '/check-out',
-                                                                            state: {movie : movie, showtime : '6:15p'}
+                                                                            state: {movie : movie, showtime : '12:30p'}
                                                                         })}
-                                                                        className="btn showtime-btn">6:15p
+                                                                        className="btn showtime-btn">12:30p
                                                                     </button>
 
 
@@ -208,8 +211,13 @@ class MovieTopSection extends Component {
                                                                 <li className="fd-movie__btn-list-item">
 
 
-                                                                    <Link to={`/check-out/${movie.id}`} state={movie}
-                                                                          className="btn showtime-btn">8:30p</Link>
+                                                                    <button
+                                                                        onClick={() => this.props.history.push({
+                                                                            pathname: '/check-out',
+                                                                            state: {movie : movie, showtime : '3:30p'}
+                                                                        })}
+
+                                                                          className="btn showtime-btn">3:30p</button>
 
 
                                                                 </li>
@@ -218,8 +226,11 @@ class MovieTopSection extends Component {
                                                                 <li className="fd-movie__btn-list-item">
 
 
-                                                                    <Link to={`/check-out/${movie.id}`} state={movie}
-                                                                          className="btn showtime-btn">10:45p</Link>
+                                                                    <button onClick={() => this.props.history.push({
+                                                                        pathname: '/check-out',
+                                                                        state: {movie : movie, showtime : '9:30p'}
+                                                                    })}
+                                                                          className="btn showtime-btn">9:30p</button>
 
 
                                                                 </li>
