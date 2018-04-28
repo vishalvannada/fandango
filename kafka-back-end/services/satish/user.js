@@ -8,7 +8,7 @@ var Admin = require("../../models/Admin")(models.sequelize, models.Sequelize);
 
 var transactions = require("../../models/UserTransaction")(models.sequelize, models.Sequelize);
 var randomInt = require('random-int');
-
+var client = require('../../redis');
 
 
 function signin(msg, callback) {
@@ -439,27 +439,48 @@ function purchaseHistory(msg,callback){
     var res= {};
     console.log("Search user function");
     var email = msg.email;
-    transactions.findAll({
-        where: {
-            email: email}
-    }).then(function(transactions) {
-        console.log("users",transactions.length);
-        if (transactions.length === 0) {
-            console.log('error');
-            res.code = 401;
-            res.message = "purchase History not available";
-            callback(null, res);
+
+    
+    client.get(email, function(err, reply) {
+            console.log(reply);
+            if(reply == null){
+                console.log("In redisssssssssssss");
+
+                transactions.findAll({
+                    where: {
+                        email: email}
+                }).then(function(transactions) {
+                    console.log("users",transactions.length);
+                    if (transactions.length === 0) {
+                        console.log('error');
+                        res.code = 401;
+                        res.message = "purchase History not available";
+                        callback(null, res);
+                    }
+                    else if(transactions){
+                        console.log("purchase  History found");
+                        res.code = 201;
+                        res.transactions= transactions;
+                        res.messsage = "purchase  History  found";
+                        client.set(email, JSON.stringify(res), function(err, reply){
+                            console.log("resssssss",res);
+                            client.expire(email,20);
+                            callback(null, res); 
+                       });
+                    }
+                }).catch(err =>
+                    callback(null,err)
+                );
+
         }
-        else if(transactions){
-            console.log("purchase  History found");
-            res.code = 201;
-            res.transactions= transactions;
-            res.messsage = "purchase  History  found";
-            callback(null, res);
-        }
-    }).catch(err =>
-        callback(null,err)
-    );
+        else
+        {
+            console.log("from redisssssssssssss");
+            console.log(JSON.parse(reply));
+            callback(null,JSON.parse(reply));
+        }    
+    })
+
 }
 
 function deletePayment(msg, callback) {
