@@ -36,7 +36,6 @@ import ConditionalRouteMovieHall from './components/ConditionalRouteMovieHall';
 import ConditionalRouteUser from './components/ConditionalRouteUser';
 import CancelUserBooking from "./components/cancelBooking"
 import AddMovieHall from './components/addMovieHall'
-import AddMovieHall from './components/addMovieHall';
 import MovieBillAttribute from './components/adminBillsAnalysis/billAttributes';
 import SearchMovies from './components/home/listSearchMovies';
 import FilterMovies from './components/home/listFilterMovies';

@@ -99,6 +99,7 @@ function handle_request(msg, callback) {
                         //     console.log("movie theatres are", resArr);
 
                         client.set(msg.reqBody.movieSearch, JSON.stringify(res), function(err, reply){
+                            client.expire(msg.reqBody.movieSearch,30);
                             callback(null, res); 
                         });
 
