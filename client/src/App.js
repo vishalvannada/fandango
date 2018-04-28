@@ -33,6 +33,7 @@ import AdminUserEdit from './components/Adminedit/AdminUserEdit';
 import PrivateRouteMovieHallAdmin from './components/PrivateRouteMovieHall';
 import ConditionalRouteMovieHall from './components/ConditionalRouteMovieHall';
 import ConditionalRouteUser from './components/ConditionalRouteUser';
+import CancelUserBooking from "./components/cancelBooking"
 import AddMovieHall from './components/addMovieHall'
 
 
@@ -94,6 +95,8 @@ class App extends Component {
                                 <Route path="/movieHall-home" component={MovieAdminHome}/>
                                 <PrivateRouteMovieHallAdmin path="/editmoviehalllisting"
                                                             component={EditMovieHallListing}/>
+                                <PrivateRouteMovieHallAdmin path="/cancelbooking"
+                                                            component={CancelUserBooking}/>
 
 
                                 <Route path="/admin-movies" component={AdminMovieSearch}/>

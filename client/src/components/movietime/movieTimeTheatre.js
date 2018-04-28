@@ -192,8 +192,25 @@ class MovieTopSection extends Component {
 
                                                             </ul>
                                                             <ol className="fd-movie__btn-list">
+                                                                {movie.Showtimes.map((showTimeitem) => {
+                                                                return (
 
-                                                                <li className="fd-movie__btn-list-item">
+                                                                        <li className="fd-movie__btn-list-item">
+
+
+                                                                            <button onClick={() => this.props.history.push({
+                                                                                pathname: '/check-out',
+                                                                                state: {movie : movie, showtime : showTimeitem.time}
+                                                                            })}
+                                                                                    className="btn showtime-btn">{showTimeitem.time}</button>
+
+
+                                                                        </li>
+
+
+                                                                )})}
+
+                                                             {/*   <li className="fd-movie__btn-list-item">
 
 
                                                                     <button onClick={() => this.props.history.push({
@@ -246,7 +263,7 @@ class MovieTopSection extends Component {
                                                                           className="btn showtime-btn">9:30p</button>
 
 
-                                                                </li>
+                                                                </li>*/}
 
                                                             </ol>
                                                         </li>
