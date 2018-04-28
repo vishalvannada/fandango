@@ -2,7 +2,17 @@ import React, { Component } from "react";
 import { Grid, Row, Col, Table } from "react-bootstrap";
 
 import Card from "components/Card/Card.jsx";
-import { thArray, tdArray } from "variables/Variables.jsx";
+import {tdar1,tdar2} from "variables/Variables.jsx";
+
+const thArray = ["Movie Name", "Total Revenue"];
+const tdArray = [
+  [ "Dakota Rice", "$36,738"],
+  [ "Minerva Hooper", "$23,789"],
+  [ "Sage Rodriguez", "$56,142"],
+  [ "Philip Chaney", "$38,735"],
+  [ "Doris Greene", "$63,542"],
+  [ "Mason Porter", "$78,615"]
+];
 
 class TableList extends Component {
   render() {
