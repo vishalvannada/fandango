@@ -202,7 +202,7 @@ class MovieTopSection extends Component {
                                                                                 pathname: '/check-out',
                                                                                 state: {movie : movie, showtime : showTimeitem.time}
                                                                             })}
-                                                                                    className="btn showtime-btn">{showTimeitem.time}</button>
+                                                                                    className="btn showtime-btn" disabled={!(showTimeitem.seats)}>{showTimeitem.time}</button>
 
 
                                                                         </li>

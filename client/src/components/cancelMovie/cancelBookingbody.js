@@ -5,7 +5,7 @@ import moment from 'moment';
 import {Link} from 'react-router-dom';
 import "./movieTime.css"
 import {Field, reduxForm, initialize} from "redux-form";
-import {getMoviesInSearchPage, GetMoviesnHalls, addMovie,editMovieSearch} from "../../actions/pranithActions";
+import {getMoviesInSearchPage, GetMoviesnHalls, addMovie,editMovieSearch,SQLbookingSearch} from "../../actions/pranithActions";
 import _ from 'lodash';
 import DropdownList from 'react-widgets/lib/DropdownList'
 import Slider from "react-slick";
@@ -20,7 +20,8 @@ class CancelBookingBody extends Component {
         movieSearch: "",
         moviesSelected:"",
         email:this.props.user.user.email,
-        dateSelected: moment(new Date()).format()
+        dateSelected: moment(new Date()).format(),
+        username:""
         // values: selector('theatre')
     }
 
@@ -29,9 +30,9 @@ class CancelBookingBody extends Component {
         this.setState({email:this.props.user.user.email});
         console.log(this.state);
         console.log("calling movie halls");
-        this.props.GetMoviesnHalls({email:this.props.user.user.email});
+      //  this.props.GetMoviesnHalls({email:this.props.user.user.email});
         this.props.editMovieSearch(this.state);
-
+        this.props.SQLbookingSearch({email:this.props.user.user.email});
     }
 
 
@@ -141,7 +142,8 @@ class CancelBookingBody extends Component {
     render() {
 
         console.log(this.props);
-        console.log(this.props.editMoviehall);
+        console.log(this.props.bookingcancel);
+        console.log(this.state);
 
 
         var settings = {
@@ -176,14 +178,14 @@ class CancelBookingBody extends Component {
                                                 <div className="form-group form-group-custom">
                                                     <Field
                                                         name="theatre"
-                                                        component={this.renderDropdown}
-                                                        data={this.props.moviesDropdown.movies.movietheatre}
-                                                        valueField="type"
-                                                        type="DropdownList"
+                                                        component={this.renderText}
+                                                      //  data={this.props.moviesDropdown.movies.movietheatre}
+                                                        //valueField="type"
+                                                        type="text"
                                                         textField="type"
-                                                        placeholder="Select a Movie Hall "
+                                                        placeholder="Type the User Display Name"
                                                         onChange={event => {
-                                                            this.setState({"moviesSelected": event.type})
+                                                            this.setState({username: event.target.value})
                                                             //console.log("This is the new value of field myField: " , event);
                                                             //props.input.onChange(event); // <-- Propagate the event
                                                         }}
@@ -200,18 +202,7 @@ class CancelBookingBody extends Component {
                                                                 return (
                                                                     <div className="moviesTheatres col-12"
                                                                          id="moviesTheatres">
-                                                                        <div>
 
-
-                                                                            <div className="carousel-dates">
-                                                                                <Slider {...settings}>
-                                                                                    {this.renderDates()}
-                                                                                </Slider>
-
-                                                                            </div>
-                                                                            <br/>
-
-                                                                        </div>
                                                                         <ul>
                                                                             <div className="fd-theater__header">
                                                                                 <h4 className="font-condensed-bold-white">
@@ -379,7 +370,8 @@ function mapStateToProps(state) {
         moviesDropdown: state.moviesDropdown,
         addMovies: state.addMovies,
         editMoviehall:state.editMoviehall,
-        user:state.getUser
+        user:state.getUser,
+        bookingcancel:state.bookingcancel
     }
 }
 
@@ -387,4 +379,4 @@ function mapStateToProps(state) {
 export default reduxForm({
     validate,
     form: 'EditMovie'
-})(connect(mapStateToProps, {getMoviesInSearchPage, GetMoviesnHalls, addMovie,editMovieSearch})(CancelBookingBody));
+})(connect(mapStateToProps, {getMoviesInSearchPage, GetMoviesnHalls, addMovie,editMovieSearch,SQLbookingSearch})(CancelBookingBody));

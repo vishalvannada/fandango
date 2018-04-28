@@ -117,7 +117,7 @@ function handle_addMovies(msg, callback) {
         showSeats =
             {
                 time: msg.reqBody.showTimes[i],
-                seats: msg.reqBody.noOfSeats
+                seats: parseInt(msg.reqBody.noOfSeats)
             };
         showtimes.push(showSeats);
     }
@@ -763,7 +763,11 @@ function handle_savePayment(msg, callback) {
 
             var queryJsonSearch = {
                 "ID": parseInt(msg.reqBody.movies.id)
-            }
+            };
+            var queryJsonSearchInsert = {
+                "ID": parseInt(msg.reqBody.movies.id),
+                "Showtimes.time":msg.reqBody.showtime
+            };
 
 
             console.log(msg.reqBody);
@@ -778,22 +782,37 @@ function handle_savePayment(msg, callback) {
                 else {
                    // if (movie[0] != null)
                     {
-                        console.log("?????????????????????????????????????????????????????",movie[0],movie);
-                       console.log( parseInt(movie.NoofSeats),parseInt(msg.reqBody.total.noOfTickets));
-                     if(parseInt(movie.NoofSeats)>=parseInt(msg.reqBody.total.noOfTickets))
-                     {
-                         var seatsLeft=parseInt(movie.NoofSeats)-parseInt(msg.reqBody.total.noOfTickets);
-                         var queryJsonInsert = {
-                             $set:{
-                                 // "_id":parseInt(randomInt(9,1000000))
 
-                                 "NoofSeats": seatsLeft,
+                        //{user_id : 123456 , "items.item_name":"my_item_one"} , {$inc: {"items.$.price": 10}}
+                        //{"ID":649463,"Showtimes.time":"12:30p"},{$set:{"Showtimes.$.seats":4}}
+                        console.log("?????????????????????????????????????????????????????",movie);
+                      // console.log( parseInt(movie.NoofSeats),parseInt(msg.reqBody.total.noOfTickets));
+                       var seatsMovie;
+                       for (var i=0;i<movie.Showtimes.length;i++)
+                        {
+                            if(movie.Showtimes[i].time==msg.reqBody.showtime)
+                            {
+                                seatsMovie=movie.Showtimes[i].seats;
+                            }
+
+                        }
+
+
+
+console.log(parseInt(seatsMovie),parseInt(msg.reqBody.total.noOfTickets));
+                     if(parseInt(seatsMovie)>=parseInt(msg.reqBody.total.noOfTickets))
+                     {
+                       //  var seatsLeft=parseInt(movie.NoofSeats)-parseInt(msg.reqBody.total.noOfTickets);
+
+                         var queryJsonInsert = {
+                             $inc:{
+                                 "Showtimes.$.seats":-parseInt(msg.reqBody.total.noOfTickets)
 
                              }
 
                          };
 
-                         MongoConPool.updateOne('movieHall',queryJsonSearch, queryJsonInsert, function (err, movie) {
+                         MongoConPool.updateOne('movieHall',queryJsonSearchInsert, queryJsonInsert, function (err, movie) {
                              if (err) {
                                  res.code = "401";
                                  //  callback(null, res);

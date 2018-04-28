@@ -109,6 +109,21 @@ export function editMovieSearch(values) {
             });
     }
 }
+export function SQLbookingSearch(values) {
+    console.log("from action editMovieSearch",values);
+    return (dispatch) => {
+        //console.log("kjhg")
+        const response = axios.post(`${ROOT_URL}/movietheatres/bookingsearch`,values)
+            .then(response => {
+
+                console.log(response.data)
+                dispatch(BookingReducer(response.data))
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+}
+
 
 
 
@@ -207,5 +222,14 @@ function GetMoviesHallListingReducer(response){
     return {
         type: "MOVIES_HALL_LISTING_EDIT",
         payload: response
+    }
+}
+function BookingReducer(response){
+    //console.log(response);
+    return {
+        type: "BOOKING_HISTORY",
+        payload: {
+            code:response.code,
+            transactions:response.transactions}
     }
 }

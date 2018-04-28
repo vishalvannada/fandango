@@ -22,6 +22,10 @@ function ConnectionProvider() {
             {topic: 'geteditmoviesearch_topic', partition: 0},
             {topic: 'savePayment_topic', partition: 0},
             {topic: 'addMovieHallAdmin_topic', partition: 0},
+            {topic: 'bookingsearch_topic', partition: 0},
+
+
+
             {topic: 'getMoviesGenereInSearchPage_topic',partition:0}, //Rishith
 
 

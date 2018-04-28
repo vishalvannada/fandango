@@ -682,6 +682,32 @@ function addMovieHallAdmin(msg, callback) {
 }
 
 
+function handle_bookingsearch(msg,callback){
+    var res= {};
+    console.log("Search transaction function");
+    var email = msg.reqBody.email;
+    transactions.findAll({
+        where: {
+            moviehallowner: email}
+    }).then(function(transactions) {
+        console.log("users",transactions.length);
+        if (transactions.length === 0) {
+            console.log('error');
+            res.code = 401;
+            res.message = "Transactions not available";
+            callback(null, res);
+        }
+        else if(transactions){
+            console.log("Transactions History found===============================================",transactions);
+            res.code = 201;
+            res.transactions= transactions;
+            res.messsage = "purchase  History  found";
+            callback(null, res);
+        }
+    }).catch(err =>
+        callback(null,err)
+    );
+}
 
 exports.signin = signin;
 exports.signup = signup;
@@ -701,4 +727,5 @@ exports.deleteUser = deleteUser;
 exports.editUserAccount = editUserAccount;
 exports.saveTransaction=saveTransaction;
 exports.addMovieHallAdmin=addMovieHallAdmin;
+exports.handle_bookingsearch=handle_bookingsearch;
 

@@ -80,6 +80,24 @@ router.post('/editmoviesearch', function (req, res) {
 
     });
 });
+router.post('/bookingsearch', function (req, res) {
+    console.log("from bookingsearch_topic entry");
+    console.log("-----------------------------------------------------");
+    kafka.make_request('bookingsearch_topic',{"reqBody":req.body}, function (err, results) {
+
+        if (results.code == 200||results.code == 201) {
+            console.log(results);
+            res.status(201).send(results)
+        }
+        else {
+            console.log('fuckedup', results);
+          //  console.log('fuckedup', results);
+             res.status(201).send(results)
+        }
+
+    });
+});
+
 
 
 // Get Movies by Genre Search

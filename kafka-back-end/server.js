@@ -120,6 +120,12 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
+        case 'bookingsearch_topic':
+            user.handle_bookingsearch(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
 
 
         case 'addmovies_topic':
