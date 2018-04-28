@@ -256,7 +256,8 @@ const tdArray = [
   ["5", "Doris Greene", "$63,542", "Malawi", "Feldkirchen in Kärnten"],
   ["6", "Mason Porter", "$78,615", "Chile", "Gloucester"]
 ];
-
+var tdar2 = [];
+var tdar1 = [];
 //
 // //
 // // // For icons
