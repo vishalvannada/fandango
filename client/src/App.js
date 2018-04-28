@@ -32,7 +32,10 @@ import AdminUserEdit from './components/Adminedit/AdminUserEdit';
 import PrivateRouteMovieHallAdmin from './components/PrivateRouteMovieHall';
 import ConditionalRouteMovieHall from './components/ConditionalRouteMovieHall';
 import ConditionalRouteUser from './components/ConditionalRouteUser';
-import AddMovieHall from './components/addMovieHall'
+import AddMovieHall from './components/addMovieHall';
+import MovieBillAttribute from './components/adminBillsAnalysis/billAttributes';
+import SearchMovies from './components/home/listSearchMovies';
+import FilterMovies from './components/home/listFilterMovies';
 
 
 export const history = createBrowserHistory();
@@ -76,6 +79,9 @@ class App extends Component {
                             <Switch>
 
 
+
+                                <Route path='/admin-analysis' component={MovieBillAttribute}/>
+
                                 <ConditionalRouteUser path="/signin" component={Signin}/>
                                 <PrivateRoute path="/movietime" component={MovieTime} props={logStat}/>
                                 <PrivateRoute path="/secret" component={SecretPage} props={logStat}/>
@@ -84,6 +90,8 @@ class App extends Component {
                                 <PrivateRoute path="/check-out-payment" component={CheckOutPayment} props={logStat}/>
                                 <Route path="/movie-overview/:tmdbid" component={MovieDetail}/>
                                 <Route path="/home" component={Home}/>
+                                <Route path='/search-movies' component={SearchMovies}/>
+                                <Route path='/filter-movies' component={FilterMovies}/>
                                 <PrivateRoute path="/movie-review/:tmdbid" component={MovieRating} props={logStat}/>
 
 
@@ -111,10 +119,10 @@ class App extends Component {
                                 <ConditionalRouteUser exact path="/signup" component={SignUp}/>
                                 <PrivateRoute exact path='/userprofile' component={UserProfile} props={logStat}/>
 
+
+
                                 <Route path="*" component={Error}/>
 
-                                {/*Sample check Route*/}
-                                <Route path="*" component={}/>
 
 
 

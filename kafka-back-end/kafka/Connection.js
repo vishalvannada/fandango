@@ -24,9 +24,6 @@ function ConnectionProvider() {
             {topic: 'getMoviesGenereInSearchPage_topic',partition:0}, //Rishith
 
 
-
-
-
             //satish
             {topic: 'signup', partition: 0},
             {topic: 'signin', partition: 0},

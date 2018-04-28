@@ -85,6 +85,7 @@ class MovieRating extends Component {
 
     render() {
 
+        console.log(this.props.movieGenreData)
         var divStyle = {
             backgroundImage: `url(http://image.tmdb.org/t/p/original${this.props.movie.movie.poster_path})`,
         }
@@ -186,7 +187,8 @@ class MovieRating extends Component {
                                         <div className="row">
 
                                             <div className="col-md-9">
-                                                <h2 className="font-condensed-bold font-size-30 p-3">PLEASE RATE THIS MOVIE
+                                                <h2 className="font-condensed-bold font-size-30 p-3">PLEASE RATE THIS
+                                                    MOVIE
                                                     FROM 1-5
                                                     STARS</h2>
                                             </div>
@@ -268,7 +270,10 @@ function validate(values) {
 
 
 function mapStateToProps(state) {
-    return {movie: state.movieOverview}
+    return {
+        movieGenreData: state.genreSearchMovies.movieGenreData,
+        movie: state.movieOverview
+    }
 }
 
 export default reduxForm({

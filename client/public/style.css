@@ -248,6 +248,10 @@ body {
     color: whitesmoke;
 }
 
+.mouse-pointer:hover{
+    cursor: pointer;
+}
+
 .carousel {
     margin-top: 15px;
     width: 890px;
