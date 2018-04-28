@@ -22,6 +22,7 @@ var updateMovieAdmin = require('./services/updateMovieAdmin');
 var getMoviesSearchHandle = require('./services/getMoviesSearchHandle');
 
 
+
 console.log('server is running');
 
 //Models

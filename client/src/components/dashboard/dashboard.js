@@ -29,6 +29,7 @@ class Dashboard extends Component {
 
         console.log('Inside Dashboard: ',this.state, this.props);
 
+
         return (
 
             <div>
@@ -47,10 +48,10 @@ class Dashboard extends Component {
                                         <img id="AvatarImage" className="user-avatar-thumb"
                                              src="https://images.fandango.com/r1.0.431/redesign/areas/profile/img/no-image-account-profile.png"/>{/* Write Image Source*/}
 
-                                        <h3 className="font-condensed-bold">First Name: {this.props.user.username.firstname}<br/><br/> Last Name: {this.props.user.username.lastname}</h3>
-                                        <br/><p className="font-condensed-bold" >Address: {this.props.user.username.address}</p>
-                                        <p className ="font-condensed-bold">Email-ID: {this.props.user.username.email} </p>
-                                        <p className ="font-condensed-bold">Mobile No:{this.props.user.username.mobile} </p>
+                                        <h3 className="font-condensed-bold">First Name: Rishith<br/><br/> Last Name: Rayal</h3>
+                                        <br/><p className="font-condensed-bold" >Address: 202</p>
+                                        <p className ="font-condensed-bold">Email-ID: danderayal@gmail.com </p>
+                                        <p className ="font-condensed-bold">Mobile No:9406987507 </p>
 
                                         <br/>
                                         <br/>
