@@ -30,6 +30,16 @@ console.log(req,req.body,"-----------------------------------------------------"
     });
 });
 
+router.post('/usertrackclose', function (req, res) {
+console.log("from usertrackclose_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('usertrackclose_topic', {"reqBody":req.body}, function (err, results) {
+        console.log('Results: ', results);
+        res.status(201).send(results)       
+        
+    });
+});
+
 // getmoviesnhalls
 //savePayment
 router.post('/getmoviesnhalls', function (req, res) {

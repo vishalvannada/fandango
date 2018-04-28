@@ -10,6 +10,7 @@ import BrandBar from '../home/brandBar';
 import MegaDropDownHeader from '../home/megaDropDownHeader';
 import _ from 'lodash';
 import {purchaseHistory} from "../../actions/satishActions";
+var axios = require('axios');
 
 class Purchases extends Component {
 
@@ -56,6 +57,7 @@ function mapDispatchToProps(dispatch) {
         ...bindActionCreators({purchaseHistory}, dispatch)
     }
 }
+
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Purchases)

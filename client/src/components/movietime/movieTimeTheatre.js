@@ -6,8 +6,29 @@ import Slider from "react-slick";
 import _ from 'lodash';
 import moment from 'moment';
 import {Link} from 'react-router-dom';
+var axios = require('axios');
 
 class MovieTopSection extends Component {
+
+    /*componentWillMount(){
+
+         if(this.props.user.isLoggedIn==true)
+         {
+            console.log("User Email............",this.props.user.user.email);
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
+            });
+
+         }
+     }*/
+
+
+
     state = {
         movieSearch: "",
         Date: moment(new Date()).format()
@@ -287,9 +308,9 @@ class MovieTopSection extends Component {
 }
 
 function mapStateToProps(state) {
-    return {movietime: state.moviesSearchPagePK}
+    return {movietime: state.moviesSearchPagePK,
+         user:state.getUser}
 }
-
 
 export default connect(mapStateToProps, {getMoviesInSearchPage})(MovieTopSection);
 

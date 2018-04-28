@@ -5,6 +5,8 @@ var getMoviesInHomePageCarousel = require('./services/getMoviesInHomePageCarouse
 var getMovieOverview = require('./services/getMovieOverview');
 var user = require('./services/satish/user');
 
+var redis = require('./redis');
+
 var producer = connection.getProducer();
 var consumer = connection.getConsumer();
 

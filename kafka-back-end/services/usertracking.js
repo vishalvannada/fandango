@@ -32,11 +32,13 @@ function usertrackclose(msg, callback) {
         mongo.connect(mongoURL, function () {
             var coll = mongo.collection('usertrack');
             console.log("usertrack msg",msg);            
-            coll.findOneAndUpdate(
-                { "username": msg.reqBody.username, "status": "open"},
-                { "status": "close" },
-                { upsert: true }
-                );
+            
+            coll.update(
+              { "username": msg.reqBody.username, "status": "open"},
+              {
+                $set:{ "status": "close" }
+              }
+            );
             })    
         console.log("usertrack msg",msg);
         callback(msg, msg.reqBody);

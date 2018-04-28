@@ -7,6 +7,7 @@ import CastCrewCarousel from './movieOverview/castCrewCarousel';
 import {connect} from "react-redux";
 import {getMovieOverview} from "../actions/vishalActions";
 import MovieReview from './movieOverview/movieReviewsBottom';
+var axios = require('axios');
 
 class MovieOverview extends Component {
 
@@ -16,6 +17,22 @@ class MovieOverview extends Component {
         console.log(tmdbid)
         this.props.getMovieOverview(tmdbid);
         // console.log(this.props.movie.movie);
+
+    if(this.props.user.isLoggedIn==true)
+         {
+            console.log("User Email............",this.props.user.user.email);
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
+            });
+
+         }
+
+
     }
 
     render() {
@@ -38,7 +55,8 @@ class MovieOverview extends Component {
 }
 
 function mapStateToProps(state) {
-    return {movie: state.movieOverview}
+    return {movie: state.movieOverview,
+         user:state.getUser}
 }
 
 export default connect(mapStateToProps, {getMovieOverview})(MovieOverview);

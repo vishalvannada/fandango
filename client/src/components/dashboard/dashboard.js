@@ -8,9 +8,27 @@ import FandangoVIPHeader from '../userProfile/fandangoVIPHeader';
 import UtilityFooter from '../userProfile/utilityFooter';
 import './dashboard.css';
 import Footer from '../userProfile/footer';
+var axios = require("axios");
 
 
 class Dashboard extends Component {
+
+    /*componentWillMount(){
+
+         if(this.props.user.isLoggedIn==true)
+         {
+            console.log("User Email............",this.props.user.user.email);
+            var values={username:this.props.user.user.email, status:"open", pagename:"Dashboard"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
+            });
+
+         }
+     }*/
 
     constructor(props) {
         super(props);
@@ -204,6 +222,11 @@ class Dashboard extends Component {
 
 function mapStateToProps(store) {
     return ({});
+}
+
+function mapStateToProps(state) {
+    return {home: state.home,
+         user:state.getUser}
 }
 
 function mapDispatchToProps(dispatch) {

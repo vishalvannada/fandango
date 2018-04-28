@@ -18,7 +18,7 @@ class Movietime extends Component {
          if(this.props.user.isLoggedIn==true)
          {
             console.log("Usertracking............");
-            var values={username:"Pranit", status:"open", pagename:"Movietime"};
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
 
             const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
             .then(response => {
