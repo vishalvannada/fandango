@@ -23,9 +23,6 @@ function ConnectionProvider() {
             {topic: 'savePayment_topic', partition: 0},
             {topic: 'getMoviesGenereInSearchPage_topic',partition:0}, //Rishith
             {topic: 'getMovieRevenue_topic',partition:0}, //Rishith
-
-
-
             //satish
             {topic: 'signup', partition: 0},
             {topic: 'signin', partition: 0},
@@ -43,6 +40,17 @@ function ConnectionProvider() {
             {topic: 'savePayment', partition: 0},
             {topic: 'userDetails', partition: 0},
             {topic: 'deletePayment', partition: 0},
+
+
+
+
+            //mangesh
+            {topic: 'usertracking_topic', partition: 0},
+            {topic: 'pageclicks_topic', partition: 0},
+            {topic: 'movieclicks_topic', partition: 0},
+            {topic: 'usertrackclose_topic', partition: 0},            
+
+            {topic: 'uploadimage', partition: 0},
 
             {topic: 'uploadimage', partition: 0},
             {topic: 'login_topic', partition: 0},

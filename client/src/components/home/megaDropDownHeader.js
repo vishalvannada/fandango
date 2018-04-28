@@ -1,20 +1,42 @@
-
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-
+import swal from 'sweetalert';
+import {getSearchedMoviesUser} from "../../actions/vishalActions";
 
 class MegaDropDownHeader extends Component {
 
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            term: '',
+        };
+    }
+
+    handleSubmit = (evt) => {
+
+        evt.preventDefault();
+        swal(this.state.term)
+        this.props.getSearchedMoviesUser(this.state.term);
+    }
+
+
     render() {
+
+        const enabled = this.state.term.length > 0;
+
+        console.log(this.props.moviesSearchList);
+
 
         return (
             <div className="background-fandango">
                 <div className="fandango-container">
                     <nav className="navbar navbar-expand-lg navbar-dark">
                         <Link to="/home">
-                        <img className="megaDropDown-brand mt-1"
-                             src="https://images.fandango.com/mobile/web/img/assets/logo-fandango.svg"/>
+                            <img className="megaDropDown-brand mt-1"
+                                 src="https://images.fandango.com/mobile/web/img/assets/logo-fandango.svg"/>
                         </Link>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -25,12 +47,13 @@ class MegaDropDownHeader extends Component {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
 
-                            <form className="form-inline ml-5 my-lg-0">
+                            <form className="form-inline ml-5 my-lg-0" onSubmit={this.handleSubmit}>
                                 <input className="form-control font-size-14 mt-3 header-form-input" type="search"
-                                       placeholder="Enter City + State, ZIP Code, or Movie"
+                                       value={this.state.term} onChange={(e) => this.setState({term: e.target.value})}
+                                       placeholder="Search Movie"
                                        aria-label="Search"/>
                                 <button
-                                    className="my-2 my-sm-0 ml-4 header-button-go"
+                                    className={`my-2 my-sm-0 ml-4 header-button-go`}
                                     type="submit"> GO
                                 </button>
                             </form>
@@ -286,9 +309,6 @@ class MegaDropDownHeader extends Component {
     }
 }
 
-// function mapStateToProps(state) {
-//     return {dashboard: state.dashboard}
-// }
 
-export default connect(null, null)(MegaDropDownHeader);
+export default connect(null, {getSearchedMoviesUser})(MegaDropDownHeader);
 

@@ -18,7 +18,6 @@ class SecretPage extends Component {
     }
 
     onSubmit(value){
-
         this.props.searchGenre(value);
     }
 
@@ -27,8 +26,6 @@ class SecretPage extends Component {
         adventure:'Adventure',
         animation:'Animation',
         comedy:'Comedy'
-
-
     };
 
 
@@ -40,10 +37,10 @@ class SecretPage extends Component {
                 <BrandBar/>
                 <UnderBrand/>
                 <button onClick={() => this.props.demo()}>Load Movies</button>
-                <button onClick={()=>(this.onSubmit('Action'))}> Action</button>
-                <button onClick={()=>(this.onSubmit('Animation'))}> Animation</button>
-                <button onClick={()=>(this.onSubmit('Comedy'))}> Comedy</button>
-                <button onClick={()=>(this.onSubmit('Adventure'))}> Adventure</button>
+                {/*<button onClick={()=>(this.onSubmit('Action'))}> Action</button>*/}
+                {/*<button onClick={()=>(this.onSubmit('Animation'))}> Animation</button>*/}
+                {/*<button onClick={()=>(this.onSubmit('Comedy'))}> Comedy</button>*/}
+                {/*<button onClick={()=>(this.onSubmit('Adventure'))}> Adventure</button>*/}
 
 
 
@@ -56,9 +53,6 @@ function mapStateToProps(store) {
     return ({
         movieGenreData:store.genreSearchMovies.movieGenreData,
         message:store.genreSearchMovies.message
-
-
-
     });
 }
 

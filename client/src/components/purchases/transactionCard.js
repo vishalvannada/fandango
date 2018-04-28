@@ -3,9 +3,28 @@ import {Route, withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import './transactionCard.css';
+var axios = require('axios');
 
 
 class TransactionCard extends Component {
+
+    /*componentWillMount(){
+
+         if(this.props.user.isLoggedIn==true)
+         {
+            console.log("User Email............",this.props.user.user.email);
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
+            });
+
+         }
+     }*/
+
 
     constructor(props) {
         super(props);
@@ -83,8 +102,9 @@ class TransactionCard extends Component {
     }
 }
 
-function mapStateToProps(store) {
-    return ({});
+function mapStateToProps(state) {
+        return {home: state.home,
+         user:state.getUser}
 }
 
 function mapDispatchToProps(dispatch) {
