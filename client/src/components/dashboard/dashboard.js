@@ -8,7 +8,11 @@ import FandangoVIPHeader from '../userProfile/fandangoVIPHeader';
 import UtilityFooter from '../userProfile/utilityFooter';
 import './dashboard.css';
 import Footer from '../userProfile/footer';
+
 var axios = require("axios");
+
+import {deleteSelfUser} from "../../actions/satishActions";
+
 
 
 class Dashboard extends Component {
@@ -33,15 +37,26 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
+
     }
+
+
     onSubmit = () => {
         console.log("Delete");
         //this.props.doDelete();
+
     };
 
+    deleteUserAccount() {
+        this.props.deleteSelfUser(this.props.user.user.email);
+    }
+
     render() {
-        console.log(this.state, this.props)
+
+        console.log('Inside Dashboard: ', this.state, this.props)
+
         return (
+
             <div>
                 <BrandBar/>
                 <MegaDropDownHeader/>
@@ -52,71 +67,33 @@ class Dashboard extends Component {
 
                         <header className="my-account-summary-container">
 
-                            <div className="vip-cards">
 
-                                <div className="vip-card users-card">
-                                    <div className="panel">
-                                        <div className="vip-content">
-                                            <img id="AvatarImage" className="user-avatar-thumb"
-                                                 src="https://images.fandango.com/r1.0.431/redesign/areas/profile/img/no-image-account-profile.png"/>{/* Write Image Source*/}
+                            <div className='well'>
+                                <div className="Profile cards">
+                                    <div className="vip-content">
+                                        <img id="AvatarImage" className="user-avatar-thumb"
+                                             src="https://images.fandango.com/r1.0.431/redesign/areas/profile/img/no-image-account-profile.png"/>{/* Write Image Source*/}
 
-                                            <h3 className="font-condensed-bold">{this.props.user.user.firstname}</h3>
 
-                                            <br/>
-                                            <br/>
-                                            <br/>
-                                            <button id='delete' className="font-family-roboto btn-danger" onClick={() => {
-                                                this.onSubmit()
-                                            }}>Delete Account
+                                        <h3 className="font-condensed-bold">First Name: {this.props.user.user.firstname}<br/><br/> Last
+                                            Name: {this.props.user.user.lastname}</h3>
+                                        <br/><p
+                                        className="font-condensed-bold">Address: {this.props.user.user.address}</p>
+                                        <p className="font-condensed-bold">Email-ID: {this.props.user.user.email} </p>
+                                        <p className="font-condensed-bold">Mobile No:{this.props.user.user.mobile} </p>
 
-                                            </button>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <button id='delete' className="font-family-roboto btn-danger" onClick={() => {
+                                            this.onSubmit()
+                                        }}>Delete Account
 
-                                        </div>
-                                        <div className="cta-footer " title="Your total Fandango exchange credit">
-                                            Fandango Credit: <span id="FandangoCredit"></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="vip-card theater-rewards">
-                                    <div className="panel vip-content clearfix">
-                                        <a href="#"
-                                           className="cta cta-edit ">Edit</a>
-                                        <h2 className="heading-style-1 heading-size-m">Partner Rewards Cards</h2>
-                                        <ul className="rewards-cards">
-
-                                        </ul>
-
-                                        <p className="heading-style-2">Have a theater rewards card with one of our many
-                                            partners? Cool. Enter it <a href="#"
-                                                                        className="cta">here</a> to start collecting
-                                            your points every time you make a Fandango purchase.</p>
+                                        </button>
 
                                     </div>
+
                                 </div>
-
-                                <div className="vip-card payment-method-card">
-                                    <div className="panel">
-                                        <div className="vip-content payment-method">
-                                            <a href="#"
-                                               className="cta cta-edit  ">Edit</a>
-                                            <h2 className="heading-style-1 heading-size-m">Payment Method</h2>
-
-
-                                            <p className="heading-style-2">Want warp speed checkout? Store your credit
-                                                card <a
-                                                    href="#"
-                                                    className="cta">here</a>. And, of course we promise to keep it safe
-                                                and secure. </p>
-
-                                        </div>
-                                        <div className="cta-footer">
-                                            <a href="#" className="cta">Check
-                                                your Gift Card or Promo Code balance</a>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </header>
 
@@ -144,8 +121,8 @@ class Dashboard extends Component {
                                                         <br/>
                                                         <a id="CtaLink"
                                                            href="https://www.fandango.com/deadpool-2-200520/movie-times?intcmp=IMA_Deadpool2GWP_perks">
-                                                                <span
-                                                                    className="content-call-to-action">BUY TICKETS</span>
+                                                                  <span
+                                                                      className="content-call-to-action">BUY TICKETS</span>
                                                         </a>
                                                     </p>
                                                 </article>
@@ -169,8 +146,8 @@ class Dashboard extends Component {
                                                         <br/>
                                                         <a id="CtaLink"
                                                            href="https://www.fandango.com/avengers-infinity-war-199925/movie-times?intcmp=IMA_InfinityWarGWP_perks">
-                                                                <span
-                                                                    className="content-call-to-action">BUY TICKETS</span>
+                                                                  <span
+                                                                      className="content-call-to-action">BUY TICKETS</span>
                                                         </a>
                                                     </p>
                                                 </article>
@@ -231,7 +208,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        ...bindActionCreators({}, dispatch)
+        ...bindActionCreators({deleteSelfUser}, dispatch)
     }
 }
 

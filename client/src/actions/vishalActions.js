@@ -2,11 +2,13 @@ import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
 import adminMovieSearch from "../components/admin/adminMovieSearch";
+import {history} from "../App";
 
 export const DEMO = 'demo';
 export const MOVIES_CAROUSEL_NOW = 'moviesCarouselNow';
 export const MOVIE_OVERVIEW = 'movieOverview';
 export const ADMIN_MOVIES = 'adminMovies';
+
 
 
 const ROOT_URL = 'http://localhost:3001';
@@ -161,6 +163,22 @@ export function getSearchedMoviesAdmin(term) {
             });
     }
 }
+
+
+export function getSearchedMoviesUser(term) {
+
+    return (dispatch) => {
+        const response = axios.get(`${ROOT_URL}/admin/movieSearch?term=${term}`)
+            .then(response => {
+                console.log(response.data)
+                history.push('/search-movies')
+                dispatch(adminMovies(response.data))
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+}
+
 
 export function updateEditedMovieAdmin(values) {
 
