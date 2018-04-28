@@ -4,8 +4,28 @@ import {Link} from 'react-router-dom';
 import moment from 'moment';
 import Seat from 'material-ui/svg-icons/notification/airline-seat-flat-angled';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+var axios = require('axios');
 
 class CheckOut extends Component {
+
+    /*componentWillMount(){
+
+         if(this.props.user.isLoggedIn==true)
+         {
+            console.log("User Email............",this.props.user.user.email);
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
+            });
+
+         }
+     }*/
+
+
     state={
         totalSum:0,
         ticketValue:0,
@@ -162,8 +182,9 @@ class CheckOut extends Component {
     }
 }
 
-// function mapStateToProps(state) {
-//     return {home: state.home}
-// }
+ function mapStateToProps(state) {
+    return {home: state.home,
+         user:state.getUser}
+}
 
-export default connect(null, null)(CheckOut);
+export default connect(mapStateToProps, null)(CheckOut);

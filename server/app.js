@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors')
 // var session = require('client-sessions');
+var router = express.Router();
+var kafka = require('./routes/kafka/client');
 
 var passport = require('passport');
 require('./routes/passport')(passport);
@@ -13,7 +15,11 @@ require('./routes/passport')(passport);
 var index = require('./routes/vishal/index');
 var movies = require('./routes/vishal/movies');
 var admin = require('./routes/vishal/admin');
+
+var usertracking = require('./routes/mangesh/usertracking');
+
 var ad = require('./routes/mandip/ad');
+
 
 var movietheatres = require('./routes/pranith/movietheatre');
 var user = require('./routes/satish/users');
@@ -43,8 +49,13 @@ app.use(function(req, res, next) {
     next();
 });
 
+
+
+
+
 app.use(cors(corsOptions));
 /*
+
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -74,11 +85,12 @@ app.use(function (req, res, next) {
 
 var options = {
 
-    username: "test",
-    password: "pass",
-    database: "fandango",
-    host: "fandango.coiprk9rsjrx.us-west-1.rds.amazonaws.com",
-    port: 3306,
+    host: 'fandango.coiprk9rsjrx.us-west-1.rds.amazonaws.com',
+    user: 'test',
+    password: 'pass',
+    database: 'fandango',
+    port: 3306
+
 };
 
 
@@ -118,7 +130,20 @@ app.use('/', index); //vishal
 app.use('/movies', movies); //vishal
 app.use('/admin', admin); //vishal
 app.use('/movietheatres', movietheatres); //pranith
+
+//app.use('/usertracking', usertracking); //mangesh
+
+
+// delete it later
+
+
+
+
+
+
+
 app.use('/ad', ad); //mandip
+
 
 // catch 404 and forward to error handlers
 app.use(function (req, res, next) {
@@ -137,5 +162,59 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
+app.post('/usertrackclose', function (req, res) {
+console.log("from usertrackclose_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('usertrackclose_topic', {"reqBody":req.body}, function (err, results) {
+        console.log('Results: ', results);
+        res.status(201).send(results)       
+        
+    });
+});
+
+app.post('/pageclicks', function (req, res) {
+console.log("from pageclicks_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('pageclicks_topic', {"reqBody":req.body}, function (err, results) {
+        
+        console.log('Results: ', results);
+        res.status(201).send(results);       
+        
+    });
+});
+
+app.post('/usertrack', function (req, res) {
+console.log("from usertracking_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('usertracking_topic', {"reqBody":req.body}, function (err, results) {
+        console.log('Results: ', results);
+        res.status(201).send(results)       
+        
+    });
+});
+
+app.post('/usertrack123', function (req, res) {
+console.log("from usertracking_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('usertracking_topic', {"reqBody":req.body}, function (err, results) {
+        console.log('Results: ', results);
+        res.status(201).send(results)       
+        
+    });
+});
+
+
+app.post('/movieclicks', function (req, res) {
+console.log("from movieclicks_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('movieclicks_topic', {"reqBody":req.body}, function (err, results) {
+        
+        console.log('Results: ', results);
+        res.status(201).send(results);       
+        
+    });
+});
+
 
 module.exports = app;

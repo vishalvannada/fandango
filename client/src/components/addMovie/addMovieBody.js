@@ -10,6 +10,7 @@ import DropdownList from 'react-widgets/lib/DropdownList'
 import Multiselect from 'react-widgets/lib/Multiselect'
 import 'react-widgets/dist/css/react-widgets.css';
 
+
 class MovieTopSection extends Component {
 
 

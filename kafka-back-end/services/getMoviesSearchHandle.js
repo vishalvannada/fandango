@@ -5,6 +5,7 @@ const delay = require('delay');
 var randomInt = require('random-int');
 var MongoClient = require('mongodb').MongoClient;
 var user = require("./satish/user");
+var client = require('../redis');
 
 // var mongoURL = "mongodb://localhost:27017/KAYAK";
 // var winston = require('winston');
@@ -51,45 +52,64 @@ function handle_request(msg, callback) {
             "movie.MovieName": new RegExp("^"+msg.reqBody.movieSearch, "i"), "Date": {"$gte": new Date(d), "$lte": new Date(d2)}
         };
 
-        MongoConPool.find('movieHall', queryJson, function (err, movie) {
-            if (err) {
-                res.code = "402";
-                console.log(err, "--------------------------");
-                callback(null, res);
-            }
-            else {
-
-                resArr = [];
-                resArr = movie.map(function (file) {
-                    var carsJSON = {};
-                    carsJSON.id = movie[i].ID;
-                    var spl = movie[i].HallID.split('|');
-                    carsJSON.theatreName = spl[0];
-                    carsJSON.theatreCity = spl[1];
-                    carsJSON.theatreState = spl[2];
-                    carsJSON.theatreZip = spl[3];
-                    carsJSON.movie = movie[i].movie;
-                    carsJSON.ScreenNo = movie[i].ScreenNo;
-                    carsJSON.Showtimes = movie[i].Showtimes;
-                    carsJSON.NoofSeats = movie[i].NoofSeats;
-                    carsJSON.TicketPrice = movie[i].TicketPrice;
-                    carsJSON.user = movie[i].user;
-                    carsJSON.Date = movie[i].Date;
 
 
-                    //carsJSON.Company=cars[i].Company;
-                    i = i + 1;
-                    return carsJSON;
-                });
-                var resmap = groupBy(resArr, "theatreName");
-                // console.log(resmap);
+        client.get(msg.reqBody.movieSearch, function(err, reply) {
+            console.log(reply);
+            if(reply == null){
+                console.log("in redisssssssssssssssssssssssss");
 
-                res.code = 200;
-                res.movietheatre = resArr;
-                res.moviemap = resmap;
-                //     console.log("movie theatres are", resArr);
 
-                callback(null, res);
+                MongoConPool.find('movieHall', queryJson, function (err, movie) {
+                    if (err) {
+                        res.code = "402";
+                        console.log(err, "--------------------------");
+                        callback(null, res);
+                    }
+                    else {
+
+                        resArr = [];
+                        resArr = movie.map(function (file) {
+                            var carsJSON = {};
+                            carsJSON.id = movie[i].ID;
+                            var spl = movie[i].HallID.split('|');
+                            carsJSON.theatreName = spl[0];
+                            carsJSON.theatreCity = spl[1];
+                            carsJSON.theatreState = spl[2];
+                            carsJSON.theatreZip = spl[3];
+                            carsJSON.movie = movie[i].movie;
+                            carsJSON.ScreenNo = movie[i].ScreenNo;
+                            carsJSON.Showtimes = movie[i].Showtimes;
+                            carsJSON.NoofSeats = movie[i].NoofSeats;
+                            carsJSON.TicketPrice = movie[i].TicketPrice;
+                            carsJSON.user = movie[i].user;
+                            carsJSON.Date = movie[i].Date;
+
+
+                            //carsJSON.Company=cars[i].Company;
+                            i = i + 1;
+                            return carsJSON;
+                        });
+                        var resmap = groupBy(resArr, "theatreName");
+                        // console.log(resmap);
+
+                        res.code = 200;
+                        res.movietheatre = resArr;
+                        res.moviemap = resmap;
+                        //     console.log("movie theatres are", resArr);
+
+                        client.set(msg.reqBody.movieSearch, JSON.stringify(res), function(err, reply){
+                            callback(null, res); 
+                        });
+
+                    }
+                        //callback(null, res);
+                        })
+
+            }else{
+                    console.log("dataaa from redissssssssssssssssssssssssssssss");
+                    console.log(JSON.parse(reply));
+                    callback(null, JSON.parse(reply));
             }
         });
 

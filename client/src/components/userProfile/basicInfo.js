@@ -24,7 +24,27 @@ import {
     uploadImage
 } from "../../actions/satishActions";
 
+var axios = require('axios');
+
 class BasicInfo extends Component {
+
+    componentWillMount(){
+
+         if(this.props.user.isLoggedIn==true)
+         {
+            console.log("User Email............",this.props.user.user.email);
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
+            });
+
+         }
+     }
+
 
     renderField(field) {
         const {meta: {touched, error}} = field;
@@ -193,10 +213,14 @@ function validate(values) {
     return errors;
 }
 
+function mapStateToProps(state) {
+    return {home: state.home,
+         user:state.getUser}
+}
 
 export default reduxForm({
     validate,
     form: 'basicInfo'
 })(
-    connect(null, {changeBasicInfo})(BasicInfo)
+    connect(mapStateToProps, {changeBasicInfo})(BasicInfo)
 );
