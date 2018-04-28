@@ -155,6 +155,22 @@ export function deleteUser(value) {
 }
 
 
+export function deleteSelfUser(value) {
+    return function (dispatch) {
+        console.log("Inside the Search user actions",value,{withCredentials: true});
+        axios.delete(`${ROOT_URL}/user/deleteSelfuser?email=${value}`)
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                window.localStorage.clear();
+                history.push("/signin");
+                dispatch({type: SIGN_OUT, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: DELETE_USERS_ERROR, payload: error})
+            });
+    }
+}
+
 export function editUserAccount(userdata){
 
     return function (dispatch) {
@@ -172,6 +188,22 @@ export function editUserAccount(userdata){
     }
 }
 
+
+export function editMoviehallUserAccount(userdata){
+    return function (dispatch) {
+        console.log("Inside the sign up actions");
+        axios.post(`${ROOT_URL}/user/editMoviehallUserAccount`, userdata,{withCredentials: true})
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                history.push("/findMoviehallUsers");
+                // dispatch({type: BASIC_INFO_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: BASIC_INFO_ERROR, payload: error})
+            });
+
+    }
+}
 
 export function searchUsers(value) {
     if(value==null){

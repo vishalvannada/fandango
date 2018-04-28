@@ -7,8 +7,12 @@ module.exports = function (sequelize, Sequelize) {
         email: {type: Sequelize.STRING, validate: {isEmail: true}},
         moviename: {type: Sequelize.STRING, allowNull: false},
         moviehall: {type: Sequelize.STRING},
+        moviehallowner:  {type: Sequelize.STRING},
         screenno: {type: Sequelize.STRING},
         movietime: {type: Sequelize.STRING},
+        date: {type:Sequelize.DATE},
+        city: {type:Sequelize.STRING},
+        nooftickets: {type:Sequelize.STRING},
         Amount : {type: Sequelize.INTEGER},
         tax:  {type: Sequelize.INTEGER},
         image: {type: Sequelize.STRING}

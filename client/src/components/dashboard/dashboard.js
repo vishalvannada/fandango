@@ -8,6 +8,7 @@ import FandangoVIPHeader from '../userProfile/fandangoVIPHeader';
 import UtilityFooter from '../userProfile/utilityFooter';
 import './dashboard.css';
 import Footer from '../userProfile/footer';
+import {deleteSelfUser} from "../../actions/satishActions";
 
 
 class Dashboard extends Component {
@@ -25,9 +26,13 @@ class Dashboard extends Component {
 
     };
 
+    deleteUserAccount() {
+        this.props.deleteSelfUser(this.props.user.user.email);
+    }
+
     render() {
 
-        console.log('Inside Dashboard: ',this.state, this.props)
+        console.log('Inside Dashboard: ', this.state, this.props)
 
         return (
 
@@ -41,16 +46,20 @@ class Dashboard extends Component {
 
                         <header className="my-account-summary-container">
 
+
                             <div className='well'>
                                 <div className="Profile cards">
                                     <div className="vip-content">
                                         <img id="AvatarImage" className="user-avatar-thumb"
                                              src="https://images.fandango.com/r1.0.431/redesign/areas/profile/img/no-image-account-profile.png"/>{/* Write Image Source*/}
 
-                                        <h3 className="font-condensed-bold">First Name: {this.props.user.user.firstname}<br/><br/> Last Name: {this.props.user.user.lastname}</h3>
-                                        <br/><p className="font-condensed-bold" >Address: {this.props.user.user.address}</p>
-                                        <p className ="font-condensed-bold">Email-ID: {this.props.user.user.email} </p>
-                                        <p className ="font-condensed-bold">Mobile No:{this.props.user.user.mobile} </p>
+
+                                        <h3 className="font-condensed-bold">First Name: {this.props.user.user.firstname}<br/><br/> Last
+                                            Name: {this.props.user.user.lastname}</h3>
+                                        <br/><p
+                                        className="font-condensed-bold">Address: {this.props.user.user.address}</p>
+                                        <p className="font-condensed-bold">Email-ID: {this.props.user.user.email} </p>
+                                        <p className="font-condensed-bold">Mobile No:{this.props.user.user.mobile} </p>
 
                                         <br/>
                                         <br/>
@@ -63,7 +72,8 @@ class Dashboard extends Component {
 
                                     </div>
 
-                                </div></div>
+                                </div>
+                            </div>
                         </header>
 
                         <div className="row insider-perks">
@@ -172,7 +182,7 @@ function mapStateToProps(store) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        ...bindActionCreators({}, dispatch)
+        ...bindActionCreators({deleteSelfUser}, dispatch)
     }
 }
 

@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cors = require('cors')
 // var session = require('client-sessions');
 
 var passport = require('passport');
@@ -12,6 +13,7 @@ require('./routes/passport')(passport);
 var index = require('./routes/vishal/index');
 var movies = require('./routes/vishal/movies');
 var admin = require('./routes/vishal/admin');
+var ad = require('./routes/mandip/ad');
 
 var movietheatres = require('./routes/pranith/movietheatre');
 var user = require('./routes/satish/users');
@@ -27,7 +29,22 @@ var mongoStore = require("connect-mongo")(expressSessions);
 
 var app = express();
 
+var corsOptions = {
+    origin: true,
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    exposedHeaders: ['x-auth-token'],
+    optionsSuccessStatus: 200// some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
+app.use(cors(corsOptions));
+/*
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -46,7 +63,7 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-
+*/
 
 // app.use(session({
 //     cookieName : 'session',
@@ -101,6 +118,7 @@ app.use('/', index); //vishal
 app.use('/movies', movies); //vishal
 app.use('/admin', admin); //vishal
 app.use('/movietheatres', movietheatres); //pranith
+app.use('/ad', ad); //mandip
 
 // catch 404 and forward to error handlers
 app.use(function (req, res, next) {
@@ -121,7 +139,3 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
-
-
-
-

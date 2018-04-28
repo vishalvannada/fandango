@@ -41,8 +41,11 @@ function ConnectionProvider() {
             {topic: 'savePayment', partition: 0},
             {topic: 'userDetails', partition: 0},
             {topic: 'deletePayment', partition: 0},
+
             {topic: 'uploadimage', partition: 0},
+            {topic: 'login_topic', partition: 0},
             {topic: 'searchusers', partition: 0}
+
 
         ]);
         this.client.on('ready', function () {
