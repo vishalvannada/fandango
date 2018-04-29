@@ -1,10 +1,5 @@
 import React, {Component} from 'react';
-// import BrandBar from './home/brandBar'
-// import MegaDropDownHeader from './home/megaDropDownHeader';
-// import UnderBrand from './home/underBrand';
-import MovieHallCarousel from './movieHallCarousel';
 import {connect} from "react-redux";
-import {getMoviesInHomePageCarousel} from "../../actions/vishalActions";
 import {fetchUser} from "../../actions/satishActions";
 import MovieHallMegaDropDownHeader from '../movieHallSignIn/movieHallMegaDropDown';
 
@@ -26,7 +21,7 @@ class MovieHallAdminHome extends Component {
             )
         }
 
-        if(this.props.user.isLoggedIn == false){
+        if (this.props.user.isLoggedIn == false) {
             this.props.history.push('/movieHallSignin')
         }
 

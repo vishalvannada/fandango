@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
-import BrandBar from './home/brandBar'
-import MegaDropDownHeader from './home/megaDropDownHeader';
+import MovieHallMegaDropDownHeader from './movieHallSignIn/movieHallMegaDropDown';
 import EditMovieHallBody from './editMovieHallListing/editMovieHallListing';
 import {connect} from "react-redux";
-import {getMoviesInSearchPage,GetMoviesHallListing,addMovie} from "../actions/pranithActions";
-//import {demo} from "../actions/vishalActions";
-
+import {getMoviesInSearchPage, GetMoviesHallListing, addMovie} from "../actions/pranithActions";
 
 
 class EditMovieHallListing extends Component {
-    componentWillMount()
-    {
+    componentWillMount() {
         var idgrp = (this.props.location.pathname).split('/');
         var id = idgrp[2];
         //var projName = idgrp[3];
@@ -27,19 +23,13 @@ class EditMovieHallListing extends Component {
     }
 
 
-    // componentDidMount(){
-    //     this.props.demo()
-    // }
-
     render() {
         console.log(this.props.editmovies);
-        if (this.props.editmovies.movies.code != 400 && this.props.editmovies.movies.moviemap!=null) {
+        if (this.props.editmovies.movies.code != 400 && this.props.editmovies.movies.moviemap != null) {
             console.log(this.props.editmovies);
             return (
                 <div>
-                    <BrandBar/>
-                    <MegaDropDownHeader/>
-
+                    <MovieHallMegaDropDownHeader/>
                     <EditMovieHallBody history={this.props.history} location={this.props.location}/>
                 </div>
             )
@@ -47,10 +37,8 @@ class EditMovieHallListing extends Component {
         else {
             return (
                 <div>
-                    <BrandBar/>
-                    <MegaDropDownHeader/>
-
                     <div>
+                        <MovieHallMegaDropDownHeader/>
                         Fetching Movie to Edit
                     </div>
                 </div>
@@ -65,10 +53,10 @@ class EditMovieHallListing extends Component {
 function mapStateToProps(state) {
     return {
         movietime: state.moviesSearchPagePK,
-        moviesDropdown:state.moviesDropdown,
-        addMovies:state.addMovies,
-        editmovies:state.editMoviehall
+        moviesDropdown: state.moviesDropdown,
+        addMovies: state.addMovies,
+        editmovies: state.editMoviehall
     }
 }
 
-    export default connect(mapStateToProps, {getMoviesInSearchPage,GetMoviesHallListing,addMovie})(EditMovieHallListing);
+export default connect(mapStateToProps, {getMoviesInSearchPage, GetMoviesHallListing, addMovie})(EditMovieHallListing);
