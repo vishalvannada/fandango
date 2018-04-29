@@ -18,23 +18,6 @@ import SearchBillMonth from '../admin/searchBillMonth';
 
 const dashboardRoutes = [
 
-    {
-        path: "/findUsers",
-        component: FindUsers,
-    },
-    {
-      path: "/AdminUserEdit",
-        component: AdminUserEdit
-    },
-    {
-        path: "/findMoviehallUsers",
-        component: FindMoviehallUsers
-    },
-
-    {
-        path: "/AdminMoviehallUseredit",
-        component: AdminMoviehallUserEdit
-    },
 
     {
         path: "/dashboard",
@@ -88,10 +71,32 @@ const dashboardRoutes = [
         component: ''
     },
     {
+        path: "/findUsers",
+        name: "FindUsers",
+        icon: "pe-7s-graph",
+        component: FindUsers,
+    },
+    {
+        path: "/findMoviehallUsers",
+        name: "findMoviehallUsers",
+        icon: "pe-7s-graph",
+        component: FindMoviehallUsers
+    },
+    {
+        path: "/AdminUserEdit",
+        component: AdminUserEdit
+    },
+
+    {
+        path: "/AdminMoviehallUseredit",
+        component: AdminMoviehallUserEdit
+    },
+    {
         path: "/admin-movie-edit/:tmdbid",
         component: MovieEdit,
 
     }
+
 
     /*{
       path: "/typography",

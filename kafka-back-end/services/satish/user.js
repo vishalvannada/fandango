@@ -679,6 +679,8 @@ function saveTransaction(msg, callback) {
            displayname: msg.reqBody.user.displayname,
           email: msg.reqBody.user.email,
              moviename: msg.reqBody.movies.movie.MovieName,
+             movieid:parseInt(msg.reqBody.movies.id),
+
              moviehall: msg.reqBody.movies.theatreName,
              screenno: parseInt(msg.reqBody.movies.ScreenNo),
              movietime: msg.reqBody.showtime,
@@ -688,7 +690,8 @@ function saveTransaction(msg, callback) {
              date: new Date(msg.reqBody.movies.Date),
              moviehallowner: msg.reqBody.movies.user,
              city: msg.reqBody.movies.theatreCity,
-             nooftickets:parseInt(msg.reqBody.total.noOfTickets)
+             nooftickets:parseInt(msg.reqBody.total.noOfTickets),
+
          };
 
 
@@ -773,6 +776,36 @@ function addMovieHallAdmin(msg, callback) {
 }
 
 
+function handle_cancelbooking(msg,callback){
+    var res= {};
+    console.log("handle_cancelbooking function");
+    console.log(msg);
+  //  var email = msg.reqBody.email;
+    transactions.destroy({
+        where: {
+            transactionid: msg.reqBody.transactionid}
+    }).then(function(transactions) {
+        console.log("users",transactions);
+        //if (transactions.length === 0)
+        {
+            console.log('success');
+            res.code = 200;
+            res.message = "Transactions Deleted";
+pranith.handle_cancelPayment(msg,function(err,results){
+    if(err)
+    {
+        console.log(err);
+    }
+    else {
+        callback(null, res);
+    }
+});
+
+        }
+    }).catch(err =>
+        callback(null,err)
+    );
+}
 function handle_bookingsearch(msg,callback){
     var res= {};
     console.log("Search transaction function");
@@ -821,4 +854,5 @@ exports.saveTransaction=saveTransaction;
 exports.getmovierevenue = getmovierevenue;
 exports.addMovieHallAdmin=addMovieHallAdmin;
 exports.handle_bookingsearch=handle_bookingsearch;
+exports.handle_cancelbooking=handle_cancelbooking;
 

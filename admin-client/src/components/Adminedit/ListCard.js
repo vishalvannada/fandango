@@ -47,7 +47,7 @@ class ListCard extends Component {
                                             <button className="btn "
                                                     onClick={()=> {console.log(this.props.user)
                                                         this.props.history.push({
-                                                            pathname: '/Admin-userEdit',
+                                                            pathname: '/AdminUserEdit',
                                                             state: {user: this.props.user,test:"test"}
                                                         })}
                                                     }>

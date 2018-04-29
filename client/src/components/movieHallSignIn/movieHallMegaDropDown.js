@@ -52,11 +52,11 @@ class MovieHallMegaDropDownHeader extends Component {
                                             <span className="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <div className="dropdown-menu moviehall-admin-dropdown font-color-white">
-                                            <a className="dropdown-item" href="#">Add Movie</a>
-                                            <a className="dropdown-item" href="#">Search Halls</a>
-                                            <a className="dropdown-item" href="#">Movie Statistics</a>
+                                            <Link to='/addmovie' className="dropdown-item" href="#">Add Movie</Link>
+                                            <Link to='/editmoviehall' className="dropdown-item" href="#">Search Halls</Link>
+                                            <Link to='/cancelbooking' className="dropdown-item" href="#">Movie Statistics</Link>
                                             <div className="dropdown-divider"></div>
-                                            <a className="dropdown-item" href="#"
+                                            <a className="dropdown-item"
                                                onClick={this.handleSignout.bind(this)}>Sign Out</a>
                                         </div>
                                     </div>

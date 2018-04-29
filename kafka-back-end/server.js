@@ -127,6 +127,13 @@ consumer.on('message', function (message) {
                 response(data, res);
                 return;
             })
+
+        case 'cancelbooking_topic':
+            user.handle_cancelbooking(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+
             break;
         case 'bookingsearch_topic':
             user.handle_bookingsearch(data.data, function (err, res) {

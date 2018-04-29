@@ -9,7 +9,7 @@ import {editUserAccount} from "../../actions/satishActions";
 import "./userProfile.css";
 
 
-class MoviehallUserInfo extends Component {
+class UserInfo extends Component {
 
     renderField(field) {
         const {meta: {touched, error}} = field;
@@ -188,5 +188,5 @@ export default reduxForm({
     validate,
     form: 'basicInfo'
 })(
-    connect(null,{editUserAccount})(MoviehallUserInfo)
+    connect(null,{editUserAccount})(UserInfo)
 );

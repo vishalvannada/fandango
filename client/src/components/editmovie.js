@@ -1,25 +1,16 @@
 import React, {Component} from 'react';
-import BrandBar from './home/brandBar'
-import MegaDropDownHeader from './home/megaDropDownHeader';
 import EditMovieBody from './editMovieHall/editMovieHall';
 import {connect} from "react-redux";
-import {demo} from "../actions/vishalActions";
-
+import MovieHallMegaDropDownHeader from './movieHallSignIn/movieHallMegaDropDown';
 
 
 
 class EditMovieHall extends Component {
 
-
-    // componentDidMount(){
-    //     this.props.demo()
-    // }
-
     render() {
         return (
             <div>
-                <BrandBar/>
-                <MegaDropDownHeader/>
+                <MovieHallMegaDropDownHeader/>
                 <EditMovieBody history={this.props.history}/>
             </div>
         )

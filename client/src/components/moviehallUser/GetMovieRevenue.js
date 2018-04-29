@@ -15,6 +15,24 @@ class GetMovieRevenue extends Component{
     componentDidMount(){
         this.props.getmovieRevenue();
     }
+    movieDetails(movie){
+        return (
+            <div className= "list-group">
+                <div className="list-group-item">
+                    <div className="movie-list-details ">
+                        Movie Name: <span className="Movie-Name">{movie.moviename}</span>
+                    </div>
+                    <div className="movie-list-details">
+                        Theatre: <span className="Movie-Name">{movie.moviehall}</span>
+                    </div>
+                    <div className="movie-list-details ">
+                        TotalAmount: <span className="Movie-Name">{movie.TotalAmount}</span>
+                    </div>
+                    <SimpleBarChart movie={movie}/>
+                </div>
+            </div>
+        )
+    }
     render(){
         console.log("revenue",this.props.movierevenue);
         var movies = groupBy(this.props.movierevenue,"moviename")
@@ -41,22 +59,14 @@ class GetMovieRevenue extends Component{
                 <div id="list-movie-heading">
                 {
                     _.map(this.props.movierevenue, movie => {
-                            return (
-                                <div className= "list-group">
-                                    <div className="list-group-item">
-                                        <div className="movie-list-details ">
-                                            Movie Name: <span className="Movie-Name">{movie.moviename}</span>
-                                            </div>
-                                        <div className="movie-list-details">
-                                             Theatre: <span className="Movie-Name">{movie.moviehall}</span>
-                                        </div>
-                                        <div className="movie-list-details ">
-                                            TotalAmount: <span className="Movie-Name">{movie.TotalAmount}</span>
-                                        </div>
-                                        {/*<SimpleBarChart movie={movie}/>*/}
-                                    </div>
-                                </div>
-                            )
+                        if(movie.data){
+                            _.map(movie.data,dataArry => {
+                            this.movieDetails(dataArry);
+                            });
+                        }
+                        else{
+                            this.movieDetails(movie);
+                            }
                         }
                     )
                 }
