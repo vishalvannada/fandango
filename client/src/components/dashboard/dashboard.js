@@ -8,10 +8,9 @@ import FandangoVIPHeader from '../userProfile/fandangoVIPHeader';
 import UtilityFooter from '../userProfile/utilityFooter';
 import './dashboard.css';
 import Footer from '../userProfile/footer';
-
-var axios = require("axios");
-
 import {deleteSelfUser} from "../../actions/satishActions";
+import axios from 'axios';
+
 
 
 
@@ -39,9 +38,6 @@ class Dashboard extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
     }
-
-
-
 
     onSubmit = ()=> {
 

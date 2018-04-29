@@ -34,7 +34,6 @@ import PrivateRouteMovieHallAdmin from './components/PrivateRouteMovieHall';
 import ConditionalRouteMovieHall from './components/ConditionalRouteMovieHall';
 import ConditionalRouteUser from './components/ConditionalRouteUser';
 import AddMovieHall from './components/addMovieHall';
-
 import MovieBillAttribute from './components/adminBillsAnalysis/billAttributes';
 import SearchMovies from './components/home/listSearchMovies';
 import FilterMovies from './components/home/listFilterMovies';
