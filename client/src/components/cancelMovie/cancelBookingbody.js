@@ -5,7 +5,7 @@ import moment from 'moment';
 import {Link} from 'react-router-dom';
 import "./movieTime.css"
 import {Field, reduxForm, initialize} from "redux-form";
-import {getMoviesInSearchPage, GetMoviesnHalls, addMovie,editMovieSearch,SQLbookingSearch} from "../../actions/pranithActions";
+import {getMoviesInSearchPage, GetMoviesnHalls, addMovie,editMovieSearch,SQLbookingSearch,CancelBooking} from "../../actions/pranithActions";
 import _ from 'lodash';
 import DropdownList from 'react-widgets/lib/DropdownList'
 import Slider from "react-slick";
@@ -17,11 +17,11 @@ import { formValueSelector } from 'redux-form';
 
 class CancelBookingBody extends Component {
     state = {
-        movieSearch: "",
-        moviesSelected:"",
+
         email:this.props.user.user.email,
         dateSelected: moment(new Date()).format(),
-        username:""
+        username:"",
+        filteredTrans:this.props.bookingcancel.transactions
         // values: selector('theatre')
     }
 
@@ -41,40 +41,7 @@ class CancelBookingBody extends Component {
 
 
 
-    renderDropdown = ({input, data, valueField, textField, meta, placeholder}) => {
 
-        const className = `${meta.touched && meta.error ? 'border-red' : ''}`
-        return (
-            <div>
-                <DropdownList {...input}
-                              className={className}
-                              onBlur={() => input.onBlur()}
-                    //value={input.value || []} // requires value to be an array
-                              data={data}
-                              valueField={valueField}
-                              textField={textField}
-                              placeholder={placeholder}
-
-
-                />
-                <div className="error-message">
-                    {meta.touched ? meta.error : ''}
-                </div>
-            </div>
-        )
-    }
-
-
-
-
-
-    setDate(values) {
-        //console.log(values);
-        this.setState({dateSelected: values})
-        console.log("i consoled this", this.state);
-        this.props.editMovieSearch(this.state);
-
-    }
 
     onSubmit(values) {
         {
@@ -87,57 +54,25 @@ class CancelBookingBody extends Component {
 
 
     };
-    renderDates() {
 
-        var arrayDates = [];
+    movieFilter = (filterPrice) => {
+        console.log("filter email is : " + filterPrice);
+        // this.setState({filterPrice: filterPrice});
 
-        for (var i = 0; i < 15; i++) {
-            let newDate = new Date();
-            newDate.setDate(newDate.getDate() + i);
-            arrayDates.push(newDate);
-            // console.log(newDate);
-        }
+        var movieFiltered = this.props.bookingcancel.transactions.filter(function (task) {
+           // console.log(task.data[0].user);
+            //console.log(this.state);
 
-        //  console.log(arrayDates)
-
-
-        return (_.map(arrayDates, Date => {
-            return (
-                <div key={Date}>
-
-                    <div className="background-white text-center carousel-date" onClick={() => {
-                        this.setDate(moment(Date).format())
-                    }}>
-
-                        <span className="font-timesNewRoman font-size-15">{moment(Date).format('ddd')}</span>
-                        <br/>
-                        <h3 className="color-darkgray mt-2 font-condensed-bold">{moment(Date).format('MMM')}</h3>
-                        <h2 className="color-darkgray pb-2 font-condensed-bold">{moment(Date).format('DD')}</h2>
-                    </div>
-                </div>
-            )
-        }))
-
+            return task.displayname == filterPrice;
+        });
+        return(movieFiltered);
     }
 
 
-    renderText(field) {
 
-        const className = `form-control ${field.meta.touched && field.meta.error ? 'border-red' : ''}`
-        return (
-            <div className="form-group form-group-custom">
-                <textarea
-                    className={className}
-                    {...field.input}
-                    placeholder={field.label}
-                    type={field.type}
-                />
-                <div className="error-message">
-                    {field.meta.touched ? field.meta.error : ''}
-                </div>
-            </div>
-        )
-    }
+
+
+
 
     render() {
 
@@ -163,175 +98,92 @@ class CancelBookingBody extends Component {
         };
         //console.log(this.props.moviesDropdown.movies.moviemap);
 
-        if (this.props.editMoviehall.movies.code != 400) {
+        if (this.state.email != "" ) {
             return (
                 <div className="background-movie-top" style={divStyle}>
                     <div className="fandango-container">
-                        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                            <div>
-                                <div className="card profile-body-left">
-                                    <div className="row inside">
+                        <div className="form-group form-group-custom">
+                            <small className='font-weight-700 font-size-14'>Enter the Customer Name</small>
+                            <br/>
+                            <input
+                                className="form-group form-group-custom"
+                                placeholder="Enter the Customer Name"
+                                type="text"
+                                onChange={(event)=>{
+                                    this.setState({username:event.target.value})
+                                    var filteredTrans=this.movieFilter(event.target.value);
+                                    this.setState({filteredTrans:filteredTrans})
+
+                                }}                            />
+
+                        </div>
 
 
-                                        <div className="col-md-11 col-11">
-                                            <div className="mt-4 ml-0 pl-0">
-                                                <div className="form-group form-group-custom">
-                                                    <Field
-                                                        name="theatre"
-                                                        component={this.renderText}
-                                                      //  data={this.props.moviesDropdown.movies.movietheatre}
-                                                        //valueField="type"
-                                                        type="text"
-                                                        textField="type"
-                                                        placeholder="Type the User Display Name"
-                                                        onChange={event => {
-                                                            this.setState({username: event.target.value})
-                                                            //console.log("This is the new value of field myField: " , event);
-                                                            //props.input.onChange(event); // <-- Propagate the event
-                                                        }}
-
-                                                    />
+                        {this.state.filteredTrans.map((item) => {
+                            return (
+                        <div>
+                            <div className='row'>
+                                <div className='medium-7 columns'><div className='Purchase-container card container'>
+                                    <div id='purchase-card' className='row'>
+                                        <div className='Purchase-item medium-10 columns'>
+                                            <div className='row'>
+                                                <div className='medium-3 columns'>
+                                                    <img id = 'purchase-image' src={`http://image.tmdb.org/t/p/w200${item.image}`}>
+                                                    </img>
                                                 </div>
-                                                <br/>
-                                                <div>
-                                                    {
+                                                <div className='Purchase-item medium-9 columns '>
+
+                                                    <div className='row'>
+                                                        <div id='card-heading' className='Purchase-movie-name'>{item.moviename}</div>
+
+                                                    </div>
+                                                    <div className='row'>
+                                                        <div id='card-user' className='Purchase-user-name'>Name: {item.displayname}</div>
+                                                    </div>
+                                                    <div id = 'card-movie' className='Purchase-movie-time'>
+                                                        <p id = 'timings' >Movie time: <div className='movie-time'>{item.movietime}</div></p>
+                                                    </div>
+                                                    <div className='Purchase-movie-theater'>
+                                                        <p>Movie Theater:
+                                                            <div id='theater-name'>{item.moviehall} - Screen No: {item.screenno}
+                                                            </div>
+                                                        </p>
+                                                    </div>
 
 
-                                                        this.props.editMoviehall.movies.movietheatre.map((item) => {
-                                                            if (this.state.moviesSelected != "" && item.type == this.state.moviesSelected) {
-                                                                return (
-                                                                    <div className="moviesTheatres col-12"
-                                                                         id="moviesTheatres">
-
-                                                                        <ul>
-                                                                            <div className="fd-theater__header">
-                                                                                <h4 className="font-condensed-bold-white">
-                                                                                    <a className="light">{item.type} Cinemas</a>
-                                                                                </h4>
-
-
-                                                                                <p className="color-ccc font-family-roboto">
-                                                                                    {item.data[0].theatreCity}, {item.data[0].theatreState}, {item.data[0].theatreZip}
-                                                                                    <a className="ml-3"
-                                                                                       href="">MAP</a> |
-                                                                                    <a href=""> AMENITIES</a>
-                                                                                </p>
-                                                                            </div>
-
-
-                                                                            {item.data.map((movie) => {
-                                                                                return (
-
-                                                                                    <div className="fd-movie">
-                                                                                        <div
-                                                                                            className="fd-movie__poster">
-                                                                                            <Link
-                                                                                                to={`/movie-overview/${movie.movie.movieId}`}>
-                                                                                                <img
-                                                                                                    src={`http://image.tmdb.org/t/p/w200${movie.movie.poster_path}`}
-                                                                                                    className="image-theatres image"/>
-                                                                                            </Link>
-
-
-                                                                                        </div>
-                                                                                        <div
-                                                                                            className="fd-movie__details">
-                                                                                            <h3 className="fd-movie__title font-sans-serif font-lg font-300 p-2 uppercase">
-                                                                                                <Link
-                                                                                                    className="dark font-condensed-bold"
-                                                                                                    to={`/movie-overview/${movie.movie.movieId}`}>{movie.movie.MovieName}</Link>
-                                                                                            </h3>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            className="fd-movie__details">
-                                                                                            <h3 className="fd-movie__title font-sans-serif font-lg font-300 p-2 uppercase">
-                                                                                                <Link
-                                                                                                    className="dark font-condensed-bold"
-                                                                                                    to={`/movie-overview/${movie.movie.movieId}`}>Date
-                                                                                                    : {moment(movie.Date).format("YYYY-MM-DD")}</Link>
-                                                                                            </h3>
-                                                                                        </div>
-                                                                                        <ul className="fd-movie__showtimes">
-
-
-                                                                                            <li className="fd-movie__showtimes-variant">
-
-                                                                                                <ol className="fd-movie__btn-list">
-
-                                                                                                    <li className="fd-movie__btn-list-item">
-
-
-                                                                                                        <Link
-                                                                                                            className="btn showtime-btn"
-                                                                                                            to={"/editmoviehalllisting/" + movie.ID}>Edit </Link>
-                                                                                                        <br/>
-
-
-                                                                                                    </li>
-
-
-                                                                                                </ol>
-                                                                                            </li>
-
-
-                                                                                        </ul>
-
-                                                                                    </div>
-
-                                                                                )
-                                                                            })}
-                                                                        </ul>
-                                                                        <br/>
-                                                                    </div>
-                                                                )
-                                                            }
-
-                                                        })}
                                                 </div>
-                                                {/*
-                                            <div className="form-group form-group-custom">
-                                                <Field
-                                                    name="movie"
-                                                    component={this.renderDropdown}
-                                                    data={this.props.moviesDropdown.movies.moviemap}
-                                                    valueField="movie"
-                                                    type="DropdownList"
-                                                    textField="movie"
-                                                    placeholder="Select a Movie name"/>
+
+                                            </div>
+                                            <div>
+                                            </div>
+                                        </div>
+
+                                        <div className='Purchase-item medium-2 columns'>
+                                            <div id = 'transaction-div' className='row'>
+                                                <div>Transaction ID: <div id='transaction-id'>{item.transactionid}</div></div>
                                             </div>
 
-                                            <br/>
+                                            <div id='ticket-div'  className='row'>
+                                                <div>Amount: <div id='ticket-cost'  >${item.Amount}</div></div>
+                                            </div>
 
-                                            <Field
-                                                name="showTimes"
-                                                component={this.renderMultiselect}
-                                                data={["9:30a", "12:30p", "3:30p", "9:30p"]}
-                                                placeholder="Select Show time"
-                                            />
-                                            <br/>
-                                            <Field
-                                                label="Please enter number of seats "
-                                                name="noOfSeats"
-                                                component={this.renderField}
-                                                type="text"
-                                            />
-                                            <br/>*/}
+                                            <div id = 'tax-div' className='row'>
+                                                <div>Tax: ${item.tax}</div>
 
+                                            <button
+                                                className="btn showtime-btn"
+                                                onClick={()=>{this.props.CancelBooking(item)}}>Cancel</button>
+                                            <br/>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="card profile-body-right">
-                                    <div className="card-header">
 
-                                        <br/>
-                                        <br/>
-                                        <hr/>
-
-                                    </div>
-                                </div>
+                                </div></div>
                             </div>
-                        </form>
+                        </div>
+                            )
+
+                        })}
 
                     </div>
                 </div>
@@ -379,4 +231,4 @@ function mapStateToProps(state) {
 export default reduxForm({
     validate,
     form: 'EditMovie'
-})(connect(mapStateToProps, {getMoviesInSearchPage, GetMoviesnHalls, addMovie,editMovieSearch,SQLbookingSearch})(CancelBookingBody));
+})(connect(mapStateToProps, {getMoviesInSearchPage, GetMoviesnHalls, addMovie,editMovieSearch,SQLbookingSearch,CancelBooking})(CancelBookingBody));
