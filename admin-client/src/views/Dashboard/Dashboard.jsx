@@ -1,10 +1,13 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import {Link} from 'react-router-dom';
+import _ from 'lodash';
 import ChartistGraph from "react-chartist";
-import {Grid, Row, Col} from "react-bootstrap";
+import { Grid, Row, Col } from "react-bootstrap";
 import * as API from '../../api/API';
-import {Card} from "components/Card/Card.jsx";
-import {StatsCard} from "components/StatsCard/StatsCard.jsx";
-import {Tasks} from "components/Tasks/Tasks.jsx";
+import { Card } from "components/Card/Card.jsx";
+import { StatsCard } from "components/StatsCard/StatsCard.jsx";
+import { Tasks } from "components/Tasks/Tasks.jsx";
+import { tdar1, tdar2 } from "variables/Variables.jsx";
 import {
     dataSales,
     optionsSales,
@@ -13,12 +16,18 @@ import {
 } from "variables/Variables.jsx";
 
 // Data for Pie Chart
-var dataPie = {
-    labels: ["40%", "20%", "40%"],
-    series: [40, 20, 40, 40, 20, 40, 40, 20, 40, 20]
+var dataPie1 = {};
+var dataPie2 = {};
+var dataPie3 = {};
+var legendPie1 = {
+    types: ["info", "danger", "warning"]
 };
+/*var dataPie = {
+  labels: ["40%", "20%", "40%"],
+  series: [40, 20, 40,40, 20, 40,40, 20, 40,20]
+}; */
 var legendPie = {
-    names: ["Open", "Bounce", "Unsubscribe"],
+    names: ["", "", ""],
     types: ["info", "danger", "warning"]
 };
 
@@ -48,7 +57,7 @@ var responsiveBar = [
         {
             seriesBarDistance: 5,
             axisX: {
-                labelInterpolationFnc: function (value) {
+                labelInterpolationFnc: function(value) {
                     return value[0];
                 }
             }
@@ -75,20 +84,22 @@ var legendBar4 = {
 
 class Dashboard extends Component {
     state = {
-        total_movie: '',
-        total_revenue: '345,345',
-        sold_tickets: '12,123,123',
-        registered_user: '40,000',
+        total_movie:'',
+        total_revenue:'',
+        sold_tickets:'',
+        registered_user:'',
         trackuser: [],
-        track: {}
+        track: {},
+        moviehalllabels: [],
+        moviehallseries: []
     }
 
-    componentWillMount() {
+    componentWillMount(){
         console.log("You are in Admin Dashboard componentwillmount");
         API.check()
-            .then((response) => {
-                console.log("response --->" + JSON.stringify(response));
-                if (response.code === 200) {
+            .then((response)=> {
+                console.log("response --->"+JSON.stringify(response));
+                if(response.code === 200){
                     //alert("check successful");
 
                     dataBar.labels = response.movies;
@@ -103,22 +114,40 @@ class Dashboard extends Component {
                     dataBar4.labels = response.pageslessseen;
                     dataBar4.series[0] = response.lesscount;
 
-                    console.log("track" + response);
+                    dataPie1.labels = response.labels4;
+                    dataPie1.series = response.series4;
+
+                    dataPie2.labels = response.labels3;
+                    dataPie2.series = response.series3;
+
+                    dataPie3.labels = response.labels2;
+                    dataPie3.series = response.series2;
+                    // tdar1 = response.tdar1;
+                    // tdar2 = response.tdar2;
+                    console.log(response.trackuser);
+                    console.log(response.track);
+                    console.log("Labels 1 ---->" + dataPie1.labels);
+                    console.log("Labels 2 ---->" + dataPie2.labels);
+                    console.log("Labels 3 ---->" + dataPie3.labels);
+                    legendPie1.names = response.lables4;
+                    //console.log("track"+response.track);
                     this.setState({
-                        total_movie: response.total_movies,
+                        total_movie : response.total_movies,
                         trackuser: response.trackuser,
-                        track: response.track
+                        track: response.track,
+                        registered_user: response.total_user,
+                        sold_tickets: response.total_tickets,
+                        total_revenue:response.total_rev
                     });
 
                 }
             });
     }
-
     createLegend(json) {
         var legend = [];
         for (var i = 0; i < json["names"].length; i++) {
             var type = "fa fa-circle text-" + json["types"][i];
-            legend.push(<i className={type} key={i}/>);
+            legend.push(<i className={type} key={i} />);
             legend.push(" ");
             legend.push(json["names"][i]);
         }
@@ -126,6 +155,7 @@ class Dashboard extends Component {
     }
 
     render() {
+        var data = _.zip(this.state.trackuser,this.state.track);
         return (
             <div className="content">
                 <Grid fluid>
@@ -133,37 +163,37 @@ class Dashboard extends Component {
                     <Row>
                         <Col lg={3} sm={6}>
                             <StatsCard
-                                bigIcon={<i className="pe-7s-wallet text-success"/>}
+                                bigIcon={<i className="pe-7s-wallet text-success" />}
                                 statsText="Total Revenue"
                                 statsValue={this.state.total_revenue}
-                                statsIcon={<i className="fa fa-calendar-o"/>}
+                                statsIcon={<i className="fa fa-calendar-o" />}
                                 statsIconText="Till Last day"
                             />
                         </Col>
                         <Col lg={3} sm={6}>
                             <StatsCard
-                                bigIcon={<i className="pe-7s-film text-warning"/>}
+                                bigIcon={<i className="pe-7s-film text-warning" />}
                                 statsText="Total Movies"
                                 statsValue={this.state.total_movie}
-                                statsIcon={<i className="fa fa-refresh"/>}
+                                statsIcon={<i className="fa fa-refresh" />}
                                 statsIconText="Running Now"
                             />
                         </Col>
                         <Col lg={3} sm={6}>
                             <StatsCard
-                                bigIcon={<i className="pe-7s-graph1 text-danger"/>}
+                                bigIcon={<i className="pe-7s-graph1 text-danger" />}
                                 statsText="Sold Tickets"
                                 statsValue={this.state.sold_tickets}
-                                statsIcon={<i className="fa fa-clock-o"/>}
+                                statsIcon={<i className="fa fa-clock-o" />}
                                 statsIconText="Till Today"
                             />
                         </Col>
                         <Col lg={3} sm={6}>
                             <StatsCard
-                                bigIcon={<i className="pe-7s-users text-info"/>}
+                                bigIcon={<i className="pe-7s-users text-info" />}
                                 statsText="Register Users"
                                 statsValue={this.state.registered_user}
-                                statsIcon={<i className="fa fa-clock-o"/>}
+                                statsIcon={<i className="fa fa-clock-o" />}
                                 statsIconText="Till Now"
                             />
                         </Col>
@@ -174,15 +204,15 @@ class Dashboard extends Component {
                         <Col md={4}>
                             <Card
                                 statsIcon="fa fa-clock-o"
-                                title="Email Statistics"
-                                category="Last Campaign Performance"
-                                stats="Campaign sent 2 days ago"
+                                title="Revenue By Movie Hall"
+                                category="Revenue"
+                                stats="Data till date"
                                 content={
                                     <div
                                         id="chartPreferences"
                                         className="ct-chart ct-perfect-fourth"
                                     >
-                                        <ChartistGraph data={dataPie} type="Pie"/>
+                                        <ChartistGraph data={dataPie1} type="Pie" />
                                     </div>
                                 }
                                 legend={
@@ -193,15 +223,15 @@ class Dashboard extends Component {
                         <Col md={4}>
                             <Card
                                 statsIcon="fa fa-clock-o"
-                                title="Email Statistics"
-                                category="Last Campaign Performance"
-                                stats="Campaign sent 2 days ago"
+                                title="Revenue by City"
+                                category="Revenue"
+                                stats="Data till today"
                                 content={
                                     <div
                                         id="chartPreferences"
                                         className="ct-chart ct-perfect-fourth"
                                     >
-                                        <ChartistGraph data={dataPie} type="Pie"/>
+                                        <ChartistGraph data={dataPie2} type="Pie" />
                                     </div>
                                 }
                                 legend={
@@ -212,15 +242,15 @@ class Dashboard extends Component {
                         <Col md={4}>
                             <Card
                                 statsIcon="fa fa-clock-o"
-                                title="Email Statistics"
-                                category="Last Campaign Performance"
-                                stats="Campaign sent 2 days ago"
+                                title="Revenue of Movie per Year"
+                                category="Revenue"
+                                stats="Data till today"
                                 content={
                                     <div
                                         id="chartPreferences"
                                         className="ct-chart ct-perfect-fourth"
                                     >
-                                        <ChartistGraph data={dataPie} type="Pie"/>
+                                        <ChartistGraph data={dataPie3} type="Pie" />
                                     </div>
                                 }
                                 legend={
@@ -330,10 +360,11 @@ class Dashboard extends Component {
 
                 </Grid>
 
-                {this.state.trackuser.map(function (user, index) {
-                    return <p className="d-inline p-2 bg-dark text-white">{user}</p>
+                {console.log("After ZIP: ",data)}
+                {/*{console.log("After ZIP: ",_.zipObject(this.state.trackuser,this.state.track))}*/}
+                {data.map(function(user, index){
+                    return <div className="list-group"><p className="list-group-item d-inline p-2 bg-dark text-white" key = {index}><span> <Link to ="#">{user[0]}</Link></span> :  {user[1].join(' -->')+'.'}</p></div>
                 })}
-
 
             </div>
         );
@@ -345,7 +376,6 @@ export default Dashboard;
 /*      <tbody>
             <tr>
                   <td><div className="bg-info w-100 mr-5"> User Tacking </div></td>
-
             </tr>
             <tr>
             {this.state.trackuser.map(function(user, index){
