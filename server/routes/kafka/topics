@@ -16,3 +16,7 @@ changePassword
 savePayment
 userDetails
 deletePayment
+usertracking_topic
+movieclicks_topic
+pageclicks_topic
+usertrackclose_topic

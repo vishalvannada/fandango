@@ -5,18 +5,33 @@ import MegaDropDownHeader from './home/megaDropDownHeader';
 import MovieTopSection from './movietime/movieTimeTheatre';
 import {connect} from "react-redux";
 import {demo} from "../actions/vishalActions";
-
+import axios from 'axios';
 
 
 
 class Movietime extends Component {
 
 
-    // componentDidMount(){
-    //     this.props.demo()
-    // }
+     componentWillMount(){
+        console.log("hello",   this.props.user);
+         
+         if(this.props.user.isLoggedIn==true)
+         {
+            console.log("Usertracking............");
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
 
-    render() {
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
+            });
+
+            console.log("after ttasildjfksdfh")
+         }
+     }
+
+    render() {  
         return (
             <div>
                 <BrandBar/>
@@ -28,7 +43,8 @@ class Movietime extends Component {
 }
 
 function mapStateToProps(state) {
-    return {home: state.home}
+    return {home: state.home,
+         user:state.getUser}
 }
 
 export default connect(null, null)(Movietime);

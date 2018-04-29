@@ -20,6 +20,26 @@ console.log(req,req.body,"-----------------------------------------------------"
     });
 });
 
+router.post('/usertrack', function (req, res) {
+console.log("from usertracking_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('usertracking_topic', {"reqBody":req.body}, function (err, results) {
+        console.log('Results: ', results);
+        res.status(201).send(results)       
+        
+    });
+});
+
+router.post('/usertrackclose', function (req, res) {
+console.log("from usertrackclose_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('usertrackclose_topic', {"reqBody":req.body}, function (err, results) {
+        console.log('Results: ', results);
+        res.status(201).send(results)       
+        
+    });
+});
+
 // getmoviesnhalls
 //savePayment
 router.post('/getmoviesnhalls', function (req, res) {
@@ -80,6 +100,24 @@ router.post('/editmoviesearch', function (req, res) {
 
     });
 });
+router.post('/bookingsearch', function (req, res) {
+    console.log("from bookingsearch_topic entry");
+    console.log("-----------------------------------------------------");
+    kafka.make_request('bookingsearch_topic',{"reqBody":req.body}, function (err, results) {
+
+        if (results.code == 200||results.code == 201) {
+            console.log(results);
+            res.status(201).send(results)
+        }
+        else {
+            console.log('fuckedup', results);
+          //  console.log('fuckedup', results);
+             res.status(201).send(results)
+        }
+
+    });
+});
+
 
 
 // Get Movies by Genre Search
@@ -139,6 +177,29 @@ router.post('/getmovieshalllisting', function (req, res) {
             console.log('fuckedup', results);
             console.log('fuckedup', results);
             // res.status(401).end()
+        }
+
+    });
+});
+
+router.post('/addMovieHallAdmin', function (req, res) {
+    // console.log("from addmovies_topic entry");
+    console.log("-----------------------------------------------------");
+    console.log(req.body.Date);
+    kafka.make_request('addMovieHallAdmin_topic',{"reqBody":req.body}, function (err, results) {
+
+        if (results.code == 200) {
+            // console.log(results);
+            res.status(201).send(results)
+        }
+        else if(results.code=400){
+
+            //console.log(results);
+            res.status(208).send("movie not added");
+            // res.status(401).end()
+        }else {
+            console.log('fuckedup', results);
+
         }
 
     });

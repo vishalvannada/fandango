@@ -31,8 +31,8 @@ class AdminMovieSearch extends Component {
             <div>
 
                 <form onSubmit={this.handleSubmit}>
-                    <input value={this.state.term} onChange={(e) => this.setState({term: e.target.value})}/>
-                    <button type="submit" className="btn m-2">Go</button>
+                    <input className='style-date' value={this.state.term} onChange={(e) => this.setState({term: e.target.value})}/>
+                    <button type="submit" className="btn btn-primary">Go</button>
                 </form>
 
                 {this.props.moviesSearchList ?

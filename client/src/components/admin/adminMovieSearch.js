@@ -25,7 +25,11 @@ class AdminMovieSearch extends Component {
         this.props.getSearchedMoviesAdmin(this.state.term);
     }
 
+
+
     render() {
+
+
 
         return (
             <div>

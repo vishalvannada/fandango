@@ -136,3 +136,47 @@ export const getRevenue = () =>
             console.log("This is error");
             return error;
 });
+
+
+
+
+//getBills
+export const getBills = (value) =>
+
+    fetch(`${api}/admin/bills?date=${value}`,  {
+        method: 'GET',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+    }).then(res => {
+        //console.log(res.json());
+        // console.log(res.json())
+        return res.json();
+    })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
+//getBillsMonth
+export const getBillsMonth = (value) =>
+
+    fetch(`${api}/admin/billMonth?date=${value}`,  {
+        method: 'GET',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+    }).then(res => {
+        //console.log(res.json());
+        // console.log(res.json())
+        return res.json();
+    })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
