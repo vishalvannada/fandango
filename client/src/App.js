@@ -19,9 +19,11 @@ import CheckOut from './components/payment/checkout';
 import CheckOutPayment from './components/payment/checkoutPayment';
 import AdminMovieSearch from './components/admin/adminMovieSearch';
 import AdminMovieEdit from './components/admin/adminMovieSearch/movieEdit';
+import AddMovieHallAdmin from './components/admin/addMovieHall';
 import EditMovieHallListing from './components/editMovieHallListing';
 import EditMovieHall from './components/editmovie';
 import Error from './components/404Error';
+import checkFS from './components/adminTrial/checkFS';
 import MovieHallSiginin from "./components/moviehallSignin";
 
 import FindUsers from "./components/Adminedit/FindUsers";
@@ -32,10 +34,12 @@ import AdminUserEdit from './components/Adminedit/AdminUserEdit';
 import PrivateRouteMovieHallAdmin from './components/PrivateRouteMovieHall';
 import ConditionalRouteMovieHall from './components/ConditionalRouteMovieHall';
 import ConditionalRouteUser from './components/ConditionalRouteUser';
-import AddMovieHall from './components/addMovieHall';
+import CancelUserBooking from "./components/cancelBooking"
+import AddMovieHall from './components/addMovieHall'
 import MovieBillAttribute from './components/adminBillsAnalysis/billAttributes';
 import SearchMovies from './components/home/listSearchMovies';
 import FilterMovies from './components/home/listFilterMovies';
+
 
 
 export const history = createBrowserHistory();
@@ -84,6 +88,7 @@ class App extends Component {
 
                                 <ConditionalRouteUser path="/signin" component={Signin}/>
                                 <PrivateRoute path="/movietime" component={MovieTime} props={logStat}/>
+                                <PrivateRoute path="/checkfs" component={checkFS}/>
                                 <PrivateRoute path="/secret" component={SecretPage} props={logStat}/>
                                 <PrivateRoute path="/dashboard" component={Dashboard}/>
                                 <PrivateRoute path="/check-out" component={CheckOut}/>
@@ -101,6 +106,8 @@ class App extends Component {
                                 <Route path="/movieHall-home" component={MovieAdminHome}/>
                                 <PrivateRouteMovieHallAdmin path="/editmoviehalllisting"
                                                             component={EditMovieHallListing}/>
+                                <PrivateRouteMovieHallAdmin path="/cancelbooking"
+                                                            component={CancelUserBooking}/>
 
 
                                 <Route path="/admin-movies" component={AdminMovieSearch}/>
@@ -114,6 +121,7 @@ class App extends Component {
                                 <Route path="/admin-home" component={AdminHome}/>{/*satish*/}
 
                                 <Route path="/admin-useredit" component={AdminUserEdit}/>{/*satish*/}
+                                <Route path="/addmovieHallAdmin" component={AddMovieHallAdmin}/>
 
 
                                 <ConditionalRouteUser exact path="/signup" component={SignUp}/>

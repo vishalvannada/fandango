@@ -4,7 +4,13 @@ var dummyData = require('./services/dummyData');
 var getMoviesInHomePageCarousel = require('./services/getMoviesInHomePageCarousel');
 var getMovieOverview = require('./services/getMovieOverview');
 var user = require('./services/satish/user');
+
+
+var redis = require('./redis');
+
+
 var ad = require('./services/mandip/ad');
+
 var producer = connection.getProducer();
 var consumer = connection.getConsumer();
 
@@ -17,6 +23,7 @@ var getMoviesGenreInSearchHandle = require('./services/getMoviesGenreInSearchHan
 var saveReview = require('./services/saveReview');
 var adminMovieSearch = require('./services/adminMovieSearch');
 var updateMovieAdmin = require('./services/updateMovieAdmin');
+var usertracking = require('./services/usertracking');
 
 
 var getMoviesSearchHandle = require('./services/getMoviesSearchHandle');
@@ -99,6 +106,13 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
+        case 'addMovieHallAdmin_topic':
+            user.addMovieHallAdmin(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break;
+
 
         case 'getMoviesGenereInSearchPage_topic':
             getMoviesGenreInSearchHandle.handle_request(data.data, function (err, res) {          //Rishith
@@ -110,6 +124,12 @@ consumer.on('message', function (message) {
 
         case 'geteditmoviesearch_topic':
             getMoviesSearchHandle.handle_geteditmoviesearch(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break;
+        case 'bookingsearch_topic':
+            user.handle_bookingsearch(data.data, function (err, res) {
                 response(data, res);
                 return;
             })
@@ -196,6 +216,34 @@ consumer.on('message', function (message) {
                 return;
             })
             break
+
+        case 'usertracking_topic':
+            usertracking.usertrack(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break
+        case 'usertrackclose_topic':
+            usertracking.usertrackclose(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break
+        case 'pageclicks_topic':
+            console.log("reached pageclicks_topic");
+            usertracking.pageclicks(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break
+        case 'movieclicks_topic':
+            console.log("reached movieclicks_topic");
+            usertracking.movieclicks(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break
+
         case 'uploadimage':
             user.uploadImage(data.data, function (err, res) {
                 response(data, res);
@@ -282,6 +330,7 @@ consumer.on('message', function (message) {
                 response(data, res);
             })
             break;
+
     }
 });
 

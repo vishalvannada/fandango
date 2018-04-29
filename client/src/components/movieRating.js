@@ -9,7 +9,7 @@ import MegaDropDownHeader from './home/megaDropDownHeader';
 import {getMovieOverview, saveReview} from "../actions/vishalActions";
 import swal from 'sweetalert'
 import _ from "lodash";
-
+var axios = require('axios');
 
 class MovieRating extends Component {
 
@@ -25,6 +25,21 @@ class MovieRating extends Component {
         const {tmdbid} = this.props;
         console.log(tmdbid)
         this.props.getMovieOverview(tmdbid);
+
+         if(this.props.user.isLoggedIn==true)
+         {
+            console.log("User Email............",this.props.user.user.email);
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
+            });
+
+         }
+
     }
 
     onSubmit(data) {
@@ -270,10 +285,15 @@ function validate(values) {
 
 
 function mapStateToProps(state) {
+
+    return {movie: state.movieOverview,
+         user:state.getUser}
+
     return {
         movieGenreData: state.genreSearchMovies.movieGenreData,
         movie: state.movieOverview
     }
+
 }
 
 export default reduxForm({

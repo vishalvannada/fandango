@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import swal from 'sweetalert';
 import {getSearchedMoviesUser} from "../../actions/vishalActions";
 
+
 class MegaDropDownHeader extends Component {
 
 
@@ -53,8 +54,15 @@ class MegaDropDownHeader extends Component {
                                        placeholder="Search Movie"
                                        aria-label="Search"/>
                                 <button
-                                    className={`my-2 my-sm-0 ml-4 header-button-go`}
-                                    type="submit"> GO
+
+                                    className="my-2 my-sm-0 ml-4 header-button-go"
+                                    type="button" onClick={(event)=>{
+                                        console.log("pranith Clcikdef")
+                                        console.log(event);
+                                        //swal("value is ", event.target);
+
+                                    this.props.history.push("/movietime");
+                                }}> GO
                                 </button>
                             </form>
 

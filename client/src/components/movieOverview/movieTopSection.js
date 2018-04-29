@@ -5,6 +5,7 @@ import ReactStars from 'react-stars';
 import {Link} from 'react-router-dom';
 import _ from 'lodash';
 import ReactDOM from 'react-dom';
+var axios = require('axios');
 
 class MovieTopSection extends Component {
 
@@ -134,6 +135,7 @@ class MovieTopSection extends Component {
         )
     }
 }
+
 
 
 export default connect(null, null)(MovieTopSection);

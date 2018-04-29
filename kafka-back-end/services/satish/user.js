@@ -5,10 +5,10 @@ var models = require('../../models');
 var User = require('../../models/User')(models.sequelize, models.Sequelize);
 var MoviehallUser = require("../../models/MoviehallUser")(models.sequelize, models.Sequelize);
 var Admin = require("../../models/Admin")(models.sequelize, models.Sequelize);
-
+var pranith= require("../getMoviesSearchHandle");
 var transactions = require("../../models/UserTransaction")(models.sequelize, models.Sequelize);
 var randomInt = require('random-int');
-
+var client = require('../../redis');
 
 
 function signin(msg, callback) {
@@ -439,27 +439,48 @@ function purchaseHistory(msg,callback){
     var res= {};
     console.log("Search user function");
     var email = msg.email;
-    transactions.findAll({
-        where: {
-            email: email}
-    }).then(function(transactions) {
-        console.log("users",transactions.length);
-        if (transactions.length === 0) {
-            console.log('error');
-            res.code = 401;
-            res.message = "purchase History not available";
-            callback(null, res);
+
+    
+    client.get(email, function(err, reply) {
+            console.log(reply);
+            if(reply == null){
+                console.log("In redisssssssssssss");
+
+                transactions.findAll({
+                    where: {
+                        email: email}
+                }).then(function(transactions) {
+                    console.log("users",transactions.length);
+                    if (transactions.length === 0) {
+                        console.log('error');
+                        res.code = 401;
+                        res.message = "purchase History not available";
+                        callback(null, res);
+                    }
+                    else if(transactions){
+                        console.log("purchase  History found");
+                        res.code = 201;
+                        res.transactions= transactions;
+                        res.messsage = "purchase  History  found";
+                        client.set(email, JSON.stringify(res), function(err, reply){
+                            console.log("resssssss",res);
+                            client.expire(email,20);
+                            callback(null, res); 
+                       });
+                    }
+                }).catch(err =>
+                    callback(null,err)
+                );
+
         }
-        else if(transactions){
-            console.log("purchase  History found");
-            res.code = 201;
-            res.transactions= transactions;
-            res.messsage = "purchase  History  found";
-            callback(null, res);
-        }
-    }).catch(err =>
-        callback(null,err)
-    );
+        else
+        {
+            console.log("from redisssssssssssss");
+            console.log(JSON.parse(reply));
+            callback(null,JSON.parse(reply));
+        }    
+    })
+
 }
 
 function deletePayment(msg, callback) {
@@ -577,7 +598,7 @@ function adminSignin(msg, callback) {
 }
 function saveTransaction(msg, callback) {
     console.log("In save Transaction ===============================================")
-
+// Date: msg.reqBody.movies.Date
 
     console.log("msg value", msg);
     var res = {};
@@ -593,7 +614,11 @@ function saveTransaction(msg, callback) {
              movietime: msg.reqBody.showtime,
              Amount : parseInt(msg.reqBody.total.totalSum),
              tax:  parseInt(msg.reqBody.total.tax),
-             image: msg.reqBody.movies.movie.poster_path
+             image: msg.reqBody.movies.movie.poster_path,
+             date: new Date(msg.reqBody.movies.Date),
+             moviehallowner: msg.reqBody.movies.user,
+             city: msg.reqBody.movies.theatreCity,
+             nooftickets:parseInt(msg.reqBody.total.noOfTickets)
          };
 
 
@@ -612,7 +637,98 @@ function saveTransaction(msg, callback) {
     });
 
 }
+function addMovieHallAdmin(msg, callback) {
+    console.log("In save Transaction ===============================================")
+// Date: msg.reqBody.movies.Date
 
+    console.log("msg value from addMovieHallAdmin++++++++++++++++++ ", msg);
+    var res = {};
+    MoviehallUser.findAll({
+        where: {
+            email: {$like: msg.reqBody.owner_email}
+        },
+        order: [['createdAt', 'ASC']]
+    }).then(function(users) {
+        console.log("users",users.length);
+        if (users.length === 0) {
+            console.log('error');
+            res.code = 401;
+            res.message = "user details not found";
+            callback(null, res);
+        }
+        else if(users){
+            console.log("users details found");
+            res.code = 201;
+            res.users= users;
+            res.messsage = "users details found";
+            pranith.handle_addOwnerMovies(msg,function(err,status){
+                if (err) {
+                    res.code = "401";
+                    //  callback(null, res);
+                    console.log(err);
+                    console.log("error in adding  owner movie movie-=-=============------------------------------=======")
+                }
+                else {
+                    console.log(status);
+                    res.code = 200;
+                    callback(null, res);
+                }
+
+
+            })
+
+
+            //callback(null, res);
+        }
+    }).catch(err =>{
+        res.code=401;
+        callback(null,err)}
+    );
+
+
+    /*transactions.create(data).then(function (newUser, created) {
+        if (!newUser) {
+            res.message = 'Transaction not Saved';
+            callback(null, res);
+        }
+        if (newUser) {
+            res.code = 201;
+            res.message = 'Transaction Saved';
+            res.user = newUser;
+            callback(null, res);
+        }
+
+    });*/
+
+}
+
+
+function handle_bookingsearch(msg,callback){
+    var res= {};
+    console.log("Search transaction function");
+    var email = msg.reqBody.email;
+    transactions.findAll({
+        where: {
+            moviehallowner: email}
+    }).then(function(transactions) {
+        console.log("users",transactions.length);
+        if (transactions.length === 0) {
+            console.log('error');
+            res.code = 401;
+            res.message = "Transactions not available";
+            callback(null, res);
+        }
+        else if(transactions){
+            console.log("Transactions History found===============================================",transactions);
+            res.code = 201;
+            res.transactions= transactions;
+            res.messsage = "purchase  History  found";
+            callback(null, res);
+        }
+    }).catch(err =>
+        callback(null,err)
+    );
+}
 
 exports.signin = signin;
 exports.signup = signup;
@@ -631,4 +747,6 @@ exports.purchaseHistory = purchaseHistory;
 exports.deleteUser = deleteUser;
 exports.editUserAccount = editUserAccount;
 exports.saveTransaction=saveTransaction;
+exports.addMovieHallAdmin=addMovieHallAdmin;
+exports.handle_bookingsearch=handle_bookingsearch;
 

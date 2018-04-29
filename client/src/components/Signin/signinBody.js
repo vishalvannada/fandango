@@ -3,8 +3,27 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import "./signin.css";
 import SigninForm from "./signinForm";
+var axios = require('axios');
 
 class SigninBody extends Component{
+
+    /*componentWillMount(){
+
+         if(this.props.user.isLoggedIn==true)
+         {
+            console.log("User Email............",this.props.user.user.email);
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
+            });
+
+         }
+     }*/
+
 
     render(){
 
@@ -65,6 +84,11 @@ class SigninBody extends Component{
     }
 }
 
+function mapStateToProps(state) {
+    return {home: state.home,
+         user:state.getUser}
+}
 
+export default connect(mapStateToProps, null)(SigninBody)
 
-export default SigninBody;
+//export default SigninBody;

@@ -10,6 +10,7 @@ import DropdownList from 'react-widgets/lib/DropdownList'
 import Multiselect from 'react-widgets/lib/Multiselect'
 import 'react-widgets/dist/css/react-widgets.css';
 
+
 class MovieTopSection extends Component {
 
 
@@ -254,7 +255,11 @@ class MovieTopSection extends Component {
                                                 <Field
                                                     name="showTimes"
                                                     component={this.renderMultiselect}
-                                                    data={["9:30a","12:30p","3:30p","9:30p"]}
+                                                    data={["9:00a","9:30a","10:00a","10:30a","11:00a","11:30a","12:00p","12:30p","1:00p","1:30p",
+                                                        "2:00p","2:30p","3:00p","3:30p","4:00p","4:30p","5:00p",
+                                                        "5:30p","6:00p","6:30p","7:00p","7:30p","8:00p","8:30p","9:00p","9:30p",
+                                                        "10:00p","10:30p","11:00p","11:30p","12:00a"
+                                                        ]}
                                                     placeholder="Select Show time"
                                                     label="Show Times"
                                                 />
