@@ -104,6 +104,7 @@ class CancelBookingBody extends Component {
                     <div className="fandango-container">
                         <div className="form-group form-group-custom">
                             <small className='font-weight-700 font-size-14'>Enter the Customer Name</small>
+                            <br/>
                             <input
                                 className="form-group form-group-custom"
                                 placeholder="Enter the Customer Name"
