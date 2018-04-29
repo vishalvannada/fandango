@@ -1,10 +1,12 @@
 
 module.exports = function (sequelize, Sequelize) {
 
+
     var UserTransaction = sequelize.define('usertransaction', {
         transactionid: { primaryKey: true, type: Sequelize.INTEGER},
         displayname: {type: Sequelize.STRING},
         email: {type: Sequelize.STRING, validate: {isEmail: true}},
+        movieid: {type: Sequelize.INTEGER},
         moviename: {type: Sequelize.STRING, allowNull: false},
         moviehall: {type: Sequelize.STRING},
         moviehallowner:  {type: Sequelize.STRING},
@@ -17,7 +19,6 @@ module.exports = function (sequelize, Sequelize) {
         tax:  {type: Sequelize.INTEGER},
         image: {type: Sequelize.STRING}
     });
-
 
     return UserTransaction;
 }
