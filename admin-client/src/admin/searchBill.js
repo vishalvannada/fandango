@@ -140,6 +140,7 @@ class SearchBill extends Component {
 
                 <br/>
                 <h3 className='style-date'>Search Bill by Date</h3>
+                <p className='font-family-roboto'>Select any date to get details of that particular Month</p>
                 <br/>
                 <div className='max-width-30  style-date'>
 

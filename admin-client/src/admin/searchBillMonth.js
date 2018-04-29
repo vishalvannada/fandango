@@ -79,7 +79,7 @@ class SearchBillMonth extends Component {
     renderError() {
         return (
             <div className='clear-left margin-left'>
-                <h3 className='font-condensed-bold'>THERE ARE NO TRANSACTIONS FOR THIS MONTH</h3>
+                <h4 className='font-condensed-bold'>THERE ARE NO TRANSACTIONS FOR THIS MONTH</h4>
             </div>
         )
     }
@@ -139,7 +139,8 @@ class SearchBillMonth extends Component {
 
 
                 <br/>
-                <h3 className='style-date'>Search Bill by Date</h3>
+                <h3 className='style-date'>Search Bill by Month</h3>
+                <p className='font-family-roboto'>Select any date to get details of that particular Month</p>
                 <br/>
                 <div className='max-width-30  style-date'>
 
