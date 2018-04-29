@@ -47,9 +47,9 @@ function handle_request(msg, callback) {
         d.setDate(d.getDate() - 1);
         console.log(d,d2);
 
-
+//'^win$'
         var queryJson = {
-            "movie.MovieName": new RegExp(msg.reqBody.movieSearch), "Date": {"$gte": new Date(d), "$lte": new Date(d2)}
+            "movie.MovieName": new RegExp("^"+msg.reqBody.movieSearch, "i"), "Date": {"$gte": new Date(d), "$lte": new Date(d2)}
         };
 
 
@@ -99,6 +99,7 @@ function handle_request(msg, callback) {
                         //     console.log("movie theatres are", resArr);
 
                         client.set(msg.reqBody.movieSearch, JSON.stringify(res), function(err, reply){
+                            client.expire(msg.reqBody.movieSearch,30);
                             callback(null, res); 
                         });
 
@@ -137,7 +138,7 @@ function handle_addMovies(msg, callback) {
         showSeats =
             {
                 time: msg.reqBody.showTimes[i],
-                seats: msg.reqBody.noOfSeats
+                seats: parseInt(msg.reqBody.noOfSeats)
             };
         showtimes.push(showSeats);
     }
@@ -286,6 +287,92 @@ console.log(arrayDates);
                      callback(null, res);
                  }
              });*/
+        }
+        catch
+            (e) {
+            res.code = "401";
+            callback(null, res);
+        }
+    }
+
+
+
+    // winston.remove(winston.transports.File);
+    // winston.add(winston.transports.Console);
+}
+function handle_addOwnerMovies(msg, callback) {
+
+    // winston.remove(winston.transports.Console);
+    // winston.add(winston.transports.File, { filename: './public/LogFiles/KayakAnalysis.json' });
+    // winston.log('info', 'Flight Page Viewed', { page_name : 'Flights_page'});
+    console.log("-----------------------------------------in add Ownermovies--");
+    var showtimes = [];
+
+
+
+    // console.log(showtimes, "--------------------------------------");
+    var res = {};
+    var i = 0;
+
+
+    var d = new Date();
+
+    {
+
+        //console.log(d,"??????????????????????????????????????????????????????????????????????????????????");
+        var queryJson = {
+            // "_id":parseInt(randomInt(9,1000000)),
+            "ID": randomInt(9,1000000),
+            "HallID": msg.reqBody.movietheatername + "|" + msg.reqBody.city + "|" +
+            msg.reqBody.state + "|" + msg.reqBody.zipcode,
+            "movie": {
+                "movieId": 427641,
+                "poster_path": "/30oXQKwibh0uANGMs0Sytw3uN22.jpg",
+                "MovieName": "Rampage"
+            },
+            "ScreenNo": 1,
+            "Showtimes": 1,
+            "NoofSeats": 15,
+            "TicketPrice": 10,
+            "Date": d,
+            "user": msg.reqBody.owner_email
+        };
+
+
+        //queryJsonArray.push(queryJson);
+
+    }
+
+    {
+        // console.log(msg.reqBody,"????????????????????????????????????????????????????");
+        try {
+
+
+            {
+
+
+
+                            // var batch = col.initializeOrderedBulkOp();
+                            // console.log("adding movie================================================");
+                            MongoConPool.insert('movieHall', queryJson, function (err, movie) {
+                                if (err) {
+                                    res.code = "401";
+                                    //  callback(null, res);
+                                    console.log(err);
+                                    console.log("error in adding movie-=-=============------------------------------=======")
+                                }
+                                else {
+
+                                    console.log("-moviea added-----------------------------------------------");
+                                    res.result = movie;
+
+                                    res.code = 200;
+                                    callback(null, res);
+                                }
+                            });
+
+                        }
+
         }
         catch
             (e) {
@@ -697,7 +784,11 @@ function handle_savePayment(msg, callback) {
 
             var queryJsonSearch = {
                 "ID": parseInt(msg.reqBody.movies.id)
-            }
+            };
+            var queryJsonSearchInsert = {
+                "ID": parseInt(msg.reqBody.movies.id),
+                "Showtimes.time":msg.reqBody.showtime
+            };
 
 
             console.log(msg.reqBody);
@@ -712,22 +803,37 @@ function handle_savePayment(msg, callback) {
                 else {
                    // if (movie[0] != null)
                     {
-                        console.log("?????????????????????????????????????????????????????",movie[0],movie);
-                       console.log( parseInt(movie.NoofSeats),parseInt(msg.reqBody.total.noOfTickets));
-                     if(parseInt(movie.NoofSeats)>=parseInt(msg.reqBody.total.noOfTickets))
-                     {
-                         var seatsLeft=parseInt(movie.NoofSeats)-parseInt(msg.reqBody.total.noOfTickets);
-                         var queryJsonInsert = {
-                             $set:{
-                                 // "_id":parseInt(randomInt(9,1000000))
 
-                                 "NoofSeats": seatsLeft,
+                        //{user_id : 123456 , "items.item_name":"my_item_one"} , {$inc: {"items.$.price": 10}}
+                        //{"ID":649463,"Showtimes.time":"12:30p"},{$set:{"Showtimes.$.seats":4}}
+                        console.log("?????????????????????????????????????????????????????",movie);
+                      // console.log( parseInt(movie.NoofSeats),parseInt(msg.reqBody.total.noOfTickets));
+                       var seatsMovie;
+                       for (var i=0;i<movie.Showtimes.length;i++)
+                        {
+                            if(movie.Showtimes[i].time==msg.reqBody.showtime)
+                            {
+                                seatsMovie=movie.Showtimes[i].seats;
+                            }
+
+                        }
+
+
+
+console.log(parseInt(seatsMovie),parseInt(msg.reqBody.total.noOfTickets));
+                     if(parseInt(seatsMovie)>=parseInt(msg.reqBody.total.noOfTickets))
+                     {
+                       //  var seatsLeft=parseInt(movie.NoofSeats)-parseInt(msg.reqBody.total.noOfTickets);
+
+                         var queryJsonInsert = {
+                             $inc:{
+                                 "Showtimes.$.seats":-parseInt(msg.reqBody.total.noOfTickets)
 
                              }
 
                          };
 
-                         MongoConPool.updateOne('movieHall',queryJsonSearch, queryJsonInsert, function (err, movie) {
+                         MongoConPool.updateOne('movieHall',queryJsonSearchInsert, queryJsonInsert, function (err, movie) {
                              if (err) {
                                  res.code = "401";
                                  //  callback(null, res);
@@ -844,3 +950,4 @@ exports.handle_getMovieListing=handle_getMovieListing;
 exports.handle_saveMovieListing=handle_saveMovieListing;
 exports.handle_geteditmoviesearch=handle_geteditmoviesearch;
 exports.handle_savePayment=handle_savePayment;
+exports.handle_addOwnerMovies=handle_addOwnerMovies;

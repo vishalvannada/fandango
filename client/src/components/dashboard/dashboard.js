@@ -8,10 +8,10 @@ import FandangoVIPHeader from '../userProfile/fandangoVIPHeader';
 import UtilityFooter from '../userProfile/utilityFooter';
 import './dashboard.css';
 import Footer from '../userProfile/footer';
+
+
+
 import {deleteSelfUser} from "../../actions/satishActions";
-import axios from 'axios';
-
-
 
 
 class Dashboard extends Component {
