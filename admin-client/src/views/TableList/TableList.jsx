@@ -74,9 +74,8 @@ class TableList extends Component {
 
             <Col md={12}>
               <Card
-                plain
                 title="Revenue By Movie Hall"
-                category="Here is a subtitle for this table"
+                category=""
                 ctTableFullWidth
                 ctTableResponsive
                 content={

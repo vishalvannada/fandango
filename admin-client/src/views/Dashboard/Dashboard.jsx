@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {Link} from 'react-router-dom';
+import _ from 'lodash';
 import ChartistGraph from "react-chartist";
 import { Grid, Row, Col } from "react-bootstrap";
 import * as API from '../../api/API';
@@ -153,6 +155,7 @@ class Dashboard extends Component {
   }
 
   render() {
+    var data = _.zip(this.state.trackuser,this.state.track);
     return (
       <div className="content">
         <Grid fluid>
@@ -202,7 +205,7 @@ class Dashboard extends Component {
             <Card
               statsIcon="fa fa-clock-o"
               title="Revenue By Movie Hall"
-              category="revenue"
+              category="Revenue"
               stats="Data till date"
               content={
                 <div
@@ -357,9 +360,11 @@ class Dashboard extends Component {
 
         </Grid>
 
-          {this.state.trackuser.map(function(user, index){
-                return <p className="d-inline p-2 bg-dark text-white">{user}</p>
-          })}
+        {console.log("After ZIP: ",data)}
+        {/*{console.log("After ZIP: ",_.zipObject(this.state.trackuser,this.state.track))}*/}
+        {data.map(function(user, index){
+              return <div className="list-group"><p className="list-group-item d-inline p-2 bg-dark text-white" key = {index}><span> <Link to ="#">{user[0]}</Link></span> :  {user[1].join(' -->')+'.'}</p></div>
+        })}
 
       </div>
     );
