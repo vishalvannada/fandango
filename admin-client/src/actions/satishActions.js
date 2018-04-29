@@ -68,7 +68,7 @@ export function signin(values) {
 }
 
 
-export function signout(values) {
+export function logout(values) {
     console.log(values);
 
     return (dispatch) => {
@@ -76,7 +76,7 @@ export function signout(values) {
             .then(response => {
                 console.log(response.data);
                 window.localStorage.clear();
-                history.push('/signin');
+                history.push('/login');
                 dispatch(() => {
                     return {
                         type: SIGN_OUT,
@@ -172,6 +172,23 @@ export function editUserAccount(userdata){
     }
 }
 
+export function editMoviehallUserAccount(userdata){
+
+    return function (dispatch) {
+        console.log("Inside the sign up actions");
+        axios.post(`${ROOT_URL}/user/editMoviehallUserAccount`, userdata,{withCredentials: true})
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                history.push("/findMoviehallUsers");
+                // dispatch({type: BASIC_INFO_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: BASIC_INFO_ERROR, payload: error})
+            });
+
+    }
+}
+
 
 export function searchUsers(value) {
     if(value==null){
@@ -192,6 +209,9 @@ export function searchUsers(value) {
 
 
 export function searchMoviehallUsers(value) {
+    if(value==null){
+        value = '';
+    }
     return function (dispatch) {
         console.log("Inside the Search user actions");
         axios.get(`${ROOT_URL}/user/searchMoviehallUsers?user=${value}`,{withCredentials: true})

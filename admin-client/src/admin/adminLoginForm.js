@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 import {Field, reduxForm} from "redux-form";
 // import "../Signin/signin.css";
 import {bindActionCreators} from "redux";
-// import {adminSignin} from "../../actions/satishActions";
+ import {adminSignin} from "../actions/satishActions";
 import * as API from '../api/API';
+import "./signin.css";
 
 class AdminLoginForm extends Component {
     renderField(field) {
@@ -58,10 +59,10 @@ class AdminLoginForm extends Component {
             <div className="panel sign-up-form large-6 medium-6 small-12 columns">
                 <div className="sub-panel">
                     <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                        <p className="join-header">FANDANGO<span className="page-header-emphasis">ADMIN</span>
+                        <h2 className="join-header font-condensed-bold">FANDANGO<span className="page-header-emphasis">ADMIN</span>
                             <span className="registration-caption hide-for-small-only"></span>
                             <span className="registration-caption show-for-small-only"></span>
-                        </p>
+                        </h2>
                         <div className="registration-promo-unit show-for-small-only">
                             <img
                                 src="//images.fandango.com/cms/assets/aced1350-33b7-11e8-8eca-fd26e4965c58--vip-registration-banner.png"
@@ -79,7 +80,7 @@ class AdminLoginForm extends Component {
                         <input type="hidden" name="ctl00$GlobalBody$SignOnControl$CaptchEnabledField"
                                id="GlobalBody_SignOnControl_CaptchEnabledField"/>
 
-                        <button type="submit" disabled={pristine || submitting} className="btn mt-2"
+                        <button type="submit" disabled={pristine || submitting} className="btn btn-primary mt-2"
                                 alternatetext="Sign In">Sign In
                         </button>
                     </form>
@@ -121,7 +122,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         ...bindActionCreators({
-            // adminSignin
+             adminSignin
         }, dispatch)
 
     };

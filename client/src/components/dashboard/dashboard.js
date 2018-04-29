@@ -52,8 +52,7 @@ class Dashboard extends Component {
     }
 
     render() {
-
-        console.log('Inside Dashboard: ', this.state, this.props)
+        console.log('Inside Dashboard: ',this.state, this.props)
 
         return (
 
@@ -173,23 +172,14 @@ class Dashboard extends Component {
                                                 </article>
                                             </div>
                                         </div>
-
                                     </section>
                                 </div>
-
-
                             </div>
                         </div>
-
-
                     </div>
-
-
                 </div>
                 {/*<Footer/>*/}
                 {/*<UtilityFooter/>*/}
-
-
             </div>
         )
     }
@@ -197,9 +187,6 @@ class Dashboard extends Component {
 }
 
 
-function mapStateToProps(store) {
-    return ({});
-}
 
 function mapStateToProps(state) {
     return {home: state.home,
