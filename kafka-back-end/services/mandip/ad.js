@@ -52,7 +52,7 @@ function check_request(msg, callback){
                 for(i=0;i<len;i++){
                   labels2[i] = rows[i].moviename;
                   series2[i] = rows[i].revenue;
-                  tdar[i] = rows[i];
+                  //tdar[i] = rows[i];
                 }
                 // console.log(" Movie name labes --->"+labels2);
                 // console.log("Movie name series --->"+series2);
@@ -122,7 +122,7 @@ function check_request(msg, callback){
       var track = [];
       //Tracking of User
       var collection = db.collection('usertrack');
-      collection.find( {status:"close"} ).toArray(function(err, docs) {
+      collection.find({status:"close"}).limit(5).toArray(function(err, docs) {
         console.log("User Tacking ----->"+JSON.stringify(docs));
 
         var i=0,j=0,k=0;
@@ -257,3 +257,49 @@ function check_request(msg, callback){
     });// Mongo connection
 }
 exports.check_request = check_request;
+
+
+function getRevenue_request(msg, callback){
+    var res = {};
+    console.log("In getRevenue_request:"+ JSON.stringify(msg));
+    var movierev =[];
+    var moviehallrev = [];
+
+    var sqlQuery4 = "SELECT moviehall, SUM(Amount) revenue FROM usertransactions GROUP BY moviehall ORDER BY SUM(nooftickets) DESC;";
+    mysql.runQuery( (err, rows) => {
+      if(rows.length > 0) {
+        //callback(true);
+        console.log("Movie Hall Revenue ---->"+JSON.stringify(rows));
+        var len = rows.length;
+        var i=0;
+
+        for(i=0;i<len;i++){
+          movierev.push([rows[i].moviehall,rows[i].revenue]);
+        }
+        //console.log(movierev);
+        var sqlQuery2 = "SELECT moviename, SUM(Amount) revenue FROM usertransactions GROUP BY moviename ORDER BY SUM(Amount) DESC;";
+        mysql.runQuery( (err, rows) => {
+          if(rows.length > 0) {
+            //callback(true);
+            console.log("Movies Revenue---->"+JSON.stringify(rows));
+            var len = rows.length;
+            var i=0;
+
+            for(i=0;i<len;i++){
+              moviehallrev.push([rows[i].moviename,rows[i].revenue]);
+            }
+            //console.log("movierev---->"+moviehallrev);
+            res.movierev = movierev;
+            res.moviehallrev = moviehallrev;
+            callback(null, res);
+          }
+        },sqlQuery2);
+      } else {
+        //callback(false);
+      }
+    },sqlQuery4);
+
+
+
+  }
+exports.getRevenue_request = getRevenue_request;

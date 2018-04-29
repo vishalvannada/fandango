@@ -122,6 +122,8 @@ class Dashboard extends Component {
           dataPie3.series = response.series2;
           // tdar1 = response.tdar1;
           // tdar2 = response.tdar2;
+          console.log(response.trackuser);
+          console.log(response.track);
           console.log("Labels 1 ---->" + dataPie1.labels);
           console.log("Labels 2 ---->" + dataPie2.labels);
           console.log("Labels 3 ---->" + dataPie3.labels);

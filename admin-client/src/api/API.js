@@ -117,3 +117,22 @@ export const searchUsers = (values) =>
             console.log("This is error");
             return error;
         });
+
+//checklogin
+export const getRevenue = () =>
+    fetch(`${api}/ad/getRevenue`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        //body: JSON.stringify(payload)
+    }).then(res => {
+        //console.log(res.json());
+        return res.json();
+    })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+});
