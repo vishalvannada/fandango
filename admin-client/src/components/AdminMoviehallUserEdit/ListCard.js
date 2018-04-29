@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Route, withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import "./ListCard.css";
+import "../Adminedit/ListCard.css";
 import {deleteUser} from "../../actions/satishActions"
 
 
@@ -47,7 +47,7 @@ class ListCard extends Component {
                                             <button className="btn "
                                                     onClick={()=> {console.log(this.props.user)
                                                         this.props.history.push({
-                                                            pathname: '/AdminUserEdit',
+                                                            pathname: '/AdminMoviehallUseredit',
                                                             state: {user: this.props.user,test:"test"}
                                                         })}
                                                     }>

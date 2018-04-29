@@ -156,6 +156,7 @@ function userDetails(msg, callback) {
 function searchUsers(msg,callback){
     var res={};
     var user= msg.user+"%";
+    var email = "pranith@gmail.com";
     console.log("Search user function");
     User.findAll({
         where: {
@@ -180,6 +181,37 @@ function searchUsers(msg,callback){
     }).catch(err =>
         callback(null,err)
     );
+}
+
+
+
+function getmovierevenue(msg,callback){
+    var res={};
+    var email = msg.owneremail;
+    transactions.findAll({
+        attributes: ['moviehall','moviename', [sequelize.fn('sum', sequelize.col('Amount')), 'TotalAmount']],
+        group: ["moviename","moviehall"],
+        where: {moviehallowner: email},
+    }).then(function (results) {
+        console.log("results found", results);
+        // callback(null, results);
+        if (results.length === 0) {
+            console.log('error');
+            res.code = 401;
+            res.message = "No results found";
+            callback(null, res);
+        }
+        else if(results){
+            console.log("Movie users details found");
+            res.code = 201;
+            res.results= results;
+            res.messsage = "Movie Hall revenue found";
+            callback(null, res);
+        }
+    }).catch(err =>
+        callback(null,err)
+    );
+
 }
 
 
@@ -291,6 +323,44 @@ function editUserAccount(msg,callback){
         )
 }
 
+
+function editMoviehallUserAccount(msg,callback){
+    console.log("userdata", msg.user, msg.email,msg.user.password);
+    var firstName = msg.user.firstname;
+    var lastName = msg.user.lastname;
+    var displayName = msg.user.displayname;
+    var address = msg.user.address;
+    var mobile = msg.user.mobile;
+    var newPassword = msg.user.password;
+    var email = msg.user.email;
+    var oldPassword = msg.user.oldpassword;
+    var res = {};
+    var hashnew = oldPassword;
+    if(newPassword!==null){
+        hashnew = newPassword;
+    }
+
+    console.log("user",displayName);
+
+
+    MoviehallUser.update(
+        {firstname: firstName, lastname: lastName, address: address, displayname: displayName, mobile: mobile, password:hashnew , email:email},
+        {returning: true, where: {email: msg.email}}
+    )
+        .then(function (results) {
+            MoviehallUser.find({where: {email: msg.email}})
+                .then(function (user) {
+                    res.user = user;
+                    res.code = 201;
+                    callback(null, res);
+                }).catch(function (err) {
+                console.log(['error'], err.stack);
+            });
+        })
+        .catch(err =>
+            callback(null, err)
+        )
+}
 
 function uploadImage(msg, callback) {
     // console.log("userdata", msg.user, msg.email);
@@ -779,7 +849,9 @@ exports.searchMoviehallUsers = searchMoviehallUsers;
 exports.purchaseHistory = purchaseHistory;
 exports.deleteUser = deleteUser;
 exports.editUserAccount = editUserAccount;
+exports.editMoviehallUserAccount = editMoviehallUserAccount;
 exports.saveTransaction=saveTransaction;
+exports.getmovierevenue = getmovierevenue;
 exports.addMovieHallAdmin=addMovieHallAdmin;
 exports.handle_bookingsearch=handle_bookingsearch;
 exports.handle_cancelbooking=handle_cancelbooking;
