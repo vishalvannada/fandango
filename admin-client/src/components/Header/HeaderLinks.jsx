@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
+import {connect} from 'react-redux';
+import {logout} from '../../actions/satishActions'
 
 class HeaderLinks extends Component {
-  render() {
+    handleLogout(){
+        this.props.logout();
+    }
+    render() {
     const notification = (
       <div>
         <i className="fa fa-globe" />
@@ -11,20 +16,17 @@ class HeaderLinks extends Component {
         <p className="hidden-lg hidden-md">Notification</p>
       </div>
     );
+
     return (
       <div>
-        <Nav>
-        </Nav>
-
         <Nav pullRight>
           <NavItem eventKey={3} href="#">
-            Log out
+              <button className="btn" onClick={this.handleLogout.bind(this)}> Log out </button>
           </NavItem>
         </Nav>
-
       </div>
     );
   }
 }
 
-export default HeaderLinks;
+export default connect(null,{logout}) (HeaderLinks);

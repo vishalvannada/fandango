@@ -17,6 +17,7 @@ import SavePayments from './reducer_savePayments'
 import UserReducer from "./reducer_user";
 import fetchUserReducer from "./reducer_fetchuser";
 import userProfile from "./reducer_userprofile";
+import movieRevenueReducer from "./reducer_getmovieRevenue";
 import {SIGN_OUT} from "../actions/satishActions";
 
 const appReducer = combineReducers({
@@ -35,6 +36,7 @@ const appReducer = combineReducers({
     purchases: purchaseHistory,
     savePayments:SavePayments,
     genreSearchMovies: GenreSearchMovies,
+    movieRevenue: movieRevenueReducer,
     form : formReducer
 
 });

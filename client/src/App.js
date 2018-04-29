@@ -33,6 +33,7 @@ import PrivateRouteMovieHallAdmin from './components/PrivateRouteMovieHall';
 import ConditionalRouteMovieHall from './components/ConditionalRouteMovieHall';
 import ConditionalRouteUser from './components/ConditionalRouteUser';
 import AddMovieHall from './components/addMovieHall'
+import GetMovieRevenue from "./components/moviehallUser/GetMovieRevenue";
 
 
 export const history = createBrowserHistory();
@@ -74,8 +75,6 @@ class App extends Component {
                     <Switch>
                         <div>
                             <Switch>
-
-
                                 <ConditionalRouteUser path="/signin" component={Signin}/>
                                 <PrivateRoute path="/movietime" component={MovieTime} props={logStat}/>
                                 <PrivateRoute path="/secret" component={SecretPage} props={logStat}/>
@@ -93,6 +92,8 @@ class App extends Component {
                                 <Route path="/movieHall-home" component={MovieAdminHome}/>
                                 <PrivateRouteMovieHallAdmin path="/editmoviehalllisting"
                                                             component={EditMovieHallListing}/>
+                                <PrivateRouteMovieHallAdmin path="/getMovieRevenue"
+                                                            component={GetMovieRevenue}/>
 
 
                                 <Route path="/admin-movies" component={AdminMovieSearch}/>

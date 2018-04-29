@@ -4,16 +4,11 @@ import {Field,reduxForm} from "redux-form";
 import {bindActionCreators} from "redux";
 import _ from 'lodash';
 import {Link} from 'react-router-dom';
-import * as API from "../../api/API";
-import ListCard from "./ListCard";
-// import {searchUsers, searchMoviehallUsers} from "../../actions/satishActions";
+import {searchUsers, searchMoviehallUsers} from "../../actions/satishActions";
 
 class SearchBar extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            user: {}
-        }
 
     }
 
@@ -37,19 +32,14 @@ class SearchBar extends Component {
     onSubmit(values) {
         console.log(values.user);
         if(this.props.user==='user'){
-            // this.props.searchUsers(values.user);
-            API.searchUsers(values.user)
-                .then((res)=>{
-                    console.log(res);
-                    this.setState({
-                        user: res.users
-                    });
-
-                });
+            this.props.searchUsers(values.user);
         }
-    }
+        else{
+            this.props.searchMoviehallUsers(values.user);
+        }
 
-    render(){
+    }
+    render() {
         console.log("this user",this.props.user);
         const {handleSubmit} = this.props;
         return (
@@ -85,13 +75,6 @@ class SearchBar extends Component {
                         </nav>
                     </div>
                 </div>
-                <h2 className="List-user-heading font-condensed-bold">User Accounts</h2>
-                {
-                    _.map(this.state.user, User => {
-                        console.log("user",User)
-                        return  <ListCard user={User} history={this.props.history}/> ;
-                    })
-                }
             </div>
         )
     }
@@ -101,6 +84,7 @@ class SearchBar extends Component {
 
 function mapDispatchToProps(dispatch){
     return {...bindActionCreators({
+        searchUsers, searchMoviehallUsers
     }, dispatch)
 
     };

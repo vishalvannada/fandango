@@ -9,8 +9,10 @@ import Notifications from "views/Notifications/Notifications";
 import Upgrade from "views/Upgrade/Upgrade";
 
 import MovieEdit from '../admin/adminMovieSearch/movieEdit';
-import FindUsers from "../components/Adminedit/FindUsers"
-
+import FindUsers from "../components/Adminedit/FindUsers";
+import AdminUserEdit from "../components/Adminedit/AdminUserEdit";
+import FindMoviehallUsers from "../components/AdminMoviehallUserEdit/FindMoviehallUsers";
+import AdminMoviehallUserEdit from "../components/AdminMoviehallUserEdit/AdminMovehallUserEdit"
 
 const dashboardRoutes = [
 
@@ -22,6 +24,19 @@ const dashboardRoutes = [
     {
         path: "/findUsers",
         component: FindUsers,
+    },
+    {
+      path: "/AdminUserEdit",
+        component: AdminUserEdit
+    },
+    {
+        path: "/findMoviehallUsers",
+        component: FindMoviehallUsers
+    },
+
+    {
+        path: "/AdminMoviehallUseredit",
+        component: AdminMoviehallUserEdit
     },
 
   {

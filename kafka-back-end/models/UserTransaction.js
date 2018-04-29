@@ -5,6 +5,7 @@ module.exports = function (sequelize, Sequelize) {
         transactionid: { primaryKey: true, type: Sequelize.INTEGER},
         displayname: {type: Sequelize.STRING},
         email: {type: Sequelize.STRING, validate: {isEmail: true}},
+        movieid: {type: Sequelize.INTEGER, unique:true},
         moviename: {type: Sequelize.STRING, allowNull: false},
         moviehall: {type: Sequelize.STRING},
         moviehallowner:  {type: Sequelize.STRING},

@@ -32,6 +32,8 @@ export const PURCHASE_SUCCESS = "PURCHASE_SUCCESS";
 export const PURCHASE_ERROR = "PURCHASE_ERROR";
 export const DELETE_USERS_SUCCESS = "DELETE_USERS_SUCCESS";
 export const DELETE_USERS_ERROR = "DELETE_USERS_SUCCESS";
+export const REVENUE_DETAILS_SUCCESS = "REVENUE_DETAILS_SUCCESS";
+export const REVENUE_DETAILS_ERROR = "REVENUE_DETAILS_ERROR";
 
 
 axios.defaults.withCredentials = true;
@@ -249,6 +251,22 @@ export function getUserDetails() {
             })
             .catch((error) => {
                 dispatch({type: USER_DETAILS_ERROR, payload: error})
+            });
+    }
+}
+
+
+
+export function getmovieRevenue() {
+    return function (dispatch) {
+        console.log("Inside the sign up actions");
+        axios.get(`${ROOT_URL}/user/movieRevenue`,{withCredentials: true})
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                dispatch({type: REVENUE_DETAILS_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: REVENUE_DETAILS_ERROR, payload: error})
             });
     }
 }
