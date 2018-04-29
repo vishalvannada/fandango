@@ -62,7 +62,8 @@ function ConnectionProvider() {
 
             {topic: 'uploadimage', partition: 0},
             {topic: 'login_topic', partition: 0},
-            {topic: 'searchusers', partition: 0}
+            {topic: 'searchusers', partition: 0},
+            {topic: 'getRevenue_topic', partition: 0}
 
 
         ]);
