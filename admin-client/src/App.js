@@ -17,31 +17,11 @@ class App extends Component {
     constructor(props) {
         super(props);
     }
-
     componentDidMount() {
         // this.props.fetchUser();
     }
 
-    // requireAuth(){
-    //     console.log("hgfdg")
-    //     this.props.fetchUser();
-    // }
-
     render() {
-        //var logStat = this.props.user.isLoggedIn;
-        // var logStat = this.props.user.isLoggedIn;
-        // //  console.log(this.props.user.isLoggedIn);
-        //
-        // console.log(this.props)
-        //
-        // if (this.props.user.isLoggingIn) {
-        //     return (
-        //         <div>
-        //             Loading
-        //         </div>
-        //     )
-        // }
-
         return (
             <div className="App">
 
@@ -49,8 +29,6 @@ class App extends Component {
                     <Switch>
                         <div>
                             <Switch>
-
-
                                 <Route exact path="/login" component={Adminlogin}/>
                                 <Route path='/' component={Dashboard}/>
                                 <Route/>

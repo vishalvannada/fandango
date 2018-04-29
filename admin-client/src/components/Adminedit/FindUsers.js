@@ -1,28 +1,13 @@
 import React, {Component} from 'react';
-
 import {connect} from "react-redux";
 import {searchUsers} from "../../actions/satishActions";
 import SearchBar from "./SearchBar";
 import ListCard from "./ListCard";
 import _ from "lodash";
-import * as API from '../../api/API';
 
 class FindUsers extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-
-        }
-    }
-
     componentDidMount() {
-        // this.props.searchUsers();
-    //    Action Here
-        API.searchUsers()
-            .then((res)=>{
-                console.log("resa----->"+JSON.stringify(res));
-
-            });
+        this.props.searchUsers();
     }
 
     render() {
@@ -30,12 +15,21 @@ class FindUsers extends Component {
         return (
             <div>
                 <SearchBar user="user"/>
-
+                <h2 className="List-user-heading font-condensed-bold">User Accounts</h2>
+                {
+                    _.map(this.props.users, User => {
+                        console.log("user",User)
+                        return  <ListCard user={User} history={this.props.history}/> ;
+                    })
+                }
 
             </div>
         )
     }
 }
 
+function mapStateToProps(state){
+    return {users: state.searchUsers.users}
+}
 
-export default (FindUsers);
+export default connect(mapStateToProps, {searchUsers})(FindUsers);

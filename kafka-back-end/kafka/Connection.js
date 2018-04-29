@@ -15,6 +15,7 @@ function ConnectionProvider() {
             {topic: 'getBillsAdmin_topic', partition: 0},
             {topic: 'getBillsMonthAdmin_topic', partition: 0},
 
+
             //pranith
             {topic: 'getMoviesInSearchPage_topic', partition: 0},
             {topic: 'getMoviesnHalls_topic', partition: 0},
@@ -27,7 +28,7 @@ function ConnectionProvider() {
             {topic: 'bookingsearch_topic', partition: 0},
             {topic: 'cancelbooking_topic', partition: 0},
             {topic: 'getMoviesGenereInSearchPage_topic',partition:0}, //Rishith
-            {topic: 'getMovieRevenue_topic',partition:0}, //Rishith
+
             //satish
             {topic: 'signup', partition: 0},
             {topic: 'signin', partition: 0},
@@ -36,6 +37,8 @@ function ConnectionProvider() {
             {topic: 'purchaseHistory', partition: 0},
             {topic: 'deleteuser', partition: 0},
             {topic: 'editUserAccount', partition: 0},
+            {topic: 'editMoviehallUserAccount', partition: 0},
+            {topic: 'getMovieRevenue_topic', partition: 0},
 
 
             {topic: 'searchMoviehallUsers', partition: 0},

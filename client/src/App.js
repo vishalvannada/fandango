@@ -36,6 +36,8 @@ import ConditionalRouteMovieHall from './components/ConditionalRouteMovieHall';
 import ConditionalRouteUser from './components/ConditionalRouteUser';
 import CancelUserBooking from "./components/cancelBooking"
 import AddMovieHall from './components/addMovieHall'
+
+import GetMovieRevenue from "./components/moviehallUser/GetMovieRevenue";
 import MovieBillAttribute from './components/adminBillsAnalysis/billAttributes';
 import SearchMovies from './components/home/listSearchMovies';
 import FilterMovies from './components/home/listFilterMovies';
@@ -83,12 +85,9 @@ class App extends Component {
                         <div>
                             <Switch>
 
-                                {/*Sample check Route*/}
-                                <Route path="/add-movie-hall" component={AddMovieHall}/>
 
 
                                 <Route path='/admin-analysis' component={MovieBillAttribute}/>
-
                                 <ConditionalRouteUser path="/signin" component={Signin}/>
                                 <PrivateRoute path="/movietime" component={MovieTime} props={logStat}/>
                                 <PrivateRoute path="/checkfs" component={checkFS}/>
@@ -111,32 +110,24 @@ class App extends Component {
                                 <Route path="/movieHall-home" component={MovieAdminHome}/>
                                 <PrivateRouteMovieHallAdmin path="/editmoviehalllisting"
                                                             component={EditMovieHallListing}/>
+
+                                <PrivateRouteMovieHallAdmin path="/getMovieRevenue"
+                                                            component={GetMovieRevenue}/>
+
                                 <PrivateRouteMovieHallAdmin path="/cancelbooking"
                                                             component={CancelUserBooking}/>
-
-
                                 <Route path="/admin-movies" component={AdminMovieSearch}/>
                                 <Route path="/admin-movie-edit/:tmdbid" component={AdminMovieEdit}/>
                                 <Route path="/admin-login" component={AdminLogin}/>
                                 <Route path="/secret" component={SecretPage}/>
-
-
                                 <Route path="/findUsers" component={FindUsers}/>{/*satish*/}
                                 <Route path="/purchaseHistory" component={PurchaseHistory}/>{/*satish*/}
                                 <Route path="/admin-home" component={AdminHome}/>{/*satish*/}
-
                                 <Route path="/admin-useredit" component={AdminUserEdit}/>{/*satish*/}
                                 <Route path="/addmovieHallAdmin" component={AddMovieHallAdmin}/>
-
-
                                 <ConditionalRouteUser exact path="/signup" component={SignUp}/>
                                 <PrivateRoute exact path='/userprofile' component={UserProfile} props={logStat}/>
-
-
-
                                 <Route path="*" component={Error}/>
-
-
                             </Switch>
                         </div>
 

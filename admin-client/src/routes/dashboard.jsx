@@ -10,17 +10,14 @@ import Upgrade from "views/Upgrade/Upgrade";
 import AddMovieHalls from '../admin/addMovieHall';
 import MovieEdit from '../admin/adminMovieSearch/movieEdit';
 import FindUsers from "../components/Adminedit/FindUsers";
+import AdminUserEdit from "../components/Adminedit/AdminUserEdit";
+import FindMoviehallUsers from "../components/AdminMoviehallUserEdit/FindMoviehallUsers";
+import AdminMoviehallUserEdit from "../components/AdminMoviehallUserEdit/AdminMovehallUserEdit"
 import SearchBill from '../admin/searchBill';
 import SearchBillMonth from '../admin/searchBillMonth';
 
-
 const dashboardRoutes = [
 
-
-    {
-        path: "/findUsers",
-        component: FindUsers,
-    },
 
     {
         path: "/dashboard",
@@ -81,10 +78,32 @@ const dashboardRoutes = [
         component: ''
     },
     {
+        path: "/findUsers",
+        name: "FindUsers",
+        icon: "pe-7s-graph",
+        component: FindUsers,
+    },
+    {
+        path: "/findMoviehallUsers",
+        name: "findMoviehallUsers",
+        icon: "pe-7s-graph",
+        component: FindMoviehallUsers
+    },
+    {
+        path: "/AdminUserEdit",
+        component: AdminUserEdit
+    },
+
+    {
+        path: "/AdminMoviehallUseredit",
+        component: AdminMoviehallUserEdit
+    },
+    {
         path: "/admin-movie-edit/:tmdbid",
         component: MovieEdit,
 
     }
+
 
     /*{
       path: "/typography",

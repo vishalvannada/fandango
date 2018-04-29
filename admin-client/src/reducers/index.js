@@ -11,6 +11,8 @@ import AddMovieHall from './reducer_adminadded';
 // import MoviesSearchListAdmin from './reducer_search_movies_admin';
 // import SavePayments from './reducer_savePayments'
 import UserReducer from "./reducer_user";
+import SearchUsersList from "./reducer_searchusers";
+
 // import fetchUserReducer from "./reducer_fetchuser";
 // import userProfile from "./reducer_userprofile";
 // import {SIGN_OUT} from "../actions/satishActions";
@@ -18,8 +20,9 @@ import UserReducer from "./reducer_user";
 
 const rootReducer = combineReducers({
     user: UserReducer,
-    addmoviehall:AddMovieHall,
 
+    addmoviehall:AddMovieHall,
+    searchUsers: SearchUsersList,
     form : formReducer
 });
 
