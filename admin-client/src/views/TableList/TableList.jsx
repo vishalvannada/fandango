@@ -2,9 +2,40 @@ import React, { Component } from "react";
 import { Grid, Row, Col, Table } from "react-bootstrap";
 
 import Card from "components/Card/Card.jsx";
-import { thArray, tdArray } from "variables/Variables.jsx";
+import {tdar1,tdar2} from "variables/Variables.jsx";
+import * as API from '../../api/API';
+
+const thArray = ["Movie Name", "Total Revenue"];
+var tdArray1 = [];
+var tdArray2 = [];
+const tdArray = [
+  [ "Dakota Rice", "$36,738"],
+  [ "Minerva Hooper", "$23,789"],
+  [ "Sage Rodriguez", "$56,142"],
+  [ "Philip Chaney", "$38,735"],
+  [ "Doris Greene", "$63,542"],
+  [ "Mason Porter", "$78,615"]
+];
 
 class TableList extends Component {
+  state = {
+    movierev:'',
+    moviehallrev: ''
+  }
+  componentWillMount(){
+      console.log("You are in Table List componentwillmount");
+      API.getRevenue()
+      .then((response)=>{
+        console.log(response);
+        tdArray1 = response.movierev;
+        tdArray2 = response.moviehallrev;
+        this.setState({
+          movierev : response.movierev,
+          moviehallrev: response.moviehallrev
+        });
+      });
+  }
+
   render() {
     return (
       <div className="content">
@@ -26,7 +57,7 @@ class TableList extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {tdArray.map((prop, key) => {
+                      {tdArray2.map((prop, key) => {
                         return (
                           <tr key={key}>
                             {prop.map((prop, key) => {
@@ -58,7 +89,7 @@ class TableList extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {tdArray.map((prop, key) => {
+                      {tdArray1.map((prop, key) => {
                         return (
                           <tr key={key}>
                             {prop.map((prop, key) => {
