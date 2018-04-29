@@ -10,18 +10,13 @@ import Upgrade from "views/Upgrade/Upgrade";
 
 import MovieEdit from '../admin/adminMovieSearch/movieEdit';
 import FindUsers from "../components/Adminedit/FindUsers";
-<<<<<<< HEAD
 import AdminUserEdit from "../components/Adminedit/AdminUserEdit";
 import FindMoviehallUsers from "../components/AdminMoviehallUserEdit/FindMoviehallUsers";
 import AdminMoviehallUserEdit from "../components/AdminMoviehallUserEdit/AdminMovehallUserEdit"
-=======
 import SearchBill from '../admin/searchBill';
 import SearchBillMonth from '../admin/searchBillMonth';
 
->>>>>>> 70f147bb17b336bd634ebd54ed9328237a34473e
-
 const dashboardRoutes = [
-
 
     {
         path: "/findUsers",
