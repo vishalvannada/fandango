@@ -4,8 +4,28 @@ import {Link} from 'react-router-dom';
 import moment from 'moment';
 import Seat from 'material-ui/svg-icons/notification/airline-seat-flat-angled';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+var axios = require('axios');
 
 class CheckOut extends Component {
+
+    /*componentWillMount(){
+
+         if(this.props.user.isLoggedIn==true)
+         {
+            console.log("User Email............",this.props.user.user.email);
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
+            });
+
+         }
+     }*/
+
+
     state={
         totalSum:0,
         ticketValue:0,
@@ -59,10 +79,10 @@ class CheckOut extends Component {
                                 <div className="form-group font-family-roboto form-group-custom">
                                     <small className='font-weight-700 font-size-14'>Number of Tickets</small>
                                     <input
-                                        className="form-control input-login"
+                                        className="form-control input-login" required="required"
 
                                         placeholder="Enter number of tickets"
-                                        type="text"
+                                        type="number" min="1"
                                         onChange={(event)=>{
                                             this.setState({noOfTickets:event.target.value});
                                             var ticket_price_total=parseInt(this.props.location.state.movie.TicketPrice)*parseInt(event.target.value);
@@ -81,7 +101,7 @@ class CheckOut extends Component {
                                     <small className='font-weight-700 font-size-14 align-right'> Total: {this.state.totalSum}</small><br/>
 
                                 </div>
-                                <button className="btn font-size-13 align-right my-2"
+                                <button className="btn font-size-13 align-right my-2" disabled={!(this.state.noOfTickets>0)}
                                 onClick={()=> {console.log(this.props)
                                     this.props.history.push({
                                         pathname: '/check-out-payment',
@@ -162,8 +182,9 @@ class CheckOut extends Component {
     }
 }
 
-// function mapStateToProps(state) {
-//     return {home: state.home}
-// }
+ function mapStateToProps(state) {
+    return {home: state.home,
+         user:state.getUser}
+}
 
-export default connect(null, null)(CheckOut);
+export default connect(mapStateToProps, null)(CheckOut);

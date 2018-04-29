@@ -11,6 +11,6 @@ export default function (state = moviesSearch, action) {
                 movies: action.payload
             }
         default:
-            return {...state};
+            return state;
     }
 }

@@ -4,8 +4,27 @@ import moment from "moment";
 import ReactStars from 'react-stars';
 import {Link} from 'react-router-dom';
 import _ from 'lodash';
+var axios = require('axios');
 
 class MovieReview extends Component {
+
+    /*componentWillMount(){
+
+         if(this.props.user.isLoggedIn==true)
+         {
+            console.log("User Email............",this.props.user.user.email);
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
+            });
+
+         }
+     }*/
+
 
     renderReviews() {
         return (_.map(this.props.reviews.slice(0,8), review => {
@@ -45,5 +64,9 @@ class MovieReview extends Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {home: state.home,
+         user:state.getUser}
+}
 
-export default connect(null, null)(MovieReview);
+export default connect(mapStateToProps, null)(MovieReview);

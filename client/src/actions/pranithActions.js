@@ -18,6 +18,25 @@ export function getMoviesInSearchPage(values) {
             });
     }
 }
+export function addMovieHallAdmin(values) {
+    console.log("from action addMovieHallAdmin", values);
+    return (dispatch) => {
+        console.log("kjhg", values)
+        const response = axios.post(`${ROOT_URL}/movietheatres/addMovieHallAdmin`,values)
+            .then(response => {
+
+                console.log(response.data)
+                if(response.data.code==200)
+                dispatch(moviesInSearchPageAdmin(true))
+                else
+                    dispatch(moviesInSearchPageAdmin(false))
+            }).catch(error => {
+                console.log(error);
+                dispatch(moviesInSearchPage(false))
+            });
+    }
+}
+
 export function  savePaymentData(values) {
     console.log(values)
     return (dispatch) => {
@@ -90,6 +109,21 @@ export function editMovieSearch(values) {
             });
     }
 }
+export function SQLbookingSearch(values) {
+    console.log("from action editMovieSearch",values);
+    return (dispatch) => {
+        //console.log("kjhg")
+        const response = axios.post(`${ROOT_URL}/movietheatres/bookingsearch`,values)
+            .then(response => {
+
+                console.log(response.data)
+                dispatch(BookingReducer(response.data))
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+}
+
 
 
 
@@ -153,6 +187,13 @@ function moviesInSearchPage(response){
         payload: response
     }
 }
+function moviesInSearchPageAdmin(response){
+    return {
+        type: "MOVIES_SEARCH_PAGE_ADMIN",
+        payload: response
+    }
+
+}
 
 
 function addMoviesReducer(response){
@@ -181,5 +222,14 @@ function GetMoviesHallListingReducer(response){
     return {
         type: "MOVIES_HALL_LISTING_EDIT",
         payload: response
+    }
+}
+function BookingReducer(response){
+    //console.log(response);
+    return {
+        type: "BOOKING_HISTORY",
+        payload: {
+            code:response.code,
+            transactions:response.transactions}
     }
 }

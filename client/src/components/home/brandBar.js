@@ -4,15 +4,45 @@ import {Link} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {signout} from "../../actions/satishActions";
 import {fetchUser} from "../../actions/satishActions";
+var axios = require('axios');
 
 
 class BrandBar extends Component {
+    
+   /* componentWillMount(){
+        console.log("hello",   this.props.user);
+         
+         if(this.props.user.isLoggedIn==true)
+         {
+            console.log("Usertracking............");
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
+            });
+
+            console.log("after ttasildjfksdfh")
+         }
+     }*/
+  
+
+
     componentDidMount() {
         this.props.fetchUser();
     }
 
     handleSignout() {
         this.props.signout(null);
+
+        const request =axios.post('http://localhost:3001/movietheatres/usertrackclose',{"username":this.props.user.user.email})
+            .then(response => {
+                console.log("sucessss");
+            }).catch(error => {
+                console.log("usertracking error");
+            });
     }
 
     render() {

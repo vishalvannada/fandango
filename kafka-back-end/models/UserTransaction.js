@@ -19,5 +19,6 @@ module.exports = function (sequelize, Sequelize) {
         image: {type: Sequelize.STRING}
     });
 
+
     return UserTransaction;
 }

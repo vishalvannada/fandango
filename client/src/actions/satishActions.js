@@ -76,9 +76,20 @@ export function signout(values) {
     return (dispatch) => {
         const response = axios.get(`${ROOT_URL}/user/signout`,{withCredentials: true})
             .then(response => {
-                console.log(response.data);
+                console.log("signout data.........",response.data);
                 window.localStorage.clear();
                 history.push('/signin');
+
+/*                var values={username:this.props.user.user.email, status:"open", pagename:"Dashboard"};
+
+                    const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+                    .then(response => {
+                        console.log("sucessss",response.data)
+                    }).catch(error => {
+                        console.log("usertracking error",error);
+                    });
+*/
+
                 dispatch(() => {
                     return {
                         type: SIGN_OUT,
