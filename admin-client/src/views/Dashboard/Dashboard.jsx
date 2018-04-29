@@ -337,7 +337,7 @@ class Dashboard extends Component {
           {/*{console.log("After ZIP: ",_.zipObject(this.state.trackuser,this.state.track))}*/}
 
           {data.map(function(user, index){
-                return <div className="list-group">
+                return <div className="list-group" key={index}>
                     <p className="list-group-item d-inline p-2 bg-dark text-white" key = {index}><span><Link to ="#">{user[0]}</Link></span> :  {user[1].join(' -->')+'.'}</p>
                 </div>
 

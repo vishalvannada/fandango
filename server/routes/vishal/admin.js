@@ -21,6 +21,48 @@ router.get('/movieSearch', function (req, res) {
     });
 });
 
+
+router.get('/bills', function (req, res) {
+
+    console.log(req.param('date'));
+    console.log("vish")
+
+    kafka.make_request('getBillsAdmin_topic', {'date': req.param('date')}, function (err, results) {
+
+        if (results.code == 201) {
+            console.log(results);
+            res.status(201).json({'bills': results.bills});
+        }
+        else {
+            console.log('roo', results);
+            res.status(401).end()
+        }
+
+    });
+});
+
+
+
+router.get('/billMonth', function (req, res) {
+
+    console.log(req.param('date'));
+    console.log("vish")
+
+    kafka.make_request('getBillsMonthAdmin_topic', {'date': req.param('date')}, function (err, results) {
+
+        if (results.code == 201) {
+            console.log(results);
+            res.status(201).json({'bills': results.bills});
+        }
+        else {
+            console.log('roo', results);
+            res.status(401).end()
+        }
+
+    });
+});
+
+
 router.post('/saveMovie', function (req, res, next) {
 
     // console.log(req.param('title'));

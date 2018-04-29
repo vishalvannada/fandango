@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 import {reducer as formReducer} from 'redux-form';
 // import HomeReducer from './reducer_home';
 // import MovieOverviewReducer from './reducer_movie_overview';
-//
+import AddMovieHall from './reducer_adminadded';
 // import  MovieSearchPage from './reducer_movie_search_page'
 // import EditMovieHall from './reducer_getMovieHallListing'
 // import editMovieSaved from './reducer_editHallSave'
@@ -18,6 +18,8 @@ import UserReducer from "./reducer_user";
 
 const rootReducer = combineReducers({
     user: UserReducer,
+    addmoviehall:AddMovieHall,
+
     form : formReducer
 });
 

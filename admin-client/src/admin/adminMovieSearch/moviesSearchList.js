@@ -9,7 +9,7 @@ class MoviesSearchList extends Component {
         return (_.map(this.props.movies, movie => {
             console.log("vishal")
             return (
-                <div key={movie.title} className="movie-search-list p-1 m-1 background-white">
+                <div key={movie.title} className="max-width-70 movie-search-list p-1 m-1 background-white">
                     <div className='row admin-movie-list-edit'>
                         <div className='col-md-2'>
                             <img
@@ -45,7 +45,7 @@ class MoviesSearchList extends Component {
                             </small>
                             <br/>
                             <br/>
-                            <button className="btn"
+                            <button className="btn btn-primary"
                                     onClick={() => this.props.history.push(`/admin-movie-edit/${movie.tmdbid}`)}>
                                 Edit
                             </button>
@@ -63,7 +63,7 @@ class MoviesSearchList extends Component {
         console.log(this.props.movies);
 
         return (
-            <div className='container'>
+            <div>
                 {this.renderList()}
             </div>
         )

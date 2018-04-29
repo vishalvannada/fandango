@@ -27,7 +27,8 @@ var usertracking = require('./services/usertracking');
 
 
 var getMoviesSearchHandle = require('./services/getMoviesSearchHandle');
-
+var adminBills = require('./services/adminBills');
+var adminBillsMonth = require('./services/getBillsMonth');
 
 
 console.log('server is running');
@@ -123,14 +124,14 @@ consumer.on('message', function (message) {
             break;
 
         case 'geteditmoviesearch_topic':
-            getMoviesSearchHandle.handle_geteditmoviesearch(data.data, function(err,res){
-                response(data,res);
+            getMoviesSearchHandle.handle_geteditmoviesearch(data.data, function (err, res) {
+                response(data, res);
                 return;
             })
             break;
         case 'bookingsearch_topic':
-            user.handle_bookingsearch(data.data, function(err,res){
-                response(data,res);
+            user.handle_bookingsearch(data.data, function (err, res) {
+                response(data, res);
                 return;
             })
             break;
@@ -218,28 +219,28 @@ consumer.on('message', function (message) {
             break
 
         case 'usertracking_topic':
-            usertracking.usertrack(data.data, function(err,res){
-                response(data,res);
+            usertracking.usertrack(data.data, function (err, res) {
+                response(data, res);
                 return;
             })
             break
         case 'usertrackclose_topic':
-            usertracking.usertrackclose(data.data, function(err,res){
-                response(data,res);
+            usertracking.usertrackclose(data.data, function (err, res) {
+                response(data, res);
                 return;
             })
             break
         case 'pageclicks_topic':
             console.log("reached pageclicks_topic");
-            usertracking.pageclicks(data.data, function(err,res){
-                response(data,res);
+            usertracking.pageclicks(data.data, function (err, res) {
+                response(data, res);
                 return;
             })
             break
         case 'movieclicks_topic':
             console.log("reached movieclicks_topic");
-            usertracking.movieclicks(data.data, function(err,res){
-                response(data,res);
+            usertracking.movieclicks(data.data, function (err, res) {
+                response(data, res);
                 return;
             })
             break
@@ -272,23 +273,24 @@ consumer.on('message', function (message) {
                 return;
             });
             break;
-            case 'login_topic':
-                    ad.check_request(data.data, function(err,res){
-                      console.log('after getProjectsthatbidbyfreelancer_request handle-->'+JSON.stringify(res));
-                      var payloads = [
-                          { topic: data.replyTo,
-                              messages:JSON.stringify({
-                                  correlationId:data.correlationId,
-                                  data : res
-                              }),
-                              partition : 0
-                          }
-                      ];
-                      producer.send(payloads, function(err, data){
-                          console.log(data);
-                      });
-                      return;
-                    });
+        case 'login_topic':
+            ad.check_request(data.data, function (err, res) {
+                console.log('after getProjectsthatbidbyfreelancer_request handle-->' + JSON.stringify(res));
+                var payloads = [
+                    {
+                        topic: data.replyTo,
+                        messages: JSON.stringify({
+                            correlationId: data.correlationId,
+                            data: res
+                        }),
+                        partition: 0
+                    }
+                ];
+                producer.send(payloads, function (err, data) {
+                    console.log(data);
+                });
+                return;
+            });
             break;
 
         case 'searchMoviehallUsers':
@@ -312,6 +314,19 @@ consumer.on('message', function (message) {
             break;
         case 'editUserAccount':
             user.editUserAccount(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            })
+            break;
+
+        case 'getBillsAdmin_topic':
+            adminBills.handle_request(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            })
+            break;
+        case 'getBillsMonthAdmin_topic':
+            adminBillsMonth.handle_request(data.data, function (err, res) {
                 console.log("res: ", res);
                 response(data, res);
             })
