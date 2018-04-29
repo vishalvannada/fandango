@@ -79,10 +79,10 @@ class CheckOut extends Component {
                                 <div className="form-group font-family-roboto form-group-custom">
                                     <small className='font-weight-700 font-size-14'>Number of Tickets</small>
                                     <input
-                                        className="form-control input-login"
+                                        className="form-control input-login" required="required"
 
                                         placeholder="Enter number of tickets"
-                                        type="text"
+                                        type="number" min="1"
                                         onChange={(event)=>{
                                             this.setState({noOfTickets:event.target.value});
                                             var ticket_price_total=parseInt(this.props.location.state.movie.TicketPrice)*parseInt(event.target.value);
@@ -101,7 +101,7 @@ class CheckOut extends Component {
                                     <small className='font-weight-700 font-size-14 align-right'> Total: {this.state.totalSum}</small><br/>
 
                                 </div>
-                                <button className="btn font-size-13 align-right my-2"
+                                <button className="btn font-size-13 align-right my-2" disabled={!(this.state.noOfTickets>0)}
                                 onClick={()=> {console.log(this.props)
                                     this.props.history.push({
                                         pathname: '/check-out-payment',

@@ -105,6 +105,13 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
+        case 'addMovieHallAdmin_topic':
+            user.addMovieHallAdmin(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break;
+
 
         case 'getMoviesGenereInSearchPage_topic':
             getMoviesGenreInSearchHandle.handle_request(data.data, function (err, res) {          //Rishith
@@ -116,6 +123,12 @@ consumer.on('message', function (message) {
 
         case 'geteditmoviesearch_topic':
             getMoviesSearchHandle.handle_geteditmoviesearch(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+            break;
+        case 'bookingsearch_topic':
+            user.handle_bookingsearch(data.data, function(err,res){
                 response(data,res);
                 return;
             })
