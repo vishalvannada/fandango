@@ -128,6 +128,13 @@ consumer.on('message', function (message) {
                 response(data, res);
                 return;
             })
+
+        case 'cancelbooking_topic':
+            user.handle_cancelbooking(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+
             break;
         case 'bookingsearch_topic':
             user.handle_bookingsearch(data.data, function (err, res) {
@@ -291,6 +298,25 @@ consumer.on('message', function (message) {
                 });
                 return;
             });
+            break;
+
+            case 'getRevenue_topic':
+                    ad.getRevenue_request(data.data, function(err,res){
+                      console.log('after getRevenue_request handle-->'+JSON.stringify(res));
+                      var payloads = [
+                          { topic: data.replyTo,
+                              messages:JSON.stringify({
+                                  correlationId:data.correlationId,
+                                  data : res
+                              }),
+                              partition : 0
+                          }
+                      ];
+                      producer.send(payloads, function(err, data){
+                          console.log(data);
+                      });
+                      return;
+                    });
             break;
 
         case 'searchMoviehallUsers':

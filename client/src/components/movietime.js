@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import BrandBar from './home/brandBar'
 import MegaDropDownHeader from './home/megaDropDownHeader';
@@ -8,30 +7,28 @@ import {demo} from "../actions/vishalActions";
 import axios from 'axios';
 
 
-
 class Movietime extends Component {
 
 
-     componentWillMount(){
-        console.log("hello",   this.props.user);
-         
-         if(this.props.user.isLoggedIn==true)
-         {
-            console.log("Usertracking............");
-            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+    componentWillMount() {
+        console.log("hello", this.props.user);
 
-            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
-            .then(response => {
-                console.log("sucessss",response.data)
-            }).catch(error => {
-                console.log("usertracking error",error);
-            });
+        if (this.props.user.isLoggedIn == true) {
+            console.log("Usertracking............");
+            var values = {username: this.props.user.user.email, status: "open", pagename: "Movietime"};
+
+            const request = axios.post('http://localhost:3001/movietheatres/usertrack', values)
+                .then(response => {
+                    console.log("sucessss", response.data)
+                }).catch(error => {
+                    console.log("usertracking error", error);
+                });
 
             console.log("after ttasildjfksdfh")
-         }
-     }
+        }
+    }
 
-    render() {  
+    render() {
         return (
             <div>
                 <BrandBar/>
@@ -43,8 +40,10 @@ class Movietime extends Component {
 }
 
 function mapStateToProps(state) {
-    return {home: state.home,
-         user:state.getUser}
+    return {
+        home: state.home,
+        user: state.getUser
+    }
 }
 
 export default connect(null, null)(Movietime);

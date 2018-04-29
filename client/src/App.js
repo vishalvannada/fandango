@@ -39,6 +39,7 @@ import AddMovieHall from './components/addMovieHall'
 import MovieBillAttribute from './components/adminBillsAnalysis/billAttributes';
 import SearchMovies from './components/home/listSearchMovies';
 import FilterMovies from './components/home/listFilterMovies';
+import EditUserForm from './components/userbookingEdit'
 
 
 
@@ -99,6 +100,8 @@ class App extends Component {
                                 <Route path="/home" component={Home}/>
                                 <Route path='/search-movies' component={SearchMovies}/>
                                 <Route path='/filter-movies' component={FilterMovies}/>
+                                <Route path='/edituserform' component={EditUserForm}/>
+
                                 <PrivateRoute path="/movie-review/:tmdbid" component={MovieRating} props={logStat}/>
 
 

@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import SigninNavbar from './Signin/signinNavbar';
-import MoviehallSigninForm from "./Signin/MoviehallSigninForm";
+import MovieHallSigninForm from "./Signin/MoviehallSigninForm";
 import {fetchUser} from "../actions/satishActions";
 
-class moviehallSignin extends Component {
+class MovieHallSignin extends Component {
     componentDidMount() {
         //  this.props.fetchUser();
     }
@@ -22,10 +21,11 @@ class moviehallSignin extends Component {
                                 <ul className="inline-items">
                                     <li className="site-logo">
 
-                                        <img
-                                            src="https://images.fandango.com/r1.0.431/redesign/static/img/fandango-logo.svg"
-                                            className="brand-img"></img>
-
+                                        <Link to='/home'>
+                                            <img
+                                                src="https://images.fandango.com/r1.0.431/redesign/static/img/fandango-logo.svg"
+                                                className="brand-img"/>
+                                        </Link>
                                     </li>
                                 </ul>
 
@@ -40,7 +40,7 @@ class moviehallSignin extends Component {
                         <div
                             className="double-type large-8 medium-10 small-12 large-centered medium-centered small-centered columns">
                             <div className="panel-group row">
-                                <MoviehallSigninForm/>
+                                <MovieHallSigninForm/>
                             </div>
                         </div>
                     </div>
@@ -56,4 +56,4 @@ function mapStateToProps(state) {
     })
 }
 
-export default connect(mapStateToProps, {fetchUser})(moviehallSignin);
+export default connect(mapStateToProps, {fetchUser})(MovieHallSignin);

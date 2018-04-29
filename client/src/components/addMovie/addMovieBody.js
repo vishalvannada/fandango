@@ -11,7 +11,7 @@ import Multiselect from 'react-widgets/lib/Multiselect'
 import 'react-widgets/dist/css/react-widgets.css';
 
 
-class MovieTopSection extends Component {
+class AddMovieTopSection extends Component {
 
 
     componentWillMount()
@@ -343,4 +343,4 @@ export default
 reduxForm({
     validate,
     form: 'AddMovie'
-})(connect(mapStateToProps, {getMoviesInSearchPage,GetMoviesnHalls,addMovie})(MovieTopSection));
+})(connect(mapStateToProps, {getMoviesInSearchPage,GetMoviesnHalls,addMovie})(AddMovieTopSection));
