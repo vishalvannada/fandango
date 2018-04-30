@@ -27,6 +27,7 @@
     "react-stars": "^2.2.5",
     "react-widgets": "^4.2.6",
     "react-widgets-moment": "^4.0.12",
+    "recharts": "^1.0.0-beta.10",
     "redux": "^3.7.2",
     "redux-file-upload": "0.0.19",
     "redux-form": "^7.3.0",

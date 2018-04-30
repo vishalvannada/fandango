@@ -56,7 +56,7 @@ export const adminSignin = (values) =>
         credentials: 'include',
         body: JSON.stringify(values)
     }).then(res => {
-        //console.log(res.json());
+        console.log("herexcvbnm,fdghjk");
         return res.json();
     })
         .catch(error => {

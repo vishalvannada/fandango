@@ -156,6 +156,7 @@ function userDetails(msg, callback) {
 function searchUsers(msg,callback){
     var res={};
     var user= msg.user+"%";
+    var email = "pranith@gmail.com";
     console.log("Search user function");
     User.findAll({
         where: {
@@ -180,6 +181,37 @@ function searchUsers(msg,callback){
     }).catch(err =>
         callback(null,err)
     );
+}
+
+
+
+function getmovierevenue(msg,callback){
+    var res={};
+    var email = msg.owneremail;
+    transactions.findAll({
+        attributes: ['moviehall','moviename', [sequelize.fn('sum', sequelize.col('Amount')), 'TotalAmount']],
+        group: ["moviename","moviehall"],
+        where: {moviehallowner: email},
+    }).then(function (results) {
+        console.log("results found", results);
+        // callback(null, results);
+        if (results.length === 0) {
+            console.log('error');
+            res.code = 401;
+            res.message = "No results found";
+            callback(null, res);
+        }
+        else if(results){
+            console.log("Movie users details found");
+            res.code = 201;
+            res.results= results;
+            res.messsage = "Movie Hall revenue found";
+            callback(null, res);
+        }
+    }).catch(err =>
+        callback(null,err)
+    );
+
 }
 
 
@@ -291,6 +323,44 @@ function editUserAccount(msg,callback){
         )
 }
 
+
+function editMoviehallUserAccount(msg,callback){
+    console.log("userdata", msg.user, msg.email,msg.user.password);
+    var firstName = msg.user.firstname;
+    var lastName = msg.user.lastname;
+    var displayName = msg.user.displayname;
+    var address = msg.user.address;
+    var mobile = msg.user.mobile;
+    var newPassword = msg.user.password;
+    var email = msg.user.email;
+    var oldPassword = msg.user.oldpassword;
+    var res = {};
+    var hashnew = oldPassword;
+    if(newPassword!==null){
+        hashnew = newPassword;
+    }
+
+    console.log("user",displayName);
+
+
+    MoviehallUser.update(
+        {firstname: firstName, lastname: lastName, address: address, displayname: displayName, mobile: mobile, password:hashnew , email:email},
+        {returning: true, where: {email: msg.email}}
+    )
+        .then(function (results) {
+            MoviehallUser.find({where: {email: msg.email}})
+                .then(function (user) {
+                    res.user = user;
+                    res.code = 201;
+                    callback(null, res);
+                }).catch(function (err) {
+                console.log(['error'], err.stack);
+            });
+        })
+        .catch(err =>
+            callback(null, err)
+        )
+}
 
 function uploadImage(msg, callback) {
     // console.log("userdata", msg.user, msg.email);
@@ -526,6 +596,25 @@ function deleteUser(msg,callback){
     );
 }
 
+
+
+function deleteMoviehallUser(msg,callback){
+    var res={};
+    console.log("email",msg.email);
+    MoviehallUser.destroy({
+        where: {
+            email: msg.email
+        }
+    }).then(function(result){
+        res.code = 201;
+        res.message= "Delete Moviehall User Successful";
+        callback(null,res);
+    }).catch( err =>
+        callback(null,err)
+    );
+}
+
+
 function moviehallSignin(msg, callback) {
 
     var res = {};
@@ -608,6 +697,8 @@ function saveTransaction(msg, callback) {
            displayname: msg.reqBody.user.displayname,
           email: msg.reqBody.user.email,
              moviename: msg.reqBody.movies.movie.MovieName,
+             movieid:parseInt(msg.reqBody.movies.id),
+
              moviehall: msg.reqBody.movies.theatreName,
              screenno: parseInt(msg.reqBody.movies.ScreenNo),
              movietime: msg.reqBody.showtime,
@@ -617,7 +708,8 @@ function saveTransaction(msg, callback) {
              date: new Date(msg.reqBody.movies.Date),
              moviehallowner: msg.reqBody.movies.user,
              city: msg.reqBody.movies.theatreCity,
-             nooftickets:parseInt(msg.reqBody.total.noOfTickets)
+             nooftickets:parseInt(msg.reqBody.total.noOfTickets),
+
          };
 
 
@@ -702,6 +794,36 @@ function addMovieHallAdmin(msg, callback) {
 }
 
 
+function handle_cancelbooking(msg,callback){
+    var res= {};
+    console.log("handle_cancelbooking function");
+    console.log(msg);
+  //  var email = msg.reqBody.email;
+    transactions.destroy({
+        where: {
+            transactionid: msg.reqBody.transactionid}
+    }).then(function(transactions) {
+        console.log("users",transactions);
+        //if (transactions.length === 0)
+        {
+            console.log('success');
+            res.code = 200;
+            res.message = "Transactions Deleted";
+pranith.handle_cancelPayment(msg,function(err,results){
+    if(err)
+    {
+        console.log(err);
+    }
+    else {
+        callback(null, res);
+    }
+});
+
+        }
+    }).catch(err =>
+        callback(null,err)
+    );
+}
 function handle_bookingsearch(msg,callback){
     var res= {};
     console.log("Search transaction function");
@@ -744,8 +866,12 @@ exports.searchUsers = searchUsers;
 exports.searchMoviehallUsers = searchMoviehallUsers;
 exports.purchaseHistory = purchaseHistory;
 exports.deleteUser = deleteUser;
+exports.deleteMoviehallUser = deleteMoviehallUser;
 exports.editUserAccount = editUserAccount;
+exports.editMoviehallUserAccount = editMoviehallUserAccount;
 exports.saveTransaction=saveTransaction;
+exports.getmovierevenue = getmovierevenue;
 exports.addMovieHallAdmin=addMovieHallAdmin;
 exports.handle_bookingsearch=handle_bookingsearch;
+exports.handle_cancelbooking=handle_cancelbooking;
 

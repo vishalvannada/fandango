@@ -1,7 +1,7 @@
 import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
-import adminMovieSearch from "../components/admin/adminMovieSearch";
+// import adminMovieSearch from "../components/admin/adminMovieSearch";
 
 export const DEMO = 'demo';
 export const MOVIES_CAROUSEL_NOW = 'moviesCarouselNow';

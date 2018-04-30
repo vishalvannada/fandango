@@ -940,6 +940,82 @@ console.log(parseInt(seatsMovie),parseInt(msg.reqBody.total.noOfTickets));
 
 
 }
+function handle_cancelPayment(msg, callback) {
+
+    console.log("-----------------------------------------in handle_cancelPayment--",msg);
+    var showtimes = [];
+
+    console.log(showtimes);
+
+    // console.log(showtimes, "--------------------------------------");
+    var res = {};
+    var i = 0;
+
+
+    var d = new Date();
+    var arrayDates =[];
+    var queryJsonArray=[];
+
+
+    {
+         console.log(msg.reqBody,"????????????????????????????????????????????????????");
+        try {
+
+            //  console.log("msg is-----------------------------------------------");
+
+
+            var queryJsonSearch = {
+                "ID": parseInt(msg.reqBody.movieid)
+            };
+            var queryJsonSearchInsert = {
+                "ID": parseInt(msg.reqBody.movieid),
+                "Showtimes.time":msg.reqBody.showtime
+            };
+
+
+            console.log(msg.reqBody);
+            console.log(queryJsonSearch)
+
+                            var queryJsonInsert = {
+                                $inc:{
+                                    "Showtimes.$.seats":parseInt(msg.reqBody.nooftickets)
+
+                                }
+
+                            };
+
+                            MongoConPool.updateOne('movieHall',queryJsonSearchInsert, queryJsonInsert, function (err, movie) {
+                                if (err) {
+                                    res.code = "401";
+                                    callback(null, res);
+                                    console.log(err);
+                                    console.log("error in adding movie-=-=============------------------------------=======")
+                                }
+                                else {
+
+                                    console.log("-moviea updated-----------------------------------------------");
+                                    res.result = movie;
+                                    callback(null,res)
+                                    //res.code = 200;
+
+                                    //
+                                }
+                            });
+
+                    }
+                    catch
+            (e) {
+            res.code = "401";
+             callback(null, res);
+        }
+    }
+
+
+
+}
+
+
+
 
 
 
@@ -951,3 +1027,4 @@ exports.handle_saveMovieListing=handle_saveMovieListing;
 exports.handle_geteditmoviesearch=handle_geteditmoviesearch;
 exports.handle_savePayment=handle_savePayment;
 exports.handle_addOwnerMovies=handle_addOwnerMovies;
+exports.handle_cancelPayment=handle_cancelPayment;

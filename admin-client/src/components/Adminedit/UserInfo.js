@@ -1,21 +1,11 @@
 import React, {Component} from 'react';
 import {Route, withRouter, Link} from 'react-router-dom';
-import Edit from 'material-ui/svg-icons/editor/mode-edit';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Field, reduxForm, initialize} from 'redux-form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {DropDownMenu} from 'material-ui'
-import UnderBrand from '../home/underBrand';
-import Collapsible from 'react-collapsible';
-import '../userProfile/userProfile.css';
+import {editUserAccount} from "../../actions/satishActions";
+import "./userProfile.css";
 
-// import UtilityFooter from './utilityFooter';
-// import BrandBar from '../home/brandBar';
-
-import {
-    editUserAccount
-} from "../../actions/satishActions";
 
 class UserInfo extends Component {
 
@@ -196,5 +186,5 @@ export default reduxForm({
     validate,
     form: 'basicInfo'
 })(
-    connect(null)(UserInfo)
+    connect(null,{editUserAccount})(UserInfo)
 );

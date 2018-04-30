@@ -127,6 +127,13 @@ consumer.on('message', function (message) {
                 response(data, res);
                 return;
             })
+
+        case 'cancelbooking_topic':
+            user.handle_cancelbooking(data.data, function(err,res){
+                response(data,res);
+                return;
+            })
+
             break;
         case 'bookingsearch_topic':
             user.handle_bookingsearch(data.data, function (err, res) {
@@ -332,11 +339,29 @@ consumer.on('message', function (message) {
                 response(data, res);
             })
             break;
+        case 'deleteMoviehallUser':
+            user.deleteMoviehallUser(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            })
+            break;
         case 'editUserAccount':
             user.editUserAccount(data.data, function (err, res) {
                 console.log("res: ", res);
                 response(data, res);
             })
+            break
+        case 'purchaseHistory':
+            user.purchaseHistory(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            });
+            break;
+        case 'getMovieRevenue_topic':
+            user.getmovierevenue(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            });
             break;
 
         case 'getBillsAdmin_topic':
