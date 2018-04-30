@@ -65,9 +65,7 @@ class Dashboard extends Component {
                                 <div className="Profile cards">
                                     <div className="vip-content">
                                         <img id="AvatarImage" className="user-avatar-thumb"
-                                             src="https://images.fandango.com/r1.0.431/redesign/areas/profile/img/no-image-account-profile.png"/>{/* Write Image Source*/}
-
-
+                                             src={"http://localhost:3001/images/" + this.props.user.user.image}/>{/* Write Image Source*/}
 
                                         <h3 className="font-condensed-bold">First Name: {this.props.user.user.firstname}<br/><br/> Last
                                             Name: {this.props.user.user.lastname}</h3>
