@@ -113,6 +113,12 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
+        case 'getAllMovieHalls_topic':
+            getMoviesSearchHandle.handle_getAllMovieHalls(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break;
 
 
         case 'getMoviesGenereInSearchPage_topic':

@@ -326,7 +326,7 @@ function handle_addOwnerMovies(msg, callback) {
             "HallID": msg.reqBody.movietheatername + "|" + msg.reqBody.city + "|" +
             msg.reqBody.state + "|" + msg.reqBody.zipcode,
             "movie": {
-                "movieId": 427641,
+                "movieId": 1,
                 "poster_path": "/30oXQKwibh0uANGMs0Sytw3uN22.jpg",
                 "MovieName": "Rampage"
             },
@@ -594,6 +594,125 @@ function handle_MoviesnHalls(msg, callback) {
     // winston.remove(winston.transports.File);
     // winston.add(winston.transports.Console);
 }
+function handle_getAllMovieHalls(msg, callback) {
+
+    // winston.remove(winston.transports.Console);
+    // winston.add(winston.transports.File, { filename: './public/LogFiles/KayakAnalysis.json' });
+    // winston.log('info', 'Flight Page Viewed', { page_name : 'Flights_page'});
+
+    var res = {};
+    var i = 0;
+    try {
+        var date = new Date();
+        //   console.log("date is-----------------------------------------------");
+        // console.log(date);
+        console.log("msg is-----------------------------------------------", msg.reqBody);
+        var queryJson = {
+            //  "Date": {$gte : new Date()}
+
+            //hard code
+            "HallID": new RegExp("|")
+        };
+
+        var queryMovies = {poster_path: new RegExp('/')};
+
+
+        MongoConPool.find('movies', queryMovies, function (err, movie) {
+            if (err) {
+                //      console.log("error------------------------------------------------------");
+                res.code = "403";
+                callback(null, res);
+            }
+            else {
+                var movies = [];
+                //   console.log("found movie names");
+                resArr = [];
+                resArr = movie.map(function (file) {
+
+                    var carsJSON = {};
+                    carsJSON.movie = movie[i].title;
+                    //carsJSON.title=movie[i].title;
+                    carsJSON.tmdbid = movie[i].tmdbid;
+                    carsJSON.poster_path = movie[i].poster_path;
+
+
+                    //carsJSON.Company=cars[i].Company;
+                    i = i + 1;
+                    return carsJSON;
+                });
+                // var resmap=groupBy(resArr,"theatreName");
+                //console.log(resArr);
+                //console.log(movies);
+
+                res.code = 200;
+                // res.movietheatre = resArr;
+                res.moviemap = resArr;
+                // console.log("movie theatres are",resArr);
+
+                //  var movieTheatres=getMovieTheatresO();
+
+
+                //callback(null, res);
+
+
+                MongoConPool.find('movieHall', queryJson, function (err, movies) {
+                    if (err) {
+                        res.code = "401";
+                        callback(null, res);
+                    }
+                    else {
+
+                        resArr1 = [];
+                        //        console.log("error------------------------------------------------------");
+                        //      console.log(movies);
+                        resArr1 = movies.map(function (file) {
+                            var carsJSON = {};
+                            // carsJSON.id = movie[i].ID;
+                            var spl = file.HallID.split('|');
+                            carsJSON.theatreName = spl[0];
+                            carsJSON.theatreCity = spl[1];
+                            carsJSON.theatreState = spl[2];
+                            carsJSON.theatreZip = spl[3];
+                            carsJSON.user = file.user;
+                            carsJSON.movie = file.movie;
+                            carsJSON.ScreenNo = file.ScreenNo;
+                            carsJSON.Showtimes = file.Showtimes;
+                            carsJSON.NoofSeats = file.NoofSeats;
+                            carsJSON.TicketPrice = file.Price;
+                            carsJSON.user = file.user;
+                            carsJSON.ID = file.ID;
+                            carsJSON.Date = file.Date;
+
+
+                            //carsJSON.Company=cars[i].Company;
+                            i = i + 1;
+                            return carsJSON;
+                        });
+                        var resmap1 = groupBy(resArr1, "theatreName");
+                        //  console.log("---------------------------------------------------=========================-------------")
+                        //    console.log(resmap1);
+
+                        res.code = 200;
+                        //res.movietheatre = resArr1;
+                        res.movietheatre = resmap1;
+                        console.log("movie theatres are",resmap1);
+                        callback(null, res);
+                    }
+                });
+            }
+        });
+
+
+    }
+    catch
+        (e) {
+        res.code = "401";
+        callback(null, res);
+    }
+    // winston.remove(winston.transports.File);
+    // winston.add(winston.transports.Console);
+}
+
 function handle_getMovieListing(msg, callback) {
 
     // winston.remove(winston.transports.Console);
@@ -1029,3 +1148,4 @@ exports.handle_geteditmoviesearch=handle_geteditmoviesearch;
 exports.handle_savePayment=handle_savePayment;
 exports.handle_addOwnerMovies=handle_addOwnerMovies;
 exports.handle_cancelPayment=handle_cancelPayment;
+exports.handle_getAllMovieHalls=handle_getAllMovieHalls;
