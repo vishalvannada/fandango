@@ -5,12 +5,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {DropDownMenu} from 'material-ui'
-import UnderBrand from '../home/underBrand';
-import Collapsible from 'react-collapsible';
+import axios from 'axios';
 import './userProfile.css';
-import Footer from './footer'
-import UtilityFooter from './utilityFooter';
 import BrandBar from '../home/brandBar';
 import MegaDropDownHeader from '../home/megaDropDownHeader';
 import FandangoVIPHeader from './fandangoVIPHeader'
@@ -30,6 +26,21 @@ import ChangePassword from './changePassword';
 import PaymentMethod from './paymentMethod';
 
 class UserProfile extends Component {
+    componentWMount(){
+        if(this.props.user.isLoggedIn==true)
+        {
+            console.log("User Email............",this.props.user.user.email);
+            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+                .then(response => {
+                    console.log("sucessss",response.data)
+                }).catch(error => {
+                    console.log("usertracking error",error);
+                });
+
+        }
+    }
 
     constructor(props) {
         super(props);
@@ -65,7 +76,7 @@ class UserProfile extends Component {
 
     render() {
         console.log("Inside Signup");
-        console.log("props", this.props.user);
+        console.log("props", this.props.userProfile);
         const {handleSubmit, load, pristine, reset, submitting} = this.props;
 
         if (this.props.user.user) {
@@ -83,11 +94,11 @@ class UserProfile extends Component {
                 {/*Profile Component - Dropdown*/}
                 <div className='row'>
                     <div id='profile_block' className="columns">
-                        {this.props.user.user.email ? <Image image={this.props.user.user.image}/> : ''}
-                        {this.props.user.user.email ? < BasicInfo user={this.props.user.user}/> : ''}
-                        {this.props.user.user.email ? <ChangeEmail user={this.props.user.user}/> : ''}
-                        {this.props.user.user.email ? <ChangePassword user={this.props.user.user}/> : ''}
-                        {this.props.user.user.email ? <PaymentMethod user={this.props.user.user}/> : ''}
+                        {this.props.userProfile.user.email ? <Image location={this.props.location} image={this.props.userProfile.user.image}/> : ''}
+                        {this.props.userProfile.user.email ? < BasicInfo user={this.props.userProfile.user}/> : ''}
+                        {this.props.userProfile.user.email ? <ChangeEmail user={this.props.userProfile.user}/> : ''}
+                        {this.props.userProfile.user.email ? <ChangePassword user={this.props.userProfile.user}/> : ''}
+                        {this.props.userProfile.user.email ? <PaymentMethod user={this.props.userProfile.user}/> : ''}
 
                     </div>
                 </div>
@@ -113,7 +124,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    return ({user: state.userProfile})
+    return ({user: state.user,
+        userProfile: state.userProfile})
 }
 
 export default reduxForm({

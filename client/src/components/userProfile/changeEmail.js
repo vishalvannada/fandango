@@ -102,7 +102,7 @@ class ChangeEmail extends Component {
 
                                                 <Field name="oldemail"
                                                        className="form-control form-control-lg update-form-newemail"
-                                                       id="NewEmailBox"
+                                                       id="OldEmailBox"
                                                        type='email'
                                                        component={this.renderField}
                                                        disabled
@@ -138,7 +138,7 @@ class ChangeEmail extends Component {
 
 
                                             <div className="medium-7 columns right-40">
-                                                <button id="save-basic" className="btn save-button">Save</button>
+                                                <button id="save-email" className="btn save-button">Save</button>
                                             </div>
                                         </div>
                                     </form>

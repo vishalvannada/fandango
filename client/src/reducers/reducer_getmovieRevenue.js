@@ -7,7 +7,7 @@ export default function (state={
     movies: '',
     totalamount: null,
 },action){
-     console.log("inside revenue users reducer",action.payload);
+     // console.log("inside revenue users reducer",action.payload);
     switch(action.type){
         case REVENUE_DETAILS_SUCCESS:
             console.log("inside revenue users reducer",action.payload.data);
