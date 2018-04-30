@@ -19,6 +19,7 @@ import UserReducer from "./reducer_user";
 import fetchUserReducer from "./reducer_fetchuser";
 import userProfile from "./reducer_userprofile";
 import bookingcancel from "./reducer_bookingHistory"
+import cancelBookingConfirm from "./reducer_cancelbooking"
 import {SIGN_OUT} from "../actions/satishActions";
 
 const appReducer = combineReducers({
@@ -39,6 +40,7 @@ const appReducer = combineReducers({
     addMoviesAdmin:addMoviesAdmin,
     genreSearchMovies: GenreSearchMovies,
     bookingcancel:bookingcancel,
+    cancelBookingConfirm:cancelBookingConfirm,
     form : formReducer
 
 });

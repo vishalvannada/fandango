@@ -75,8 +75,16 @@ class CancelBookingBody extends Component {
 
 
     render() {
+        if(this.props.cancelBookingConfirm.bookingCancel === true)
+        {
+            swal("Transaction Cancelled");
+        }
+        else if(this.props.cancelBookingConfirm.bookingCancel === false)
+        {
+            swal("Transaction not cancelled");
+        }
 
-        console.log(this.props);
+        console.log(this.props.cancelBookingConfirm.bookingCancel);
         console.log(this.props.bookingcancel);
         console.log(this.state);
 
@@ -223,7 +231,8 @@ function mapStateToProps(state) {
         addMovies: state.addMovies,
         editMoviehall:state.editMoviehall,
         user:state.getUser,
-        bookingcancel:state.bookingcancel
+        bookingcancel:state.bookingcancel,
+        cancelBookingConfirm:state.cancelBookingConfirm
     }
 }
 
