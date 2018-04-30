@@ -28,22 +28,21 @@ var axios = require('axios');
 
 class BasicInfo extends Component {
 
-    componentWillMount(){
+    componentWillMount() {
 
-         if(this.props.user.isLoggedIn==true)
-         {
-            console.log("User Email............",this.props.user.user.email);
-            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+        if (this.props.user.isLoggedIn == true) {
+            console.log("User Email............", this.props.user.user.email);
+            var values = {username: this.props.user.user.email, status: "open", pagename: "Movietime"};
 
-            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
-            .then(response => {
-                console.log("sucessss",response.data)
-            }).catch(error => {
-                console.log("usertracking error",error);
-            });
+            const request = axios.post('http://localhost:3001/movietheatres/usertrack', values)
+                .then(response => {
+                    console.log("sucessss", response.data)
+                }).catch(error => {
+                    console.log("usertracking error", error);
+                });
 
-         }
-     }
+        }
+    }
 
 
     renderField(field) {
@@ -214,8 +213,10 @@ function validate(values) {
 }
 
 function mapStateToProps(state) {
-    return {home: state.home,
-         user:state.getUser}
+    return {
+        home: state.home,
+        user: state.getUser
+    }
 }
 
 export default reduxForm({

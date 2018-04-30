@@ -39,8 +39,7 @@ hr{
     border: solid #dddddd;
 }
 .text-help{
-
-    color: red;
+    color: red !important;
 }
 .intercept-container{
     margin-bottom: auto;

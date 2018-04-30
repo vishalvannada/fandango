@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {Route, withRouter, Link} from 'react-router-dom';
-import Edit from 'material-ui/svg-icons/editor/mode-edit';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Field, reduxForm, initialize} from 'redux-form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
