@@ -596,6 +596,25 @@ function deleteUser(msg,callback){
     );
 }
 
+
+
+function deleteMoviehallUser(msg,callback){
+    var res={};
+    console.log("email",msg.email);
+    MoviehallUser.destroy({
+        where: {
+            email: msg.email
+        }
+    }).then(function(result){
+        res.code = 201;
+        res.message= "Delete Moviehall User Successful";
+        callback(null,res);
+    }).catch( err =>
+        callback(null,err)
+    );
+}
+
+
 function moviehallSignin(msg, callback) {
 
     var res = {};
@@ -848,6 +867,7 @@ exports.searchUsers = searchUsers;
 exports.searchMoviehallUsers = searchMoviehallUsers;
 exports.purchaseHistory = purchaseHistory;
 exports.deleteUser = deleteUser;
+exports.deleteMoviehallUser = deleteMoviehallUser;
 exports.editUserAccount = editUserAccount;
 exports.editMoviehallUserAccount = editMoviehallUserAccount;
 exports.saveTransaction=saveTransaction;

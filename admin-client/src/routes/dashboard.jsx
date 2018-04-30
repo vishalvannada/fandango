@@ -17,8 +17,18 @@ import SearchBill from '../admin/searchBill';
 import SearchBillMonth from '../admin/searchBillMonth';
 
 const dashboardRoutes = [
-
-
+    {
+        path: "/findUsers",
+        component: FindUsers,
+        name: "FindUsers",
+        icon: "pe-7s-note2",
+    },
+    {
+        path: "/findMoviehallUsers",
+        component: FindMoviehallUsers,
+        name: "findMoviehallUsers",
+        icon: "pe-7s-graph",
+    },
     {
         path: "/dashboard",
         name: "Dashboard",
@@ -69,18 +79,6 @@ const dashboardRoutes = [
         name: "Search User",
         icon: "pe-7s-note2",
         component: ''
-    },
-    {
-        path: "/findUsers",
-        name: "FindUsers",
-        icon: "pe-7s-graph",
-        component: FindUsers,
-    },
-    {
-        path: "/findMoviehallUsers",
-        name: "findMoviehallUsers",
-        icon: "pe-7s-graph",
-        component: FindMoviehallUsers
     },
     {
         path: "/AdminUserEdit",
