@@ -23,25 +23,23 @@ export default function (state = {
     // console.log("Inside Reducer",action.payload);
     switch (action.type) {
         case BASIC_INFO_SUCCESS:
-            // sessionStorage.setItem("islogin", true);
-            // sessionStorage.setItem("username", action.payload.data.username);
-            return {user: action.payload};
+            return {...state, user: action.payload.user};
             break;
         case BASIC_INFO_ERROR:
             return {...state, message: action.payload.data.message};
             break;
         case USER_DETAILS_SUCCESS:
-            return {user: action.payload};
+            return {user: action.payload.user};
             break;
         case IMAGE_SUCCESS:
-            return {user: action.payload.user};
+            return {...state, user: action.payload.user};
             break;
         // case SIGN_OUT:
         //     //  sessionStorage.clear();
         //     return {...state, isLoggedIn:false,  username: '' };
         //     break;
         default:
-            return state;
+            return {...state};
     }
 
 }

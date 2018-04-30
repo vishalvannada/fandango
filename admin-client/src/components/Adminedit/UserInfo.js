@@ -18,7 +18,7 @@ class UserInfo extends Component {
                 {/*<label>{field.label}</label>*/}
                 <input {...field.input} {...field}
                 />
-                <div className="text-help">
+                <div className="error-message">
                     {touched ? error : ''}
                 </div>
             </div>
@@ -64,8 +64,8 @@ class UserInfo extends Component {
             src = 'http://localhost:3001/images/' + this.props.profile.userDetails.image;
         }
         return (
-            <div className='row'>
-                <div id='profile_block' className="medium-9 columns">
+            <div className='row max-width-70 margin-auto'>
+                <div className="medium-9 columns">
                     {/*Basic Information*/}
 
                         <div className="panel-group">
@@ -95,9 +95,9 @@ class UserInfo extends Component {
                                         </div>
                                         <div className="medium-5 columns">
                                             <label className="font-condensed-bold" htmlFor="">Display Name</label>
-                                            <div className="special-note">This name will appear publicly when you
+                                            <div className="special-note"><small>This name will appear publicly when you
                                                 rate and
-                                                review movies.
+                                                review movies.</small>
                                             </div>
                                             <Field name="displayname"
                                                    className="form-control form-control-lg update-form-displayname"
@@ -167,6 +167,11 @@ function validate(values) {
     const errors = {};
 
     // console.log(values)
+
+    if(!values.email){
+        errors.email = 'Email Cant be empty'
+    }
+
 
     if (values.mobile) {
         if (isNaN(values.mobile)) {

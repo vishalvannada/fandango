@@ -178,7 +178,7 @@ export function editUserAccount(userdata){
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res.data);
                 history.push("/findUsers");
-               // dispatch({type: BASIC_INFO_SUCCESS, payload: res.data});
+                // dispatch({type: BASIC_INFO_SUCCESS, payload: res.data});
             })
             .catch((error) => {
                 dispatch({type: BASIC_INFO_ERROR, payload: error})

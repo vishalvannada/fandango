@@ -15,6 +15,7 @@ import FindMoviehallUsers from "../components/AdminMoviehallUserEdit/FindMovieha
 import AdminMoviehallUserEdit from "../components/AdminMoviehallUserEdit/AdminMovehallUserEdit"
 import SearchBill from '../admin/searchBill';
 import SearchBillMonth from '../admin/searchBillMonth';
+import EditMovieHalls from '../admin/editMovieHallAdmin';
 
 const dashboardRoutes = [
 
@@ -65,6 +66,12 @@ const dashboardRoutes = [
         component: SearchBill,
         icon: "pe-7s-note2",
         name: "Search Bills Date",
+    },
+    {
+        path: "/edit-movie-halls",
+        component: EditMovieHalls,
+        icon: "pe-7s-note2",
+        name: "Edit Movie Halls",
     },
     {
         path: "/AdminUserEdit",
