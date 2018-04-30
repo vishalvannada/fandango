@@ -5,40 +5,41 @@ import moment from 'moment';
 import {Link} from 'react-router-dom';
 import "./movieTime.css"
 import {Field, reduxForm, initialize} from "redux-form";
-import {getMoviesInSearchPage, GetMoviesnHalls, addMovie,editMovieSearch,SQLbookingSearch} from "../../actions/pranithActions";
+import {
+    getMoviesInSearchPage,
+    GetMoviesnHalls,
+    addMovie,
+    editMovieSearch,
+    SQLbookingSearch
+} from "../../actions/pranithActions";
 import _ from 'lodash';
 import DropdownList from 'react-widgets/lib/DropdownList'
 import Slider from "react-slick";
 import Multiselect from 'react-widgets/lib/Multiselect'
 import 'react-widgets/dist/css/react-widgets.css';
-import { formValueSelector } from 'redux-form';
+import {formValueSelector} from 'redux-form';
 
 //const selector = formValueSelector('EditMovie');
 
 class CancelBookingBody extends Component {
     state = {
         movieSearch: "",
-        moviesSelected:"",
-        email:this.props.user.user.email,
+        moviesSelected: "",
+        email: this.props.user.user.email,
         dateSelected: moment(new Date()).format(),
-        username:""
+        username: ""
         // values: selector('theatre')
     }
 
 
     componentWillMount() {
-        this.setState({email:this.props.user.user.email});
+        this.setState({email: this.props.user.user.email});
         console.log(this.state);
         console.log("calling movie halls");
-      //  this.props.GetMoviesnHalls({email:this.props.user.user.email});
+        //  this.props.GetMoviesnHalls({email:this.props.user.user.email});
         this.props.editMovieSearch(this.state);
-        this.props.SQLbookingSearch({email:this.props.user.user.email});
+        this.props.SQLbookingSearch({email: this.props.user.user.email});
     }
-
-
-
-
-
 
 
     renderDropdown = ({input, data, valueField, textField, meta, placeholder}) => {
@@ -65,9 +66,6 @@ class CancelBookingBody extends Component {
     }
 
 
-
-
-
     setDate(values) {
         //console.log(values);
         this.setState({dateSelected: values})
@@ -87,6 +85,7 @@ class CancelBookingBody extends Component {
 
 
     };
+
     renderDates() {
 
         var arrayDates = [];
@@ -179,7 +178,7 @@ class CancelBookingBody extends Component {
                                                     <Field
                                                         name="theatre"
                                                         component={this.renderText}
-                                                      //  data={this.props.moviesDropdown.movies.movietheatre}
+                                                        //  data={this.props.moviesDropdown.movies.movietheatre}
                                                         //valueField="type"
                                                         type="text"
                                                         textField="type"
@@ -369,9 +368,9 @@ function mapStateToProps(state) {
         movietime: state.moviesSearchPagePK,
         moviesDropdown: state.moviesDropdown,
         addMovies: state.addMovies,
-        editMoviehall:state.editMoviehall,
-        user:state.getUser,
-        bookingcancel:state.bookingcancel
+        editMoviehall: state.editMoviehall,
+        user: state.getUser,
+        bookingcancel: state.bookingcancel
     }
 }
 
@@ -379,4 +378,10 @@ function mapStateToProps(state) {
 export default reduxForm({
     validate,
     form: 'EditMovie'
-})(connect(mapStateToProps, {getMoviesInSearchPage, GetMoviesnHalls, addMovie,editMovieSearch,SQLbookingSearch})(CancelBookingBody));
+})(connect(mapStateToProps, {
+    getMoviesInSearchPage,
+    GetMoviesnHalls,
+    addMovie,
+    editMovieSearch,
+    SQLbookingSearch
+})(CancelBookingBody));

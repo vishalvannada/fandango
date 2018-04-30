@@ -56,13 +56,7 @@ class MegaDropDownHeader extends Component {
                                 <button
 
                                     className="my-2 my-sm-0 ml-4 header-button-go"
-                                    type="button" onClick={(event)=>{
-                                        console.log("pranith Clcikdef")
-                                        console.log(event);
-                                        //swal("value is ", event.target);
-
-                                    this.props.history.push("/movietime");
-                                }}> GO
+                                    type="submit" > GO
                                 </button>
                             </form>
 
@@ -172,63 +166,6 @@ class MegaDropDownHeader extends Component {
                                                 </div>
 
                                                 <div className="col-md-4">
-                                                    <a href="">
-                                                        <img
-                                                            src="https://dummyimage.com/200x100/ccc/000&text=image+link"
-                                                            alt="" className="img-fluid"/>
-                                                    </a>
-                                                    <p className="text-white">Short image call to action</p>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </li>
-                                <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
-                                       role="button"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span className="font-weight-700">MOVIE NEWS</span>
-                                    </a>
-                                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-
-
-                                        <div className="container">
-                                            <div className="row">
-                                                <div className="col-md-4">
-                                                    <span className="text-uppercase text-white">Category 3</span>
-                                                    <ul className="nav flex-column">
-                                                        <li className="nav-item">
-                                                            <a className="nav-link active" href="#">Active</a>
-                                                        </li>
-                                                        <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
-                                                        </li>
-                                                        <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div className="col-md-4">
-                                                    <ul className="nav flex-column">
-                                                        <li className="nav-item">
-                                                            <a className="nav-link active" href="#">Active</a>
-                                                        </li>
-                                                        <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
-                                                        </li>
-                                                        <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div className="col-md-4">
-
                                                     <a href="">
                                                         <img
                                                             src="https://dummyimage.com/200x100/ccc/000&text=image+link"

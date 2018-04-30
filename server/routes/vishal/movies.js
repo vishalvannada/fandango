@@ -47,13 +47,17 @@ router.post('/saveReview', function (req, res, next) {
     console.log(req.param('projDesc'))
     console.log(req.param('tmdbid'))
     console.log(req.param('stars'))
+    console.log(req.param('userEmail'))
+    console.log(req.param('userFirstName'))
 
 
     kafka.make_request('saveReview_topic', {
         "title": req.param('projectName'),
         "body" : req.param('projDesc'),
         "stars" : req.param('stars'),
-        "tmdbid" : req.param('tmdbid')
+        "tmdbid" : req.param('tmdbid'),
+        "userEmail": req.param('userEmail'),
+        "userFirstName" : req.param('userFirstName')
     }, function (err, results) {
         if (results.code == 200) {
             console.log("inresult", results);

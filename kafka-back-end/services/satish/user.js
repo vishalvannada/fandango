@@ -570,7 +570,6 @@ function adminSignin(msg, callback) {
 
     Admin.findOne({where: {email: email}}).then(function (user) {
         console.log("userpassword", password);
-        console.log("dbpassword", user.password);
         if (!user) {
             console.log('error');
             res.code = 401;

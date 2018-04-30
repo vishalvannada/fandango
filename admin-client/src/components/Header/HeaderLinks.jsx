@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
+import * as API from '../../api/API';
 
 class HeaderLinks extends Component {
   render() {
@@ -17,7 +18,7 @@ class HeaderLinks extends Component {
         </Nav>
 
         <Nav pullRight>
-          <NavItem eventKey={3} href="#">
+          <NavItem eventKey={3} href="#" onClick={()=>API.signOut()}>
             Log out
           </NavItem>
         </Nav>

@@ -22,7 +22,9 @@ function handle_request(msg, callback) {
                         reviews: {
                             title: msg.title,
                             body: msg.body,
-                            stars : msg.stars
+                            stars: msg.stars,
+                            userEmail: msg.userEmail,
+                            userFirstName: msg.userFirstName
                         }
                     }
                 }, function (err, check) {
