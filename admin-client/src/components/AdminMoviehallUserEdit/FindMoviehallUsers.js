@@ -5,8 +5,22 @@ import SearchBar from "../Adminedit/SearchBar";
 import {searchMoviehallUsers} from "../../actions/satishActions";
 import ListCard from "./ListCard";
 import _ from 'lodash';
+import * as API from "../../api/API";
 
 class FindMoviehallUsers extends Component {
+
+    componentWillMount() {
+        API.fetchUser()
+            .then((res) => {
+                console.log(res);
+
+                if (!res.user) {
+                    this.props.history.push('/login')
+                }
+
+
+            });
+    }
 
     componentDidMount() {
         this.props.searchMoviehallUsers();

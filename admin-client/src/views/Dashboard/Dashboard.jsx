@@ -97,53 +97,79 @@ class Dashboard extends Component {
 
     componentWillMount(){
         console.log("You are in Admin Dashboard componentwillmount");
-        API.check()
-            .then((response)=> {
-                console.log("response --->"+JSON.stringify(response));
-                if(response.code === 200){
-                    //alert("check successful");
 
-                    dataBar.labels = response.movies;
-                    dataBar.series[0] = response.avg;
 
-                    dataBar2.labels = response.pages;
-                    dataBar2.series[0] = response.count;
+        API.fetchUser()
+            .then((res) => {
+                console.log(res);
 
-                    dataBar3.labels = response.movieclick;
-                    dataBar3.series[0] = response.mcount;
+                if(!res.user){
+                    this.props.history.push('/login')
+                }
 
-                    dataBar4.labels = response.pageslessseen;
-                    dataBar4.series[0] = response.lesscount;
+                API.check()
+                    .then((response)=> {
+                        console.log("response --->"+JSON.stringify(response));
+                        if(response.code === 200){
+                            //alert("check successful");
 
-                    dataPie1.labels = response.labels4;
-                    dataPie1.series = response.series4;
+                            dataBar.labels = response.movies;
+                            dataBar.series[0] = response.avg;
 
-                    dataPie2.labels = response.labels3;
-                    dataPie2.series = response.series3;
+                            dataBar2.labels = response.pages;
+                            dataBar2.series[0] = response.count;
 
-                    dataPie3.labels = response.labels2;
-                    dataPie3.series = response.series2;
-                    // tdar1 = response.tdar1;
-                    // tdar2 = response.tdar2;
-                    console.log(response.trackuser);
-                    console.log(response.track);
-                    console.log("Labels 1 ---->" + dataPie1.labels);
-                    console.log("Labels 2 ---->" + dataPie2.labels);
-                    console.log("Labels 3 ---->" + dataPie3.labels);
-                    legendPie1.names = response.lables4;
-                    //console.log("track"+response.track);
-                    this.setState({
-                        total_movie : response.total_movies,
-                        trackuser: response.trackuser,
-                        track: response.track,
-                        registered_user: response.total_user,
-                        sold_tickets: response.total_tickets,
-                        total_revenue:response.total_rev
+                            dataBar3.labels = response.movieclick;
+                            dataBar3.series[0] = response.mcount;
+
+                            dataBar4.labels = response.pageslessseen;
+                            dataBar4.series[0] = response.lesscount;
+
+                            dataPie1.labels = response.labels4;
+                            dataPie1.series = response.series4;
+
+                            dataPie2.labels = response.labels3;
+                            dataPie2.series = response.series3;
+
+                            dataPie3.labels = response.labels2;
+                            dataPie3.series = response.series2;
+                            // tdar1 = response.tdar1;
+                            // tdar2 = response.tdar2;
+                            console.log(response.trackuser);
+                            console.log(response.track);
+                            console.log("Labels 1 ---->" + dataPie1.labels);
+                            console.log("Labels 2 ---->" + dataPie2.labels);
+                            console.log("Labels 3 ---->" + dataPie3.labels);
+                            legendPie1.names = response.lables4;
+                            //console.log("track"+response.track);
+                            this.setState({
+                                total_movie : response.total_movies,
+                                trackuser: response.trackuser,
+                                track: response.track,
+                                registered_user: response.total_user,
+                                sold_tickets: response.total_tickets,
+                                total_revenue:response.total_rev
+                            });
+
+
+                        }
                     });
 
+                // if(res.message){
+                //     this.setState({
+                //         message : res.message,
+                //     })
+                // }
+                // else{
+                //     this.props.history.push('/dashboard');
+                // }
 
-                }
+
             });
+
+
+
+
     }
     createLegend(json) {
         var legend = [];

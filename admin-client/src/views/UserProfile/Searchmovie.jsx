@@ -24,6 +24,21 @@ class Searchmovie extends Component {
         };
     }
 
+
+    componentWillMount() {
+        API.fetchUser()
+            .then((res) => {
+                console.log(res);
+
+                if (!res.user) {
+                    this.props.history.push('/login')
+                }
+
+
+            });
+    }
+
+
     handleSubmit = (evt) => {
         evt.preventDefault();
         API.getSearchedMoviesAdmin(this.state.term)
