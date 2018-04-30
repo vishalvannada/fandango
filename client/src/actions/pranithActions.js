@@ -37,6 +37,21 @@ export function addMovieHallAdmin(values) {
     }
 }
 
+export function getAllMovieHalls(values) {
+    console.log("from action GetMoviesnHalls");
+    return (dispatch) => {
+        console.log("kjhg")
+        const response = axios.post(`${ROOT_URL}/movietheatres/getAllMovieHalls`,values)
+            .then(response => {
+
+                console.log(response.data)
+                dispatch(GetMoviesnHallsReducer(response.data))
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+}
+
 export function  savePaymentData(values) {
     console.log(values)
     return (dispatch) => {

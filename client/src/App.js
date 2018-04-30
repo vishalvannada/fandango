@@ -25,6 +25,7 @@ import EditMovieHall from './components/editmovie';
 import Error from './components/404Error';
 import checkFS from './components/adminTrial/checkFS';
 import MovieHallSiginin from "./components/moviehallSignin";
+import EditMovieHallAdmin from "./components/admin/editMovieHallAdmin"
 
 import FindUsers from "./components/Adminedit/FindUsers";
 import PurchaseHistory from "./components/purchases/purchases";
@@ -100,6 +101,7 @@ class App extends Component {
                                 <Route path='/search-movies' component={SearchMovies}/>
                                 <Route path='/filter-movies' component={FilterMovies}/>
                                 <Route path='/edituserform' component={EditUserForm}/>
+                                <Route path="/editMoviehallAdmin" component={EditMovieHallAdmin}/>
 
                                 <PrivateRoute path="/movie-review/:tmdbid" component={MovieRating} props={logStat}/>
 
