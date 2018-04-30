@@ -9,7 +9,7 @@ import * as API from '../api/API';
 class AdminLogin extends Component {
 
 
-    componentDidMount(){
+    componentWillMount(){
         API.fetchUser()
             .then((res) => {
                 console.log(res);

@@ -5,8 +5,22 @@ import SearchBar from "../Adminedit/SearchBar";
 import {searchMoviehallUsers} from "../../actions/satishActions";
 import ListCard from "./ListCard";
 import _ from 'lodash';
+import * as API from "../../api/API";
 
 class FindMoviehallUsers extends Component {
+
+    componentWillMount() {
+        API.fetchUser()
+            .then((res) => {
+                console.log(res);
+
+                if (!res.user) {
+                    this.props.history.push('/login')
+                }
+
+
+            });
+    }
 
     componentDidMount() {
         this.props.searchMoviehallUsers();
@@ -17,7 +31,7 @@ class FindMoviehallUsers extends Component {
         return (
             <div>
                 <SearchBar user="MoviehallUser"/>
-                <h2 className=" font-condensed-bold">Moviehall User Accounts</h2>
+                <h3 className='margin-left'>MovieHall Owner Accounts</h3>
                 {
                     _.map(this.props.users, User => {
                         console.log("user",User)

@@ -24,7 +24,6 @@ function ConnectionProvider() {
             {topic: 'getMoviesHallLisiting_topic', partition: 0},
             {topic: 'geteditmoviesearch_topic', partition: 0},
             {topic: 'savePayment_topic', partition: 0},
-
             {topic: 'addMovieHallAdmin_topic', partition: 0},
             {topic: 'bookingsearch_topic', partition: 0},
             {topic: 'cancelbooking_topic', partition: 0},
@@ -39,6 +38,7 @@ function ConnectionProvider() {
             {topic: 'addMovieHallAdmin_topic', partition: 0},
             {topic: 'bookingsearch_topic', partition: 0},
 
+            {topic: 'getMoviesGenereInSearchPage_topic',partition:0}, //Rishith
 
             //satish
             {topic: 'signup', partition: 0},

@@ -40,7 +40,7 @@ class MoviesEdit extends Component {
         // console.log(this.props.movie.movie)
 
         return (
-            <div className='container'>
+            <div className='max-width-70'>
                 {this.state.movie.tmdbid ? <MovieEditAdminBody movie={this.state.movie} history = {this.props.history}/> : ''}
             </div>
         )

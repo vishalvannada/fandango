@@ -120,7 +120,7 @@ console.log(values.data[0]);
                     <form className="registration-form" onSubmit={handleSubmit(this.onSubmit.bind(this))} >
                         <p className="join-header">JOIN FANDANGO<span
                             className="page-header-emphasis">VIP</span>
-                          
+
                         </p>
 
                         <div className='form-group'>

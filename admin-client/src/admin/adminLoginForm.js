@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from "redux-form";
+// import "../Signin/signin.css";
+import {bindActionCreators} from "redux";
+// import {adminSignin} from "../../actions/satishActions";
 import * as API from '../api/API';
-import "./signin.css";
 
 class AdminLoginForm extends Component {
 
@@ -46,17 +48,21 @@ class AdminLoginForm extends Component {
 
     onSubmit(values) {
         console.log(values);
+        //this.props.adminSignin(values);
         API.adminSignin(values)
             .then((res) => {
                 console.log("admin sifnin----->" + JSON.stringify(res));
-                if (res.message) {
+
+                if(res.message){
                     this.setState({
-                        message: res.message,
+                        message : res.message,
                     })
                 }
-                else {
+                else{
                     this.props.history.push('/dashboard');
                 }
+
+
             });
     }
 
@@ -70,9 +76,8 @@ class AdminLoginForm extends Component {
                 <div className="sub-panel">
                     <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
-
                         <div id="ErrorMessageWrapper">
-                            <div id="signin-error" className="error-msg">{this.renderError()}</div>
+                            <div id="signin-error" className="error-msg" component={this.renderError}>{this.renderError()}</div>
                             <br/>
                         </div>
                         <label htmlFor="UsernameBox" className="font-family-roboto">Email Address</label>
@@ -123,8 +128,16 @@ function mapStateToProps(state) {
 }
 
 
+function mapDispatchToProps(dispatch) {
+    return {
+        ...bindActionCreators({
+            // adminSignin
+        }, dispatch)
+
+    };
+}
 
 export default reduxForm({
     validate,
     form: 'loginForm'
-})(connect(mapStateToProps)(AdminLoginForm));
+})(connect(mapStateToProps, mapDispatchToProps)(AdminLoginForm));
