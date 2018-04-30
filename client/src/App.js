@@ -84,6 +84,9 @@ class App extends Component {
                     <Switch>
                         <div>
                             <Switch>
+
+
+
                                 <Route path='/admin-analysis' component={MovieBillAttribute}/>
                                 <ConditionalRouteUser path="/signin" component={Signin}/>
                                 <PrivateRoute path="/movietime" component={MovieTime} props={logStat}/>

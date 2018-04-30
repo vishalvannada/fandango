@@ -94,6 +94,7 @@ class Dashboard extends Component {
         moviehallseries: []
     }
 
+
     componentWillMount(){
         console.log("You are in Admin Dashboard componentwillmount");
         API.check()
@@ -139,6 +140,7 @@ class Dashboard extends Component {
                         sold_tickets: response.total_tickets,
                         total_revenue:response.total_rev
                     });
+
 
                 }
             });
@@ -309,6 +311,7 @@ class Dashboard extends Component {
                         </Col>
                     </Row>
 
+
                     {/* ///////////////////////////////////////////       Row  -  4 */}
                     <Row>
                         <Col md={6}>
@@ -357,6 +360,7 @@ class Dashboard extends Component {
                             />
                         </Col>
                     </Row>
+
 
                 </Grid>
 
