@@ -7,7 +7,7 @@ import Icons from "views/Icons/Icons";
 import Maps from "views/Maps/Maps";
 import Notifications from "views/Notifications/Notifications";
 import Upgrade from "views/Upgrade/Upgrade";
-
+import AddMovieHalls from '../admin/addMovieHall';
 import MovieEdit from '../admin/adminMovieSearch/movieEdit';
 import FindUsers from "../components/Adminedit/FindUsers";
 import AdminUserEdit from "../components/Adminedit/AdminUserEdit";
@@ -54,6 +54,12 @@ const dashboardRoutes = [
         icon: "pe-7s-note2",
         component: Searchmovie
     },
+    {
+        path: "/addhalls",
+        name: "Add Movie Halls",
+        icon: "pe-7s-note2",
+        component: AddMovieHalls
+    },
 
     {
         path: "/search-bills-month",
@@ -74,6 +80,7 @@ const dashboardRoutes = [
         icon: "pe-7s-note2",
         component: ''
     },
+
     {
         path: "",
         name: "Search User",

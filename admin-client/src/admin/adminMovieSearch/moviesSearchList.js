@@ -60,7 +60,7 @@ class MoviesSearchList extends Component {
 
     render() {
 
-        console.log(this.props.movies)
+        console.log(this.props.movies);
 
         return (
             <div>

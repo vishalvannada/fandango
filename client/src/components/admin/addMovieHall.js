@@ -9,8 +9,8 @@ import Collapsible from 'react-collapsible';
 import {addMovieHallAdmin} from  '../../actions/pranithActions'
 import '../userProfile/userProfile.css'
 import {Field, reduxForm, initialize} from 'redux-form';
-import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
 class AddMovieHallAdmin extends Component {
 

@@ -72,13 +72,13 @@ class MegaDropDownHeader extends Component {
                                         <div className="container">
                                             <div className="row">
                                                 <div className="col-md-3">
-                                                    <span className="text-uppercase text-white">Category 1</span>
+                                                    <span className="text-uppercase text-white">Search</span>
                                                     <ul className="nav flex-column">
                                                         <li className="nav-item">
-                                                            <a className="nav-link active" href="#">Active</a>
+                                                            <Link className="nav-link active" to="/search-movies">Search Movies</Link>
                                                         </li>
                                                         <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
+                                                            <Link className="nav-link" to="/filter-movies">Filter Movies</Link>
                                                         </li>
                                                         <li className="nav-item">
                                                             <a className="nav-link" href="#">Link item</a>
@@ -89,13 +89,13 @@ class MegaDropDownHeader extends Component {
                                                 <div className="col-md-3">
                                                     <ul className="nav flex-column">
                                                         <li className="nav-item">
-                                                            <a className="nav-link active" href="#">Active</a>
+                                                            <a className="nav-link active" href="#">Gossips</a>
                                                         </li>
                                                         <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
+                                                            <a className="nav-link" href="#">Trending !!</a>
                                                         </li>
                                                         <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
+                                                            <a className="nav-link" href="#">Coming Soon!!</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -103,20 +103,20 @@ class MegaDropDownHeader extends Component {
                                                 <div className="col-md-3">
                                                     <a href="">
                                                         <img
-                                                            src="https://dummyimage.com/200x100/ccc/000&text=image+link"
+                                                            src="https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fscottmendelson%2Ffiles%2F2018%2F02%2Fau_rich_hero_blackpanther_1_3c317c85-1200x526.jpg"
                                                             alt="" className="img-fluid"/>
                                                     </a>
-                                                    <p className="text-white">Short image call to action</p>
+                                                    <p className="text-white">Now Playing!!</p>
 
                                                 </div>
 
                                                 <div className="col-md-3">
                                                     <a href="">
                                                         <img
-                                                            src="https://dummyimage.com/200x100/ccc/000&text=image+link"
+                                                            src="https://s3.amazonaws.com/ffe-ugc/intlportal2/dev-temp/en-US/__5ada39a9bddb6.jpg"
                                                             alt="" className="img-fluid"/>
                                                     </a>
-                                                    <p className="text-white">Short image call to action</p>
+                                                    <p className="text-white">Coming Soon !!</p>
 
                                                 </div>
                                             </div>
@@ -137,30 +137,31 @@ class MegaDropDownHeader extends Component {
                                         <div className="container">
                                             <div className="row">
                                                 <div className="col-md-4">
-                                                    <span className="text-uppercase text-white">Category 2</span>
+                                                    <span className="text-uppercase text-white">Bookings</span>
                                                     <ul className="nav flex-column">
                                                         <li className="nav-item">
-                                                            <a className="nav-link active" href="#">Active</a>
+                                                            <Link className="nav-link active" to="/movietime">Book Tickets</Link>
                                                         </li>
                                                         <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
+                                                            <Link className="nav-link" to="#">FAQ</Link>
                                                         </li>
                                                         <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
+                                                            <Link className="nav-link" to="#">Alternatives</Link>
                                                         </li>
+
                                                     </ul>
                                                 </div>
 
                                                 <div className="col-md-4">
                                                     <ul className="nav flex-column">
                                                         <li className="nav-item">
-                                                            <a className="nav-link active" href="#">Active</a>
+                                                            <a className="nav-link active" href="#"></a>
                                                         </li>
                                                         <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
+                                                            <a className="nav-link" href="#">Gossips</a>
                                                         </li>
                                                         <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
+                                                            <a className="nav-link" href="#">Trending!!</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -168,10 +169,10 @@ class MegaDropDownHeader extends Component {
                                                 <div className="col-md-4">
                                                     <a href="">
                                                         <img
-                                                            src="https://dummyimage.com/200x100/ccc/000&text=image+link"
+                                                            src="http://digitalspyuk.cdnds.net/17/30/980x490/landscape-1500890190-avengers-infinity-war-poster-resized-1.jpg"
                                                             alt="" className="img-fluid"/>
                                                     </a>
-                                                    <p className="text-white">Short image call to action</p>
+                                                    <p className="text-white">What's New ?? Book Now !!</p>
 
                                                 </div>
 
@@ -181,6 +182,7 @@ class MegaDropDownHeader extends Component {
 
                                     </div>
                                 </li>
+
 
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
@@ -197,13 +199,13 @@ class MegaDropDownHeader extends Component {
                                                     <span className="text-uppercase text-white">Category 3</span>
                                                     <ul className="nav flex-column">
                                                         <li className="nav-item">
-                                                            <a className="nav-link active" href="#">Active</a>
+                                                            <Link className="nav-link active" to="/dashboard">User Profile</Link>
                                                         </li>
                                                         <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
+                                                            <Link className="nav-link" to="/purchaseHistory">Purchase History</Link>
                                                         </li>
                                                         <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
+                                                            <Link className="nav-link" to="/userprofile">Edit Profile</Link>
                                                         </li>
                                                     </ul>
                                                 </div>
