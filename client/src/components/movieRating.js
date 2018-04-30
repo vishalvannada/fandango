@@ -9,6 +9,7 @@ import MegaDropDownHeader from './home/megaDropDownHeader';
 import {getMovieOverview, saveReview} from "../actions/vishalActions";
 import swal from 'sweetalert'
 import _ from "lodash";
+
 var axios = require('axios');
 
 class MovieRating extends Component {
@@ -26,19 +27,18 @@ class MovieRating extends Component {
         console.log(tmdbid)
         this.props.getMovieOverview(tmdbid);
 
-         if(this.props.user.isLoggedIn==true)
-         {
-            console.log("User Email............",this.props.user.user.email);
-            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
+        if (this.props.user.isLoggedIn == true) {
+            console.log("User Email............", this.props.user.user.email);
+            var values = {username: this.props.user.user.email, status: "open", pagename: "Movietime"};
 
-            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
-            .then(response => {
-                console.log("sucessss",response.data)
-            }).catch(error => {
-                console.log("usertracking error",error);
-            });
+            const request = axios.post('http://localhost:3001/movietheatres/usertrack', values)
+                .then(response => {
+                    console.log("sucessss", response.data)
+                }).catch(error => {
+                    console.log("usertracking error", error);
+                });
 
-         }
+        }
 
     }
 
@@ -49,6 +49,8 @@ class MovieRating extends Component {
 
         data.tmdbid = this.props.movie.movie.tmdbid;
         data.stars = this.state.stars;
+        data.userEmail = this.props.user.user.email;
+        data.userFirstName = this.props.user.user.firstname;
         console.log(data)
         this.props.saveReview(data, () => this.props.history.push(`/movie-overview/${this.props.movie.movie.tmdbid}`));
 
@@ -100,7 +102,7 @@ class MovieRating extends Component {
 
     render() {
 
-        console.log(this.props.movieGenreData)
+
         var divStyle = {
             backgroundImage: `url(http://image.tmdb.org/t/p/original${this.props.movie.movie.poster_path})`,
         }
@@ -286,13 +288,11 @@ function validate(values) {
 
 function mapStateToProps(state) {
 
-    return {movie: state.movieOverview,
-         user:state.getUser}
-
     return {
-        movieGenreData: state.genreSearchMovies.movieGenreData,
-        movie: state.movieOverview
+        movie: state.movieOverview,
+        user: state.getUser
     }
+
 
 }
 

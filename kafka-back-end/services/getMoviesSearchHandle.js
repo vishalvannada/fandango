@@ -969,11 +969,11 @@ function handle_cancelPayment(msg, callback) {
             };
             var queryJsonSearchInsert = {
                 "ID": parseInt(msg.reqBody.movieid),
-                "Showtimes.time":msg.reqBody.showtime
+                "Showtimes.time":msg.reqBody.movietime
             };
 
 
-            console.log(msg.reqBody);
+          //  console.log(msg.reqBody);
             console.log(queryJsonSearch)
 
                             var queryJsonInsert = {
@@ -983,6 +983,7 @@ function handle_cancelPayment(msg, callback) {
                                 }
 
                             };
+            console.log(queryJsonInsert,queryJsonSearchInsert)
 
                             MongoConPool.updateOne('movieHall',queryJsonSearchInsert, queryJsonInsert, function (err, movie) {
                                 if (err) {
@@ -992,7 +993,7 @@ function handle_cancelPayment(msg, callback) {
                                     console.log("error in adding movie-=-=============------------------------------=======")
                                 }
                                 else {
-
+                                    console.log(movie);
                                     console.log("-moviea updated-----------------------------------------------");
                                     res.result = movie;
                                     callback(null,res)

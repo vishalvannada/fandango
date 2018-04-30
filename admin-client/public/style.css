@@ -531,3 +531,28 @@ hr {
 .font-weight-bold {
     font-weight: bold !important;
 }
+
+.megaDropDownAdmin-brand {
+    float: left;
+    width: 242px;
+    height: 56px;
+    padding: 5px;
+}
+
+.admin-text{
+    margin-top: 7px;
+    margin-left: 0px;
+    padding-left: 0px;
+    color: #fe7900;
+}
+
+.error-msg{
+    color: red !important;
+}
+
+.style-container-name{
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: auto;
+}

@@ -1,25 +1,23 @@
-import React, {Component} from 'react';
-import BrandBar from './home/brandBar'
-import MegaDropDownHeader from './home/megaDropDownHeader';
-import {Route, withRouter, Link} from 'react-router-dom';
-import MovieTopSection from './addMovie/addMovieBody';
-import {demo} from "../actions/vishalActions";
-import Collapsible from 'react-collapsible';
-import './userProfile/userProfile.css';
+import React, { Component } from 'react';
+import {connect} from "react-redux";
+import {addMovieHallAdmin} from  '../actions/pranithActions';
 import {Field, reduxForm, initialize} from 'redux-form';
-import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import '../assets/css/userProfile.css'
 
-class AddMovieHall extends Component {
+
+
+class AddMovieHallAdmin extends Component {
 
     constructor(props){
         super(props)
     }
     componentDidMount(){
-}
+    }
 
     onSubmit(values){
         console.log(values);
+        this.props.addMovieHallAdmin(values);
     }
 
 
@@ -65,15 +63,16 @@ class AddMovieHall extends Component {
 
     render() {
         const {handleSubmit, load, pristine, reset, submitting} = this.props;
+        //var msg = this.props.isMovieAdded?"Successful":"Failed";,
+        console.log("Movie Status: ", this.props.movieStatus);
         return (
             <div>
-                <BrandBar/>
-                <MegaDropDownHeader/>
-                <div className='row'><div className='medium-8 columns'>
+
+                <div className='row'><div id ='addMovieHalls' className='medium-8 columns col-md-offset-1'>
                     <form className="registration-form" onSubmit={handleSubmit(this.onSubmit.bind(this))} >
                         <p className="join-header">JOIN FANDANGO<span
                             className="page-header-emphasis">VIP</span>
-                            <span className="registration-caption hide-for-small-only text-danger"> Error Validation</span>
+                            {/*<span className="registration-caption hide-for-small-only text-danger"> {this.props.movieStatus}</span>*/}
                         </p>
 
                         <div className='form-group'>
@@ -209,8 +208,8 @@ class AddMovieHall extends Component {
 
 
             </div>
-                )
-                }
+        )
+    }
 
 }
 function validate(values) {
@@ -253,7 +252,11 @@ function validate(values) {
 }
 
 function mapStateToProps(state) {
-    return {}
+    return {
+
+        movieStatus: state.addmoviehall.addMoviesAdmin
+
+    }
 }
 
 function mapDispatchToProps(dispatch){
@@ -269,4 +272,4 @@ export default reduxForm({
     validate,
     form: 'movieHall'
 })
-(connect(null)(AddMovieHall));
+(connect(null,{addMovieHallAdmin})(AddMovieHallAdmin));

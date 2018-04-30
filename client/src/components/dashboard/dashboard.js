@@ -13,7 +13,6 @@ import Footer from '../userProfile/footer';
 
 
 import {deleteSelfUser} from "../../actions/satishActions";
-var axios = require("axios");
 
 
 class Dashboard extends Component {
@@ -40,8 +39,8 @@ class Dashboard extends Component {
 
     }
 
+    onSubmit = ()=> {
 
-    onSubmit = () => {
         console.log("Delete");
         //this.props.doDelete();
 
@@ -53,7 +52,6 @@ class Dashboard extends Component {
 
     render() {
         console.log('Inside Dashboard: ',this.props.user);
-
         return (
 
             <div>
@@ -68,6 +66,7 @@ class Dashboard extends Component {
                                     <div className="vip-content">
                                         <img id="AvatarImage" className="user-avatar-thumb"
                                              src="https://images.fandango.com/r1.0.431/redesign/areas/profile/img/no-image-account-profile.png"/>{/* Write Image Source*/}
+
 
 
                                         <h3 className="font-condensed-bold">First Name: {this.props.user.user.firstname}<br/><br/> Last
@@ -90,6 +89,7 @@ class Dashboard extends Component {
 
                                 </div>
                             </div>
+
                         </header>
 
                         <div className="row insider-perks">

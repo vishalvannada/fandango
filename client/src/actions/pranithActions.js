@@ -145,10 +145,10 @@ export function CancelBooking(values) {
                     console.log(response.data);
 
                     //   console.log(response.data)
-                    if (response.data.code == 200)
-                        dispatch(editMoviesReducer(true));
+                    if (response.data.code == 200 ||response.data.code == 201)
+                        dispatch(CancelBookingReducer(true));
                     else if (response.data = "movies not added")
-                        dispatch(editMoviesReducer(false));
+                        dispatch(CancelBookingReducer(false));
 
                 }).catch(error => {
                     console.log(error);
@@ -241,6 +241,15 @@ function editMoviesReducer(response){
     }
 }
 
+
+function CancelBookingReducer(response){
+    return{
+        type: "USER_BOOKING_DELETED",
+        payload: response
+
+
+    }
+}
 function GetMoviesnHallsReducer(response){
     return {
         type: "MOVIES_SEARCH_DROPDOWN",

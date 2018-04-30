@@ -30,6 +30,7 @@ var getMoviesSearchHandle = require('./services/getMoviesSearchHandle');
 var adminBills = require('./services/adminBills');
 var adminBillsMonth = require('./services/getBillsMonth');
 
+
 console.log('server is running');
 
 //Models
@@ -225,6 +226,7 @@ consumer.on('message', function (message) {
             break
 
         case 'usertracking_topic':
+            console.log("here")
             usertracking.usertrack(data.data, function (err, res) {
                 response(data, res);
                 return;
@@ -299,23 +301,24 @@ consumer.on('message', function (message) {
             });
             break;
 
-            case 'getRevenue_topic':
-                    ad.getRevenue_request(data.data, function(err,res){
-                      console.log('after getRevenue_request handle-->'+JSON.stringify(res));
-                      var payloads = [
-                          { topic: data.replyTo,
-                              messages:JSON.stringify({
-                                  correlationId:data.correlationId,
-                                  data : res
-                              }),
-                              partition : 0
-                          }
-                      ];
-                      producer.send(payloads, function(err, data){
-                          console.log(data);
-                      });
-                      return;
-                    });
+        case 'getRevenue_topic':
+            ad.getRevenue_request(data.data, function (err, res) {
+                console.log('after getRevenue_request handle-->' + JSON.stringify(res));
+                var payloads = [
+                    {
+                        topic: data.replyTo,
+                        messages: JSON.stringify({
+                            correlationId: data.correlationId,
+                            data: res
+                        }),
+                        partition: 0
+                    }
+                ];
+                producer.send(payloads, function (err, data) {
+                    console.log(data);
+                });
+                return;
+            });
             break;
 
         case 'searchMoviehallUsers':

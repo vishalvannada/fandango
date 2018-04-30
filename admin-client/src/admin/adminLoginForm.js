@@ -4,11 +4,20 @@ import {connect} from 'react-redux';
 import {Field, reduxForm} from "redux-form";
 // import "../Signin/signin.css";
 import {bindActionCreators} from "redux";
- import {adminSignin} from "../actions/satishActions";
+// import {adminSignin} from "../../actions/satishActions";
 import * as API from '../api/API';
-import "./signin.css";
 
 class AdminLoginForm extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            message: '',
+        }
+
+    }
+
+
     renderField(field) {
         const {input, meta: {touched, error}} = field;
         const cname = `form-group ${touched && error ? 'has-danger' : ''} `;
@@ -19,7 +28,7 @@ class AdminLoginForm extends Component {
                 <input className="form-control large-input"
                        {...input} {...field}
                 />
-                <div className="text-help">
+                <div className="error-msg">
                     {touched ? error : ''}
                 </div>
             </div>
@@ -27,10 +36,11 @@ class AdminLoginForm extends Component {
     }
 
     renderError() {
-        if (this.props.error) {
+        console.log("here")
+        if (this.state.message) {
             return (
                 <div className="text-help">
-                    {this.props.error}
+                    {this.state.message}
                 </div>
             );
         }
@@ -40,14 +50,20 @@ class AdminLoginForm extends Component {
         console.log(values);
         //this.props.adminSignin(values);
         API.adminSignin(values)
-        .then((res)=>{
-            console.log("admin sifnin----->"+JSON.stringify(res));
-            this.props.history.push('/dashboard');
-            if(res.status===201){
+            .then((res) => {
+                console.log("admin sifnin----->" + JSON.stringify(res));
 
-            }
+                if(res.message){
+                    this.setState({
+                        message : res.message,
+                    })
+                }
+                else{
+                    this.props.history.push('/dashboard');
+                }
 
-        });
+
+            });
     }
 
     render() {
@@ -56,24 +72,17 @@ class AdminLoginForm extends Component {
 
         const {handleSubmit, load, pristine, reset, submitting} = this.props;
         return (
-            <div className="panel sign-up-form large-6 medium-6 small-12 columns">
+            <div className="panel col-md-5">
                 <div className="sub-panel">
                     <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                        <h2 className="join-header font-condensed-bold">FANDANGO<span className="page-header-emphasis">ADMIN</span>
-                            <span className="registration-caption hide-for-small-only"></span>
-                            <span className="registration-caption show-for-small-only"></span>
-                        </h2>
-                        <div className="registration-promo-unit show-for-small-only">
-                            <img
-                                src="//images.fandango.com/cms/assets/aced1350-33b7-11e8-8eca-fd26e4965c58--vip-registration-banner.png"
-                                alt=""/>
+
+                        <div id="ErrorMessageWrapper">
+                            <div id="signin-error" className="error-msg" component={this.renderError}>{this.renderError()}</div>
+                            <br/>
                         </div>
-                        <div id="ErrorMessageWrapper" className=" hide">
-                            <div id="signin-error" className="error-msg" component={this.renderError}></div>
-                        </div>
-                        <label htmlFor="UsernameBox" className="font-family-roboto font-color-white">Email Address</label>
+                        <label htmlFor="UsernameBox" className="font-family-roboto">Email Address</label>
                         <Field name="email" type="text" id="UsernameBox" component={this.renderField}/>
-                        <label htmlFor="PasswordBox" className="font-family-roboto font-color-white">Password</label>
+                        <label htmlFor="PasswordBox" className="font-family-roboto">Password</label>
                         <Field name="password" type="password" maxLength="40" id="PasswordBox"
                                component={this.renderField}/>
 
@@ -122,7 +131,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         ...bindActionCreators({
-             adminSignin
+            // adminSignin
         }, dispatch)
 
     };

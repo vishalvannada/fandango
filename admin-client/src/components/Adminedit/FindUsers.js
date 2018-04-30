@@ -15,7 +15,7 @@ class FindUsers extends Component {
         return (
             <div>
                 <SearchBar user="user"/>
-                <h2 className=" font-condensed-bold">User Accounts</h2>
+                <h3 className='margin-left'>User Accounts</h3>
                 {
                     _.map(this.props.users, User => {
                         console.log("user",User)

@@ -48,6 +48,28 @@ function savedPayment(values){
 
 
 }
+
+export function addMovieHallAdmin(values) {
+    console.log("from action addMovieHallAdmin", values);
+    return (dispatch) => {
+        console.log("kjhg", values)
+        const response = axios.post(`${ROOT_URL}/movietheatres/addMovieHallAdmin`,values)
+            .then(response => {
+
+                console.log(response.data)
+                if(response.data.code==200)
+                    dispatch(moviesInSearchPageAdmin(true))
+                else
+                    dispatch(moviesInSearchPageAdmin(false))
+            }).catch(error => {
+                console.log(error);
+                dispatch(moviesInSearchPage(false))
+            });
+    }
+}
+
+
+
 export function GetMoviesnHalls(values) {
     console.log("from action GetMoviesnHalls");
     return (dispatch) => {
@@ -147,6 +169,14 @@ export function addMovie(values) {
         }
     }
 }
+function moviesInSearchPageAdmin(response){
+    return {
+        type: "MOVIES_SEARCH_PAGE_ADMIN",
+        payload: response
+    }
+
+}
+
 function moviesInSearchPage(response){
     return {
         type: "MOVIES_SEARCH_PAGE",

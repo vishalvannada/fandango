@@ -40,6 +40,8 @@ class MovieReview extends Component {
                     />
                     <h3 className="font-condensed-bold color-darkgray">{review.title}</h3>
                     <p className="font-family-roboto font-size-14">{review.body}</p>
+                    <p className="font-family-roboto font-size-14 text-uppercase">By {review.userFirstName}</p>
+                    <p className="font-family-roboto font-size-14">{review.userEmail}</p>
                 </div>
             )
         }))

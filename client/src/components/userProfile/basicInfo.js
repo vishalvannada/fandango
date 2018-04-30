@@ -28,12 +28,12 @@ var axios = require('axios');
 
 class BasicInfo extends Component {
 
+
     componentWillMount(){
         console.log("yes");
         this.insertValues();
         console.log("basic info",this.props.user);
      }
-
 
     renderField(field) {
         const {meta: {touched, error}} = field;
