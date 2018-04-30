@@ -391,20 +391,27 @@ function uploadImage(msg, callback) {
 
 
 function changeEmail(msg, callback) {
+
+    var res={};
     console.log("userdata", msg.user);
-    var email = msg.user.email;
-    User.find({where: {email: msg.email}})
+    var newemail = msg.user.newemail;
+    var sessionemail = msg.email;
+
+    User.find({where: {email: newemail}})
         .then(function (user) {
-            res.code = 401;
-            res.message= "Email already linked with another account"
-            callback(null,res);
+            if(user.length>0){
+                res.code = 401;
+                res.message= "Email already linked with another account"
+                callback(null,res);
+            }
+
         });
     User.update(
-        {email: email},
-        {returning: true, where: {email: msg.email}}
+        {email: newemail},
+        {returning: true, where: {email: sessionemail}}
     )
         .then(function (results) {
-            User.find({where: {email: msg.email}})
+            User.find({where: {email:newemail }})
                 .then(function (user) {
                     res.user = user;
                     res.code = 201;

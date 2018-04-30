@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import BrandBar from '../home/brandBar';
 import MegaDropDownHeader from '../home/megaDropDownHeader';
 import FandangoVIPHeader from '../userProfile/fandangoVIPHeader';
+import {getUserDetails} from "../../actions/satishActions";
 import UtilityFooter from '../userProfile/utilityFooter';
 import './dashboard.css';
 import Footer from '../userProfile/footer';
@@ -16,23 +17,22 @@ var axios = require("axios");
 
 
 class Dashboard extends Component {
-
-    /*componentWillMount(){
-
-         if(this.props.user.isLoggedIn==true)
-         {
-            console.log("User Email............",this.props.user.user.email);
-            var values={username:this.props.user.user.email, status:"open", pagename:"Dashboard"};
-
-            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
-            .then(response => {
-                console.log("sucessss",response.data)
-            }).catch(error => {
-                console.log("usertracking error",error);
-            });
-
-         }
-     }*/
+    componentWillMount(){
+        this.props.getUserDetails();
+         // if(this.props.user.isLoggedIn==true)
+         // {
+         //    console.log("User Email............",this.props.user.user.email);
+         //    var values={username:this.props.user.user.email, status:"open", pagename:"Dashboard"};
+         //
+         //    const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+         //    .then(response => {
+         //        console.log("sucessss",response.data)
+         //    }).catch(error => {
+         //        console.log("usertracking error",error);
+         //    });
+         //
+         // }
+     }
 
     constructor(props) {
         super(props);
@@ -52,7 +52,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        console.log('Inside Dashboard: ',this.state, this.props)
+        console.log('Inside Dashboard: ',this.props.user);
 
         return (
 
@@ -62,11 +62,7 @@ class Dashboard extends Component {
                 <FandangoVIPHeader name='dashboard'/>
                 <div className="row">
                     <div className="large-9 columns dashboard-conatiner">
-
-
                         <header className="my-account-summary-container">
-
-
                             <div className='well'>
                                 <div className="Profile cards">
                                     <div className="vip-content">
@@ -190,12 +186,12 @@ class Dashboard extends Component {
 
 function mapStateToProps(state) {
     return {home: state.home,
-         user:state.getUser}
+         user:state.userProfile}
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        ...bindActionCreators({deleteSelfUser}, dispatch)
+        ...bindActionCreators({deleteSelfUser,getUserDetails}, dispatch)
     }
 }
 

@@ -105,7 +105,7 @@ class ChangePassword extends Component {
                                                 />
                                             </div>
                                             <div className="medium-7 columns right-40">
-                                                <button id="save-basic" className="btn save-button">Save</button>
+                                                <button id="save-password" className="btn save-button">Save</button>
                                             </div>
                                         </div>
                                     </form>
