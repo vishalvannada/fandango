@@ -238,7 +238,7 @@ class AddMovieTopSection extends Component {
 
 
                                                 <div className="form-group form-group-custom">
-                                                <Field
+                                                    <Field
                                                     name="movie"
                                                     component={this.renderDropdown}
                                                     data={this.props.moviesDropdown.movies.moviemap}
@@ -323,10 +323,27 @@ function validate(values) {
     const errors = {};
 
     //names are associated to fields in the redux form names
-    if (!values.noOfSeats) {
-        errors.username = "No of Seats can't be empty";
+    if (!values.theatre) {
+        errors.theatre = "Theatre Movie Cant be empty";
     }
-
+    if (!values.showTimes) {
+        errors.showTimes = "Showtimes cant be empty";
+    }
+    if (!values.movie) {
+        errors.movie = "Movie name can't be empty";
+    }
+    if (!values.screenNo) {
+        errors.screenNo = "Screen No can't be empty";
+    }
+    if (!values.noOfSeats) {
+        errors.noOfSeats = "Number of Seats can't be empty";
+    }
+    if (!values.tktPrice) {
+        errors.tktPrice = "Ticket Price can't be empty";
+    }
+    if (!values.movie) {
+        errors.movie = "Movie name can't be empty";
+    }
     return errors;
 }
 

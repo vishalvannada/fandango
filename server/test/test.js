@@ -47,23 +47,40 @@ describe('HTTP Tests', function() {
 
                 reqBody:{movieSearch:"Dead","Date":"2018-04-29T16:12:24-07:00"}
         }, function(error, response, body) {
-            console.log(response.body);
-            console.log(response.body.data);
-            assert.equal(200, response.statusCode);
+         //   console.log(response.body);
+           // console.log(response.body.data);
+            assert.equal(201, response.statusCode);
             done();
         });
     });
 
-    it('Should not Sign Up', function(done) {
-        request.post('http://localhost:3000/signup', {
-            form:{
-                username : 'sreedevi',
-                email : 'pranith@gmail.com',
-                password:'vishal',
-                confirmPassword : 'vishal'
-            }
+    it('Should return empty list on wrong search', function(done) {
+        request.post('http://localhost:3001/movietheatres/getMoviesInSearchPage', {
+            reqBody:{movieSearch:"",Date:""}
         }, function(error, response, body) {
-            assert.equal(401, response.statusCode);
+        //    console.log(response.body.moviemap)
+          //  console.log(response.statusCode)
+            assert.equal(undefined, response.body.moviemap);
+            done();
+        });
+    });
+    it('Should return empty list on wrong Date Selection', function(done) {
+        request.post('http://localhost:3001/movietheatres/getMoviesInSearchPage', {
+            reqBody:{movieSearch:"",Date:"2018-04-01T16:12:24-07:00"}
+        }, function(error, response, body) {
+            //    console.log(response.body.moviemap)
+            //  console.log(response.statusCode)
+            assert.equal(undefined, response.body.moviemap);
+            done();
+        });
+    });
+    it('Should return empty list on wrong search', function(done) {
+        request.post('http://localhost:3001/movietheatres/getMoviesInSearchPage', {
+            reqBody:{movieSearch:"",Date:""}
+        }, function(error, response, body) {
+            //    console.log(response.body.moviemap)
+            //  console.log(response.statusCode)
+            assert.equal(undefined, response.body.moviemap);
             done();
         });
     });
