@@ -4,6 +4,7 @@ import {addMovieHallAdmin} from  '../actions/pranithActions';
 import {Field, reduxForm, initialize} from 'redux-form';
 import {bindActionCreators} from 'redux';
 import '../assets/css/userProfile.css'
+import * as API from "../api/API";
 
 
 
@@ -12,7 +13,18 @@ class AddMovieHallAdmin extends Component {
     constructor(props){
         super(props)
     }
-    componentDidMount(){
+
+    componentWillMount() {
+        API.fetchUser()
+            .then((res) => {
+                console.log(res);
+
+                if (!res.user) {
+                    this.props.history.push('/login')
+                }
+
+
+            });
     }
 
     onSubmit(values){

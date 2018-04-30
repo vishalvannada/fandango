@@ -33,6 +33,18 @@ const renderDateTimePicker = ({input: {onChange, value}, meta, showTime}) =>
 
 class SearchBill extends Component {
 
+    componentWillMount() {
+        API.fetchUser()
+            .then((res) => {
+                console.log(res);
+
+                if (!res.user) {
+                    this.props.history.push('/login')
+                }
+
+
+            });
+    }
 
     renderList() {
         return (_.map(this.state.bills, bill => {
