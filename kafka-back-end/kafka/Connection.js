@@ -36,6 +36,7 @@ function ConnectionProvider() {
             {topic: 'adminsignin', partition: 0},
             {topic: 'purchaseHistory', partition: 0},
             {topic: 'deleteuser', partition: 0},
+            {topic: 'deleteMoviehallUser', partition: 0},
             {topic: 'editUserAccount', partition: 0},
             {topic: 'editMoviehallUserAccount', partition: 0},
             {topic: 'getMovieRevenue_topic', partition: 0},

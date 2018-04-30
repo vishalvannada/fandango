@@ -30,7 +30,7 @@ class CancelBookingBody extends Component {
         this.setState({email:this.props.user.user.email});
         console.log(this.state);
         console.log("calling movie halls");
-      //  this.props.GetMoviesnHalls({email:this.props.user.user.email});
+        //  this.props.GetMoviesnHalls({email:this.props.user.user.email});
         this.props.editMovieSearch(this.state);
         this.props.SQLbookingSearch({email:this.props.user.user.email});
     }
@@ -60,7 +60,7 @@ class CancelBookingBody extends Component {
         // this.setState({filterPrice: filterPrice});
 
         var movieFiltered = this.props.bookingcancel.transactions.filter(function (task) {
-           // console.log(task.data[0].user);
+            // console.log(task.data[0].user);
             //console.log(this.state);
 
             return task.displayname == filterPrice;
@@ -75,8 +75,16 @@ class CancelBookingBody extends Component {
 
 
     render() {
+        if(this.props.cancelBookingConfirm.bookingCancel === true)
+        {
+            swal("Transaction Cancelled");
+        }
+        else if(this.props.cancelBookingConfirm.bookingCancel === false)
+        {
+            swal("Transaction not cancelled");
+        }
 
-        console.log(this.props);
+        console.log(this.props.cancelBookingConfirm.bookingCancel);
         console.log(this.props.bookingcancel);
         console.log(this.state);
 
@@ -121,66 +129,66 @@ class CancelBookingBody extends Component {
 
                         {this.state.filteredTrans.map((item) => {
                             return (
-                        <div>
-                            <div className='row'>
-                                <div className='medium-7 columns'><div className='Purchase-container card container'>
-                                    <div id='purchase-card' className='row'>
-                                        <div className='Purchase-item medium-10 columns'>
-                                            <div className='row'>
-                                                <div className='medium-3 columns'>
-                                                    <img id = 'purchase-image' src={`http://image.tmdb.org/t/p/w200${item.image}`}>
-                                                    </img>
-                                                </div>
-                                                <div className='Purchase-item medium-9 columns '>
-
+                                <div>
+                                    <div className='row'>
+                                        <div className='medium-7 columns'><div className='Purchase-container card container'>
+                                            <div id='purchase-card' className='row'>
+                                                <div className='Purchase-item medium-10 columns'>
                                                     <div className='row'>
-                                                        <div id='card-heading' className='Purchase-movie-name'>{item.moviename}</div>
+                                                        <div className='medium-3 columns'>
+                                                            <img id = 'purchase-image' src={`http://image.tmdb.org/t/p/w200${item.image}`}>
+                                                            </img>
+                                                        </div>
+                                                        <div className='Purchase-item medium-9 columns '>
 
-                                                    </div>
-                                                    <div className='row'>
-                                                        <div id='card-user' className='Purchase-user-name'>Name: {item.displayname}</div>
-                                                    </div>
-                                                    <div id = 'card-movie' className='Purchase-movie-time'>
-                                                        <p id = 'timings' >Movie time: <div className='movie-time'>{item.movietime}</div></p>
-                                                    </div>
-                                                    <div className='Purchase-movie-theater'>
-                                                        <p>Movie Theater:
-                                                            <div id='theater-name'>{item.moviehall} - Screen No: {item.screenno}
+                                                            <div className='row'>
+                                                                <div id='card-heading' className='Purchase-movie-name'>{item.moviename}</div>
+
                                                             </div>
-                                                        </p>
+                                                            <div className='row'>
+                                                                <div id='card-user' className='Purchase-user-name'>Name: {item.displayname}</div>
+                                                            </div>
+                                                            <div id = 'card-movie' className='Purchase-movie-time'>
+                                                                <p id = 'timings' >Movie time: <div className='movie-time'>{item.movietime}</div></p>
+                                                            </div>
+                                                            <div className='Purchase-movie-theater'>
+                                                                <p>Movie Theater:
+                                                                    <div id='theater-name'>{item.moviehall} - Screen No: {item.screenno}
+                                                                    </div>
+                                                                </p>
+                                                            </div>
+
+
+                                                        </div>
+
                                                     </div>
-
-
+                                                    <div>
+                                                    </div>
                                                 </div>
 
-                                            </div>
-                                            <div>
-                                            </div>
-                                        </div>
+                                                <div className='Purchase-item medium-2 columns'>
+                                                    <div id = 'transaction-div' className='row'>
+                                                        <div>Transaction ID: <div id='transaction-id'>{item.transactionid}</div></div>
+                                                    </div>
 
-                                        <div className='Purchase-item medium-2 columns'>
-                                            <div id = 'transaction-div' className='row'>
-                                                <div>Transaction ID: <div id='transaction-id'>{item.transactionid}</div></div>
+                                                    <div id='ticket-div'  className='row'>
+                                                        <div>Amount: <div id='ticket-cost'  >${item.Amount}</div></div>
+                                                    </div>
+
+                                                    <div id = 'tax-div' className='row'>
+                                                        <div>Tax: ${item.tax}</div>
+
+                                                        <button
+                                                            className="btn showtime-btn"
+                                                            onClick={()=>{this.props.CancelBooking(item)}}>Cancel</button>
+                                                        <br/>
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                            <div id='ticket-div'  className='row'>
-                                                <div>Amount: <div id='ticket-cost'  >${item.Amount}</div></div>
-                                            </div>
-
-                                            <div id = 'tax-div' className='row'>
-                                                <div>Tax: ${item.tax}</div>
-
-                                            <button
-                                                className="btn showtime-btn"
-                                                onClick={()=>{this.props.CancelBooking(item)}}>Cancel</button>
-                                            <br/>
-                                            </div>
-                                        </div>
+                                        </div></div>
                                     </div>
-
-                                </div></div>
-                            </div>
-                        </div>
+                                </div>
                             )
 
                         })}
@@ -223,7 +231,8 @@ function mapStateToProps(state) {
         addMovies: state.addMovies,
         editMoviehall:state.editMoviehall,
         user:state.getUser,
-        bookingcancel:state.bookingcancel
+        bookingcancel:state.bookingcancel,
+        cancelBookingConfirm:state.cancelBookingConfirm
     }
 }
 

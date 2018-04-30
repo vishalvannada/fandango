@@ -5,68 +5,82 @@ var http = require("http");
 
 describe('HTTP Tests', function() {
 
-    it('Should not get the response, as the user is not logged in', function(done) {
-        http.get('http://localhost:3000/', function(res) {
-            assert.equal(401, res.statusCode);
-            done();
-        })
-    });
-
-    it('The Page does not exists, 404 Error', function(done) {
-        http.get('http://localhost:3000/test', function(res) {
+    it('Should not get the movies list, as the user is not logged in', function(done) {
+        request.post('http://localhost:3001/getMoviesInSearchPage', function(err,res) {
+         //   console.log(res.statusCode);
+            //console.log(res);
             assert.equal(404, res.statusCode);
             done();
         })
     });
 
-    it('Should login', function(done) {
-        request.post('http://localhost:3000/login', {
-            form:{
-                username : 'vinodkatta',
-                password:'vishal'
-            }
-        }, function(error, response, body) {
+    it('Should get the movies list, if the user is logged in', function(done) {
+        request.post('http://localhost:3001/movietheatres/getMoviesInSearchPage', function(err,res) {
+           // console.log(res.statusCode);
+            assert.equal(201, res.statusCode);
+            done();
+        })
+    });
+
+    it('Should get movies and Hall on this  request', function(done) {
+        request.post('http://localhost:3001/movietheatres/getmoviesnhalls', function(error, response, body) {
             assert.equal(201, response.statusCode);
             done();
         });
     });
 
-    it('Should not login', function(done) {
-        request.post('http://localhost:3000/login', {
-            form:{
-                username : 'vinodkatta',
-                password:'vishalvannada'
-            }
-        }, function(error, response, body) {
-            assert.equal(401, response.statusCode);
+    it('Should not get movies and Halls if its not a proper action call', function(done) {
+        request.post('http://localhost:3001/getmoviesnhalls', function(error, response, body) {
+            assert.equal(404, response.statusCode);
+            done();
+        });
+    });
+    it('Should not get movies and Halls if its not a proper action call', function(done) {
+        request.post('http://localhost:3001/getmoviesnhalls', function(error, response, body) {
+            assert.equal(404, response.statusCode);
             done();
         });
     });
 
-    it('Should Sign Up', function(done) {
-        request.post('http://localhost:3000/signup', {
-            form:{
-                username : 'rishi',
-                email : 'rishi@gmail.com',
-                password:'vishal',
-                confirmPassword : 'vishal'
-            }
+    it('Successful Search should return movies with dates', function(done) {
+        request.post('http://localhost:3001/movietheatres/getMoviesInSearchPage', {
+
+                reqBody:{movieSearch:"Dead","Date":"2018-04-29T16:12:24-07:00"}
         }, function(error, response, body) {
+         //   console.log(response.body);
+           // console.log(response.body.data);
             assert.equal(201, response.statusCode);
             done();
         });
     });
 
-    it('Should not Sign Up', function(done) {
-        request.post('http://localhost:3000/signup', {
-            form:{
-                username : 'sreedevi',
-                email : 'pranith@gmail.com',
-                password:'vishal',
-                confirmPassword : 'vishal'
-            }
+    it('Should return empty list on wrong search', function(done) {
+        request.post('http://localhost:3001/movietheatres/getMoviesInSearchPage', {
+            reqBody:{movieSearch:"",Date:""}
         }, function(error, response, body) {
-            assert.equal(401, response.statusCode);
+        //    console.log(response.body.moviemap)
+          //  console.log(response.statusCode)
+            assert.equal(undefined, response.body.moviemap);
+            done();
+        });
+    });
+    it('Should return empty list on wrong Date Selection', function(done) {
+        request.post('http://localhost:3001/movietheatres/getMoviesInSearchPage', {
+            reqBody:{movieSearch:"",Date:"2018-04-01T16:12:24-07:00"}
+        }, function(error, response, body) {
+            //    console.log(response.body.moviemap)
+            //  console.log(response.statusCode)
+            assert.equal(undefined, response.body.moviemap);
+            done();
+        });
+    });
+    it('Should return empty list on wrong search', function(done) {
+        request.post('http://localhost:3001/movietheatres/getMoviesInSearchPage', {
+            reqBody:{movieSearch:"",Date:""}
+        }, function(error, response, body) {
+            //    console.log(response.body.moviemap)
+            //  console.log(response.statusCode)
+            assert.equal(undefined, response.body.moviemap);
             done();
         });
     });

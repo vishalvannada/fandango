@@ -154,6 +154,21 @@ export function deleteUser(value) {
     }
 }
 
+export function deleteMoviehallUser(value) {
+    return function (dispatch) {
+        console.log("Inside the Search user actions",value,{withCredentials: true});
+        axios.delete(`${ROOT_URL}/user/deleteMoviehallUser?email=${value}`)
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                window.location.reload();
+                dispatch({type: DELETE_USERS_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: DELETE_USERS_ERROR, payload: error})
+            });
+    }
+}
+
 
 export function editUserAccount(userdata){
 

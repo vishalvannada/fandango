@@ -56,13 +56,7 @@ class MegaDropDownHeader extends Component {
                                 <button
 
                                     className="my-2 my-sm-0 ml-4 header-button-go"
-                                    type="button" onClick={(event)=>{
-                                        console.log("pranith Clcikdef")
-                                        console.log(event);
-                                        //swal("value is ", event.target);
-
-                                    this.props.history.push("/movietime");
-                                }}> GO
+                                    type="submit" > GO
                                 </button>
                             </form>
 
@@ -188,63 +182,7 @@ class MegaDropDownHeader extends Component {
 
                                     </div>
                                 </li>
-                                <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
-                                       role="button"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span className="font-weight-700">MOVIE NEWS</span>
-                                    </a>
-                                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
 
-
-                                        <div className="container">
-                                            <div className="row">
-                                                <div className="col-md-4">
-                                                    <span className="text-uppercase text-white">Category 3</span>
-                                                    <ul className="nav flex-column">
-                                                        <li className="nav-item">
-                                                            <a className="nav-link active" href="#">Active</a>
-                                                        </li>
-                                                        <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
-                                                        </li>
-                                                        <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div className="col-md-4">
-                                                    <ul className="nav flex-column">
-                                                        <li className="nav-item">
-                                                            <a className="nav-link active" href="#">Active</a>
-                                                        </li>
-                                                        <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
-                                                        </li>
-                                                        <li className="nav-item">
-                                                            <a className="nav-link" href="#">Link item</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div className="col-md-4">
-
-                                                    <a href="">
-                                                        <img
-                                                            src="http://digitalspyuk.cdnds.net/17/30/980x490/landscape-1500890190-avengers-infinity-war-poster-resized-1.jpg"
-                                                            alt="" className="img-fluid"/>
-                                                    </a>
-                                                    <p className="text-white">Trending !! Book it ASAP.</p>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </li>
 
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle active" href="#" id="navbarDropdown"

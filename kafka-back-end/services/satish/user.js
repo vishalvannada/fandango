@@ -596,6 +596,25 @@ function deleteUser(msg,callback){
     );
 }
 
+
+
+function deleteMoviehallUser(msg,callback){
+    var res={};
+    console.log("email",msg.email);
+    MoviehallUser.destroy({
+        where: {
+            email: msg.email
+        }
+    }).then(function(result){
+        res.code = 201;
+        res.message= "Delete Moviehall User Successful";
+        callback(null,res);
+    }).catch( err =>
+        callback(null,err)
+    );
+}
+
+
 function moviehallSignin(msg, callback) {
 
     var res = {};
@@ -640,7 +659,6 @@ function adminSignin(msg, callback) {
 
     Admin.findOne({where: {email: email}}).then(function (user) {
         console.log("userpassword", password);
-        console.log("dbpassword", user.password);
         if (!user) {
             console.log('error');
             res.code = 401;
@@ -848,6 +866,7 @@ exports.searchUsers = searchUsers;
 exports.searchMoviehallUsers = searchMoviehallUsers;
 exports.purchaseHistory = purchaseHistory;
 exports.deleteUser = deleteUser;
+exports.deleteMoviehallUser = deleteMoviehallUser;
 exports.editUserAccount = editUserAccount;
 exports.editMoviehallUserAccount = editMoviehallUserAccount;
 exports.saveTransaction=saveTransaction;
