@@ -153,7 +153,9 @@ class MovieEditAdminBody extends Component {
 
         return (
             <div>
-                <div className="container text-uppercase">
+                <div className="width-100 margin-left text-uppercase">
+
+                    <h2 className='font-condensed-bold'>EDIT MOVIE {this.props.movie.title}</h2>
 
                     <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 

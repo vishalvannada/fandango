@@ -549,3 +549,10 @@ hr {
 .error-msg{
     color: red !important;
 }
+
+.style-container-name{
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: auto;
+}

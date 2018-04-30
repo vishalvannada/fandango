@@ -17,18 +17,7 @@ import SearchBill from '../admin/searchBill';
 import SearchBillMonth from '../admin/searchBillMonth';
 
 const dashboardRoutes = [
-    {
-        path: "/findUsers",
-        component: FindUsers,
-        name: "FindUsers",
-        icon: "pe-7s-note2",
-    },
-    {
-        path: "/findMoviehallUsers",
-        component: FindMoviehallUsers,
-        name: "findMoviehallUsers",
-        icon: "pe-7s-graph",
-    },
+
     {
         path: "/dashboard",
         name: "Dashboard",
@@ -36,10 +25,16 @@ const dashboardRoutes = [
         component: Dashboard
     },
     {
-        path: "/user",
-        name: "User Profile",
-        icon: "pe-7s-user",
-        component: UserProfile
+        path: "/findUsers",
+        component: FindUsers,
+        name: "Find Users",
+        icon: "pe-7s-note2",
+    },
+    {
+        path: "/findMoviehallUsers",
+        component: FindMoviehallUsers,
+        name: "Find MovieHall Users",
+        icon: "pe-7s-note2",
     },
     {
         path: "/table",
@@ -47,7 +42,6 @@ const dashboardRoutes = [
         icon: "pe-7s-note2",
         component: TableList
     },
-    //{ path: "/icons", name: "Icons", icon: "pe-7s-science", component: Icons },
     {
         path: "/searchmovie",
         name: "Search/Edit Movie",
@@ -60,7 +54,6 @@ const dashboardRoutes = [
         icon: "pe-7s-note2",
         component: AddMovieHalls
     },
-
     {
         path: "/search-bills-month",
         name: "Search Bills Month",
@@ -73,25 +66,10 @@ const dashboardRoutes = [
         icon: "pe-7s-note2",
         name: "Search Bills Date",
     },
-
-    {
-        path: "",
-        name: "Search/Edit Movie Hall",
-        icon: "pe-7s-note2",
-        component: ''
-    },
-
-    {
-        path: "",
-        name: "Search User",
-        icon: "pe-7s-note2",
-        component: ''
-    },
     {
         path: "/AdminUserEdit",
         component: AdminUserEdit
     },
-
     {
         path: "/AdminMoviehallUseredit",
         component: AdminMoviehallUserEdit
@@ -100,7 +78,7 @@ const dashboardRoutes = [
         path: "/admin-movie-edit/:tmdbid",
         component: MovieEdit,
 
-    }
+    },
 
 
     /*{

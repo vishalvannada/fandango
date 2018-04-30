@@ -6,68 +6,56 @@ import "./ListCard.css";
 import {deleteUser} from "../../actions/satishActions"
 
 
-
 class ListCard extends Component {
     constructor(props) {
         super(props);
 
     }
-    state={
-        moviename:"Gurdians of Galaxy",
-        poster_path:"",
-        displayname:"Rishith",
-        email:this.props.user.email,
-        movietime:"3:30 PM",
-        cost:'12$',
-        theatername:'Town Three Hall',
-        transactionid:'XXXX323425',
-        screenno:'33'
+
+    state = {
+        moviename: "Gurdians of Galaxy",
+        poster_path: "",
+        displayname: "Rishith",
+        email: this.props.user.email,
+        movietime: "3:30 PM",
+        cost: '12$',
+        theatername: 'Town Three Hall',
+        transactionid: 'XXXX323425',
+        screenno: '33'
     };
-    deleteUserAccount(){
+
+    deleteUserAccount() {
         this.props.deleteUser(this.state.email);
     }
 
-    render(){
+    render() {
         console.log(this.props);
-        return(
-            <div>
-                <div className='row userProfile-List'>
-                    <div className='medium-9 columns'>
-                        <div className='user-List-card container'>
-                            <div id='purchase-card' className='row'>
-                                <div className='Purchase-item medium-12 columns '>
-                                    <div className='row'>
-                                        <a className='List-user-name font-condensed-bold'>{this.props.user.firstname}</a>
-                                    </div>
-                                    <div className='row'>
-                                        <div  id='list-email' className=' medium-8 columns'>
-                                            <div  className='list-user-email'>{this.props.user.email}</div>
-                                        </div>
-                                        <div id="List-edit" className='Purchase-item medium-2 columns'>
-                                            <button className="btn "
-                                                    onClick={()=> {console.log(this.props.user)
-                                                        this.props.history.push({
-                                                            pathname: '/AdminUserEdit',
-                                                            state: {user: this.props.user,test:"test"}
-                                                        })}
-                                                    }>
-                                                Edit
-                                            </button>
-                                        </div>
-                                        <div className='Purchase-item medium-2 columns'>
-                                            <button className="btn " onClick={this.deleteUserAccount.bind(this)}>Delete</button>
+        return (
+            <div className='max-width-70 margin-left style-container-name'>
+                <div className='row'>
 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
+                    <div className='col-md-4'>
+                        <p className='List-user-name font-condensed-bold'>{this.props.user.firstname}</p>
+                        {this.props.user.email}
                     </div>
+
+                    <div className='col-md-2'>
+                        <button className="btn "
+                                onClick={() => {
+                                    console.log(this.props.user)
+                                    this.props.history.push({
+                                        pathname: '/AdminUserEdit',
+                                        state: {user: this.props.user, test: "test"}
+                                    })
+                                }
+                                }>
+                            Edit
+                        </button>
+                    </div>
+                    <div className='col-md-2'>
+                        <button className="btn " onClick={this.deleteUserAccount.bind(this)}>Delete</button>
+                    </div>
+
                 </div>
             </div>
         )
