@@ -40,10 +40,10 @@ class ListCard extends Component {
                                           <a className='List-user-name font-condensed-bold'>{this.props.user.firstname}</a>
                                       </div>
                                       <div className='row'>
-                                        <div className=' medium-8 columns'>
+                                        <div   className='  col-md-10 medium-8 columns'>
                                              <div id='list-email' className='list-user-email'>{this.props.user.email}</div>
                                         </div>
-                                         <div className='Purchase-item medium-2 columns'>
+                                         <div id="List-edit" className='Purchase-item medium-2 columns'>
                                              <button className="btn "
                                                      onClick={()=> {console.log(this.props.user)
                                                          this.props.history.push({

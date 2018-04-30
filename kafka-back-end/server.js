@@ -337,11 +337,29 @@ consumer.on('message', function (message) {
                 response(data, res);
             })
             break;
+        case 'deleteMoviehallUser':
+            user.deleteMoviehallUser(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            })
+            break;
         case 'editUserAccount':
             user.editUserAccount(data.data, function (err, res) {
                 console.log("res: ", res);
                 response(data, res);
             })
+            break
+        case 'purchaseHistory':
+            user.purchaseHistory(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            });
+            break;
+        case 'getMovieRevenue_topic':
+            user.getmovierevenue(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            });
             break;
 
         case 'getBillsAdmin_topic':

@@ -68,7 +68,7 @@ export function signin(values) {
 }
 
 
-export function signout(values) {
+export function logout(values) {
     console.log(values);
 
     return (dispatch) => {
@@ -76,7 +76,7 @@ export function signout(values) {
             .then(response => {
                 console.log(response.data);
                 window.localStorage.clear();
-                history.push('/signin');
+                history.push('/login');
                 dispatch(() => {
                     return {
                         type: SIGN_OUT,
@@ -154,6 +154,21 @@ export function deleteUser(value) {
     }
 }
 
+export function deleteMoviehallUser(value) {
+    return function (dispatch) {
+        console.log("Inside the Search user actions",value,{withCredentials: true});
+        axios.delete(`${ROOT_URL}/user/deleteMoviehallUser?email=${value}`)
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                window.location.reload();
+                dispatch({type: DELETE_USERS_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: DELETE_USERS_ERROR, payload: error})
+            });
+    }
+}
+
 
 export function editUserAccount(userdata){
 
@@ -164,6 +179,23 @@ export function editUserAccount(userdata){
                 console.log("Inside actions 'Response'-> ", res.data);
                 history.push("/findUsers");
                // dispatch({type: BASIC_INFO_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: BASIC_INFO_ERROR, payload: error})
+            });
+
+    }
+}
+
+export function editMoviehallUserAccount(userdata){
+
+    return function (dispatch) {
+        console.log("Inside the sign up actions");
+        axios.post(`${ROOT_URL}/user/editMoviehallUserAccount`, userdata,{withCredentials: true})
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                history.push("/findMoviehallUsers");
+                // dispatch({type: BASIC_INFO_SUCCESS, payload: res.data});
             })
             .catch((error) => {
                 dispatch({type: BASIC_INFO_ERROR, payload: error})
@@ -192,6 +224,9 @@ export function searchUsers(value) {
 
 
 export function searchMoviehallUsers(value) {
+    if(value==null){
+        value = '';
+    }
     return function (dispatch) {
         console.log("Inside the Search user actions");
         axios.get(`${ROOT_URL}/user/searchMoviehallUsers?user=${value}`,{withCredentials: true})

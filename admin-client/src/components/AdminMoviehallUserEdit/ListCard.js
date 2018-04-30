@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Route, withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import "./ListCard.css";
-import {deleteUser} from "../../actions/satishActions"
+import "../Adminedit/ListCard.css";
+import {deleteMoviehallUser} from "../../actions/satishActions"
 
 
 
@@ -24,7 +24,7 @@ class ListCard extends Component {
         screenno:'33'
     };
     deleteUserAccount(){
-        this.props.deleteUser(this.state.email);
+        this.props.deleteMoviehallUser(this.state.email);
     }
 
     render(){
@@ -47,7 +47,7 @@ class ListCard extends Component {
                                             <button className="btn "
                                                     onClick={()=> {console.log(this.props.user)
                                                         this.props.history.push({
-                                                            pathname: '/AdminUserEdit',
+                                                            pathname: '/AdminMoviehallUseredit',
                                                             state: {user: this.props.user,test:"test"}
                                                         })}
                                                     }>
@@ -80,7 +80,7 @@ function mapStateToProps() {
 
 function mapDispatchToProps(dispatch) {
     return {
-        ...bindActionCreators({deleteUser}, dispatch)
+        ...bindActionCreators({deleteMoviehallUser}, dispatch)
     }
 }
 

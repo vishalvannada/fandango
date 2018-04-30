@@ -15,6 +15,7 @@ function ConnectionProvider() {
             {topic: 'getBillsAdmin_topic', partition: 0},
             {topic: 'getBillsMonthAdmin_topic', partition: 0},
 
+
             //pranith
             {topic: 'getMoviesInSearchPage_topic', partition: 0},
             {topic: 'getMoviesnHalls_topic', partition: 0},
@@ -44,7 +45,10 @@ function ConnectionProvider() {
             {topic: 'adminsignin', partition: 0},
             {topic: 'purchaseHistory', partition: 0},
             {topic: 'deleteuser', partition: 0},
+            {topic: 'deleteMoviehallUser', partition: 0},
             {topic: 'editUserAccount', partition: 0},
+            {topic: 'editMoviehallUserAccount', partition: 0},
+            {topic: 'getMovieRevenue_topic', partition: 0},
 
 
             {topic: 'searchMoviehallUsers', partition: 0},

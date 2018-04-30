@@ -18,6 +18,8 @@ import SavePayments from './reducer_savePayments'
 import UserReducer from "./reducer_user";
 import fetchUserReducer from "./reducer_fetchuser";
 import userProfile from "./reducer_userprofile";
+
+import movieRevenueReducer from "./reducer_getmovieRevenue";
 import bookingcancel from "./reducer_bookingHistory"
 import cancelBookingConfirm from "./reducer_cancelbooking"
 import {SIGN_OUT} from "../actions/satishActions";
@@ -39,6 +41,7 @@ const appReducer = combineReducers({
     savePayments:SavePayments,
     addMoviesAdmin:addMoviesAdmin,
     genreSearchMovies: GenreSearchMovies,
+    movieRevenue: movieRevenueReducer,
     bookingcancel:bookingcancel,
     cancelBookingConfirm:cancelBookingConfirm,
     form : formReducer

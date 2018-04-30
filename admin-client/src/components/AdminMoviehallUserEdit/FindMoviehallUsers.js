@@ -1,35 +1,36 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {searchUsers} from "../../actions/satishActions";
-import SearchBar from "./SearchBar";
-import ListCard from "./ListCard";
-import _ from "lodash";
 
-class FindUsers extends Component {
+import {connect} from "react-redux";
+import SearchBar from "../Adminedit/SearchBar";
+import {searchMoviehallUsers} from "../../actions/satishActions";
+import ListCard from "./ListCard";
+import _ from 'lodash';
+
+class FindMoviehallUsers extends Component {
+
     componentDidMount() {
-        this.props.searchUsers();
+        this.props.searchMoviehallUsers();
     }
 
     render() {
-        console.log("user",this.props.users);
+        console.log("tusers",this.props.users);
         return (
             <div>
-                <SearchBar user="user"/>
-                <h2 className=" font-condensed-bold">User Accounts</h2>
+                <SearchBar user="MoviehallUser"/>
+                <h2 className=" font-condensed-bold">Moviehall User Accounts</h2>
                 {
                     _.map(this.props.users, User => {
                         console.log("user",User)
                         return  <ListCard user={User} history={this.props.history}/> ;
                     })
                 }
-
             </div>
         )
     }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {users: state.searchUsers.users}
 }
 
-export default connect(mapStateToProps, {searchUsers})(FindUsers);
+export default connect(mapStateToProps, {searchMoviehallUsers})(FindMoviehallUsers);
