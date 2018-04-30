@@ -17,7 +17,7 @@ class FindMoviehallUsers extends Component {
         return (
             <div>
                 <SearchBar user="MoviehallUser"/>
-                <h2 className="List-user-heading font-condensed-bold">Moviehall User Accounts</h2>
+                <h2 className=" font-condensed-bold">Moviehall User Accounts</h2>
                 {
                     _.map(this.props.users, User => {
                         console.log("user",User)

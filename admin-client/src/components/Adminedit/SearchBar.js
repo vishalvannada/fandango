@@ -5,13 +5,13 @@ import {bindActionCreators} from "redux";
 import _ from 'lodash';
 import {Link} from 'react-router-dom';
 import {searchUsers, searchMoviehallUsers} from "../../actions/satishActions";
+import "./SearchBar.css";
 
 class SearchBar extends Component {
     constructor(props){
         super(props);
 
     }
-
 
     renderField(field){
         const { meta:{touched,error}} = field;

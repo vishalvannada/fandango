@@ -230,6 +230,30 @@ router.delete('/deleteuser',function(req,res){
 })
 
 
+router.delete('/deleteMoviehallUser',function(req,res){
+    var email = req.query.email;
+    console.log("user email",req.query.email);
+    kafka.make_request('deleteMoviehallUser', {"email":email}, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else {
+            if (results.code === 201) {
+                console.log("Inside the success criteria");
+                res.status(201).json({message: "Movie hall User account deleted successfully"});
+            }
+            else {
+                res.status(401).json({message: results.message});
+
+            }
+        }
+    });
+
+
+})
+
 router.delete('/deleteSelfuser',function(req,res){
     var email = req.query.email;
     console.log("user email",req.query.email);
