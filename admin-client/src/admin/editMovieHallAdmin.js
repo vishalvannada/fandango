@@ -1,21 +1,40 @@
 import React, {Component} from 'react';
-import BrandBar from '../home/brandBar'
-import MegaDropDownHeader from '../home/megaDropDownHeader';
-import {Route, withRouter, Link} from 'react-router-dom';
-import Collapsible from 'react-collapsible';
-//import '../../userProfile/userProfile.css';
 import DropdownList from 'react-widgets/lib/DropdownList'
-import {addMovieHallAdmin, getAllMovieHalls} from '../../actions/pranithActions'
-import '../userProfile/userProfile.css'
+import {addMovieHallAdmin, getAllMovieHalls} from '../actions/pranithActions'
 import {Field, reduxForm, initialize} from 'redux-form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import * as API from "../api/API";
 
 class EditMovieHallAdmin extends Component {
 
     constructor(props) {
         super(props)
     }
+
+
+    componentWillMount() {
+        API.fetchUser()
+            .then((res) => {
+                console.log(res);
+
+                if (!res.user) {
+                    this.props.history.push('/login')
+                }
+
+                // if(res.message){
+                //     this.setState({
+                //         message : res.message,
+                //     })
+                // }
+                // else{
+                //     this.props.history.push('/dashboard');
+                // }
+
+
+            });
+    }
+
 
     componentDidMount() {
         this.props.getAllMovieHalls()
@@ -117,16 +136,13 @@ class EditMovieHallAdmin extends Component {
         console.log(this.props.moviesDropdown.movies.movietheatre);
         const {handleSubmit, load, pristine, reset, submitting} = this.props;
         return (
-            <div>
-                <BrandBar/>
-                <MegaDropDownHeader/>
+            <div className='max-width-70 margin-left'>
+
                 <div className='row'>
                     <div className='medium-8 columns'>
                         <form className="registration-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                            <p className="join-header">JOIN FANDANGO<span
-                                className="page-header-emphasis">VIP</span>
+                            <br/>
 
-                            </p>
 
                             <div className='form-group'>
 
@@ -194,8 +210,10 @@ class EditMovieHallAdmin extends Component {
                                        component={this.renderField}
                                 />
                                 <div className="form-group">
-                                    <button id="registration-form-submit" className="btn-cta full-width vip-join-now">
-                                        <span className="post-project-btn-font">EDIT MOVIE HALL</span>
+                                    <br/>
+                                    <button id="registration-form-submit"
+                                            className="btn btn-primary full-width vip-join-now">
+                                        <span className="post-project-btn-font">SAVE MOVIE HALL</span>
                                     </button>
                                 </div>
 
@@ -258,11 +276,9 @@ function validate(values) {
 
 function mapStateToProps(state) {
     return {
-
-        moviesDropdown:state.moviesDropdown,
         movietime: state.moviesSearchPagePK,
         user: state.getUser,
-        
+        moviesDropdown: state.moviesDropdown,
         addMovies: state.addMovies,
     }
 }

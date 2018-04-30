@@ -9,7 +9,10 @@ class AdminUserEdit extends Component {
         console.log(this.props.user);
         return (
             <div>
-                <UserInfo user= {this.props.location.state.user} location={this.props.location}/>
+                <h2 className='margin-left'>Editing User</h2>
+                <div className='margin-left'>
+                    <UserInfo user={this.props.location.state.user} location={this.props.location}/>
+                </div>
             </div>
         )
     }
@@ -18,7 +21,6 @@ class AdminUserEdit extends Component {
 function mapStateToProps(state) {
     return {user: state.searchUsers}
 }
-
 
 
 export default connect(mapStateToProps, {editUserAccount})(AdminUserEdit);

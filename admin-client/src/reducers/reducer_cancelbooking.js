@@ -1,15 +1,15 @@
+
 const home = {
-    movies: {
-code:400
-    }
+    bookingCancel: ""
+
 }
 
 export default function (state = home, action) {
     switch (action.type) {
-        case "MOVIES_HALL_LISTING_EDIT":
+        case "USER_BOOKING_DELETED":
             return {
-                movies: action.payload
-            };
+                bookingCancel: action.payload
+            }
         default:
             return state;
     }
