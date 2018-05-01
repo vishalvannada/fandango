@@ -19,6 +19,7 @@ class MoviehallHome extends Component {
             <div>
                 <BrandBar/>
                 <SearchBar user="MoviehallUser"/>
+                <h2 className="List-user-heading font-condensed-bold">User Accounts</h2>
                 <p></p>
             </div>
         )

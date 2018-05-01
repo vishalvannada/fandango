@@ -15,7 +15,7 @@ function usertrack(msg, callback) {
                 { upsert: true }
                 );
             })    
-        console.log("usertrack msg",msg);
+        console.log("usertrack here msg",msg);
         callback(msg, msg.reqBody);
 
     }

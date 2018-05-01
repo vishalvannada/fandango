@@ -28,23 +28,12 @@ var axios = require('axios');
 
 class BasicInfo extends Component {
 
+
     componentWillMount(){
-
-         if(this.props.user.isLoggedIn==true)
-         {
-            console.log("User Email............",this.props.user.user.email);
-            var values={username:this.props.user.user.email, status:"open", pagename:"Movietime"};
-
-            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
-            .then(response => {
-                console.log("sucessss",response.data)
-            }).catch(error => {
-                console.log("usertracking error",error);
-            });
-
-         }
+        console.log("yes");
+        this.insertValues();
+        console.log("basic info",this.props.user);
      }
-
 
     renderField(field) {
         const {meta: {touched, error}} = field;
@@ -64,15 +53,8 @@ class BasicInfo extends Component {
     }
 
 
-    componentWillMount() {
-        console.log("yes")
-        this.insertValues();
-        console.log(this.props.user)
-    }
-
     insertValues() {
-
-        console.log(this.props.user)
+        console.log("inside basic info",this.props.user);
         const data = {
             "firstname": this.props.user.firstname,
             "lastname": this.props.user.lastname,
@@ -214,8 +196,7 @@ function validate(values) {
 }
 
 function mapStateToProps(state) {
-    return {home: state.home,
-         user:state.getUser}
+    return {home: state.home}
 }
 
 export default reduxForm({

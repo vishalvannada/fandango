@@ -11,7 +11,7 @@ import Multiselect from 'react-widgets/lib/Multiselect'
 import 'react-widgets/dist/css/react-widgets.css';
 
 
-class MovieTopSection extends Component {
+class AddMovieTopSection extends Component {
 
 
     componentWillMount()
@@ -238,7 +238,7 @@ class MovieTopSection extends Component {
 
 
                                                 <div className="form-group form-group-custom">
-                                                <Field
+                                                    <Field
                                                     name="movie"
                                                     component={this.renderDropdown}
                                                     data={this.props.moviesDropdown.movies.moviemap}
@@ -255,7 +255,11 @@ class MovieTopSection extends Component {
                                                 <Field
                                                     name="showTimes"
                                                     component={this.renderMultiselect}
-                                                    data={["9:30a","12:30p","3:30p","9:30p"]}
+                                                    data={["9:00a","9:30a","10:00a","10:30a","11:00a","11:30a","12:00p","12:30p","1:00p","1:30p",
+                                                        "2:00p","2:30p","3:00p","3:30p","4:00p","4:30p","5:00p",
+                                                        "5:30p","6:00p","6:30p","7:00p","7:30p","8:00p","8:30p","9:00p","9:30p",
+                                                        "10:00p","10:30p","11:00p","11:30p","12:00a"
+                                                        ]}
                                                     placeholder="Select Show time"
                                                     label="Show Times"
                                                 />
@@ -319,10 +323,27 @@ function validate(values) {
     const errors = {};
 
     //names are associated to fields in the redux form names
-    if (!values.noOfSeats) {
-        errors.username = "No of Seats can't be empty";
+    if (!values.theatre) {
+        errors.theatre = "Theatre Movie Cant be empty";
     }
-
+    if (!values.showTimes) {
+        errors.showTimes = "Showtimes cant be empty";
+    }
+    if (!values.movie) {
+        errors.movie = "Movie name can't be empty";
+    }
+    if (!values.screenNo) {
+        errors.screenNo = "Screen No can't be empty";
+    }
+    if (!values.noOfSeats) {
+        errors.noOfSeats = "Number of Seats can't be empty";
+    }
+    if (!values.tktPrice) {
+        errors.tktPrice = "Ticket Price can't be empty";
+    }
+    if (!values.movie) {
+        errors.movie = "Movie name can't be empty";
+    }
     return errors;
 }
 
@@ -339,4 +360,4 @@ export default
 reduxForm({
     validate,
     form: 'AddMovie'
-})(connect(mapStateToProps, {getMoviesInSearchPage,GetMoviesnHalls,addMovie})(MovieTopSection));
+})(connect(mapStateToProps, {getMoviesInSearchPage,GetMoviesnHalls,addMovie})(AddMovieTopSection));

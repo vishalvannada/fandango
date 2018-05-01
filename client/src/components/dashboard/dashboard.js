@@ -5,34 +5,33 @@ import {bindActionCreators} from 'redux';
 import BrandBar from '../home/brandBar';
 import MegaDropDownHeader from '../home/megaDropDownHeader';
 import FandangoVIPHeader from '../userProfile/fandangoVIPHeader';
+import {getUserDetails} from "../../actions/satishActions";
 import UtilityFooter from '../userProfile/utilityFooter';
 import './dashboard.css';
 import Footer from '../userProfile/footer';
-
 import {deleteSelfUser} from "../../actions/satishActions";
+import {deleteSelfUser} from "../../actions/satishActions";
+
 var axios = require("axios");
 
 
-
-
 class Dashboard extends Component {
-
-    /*componentWillMount(){
-
-         if(this.props.user.isLoggedIn==true)
-         {
-            console.log("User Email............",this.props.user.user.email);
-            var values={username:this.props.user.user.email, status:"open", pagename:"Dashboard"};
-
-            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
-            .then(response => {
-                console.log("sucessss",response.data)
-            }).catch(error => {
-                console.log("usertracking error",error);
-            });
-
-         }
-     }*/
+    componentWillMount(){
+        this.props.getUserDetails();
+         // if(this.props.user.isLoggedIn==true)
+         // {
+         //    console.log("User Email............",this.props.user.user.email);
+         //    var values={username:this.props.user.user.email, status:"open", pagename:"Dashboard"};
+         //
+         //    const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+         //    .then(response => {
+         //        console.log("sucessss",response.data)
+         //    }).catch(error => {
+         //        console.log("usertracking error",error);
+         //    });
+         //
+         // }
+     }
 
     constructor(props) {
         super(props);
@@ -40,8 +39,8 @@ class Dashboard extends Component {
 
     }
 
+    onSubmit = ()=> {
 
-    onSubmit = () => {
         console.log("Delete");
         //this.props.doDelete();
 
@@ -52,9 +51,7 @@ class Dashboard extends Component {
     }
 
     render() {
-
-        console.log('Inside Dashboard: ', this.state, this.props)
-
+        console.log('Inside Dashboard: ',this.props.user);
         return (
 
             <div>
@@ -63,17 +60,12 @@ class Dashboard extends Component {
                 <FandangoVIPHeader name='dashboard'/>
                 <div className="row">
                     <div className="large-9 columns dashboard-conatiner">
-
-
                         <header className="my-account-summary-container">
-
-
                             <div className='well'>
                                 <div className="Profile cards">
                                     <div className="vip-content">
                                         <img id="AvatarImage" className="user-avatar-thumb"
-                                             src="https://images.fandango.com/r1.0.431/redesign/areas/profile/img/no-image-account-profile.png"/>{/* Write Image Source*/}
-
+                                             src={"http://localhost:3001/images/" + this.props.user.user.image}/>{/* Write Image Source*/}
 
                                         <h3 className="font-condensed-bold">First Name: {this.props.user.user.firstname}<br/><br/> Last
                                             Name: {this.props.user.user.lastname}</h3>
@@ -95,6 +87,7 @@ class Dashboard extends Component {
 
                                 </div>
                             </div>
+
                         </header>
 
                         <div className="row insider-perks">
@@ -173,23 +166,14 @@ class Dashboard extends Component {
                                                 </article>
                                             </div>
                                         </div>
-
                                     </section>
                                 </div>
-
-
                             </div>
                         </div>
-
-
                     </div>
-
-
                 </div>
                 {/*<Footer/>*/}
                 {/*<UtilityFooter/>*/}
-
-
             </div>
         )
     }
@@ -197,18 +181,15 @@ class Dashboard extends Component {
 }
 
 
-function mapStateToProps(store) {
-    return ({});
-}
 
 function mapStateToProps(state) {
     return {home: state.home,
-         user:state.getUser}
+         user:state.userProfile}
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        ...bindActionCreators({deleteSelfUser}, dispatch)
+        ...bindActionCreators({deleteSelfUser,getUserDetails}, dispatch)
     }
 }
 

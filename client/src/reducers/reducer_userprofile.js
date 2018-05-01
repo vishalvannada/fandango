@@ -32,7 +32,7 @@ export default function (state = {
             return {user: action.payload.user};
             break;
         case IMAGE_SUCCESS:
-            return {user: action.payload.user};
+            return {...state, user: action.payload.user};
             break;
         // case SIGN_OUT:
         //     //  sessionStorage.clear();

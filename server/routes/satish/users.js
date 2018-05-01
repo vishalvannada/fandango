@@ -159,6 +159,9 @@ router.post('/signup', function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
+
+                req.session.accountType = "user";
+                req.user.user.accountType = "user";
                 res.status(201).json({username:results.user,message: "User Details Saved successfully",accountType:"User"});
             }
             else {
@@ -230,6 +233,30 @@ router.delete('/deleteuser',function(req,res){
 })
 
 
+router.delete('/deleteMoviehallUser',function(req,res){
+    var email = req.query.email;
+    console.log("user email",req.query.email);
+    kafka.make_request('deleteMoviehallUser', {"email":email}, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else {
+            if (results.code === 201) {
+                console.log("Inside the success criteria");
+                res.status(201).json({message: "Movie hall User account deleted successfully"});
+            }
+            else {
+                res.status(401).json({message: results.message});
+
+            }
+        }
+    });
+
+
+})
+
 router.delete('/deleteSelfuser',function(req,res){
     var email = req.query.email;
     console.log("user email",req.query.email);
@@ -278,6 +305,34 @@ router.post('/editUserAccount', function (req, res) {
                 req.session.email= results.user.email;
                 req.user= results.user;
                 res.status(201).json({message: "user Account Saved successfully",user:results.user});
+            }
+            else {
+                res.status(401).json({message: results.message});
+
+            }
+        }
+    });
+
+});
+
+
+router.post('/editMoviehallUserAccount', function (req, res) {
+    // console.log("req user",req.user);
+    console.log("session email", req.session.email);
+    // console.log("req user",req.user);
+    var email = req.body.oldemail;
+    kafka.make_request('editMoviehallUserAccount', {"user": req.body,"email":email}, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            res.status(401).json({message: "Unexpected error occured"});
+        }
+        else {
+            if (results.code === 201) {
+                console.log("Inside the success criteria");
+                req.session.email= results.user.email;
+                req.user= results.user;
+                res.status(201).json({message: "Movie hall user Account Saved successfully",user:results.user});
             }
             else {
                 res.status(401).json({message: results.message});
@@ -386,6 +441,26 @@ router.get('/searchusers',function(req,res){
 
             }
         }
+    });
+});
+
+
+router.get('/movieRevenue', function (req, res) {
+
+    //console.log(req.param('term'));
+    console.log("Inside Movie Revenue - Server");
+
+    kafka.make_request('getMovieRevenue_topic', {'owneremail': req.session.email}, function (err, results) {
+
+        if (results.code === 201) {
+            console.log(results);
+            res.status(201).json({message:results.message,data:results.results});
+        }
+        else {
+            console.log('roo', results);
+            res.status(401).json({message:results.message});
+        }
+
     });
 });
 

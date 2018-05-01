@@ -32,6 +32,8 @@ export const PURCHASE_SUCCESS = "PURCHASE_SUCCESS";
 export const PURCHASE_ERROR = "PURCHASE_ERROR";
 export const DELETE_USERS_SUCCESS = "DELETE_USERS_SUCCESS";
 export const DELETE_USERS_ERROR = "DELETE_USERS_SUCCESS";
+export const REVENUE_DETAILS_SUCCESS = "REVENUE_DETAILS_SUCCESS";
+export const REVENUE_DETAILS_ERROR = "REVENUE_DETAILS_ERROR";
 
 
 axios.defaults.withCredentials = true;
@@ -265,16 +267,37 @@ export function getUserDetails() {
 }
 
 
+
+export function getmovieRevenue() {
+    return function (dispatch) {
+        console.log("Inside the sign up actions");
+        axios.get(`${ROOT_URL}/user/movieRevenue`,{withCredentials: true})
+            .then((res) => {
+                console.log("Inside actions 'Response'-> ", res.data);
+                dispatch({type: REVENUE_DETAILS_SUCCESS, payload: res.data});
+            })
+            .catch((error) => {
+                dispatch({type: REVENUE_DETAILS_ERROR, payload: error})
+            });
+    }
+}
+
+
 export function changeBasicInfo(userdata) {
     return function (dispatch) {
         console.log("Inside the sign up actions");
         axios.post(`${ROOT_URL}/user/basicInfo`, userdata,{withCredentials: true})
             .then((res) => {
+            if(res.status===201){
                 console.log("Inside actions 'Response'-> ", res.data.user);
                 dispatch({type: BASIC_INFO_SUCCESS, payload: res.data.user});
+                swal("Basic Info changed Successfully");
+            }
+
             })
             .catch((error) => {
-                dispatch({type: BASIC_INFO_ERROR, payload: error})
+                dispatch({type: BASIC_INFO_ERROR, payload: error});
+                swal("Basic Info change Failed");
             });
 
     }
@@ -285,11 +308,15 @@ export function changeEmail(userdata) {
         console.log("Inside the sign up actions",{withCredentials: true});
         axios.post(`${ROOT_URL}/user/email`, userdata)
             .then((res) => {
-                console.log("Inside actions 'Response'-> ", res);
-                dispatch({type: EMAIL_SUCCESS, payload: res.data});
+                if(res.status===201) {
+                    console.log("Inside actions 'Response'-> ", res);
+                    dispatch({type: EMAIL_SUCCESS, payload: res.data});
+                    swal("Email changed Successfully");
+                }
             })
             .catch((error) => {
                 dispatch({type: EMAIL_ERROR, payload: error})
+                swal("Email change failed");
             });
 
     }
@@ -307,11 +334,17 @@ export function uploadImage(payload) {
             }
         })
             .then((res) => {
-                console.log("Inside actions 'Response'-> ", res.data);
-                dispatch({type: IMAGE_SUCCESS, payload: res.data});
+                if(res.status===201) {
+                    console.log("Inside actions 'Response'-> ", res.data);
+                    dispatch({type: IMAGE_SUCCESS, payload: res.data});
+                    swal("Image changed Successfully");
+                }
+
             })
             .catch((error) => {
                 // dispatch({type: EMAIL_ERROR, payload: error})
+                swal("Image change failed");
+
             });
 
     }
@@ -322,11 +355,15 @@ export function changePassword(userdata) {
         console.log("Inside the sign up actions");
         axios.post(`${ROOT_URL}/user/password`, userdata,{withCredentials: true})
             .then((res) => {
-                console.log("Inside actions 'Response'-> ", res.data);
-                dispatch({type: PASSWORD_SUCCESS, payload: res.data});
+                if(res.status===201) {
+                    console.log("Inside actions 'Response'-> ", res.data);
+                    dispatch({type: PASSWORD_SUCCESS, payload: res.data});
+                    swal("password changed Successfully");
+                }
             })
             .catch((error) => {
                 dispatch({type: PASSWORD_ERROR, payload: error})
+                swal("password changed failed");
             });
 
     }
@@ -338,9 +375,11 @@ export function savePaymentMethod(userdata) {
         console.log("Inside the sign up actions");
         axios.post(`${ROOT_URL}/user/savePayment`, userdata,{withCredentials: true})
             .then((res) => {
-                console.log("Inside actions 'Response'-> ", res.data);
-
-                dispatch({type: SAVE_PAYMENT_SUCCESS, payload: res.data});
+                if(res.status===201) {
+                    console.log("Inside actions 'Response'-> ", res.data);
+                    dispatch({type: SAVE_PAYMENT_SUCCESS, payload: res.data});
+                    swal("payment saved Successfully");
+                }
             })
             .catch((error) => {
                 dispatch({type: SAVE_PAYMENT_ERROR, payload: error})
@@ -356,7 +395,6 @@ export function deletePaymentMethod(userdata) {
         axios.post(`${ROOT_URL}/user/delPayment`, userdata,{withCredentials: true})
             .then((res) => {
                 console.log("Inside actions 'Response'-> ", res.data);
-
                 dispatch({type: DELETE_PAYMENT_SUCCESS, payload: res.data});
             })
             .catch((error) => {
@@ -380,7 +418,7 @@ export function changeImage(userdata) {
         }).then((res) => {
             console.log("Inside actions 'Response'-> ", res.data);
             if (res.status == 201) {
-                alert("profile updated successfully");
+                swal("profile updated successfully");
                 history.push('/dashboard');
             }
             dispatch({type: UPLOAD_SUCCESS, payload: res.data});

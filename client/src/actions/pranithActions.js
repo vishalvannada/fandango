@@ -18,6 +18,40 @@ export function getMoviesInSearchPage(values) {
             });
     }
 }
+export function addMovieHallAdmin(values) {
+    console.log("from action addMovieHallAdmin", values);
+    return (dispatch) => {
+        console.log("kjhg", values)
+        const response = axios.post(`${ROOT_URL}/movietheatres/addMovieHallAdmin`,values)
+            .then(response => {
+
+                console.log(response.data)
+                if(response.data.code==200)
+                dispatch(moviesInSearchPageAdmin(true))
+                else
+                    dispatch(moviesInSearchPageAdmin(false))
+            }).catch(error => {
+                console.log(error);
+                dispatch(moviesInSearchPage(false))
+            });
+    }
+}
+
+export function getAllMovieHalls(values) {
+    console.log("from action GetMoviesnHalls");
+    return (dispatch) => {
+        console.log("kjhg")
+        const response = axios.post(`${ROOT_URL}/movietheatres/getAllMovieHalls`,values)
+            .then(response => {
+
+                console.log(response.data)
+                dispatch(GetMoviesnHallsReducer(response.data))
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+}
+
 export function  savePaymentData(values) {
     console.log(values)
     return (dispatch) => {
@@ -90,8 +124,53 @@ export function editMovieSearch(values) {
             });
     }
 }
+export function SQLbookingSearch(values) {
+    console.log("from action editMovieSearch",values);
+    return (dispatch) => {
+        //console.log("kjhg")
+        const response = axios.post(`${ROOT_URL}/movietheatres/bookingsearch`,values)
+            .then(response => {
+
+                console.log(response.data)
+                dispatch(BookingReducer(response.data))
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+}
 
 
+
+
+
+
+export function CancelBooking(values) {
+    console.log("from action CancelBooking",values);
+    let i=0;
+    // for(i=0;i<7;i++)
+    {
+        //console.log(i,"-------------------------------------------");
+        return (dispatch) => {
+            //console.log("kjhg",values);
+
+            //  values.Date=i;
+            //console.log(values);
+            const response = axios.post(`${ROOT_URL}/movietheatres/cancelbooking`, values)
+                .then(response => {
+                    console.log(response.data);
+
+                    //   console.log(response.data)
+                    if (response.data.code == 200 ||response.data.code == 201)
+                        dispatch(CancelBookingReducer(true));
+                    else if (response.data = "movies not added")
+                        dispatch(CancelBookingReducer(false));
+
+                }).catch(error => {
+                    console.log(error);
+                });
+        }
+    }
+}
 
 export function saveMovieListing(values) {
     console.log("from action saveMovieListing");
@@ -153,6 +232,13 @@ function moviesInSearchPage(response){
         payload: response
     }
 }
+function moviesInSearchPageAdmin(response){
+    return {
+        type: "MOVIES_SEARCH_PAGE_ADMIN",
+        payload: response
+    }
+
+}
 
 
 function addMoviesReducer(response){
@@ -170,6 +256,15 @@ function editMoviesReducer(response){
     }
 }
 
+
+function CancelBookingReducer(response){
+    return{
+        type: "USER_BOOKING_DELETED",
+        payload: response
+
+
+    }
+}
 function GetMoviesnHallsReducer(response){
     return {
         type: "MOVIES_SEARCH_DROPDOWN",
@@ -181,5 +276,14 @@ function GetMoviesHallListingReducer(response){
     return {
         type: "MOVIES_HALL_LISTING_EDIT",
         payload: response
+    }
+}
+function BookingReducer(response){
+    //console.log(response);
+    return {
+        type: "BOOKING_HISTORY",
+        payload: {
+            code:response.code,
+            transactions:response.transactions}
     }
 }

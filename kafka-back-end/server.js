@@ -27,6 +27,8 @@ var usertracking = require('./services/usertracking');
 
 
 var getMoviesSearchHandle = require('./services/getMoviesSearchHandle');
+var adminBills = require('./services/adminBills');
+var adminBillsMonth = require('./services/getBillsMonth');
 
 
 console.log('server is running');
@@ -105,6 +107,19 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
+        case 'addMovieHallAdmin_topic':
+            user.addMovieHallAdmin(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break;
+        case 'getAllMovieHalls_topic':
+            getMoviesSearchHandle.handle_getAllMovieHalls(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break;
+
 
         case 'getMoviesGenereInSearchPage_topic':
             getMoviesGenreInSearchHandle.handle_request(data.data, function (err, res) {          //Rishith
@@ -115,8 +130,21 @@ consumer.on('message', function (message) {
             break;
 
         case 'geteditmoviesearch_topic':
-            getMoviesSearchHandle.handle_geteditmoviesearch(data.data, function(err,res){
+            getMoviesSearchHandle.handle_geteditmoviesearch(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+
+        case 'cancelbooking_topic':
+            user.handle_cancelbooking(data.data, function(err,res){
                 response(data,res);
+                return;
+            })
+
+            break;
+        case 'bookingsearch_topic':
+            user.handle_bookingsearch(data.data, function (err, res) {
+                response(data, res);
                 return;
             })
             break;
@@ -204,28 +232,29 @@ consumer.on('message', function (message) {
             break
 
         case 'usertracking_topic':
-            usertracking.usertrack(data.data, function(err,res){
-                response(data,res);
+            console.log("here")
+            usertracking.usertrack(data.data, function (err, res) {
+                response(data, res);
                 return;
             })
             break
         case 'usertrackclose_topic':
-            usertracking.usertrackclose(data.data, function(err,res){
-                response(data,res);
+            usertracking.usertrackclose(data.data, function (err, res) {
+                response(data, res);
                 return;
             })
             break
         case 'pageclicks_topic':
             console.log("reached pageclicks_topic");
-            usertracking.pageclicks(data.data, function(err,res){
-                response(data,res);
+            usertracking.pageclicks(data.data, function (err, res) {
+                response(data, res);
                 return;
             })
             break
         case 'movieclicks_topic':
             console.log("reached movieclicks_topic");
-            usertracking.movieclicks(data.data, function(err,res){
-                response(data,res);
+            usertracking.movieclicks(data.data, function (err, res) {
+                response(data, res);
                 return;
             })
             break
@@ -258,23 +287,44 @@ consumer.on('message', function (message) {
                 return;
             });
             break;
-            case 'login_topic':
-                    ad.check_request(data.data, function(err,res){
-                      console.log('after getProjectsthatbidbyfreelancer_request handle-->'+JSON.stringify(res));
-                      var payloads = [
-                          { topic: data.replyTo,
-                              messages:JSON.stringify({
-                                  correlationId:data.correlationId,
-                                  data : res
-                              }),
-                              partition : 0
-                          }
-                      ];
-                      producer.send(payloads, function(err, data){
-                          console.log(data);
-                      });
-                      return;
-                    });
+        case 'login_topic':
+            ad.check_request(data.data, function (err, res) {
+                console.log('after getProjectsthatbidbyfreelancer_request handle-->' + JSON.stringify(res));
+                var payloads = [
+                    {
+                        topic: data.replyTo,
+                        messages: JSON.stringify({
+                            correlationId: data.correlationId,
+                            data: res
+                        }),
+                        partition: 0
+                    }
+                ];
+                producer.send(payloads, function (err, data) {
+                    console.log(data);
+                });
+                return;
+            });
+            break;
+
+        case 'getRevenue_topic':
+            ad.getRevenue_request(data.data, function (err, res) {
+                console.log('after getRevenue_request handle-->' + JSON.stringify(res));
+                var payloads = [
+                    {
+                        topic: data.replyTo,
+                        messages: JSON.stringify({
+                            correlationId: data.correlationId,
+                            data: res
+                        }),
+                        partition: 0
+                    }
+                ];
+                producer.send(payloads, function (err, data) {
+                    console.log(data);
+                });
+                return;
+            });
             break;
 
         case 'searchMoviehallUsers':
@@ -296,8 +346,39 @@ consumer.on('message', function (message) {
                 response(data, res);
             })
             break;
+        case 'deleteMoviehallUser':
+            user.deleteMoviehallUser(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            })
+            break;
         case 'editUserAccount':
             user.editUserAccount(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            })
+            break
+        case 'purchaseHistory':
+            user.purchaseHistory(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            });
+            break;
+        case 'getMovieRevenue_topic':
+            user.getmovierevenue(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            });
+            break;
+
+        case 'getBillsAdmin_topic':
+            adminBills.handle_request(data.data, function (err, res) {
+                console.log("res: ", res);
+                response(data, res);
+            })
+            break;
+        case 'getBillsMonthAdmin_topic':
+            adminBillsMonth.handle_request(data.data, function (err, res) {
                 console.log("res: ", res);
                 response(data, res);
             })

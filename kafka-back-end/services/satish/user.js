@@ -5,7 +5,7 @@ var models = require('../../models');
 var User = require('../../models/User')(models.sequelize, models.Sequelize);
 var MoviehallUser = require("../../models/MoviehallUser")(models.sequelize, models.Sequelize);
 var Admin = require("../../models/Admin")(models.sequelize, models.Sequelize);
-
+var pranith= require("../getMoviesSearchHandle");
 var transactions = require("../../models/UserTransaction")(models.sequelize, models.Sequelize);
 var randomInt = require('random-int');
 var client = require('../../redis');
@@ -156,6 +156,7 @@ function userDetails(msg, callback) {
 function searchUsers(msg,callback){
     var res={};
     var user= msg.user+"%";
+    var email = "pranith@gmail.com";
     console.log("Search user function");
     User.findAll({
         where: {
@@ -180,6 +181,37 @@ function searchUsers(msg,callback){
     }).catch(err =>
         callback(null,err)
     );
+}
+
+
+
+function getmovierevenue(msg,callback){
+    var res={};
+    var email = msg.owneremail;
+    transactions.findAll({
+        attributes: ['moviehall','moviename', [sequelize.fn('sum', sequelize.col('Amount')), 'TotalAmount']],
+        group: ["moviename","moviehall"],
+        where: {moviehallowner: email},
+    }).then(function (results) {
+        console.log("results found", results);
+        // callback(null, results);
+        if (results.length === 0) {
+            console.log('error');
+            res.code = 401;
+            res.message = "No results found";
+            callback(null, res);
+        }
+        else if(results){
+            console.log("Movie users details found");
+            res.code = 201;
+            res.results= results;
+            res.messsage = "Movie Hall revenue found";
+            callback(null, res);
+        }
+    }).catch(err =>
+        callback(null,err)
+    );
+
 }
 
 
@@ -292,6 +324,44 @@ function editUserAccount(msg,callback){
 }
 
 
+function editMoviehallUserAccount(msg,callback){
+    console.log("userdata", msg.user, msg.email,msg.user.password);
+    var firstName = msg.user.firstname;
+    var lastName = msg.user.lastname;
+    var displayName = msg.user.displayname;
+    var address = msg.user.address;
+    var mobile = msg.user.mobile;
+    var newPassword = msg.user.password;
+    var email = msg.user.email;
+    var oldPassword = msg.user.oldpassword;
+    var res = {};
+    var hashnew = oldPassword;
+    if(newPassword!==null){
+        hashnew = newPassword;
+    }
+
+    console.log("user",displayName);
+
+
+    MoviehallUser.update(
+        {firstname: firstName, lastname: lastName, address: address, displayname: displayName, mobile: mobile, password:hashnew , email:email},
+        {returning: true, where: {email: msg.email}}
+    )
+        .then(function (results) {
+            MoviehallUser.find({where: {email: msg.email}})
+                .then(function (user) {
+                    res.user = user;
+                    res.code = 201;
+                    callback(null, res);
+                }).catch(function (err) {
+                console.log(['error'], err.stack);
+            });
+        })
+        .catch(err =>
+            callback(null, err)
+        )
+}
+
 function uploadImage(msg, callback) {
     // console.log("userdata", msg.user, msg.email);
     // var firstName = msg.user.firstname;
@@ -321,20 +391,27 @@ function uploadImage(msg, callback) {
 
 
 function changeEmail(msg, callback) {
+
+    var res={};
     console.log("userdata", msg.user);
-    var email = msg.user.email;
-    User.find({where: {email: msg.email}})
+    var newemail = msg.user.newemail;
+    var sessionemail = msg.email;
+
+    User.find({where: {email: newemail}})
         .then(function (user) {
-            res.code = 401;
-            res.message= "Email already linked with another account"
-            callback(null,res);
+            if(user.length>0){
+                res.code = 401;
+                res.message= "Email already linked with another account"
+                callback(null,res);
+            }
+
         });
     User.update(
-        {email: email},
-        {returning: true, where: {email: msg.email}}
+        {email: newemail},
+        {returning: true, where: {email: sessionemail}}
     )
         .then(function (results) {
-            User.find({where: {email: msg.email}})
+            User.find({where: {email:newemail }})
                 .then(function (user) {
                     res.user = user;
                     res.code = 201;
@@ -526,6 +603,25 @@ function deleteUser(msg,callback){
     );
 }
 
+
+
+function deleteMoviehallUser(msg,callback){
+    var res={};
+    console.log("email",msg.email);
+    MoviehallUser.destroy({
+        where: {
+            email: msg.email
+        }
+    }).then(function(result){
+        res.code = 201;
+        res.message= "Delete Moviehall User Successful";
+        callback(null,res);
+    }).catch( err =>
+        callback(null,err)
+    );
+}
+
+
 function moviehallSignin(msg, callback) {
 
     var res = {};
@@ -570,7 +666,6 @@ function adminSignin(msg, callback) {
 
     Admin.findOne({where: {email: email}}).then(function (user) {
         console.log("userpassword", password);
-        console.log("dbpassword", user.password);
         if (!user) {
             console.log('error');
             res.code = 401;
@@ -598,7 +693,7 @@ function adminSignin(msg, callback) {
 }
 function saveTransaction(msg, callback) {
     console.log("In save Transaction ===============================================")
-
+// Date: msg.reqBody.movies.Date
 
     console.log("msg value", msg);
     var res = {};
@@ -609,12 +704,19 @@ function saveTransaction(msg, callback) {
            displayname: msg.reqBody.user.displayname,
           email: msg.reqBody.user.email,
              moviename: msg.reqBody.movies.movie.MovieName,
+             movieid:parseInt(msg.reqBody.movies.id),
+
              moviehall: msg.reqBody.movies.theatreName,
              screenno: parseInt(msg.reqBody.movies.ScreenNo),
              movietime: msg.reqBody.showtime,
              Amount : parseInt(msg.reqBody.total.totalSum),
              tax:  parseInt(msg.reqBody.total.tax),
-             image: msg.reqBody.movies.movie.poster_path
+             image: msg.reqBody.movies.movie.poster_path,
+             date: new Date(msg.reqBody.movies.Date),
+             moviehallowner: msg.reqBody.movies.user,
+             city: msg.reqBody.movies.theatreCity,
+             nooftickets:parseInt(msg.reqBody.total.noOfTickets),
+
          };
 
 
@@ -633,7 +735,128 @@ function saveTransaction(msg, callback) {
     });
 
 }
+function addMovieHallAdmin(msg, callback) {
+    console.log("In save Transaction ===============================================")
+// Date: msg.reqBody.movies.Date
 
+    console.log("msg value from addMovieHallAdmin++++++++++++++++++ ", msg);
+    var res = {};
+    MoviehallUser.findAll({
+        where: {
+            email: {$like: msg.reqBody.owner_email}
+        },
+        order: [['createdAt', 'ASC']]
+    }).then(function(users) {
+        console.log("users",users.length);
+        if (users.length === 0) {
+            console.log('error');
+            res.code = 401;
+            res.message = "user details not found";
+            callback(null, res);
+        }
+        else if(users){
+            console.log("users details found");
+            res.code = 201;
+            res.users= users;
+            res.messsage = "users details found";
+            pranith.handle_addOwnerMovies(msg,function(err,status){
+                if (err) {
+                    res.code = "401";
+                    //  callback(null, res);
+                    console.log(err);
+                    console.log("error in adding  owner movie movie-=-=============------------------------------=======")
+                }
+                else {
+                    console.log(status);
+                    res.code = 200;
+                    callback(null, res);
+                }
+
+
+            })
+
+
+            //callback(null, res);
+        }
+    }).catch(err =>{
+        res.code=401;
+        callback(null,err)}
+    );
+
+
+    /*transactions.create(data).then(function (newUser, created) {
+        if (!newUser) {
+            res.message = 'Transaction not Saved';
+            callback(null, res);
+        }
+        if (newUser) {
+            res.code = 201;
+            res.message = 'Transaction Saved';
+            res.user = newUser;
+            callback(null, res);
+        }
+
+    });*/
+
+}
+
+
+function handle_cancelbooking(msg,callback){
+    var res= {};
+    console.log("handle_cancelbooking function");
+    console.log(msg);
+  //  var email = msg.reqBody.email;
+    transactions.destroy({
+        where: {
+            transactionid: msg.reqBody.transactionid}
+    }).then(function(transactions) {
+        console.log("users",transactions);
+        //if (transactions.length === 0)
+        {
+            console.log('success');
+            res.code = 200;
+            res.message = "Transactions Deleted";
+pranith.handle_cancelPayment(msg,function(err,results){
+    if(err)
+    {
+        console.log(err);
+    }
+    else {
+        callback(null, res);
+    }
+});
+
+        }
+    }).catch(err =>
+        callback(null,err)
+    );
+}
+function handle_bookingsearch(msg,callback){
+    var res= {};
+    console.log("Search transaction function");
+    var email = msg.reqBody.email;
+    transactions.findAll({
+        where: {
+            moviehallowner: email}
+    }).then(function(transactions) {
+        console.log("users",transactions.length);
+        if (transactions.length === 0) {
+            console.log('error');
+            res.code = 401;
+            res.message = "Transactions not available";
+            callback(null, res);
+        }
+        else if(transactions){
+            console.log("Transactions History found===============================================",transactions);
+            res.code = 201;
+            res.transactions= transactions;
+            res.messsage = "purchase  History  found";
+            callback(null, res);
+        }
+    }).catch(err =>
+        callback(null,err)
+    );
+}
 
 exports.signin = signin;
 exports.signup = signup;
@@ -650,6 +873,12 @@ exports.searchUsers = searchUsers;
 exports.searchMoviehallUsers = searchMoviehallUsers;
 exports.purchaseHistory = purchaseHistory;
 exports.deleteUser = deleteUser;
+exports.deleteMoviehallUser = deleteMoviehallUser;
 exports.editUserAccount = editUserAccount;
+exports.editMoviehallUserAccount = editMoviehallUserAccount;
 exports.saveTransaction=saveTransaction;
+exports.getmovierevenue = getmovierevenue;
+exports.addMovieHallAdmin=addMovieHallAdmin;
+exports.handle_bookingsearch=handle_bookingsearch;
+exports.handle_cancelbooking=handle_cancelbooking;
 

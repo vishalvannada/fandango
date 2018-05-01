@@ -44,6 +44,7 @@ class Image extends Component {
     render() {
 
         const {handleSubmit, load, pristine, reset, submitting} = this.props;
+        console.log(this.props);
 
         let src = 'https://images.fandango.com/r1.0.431/redesign/areas/profile/img/no-image-account-profile.png';
         if (this.props.image) {

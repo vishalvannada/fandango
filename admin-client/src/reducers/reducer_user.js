@@ -13,7 +13,7 @@ export default function (state={
     // if(action.error){
     //     action.type = LOGIN_ERROR;
     // }
-   // console.log("Inside Reducer",action.payload);
+    // console.log("Inside Reducer",action.payload);
     switch (action.type){
         case SIGN_IN:
             // sessionStorage.setItem("islogin", true);
@@ -22,13 +22,18 @@ export default function (state={
             return  {...state, isLoggedIn:true, message:action.payload.data.message, isCheckedIn: true, user: action.payload.data.username};
             break;
         case SIGN_IN_ERROR:
+            console.log('Inside user Reducer ',action.payload.data, action.payload.data.message);
             return {...state, isLoggedIn:false, username: '', message:action.payload.data.message };
             break;
         case SIGN_UP_SUCCESS:
-            return  {...state, isLoggedIn:true, user: action.payload.data.username};
+            console.log("Inside signup reducer: ", action.payload.message);
+            return  {...state, isLoggedIn:true, message: action.payload.message};
             break;
+        case SIGN_UP_ERROR:
+            return {...state, isLoggedIn:false, message:action.payload.response.data.message};
+
         case SIGN_OUT:
-          //  sessionStorage.clear();
+            //  sessionStorage.clear();
             return state;
             break;
 
@@ -43,7 +48,7 @@ export default function (state={
         //     return {...state, isLoggedIn:true, username: action.payload.data};
         //     break;
         default:
-            return state;
+            return {...state};
     }
 
 }

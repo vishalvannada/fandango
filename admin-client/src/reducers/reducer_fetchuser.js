@@ -10,6 +10,7 @@ export default function (state = {
     switch (action.type) {
 
         case FETCH_USER:
+            console.log("lhg")
             return {...state, isLoggingIn: false, isLoggedIn: true, user: action.payload.user.user};
         case FETCH_USER_NULL:
             return {...state, isLoggingIn: false, isLoggedIn: false, user: {}};
