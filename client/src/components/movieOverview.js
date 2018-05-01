@@ -20,7 +20,7 @@ class MovieOverview extends Component {
 
         if (this.props.user.isLoggedIn == true) {
             console.log("User Email............", this.props.user.user.email);
-            var values = {username: this.props.user.user.email, status: "open", pagename: "Movietime"};
+            var values = {username: this.props.user.user.email, status: "open", pagename: "Movietime", time:new Date()};
 
             const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
             .then(response => {

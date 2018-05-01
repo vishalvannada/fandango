@@ -10,8 +10,8 @@ function usertrack(msg, callback) {
             var coll = mongo.collection('usertrack');
             console.log("usertrack msg",msg);            
             coll.findOneAndUpdate(
-                { "username": msg.reqBody.username, "status": msg.reqBody.status },
-                { "$push":{"pages":msg.reqBody.pagename} },
+                { "username": msg.reqBody.username, "status": msg.reqBody.status  },
+                { "$push": {sequence: {"pages":msg.reqBody.pagename, "time": new Date(msg.reqBody.time)} }},
                 { upsert: true }
                 );
             })    
