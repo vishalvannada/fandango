@@ -9,10 +9,9 @@ import {getUserDetails} from "../../actions/satishActions";
 import UtilityFooter from '../userProfile/utilityFooter';
 import './dashboard.css';
 import Footer from '../userProfile/footer';
-
-
-
 import {deleteSelfUser} from "../../actions/satishActions";
+
+var axios = require("axios");
 
 
 class Dashboard extends Component {
