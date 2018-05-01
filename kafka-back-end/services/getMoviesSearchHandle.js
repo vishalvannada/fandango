@@ -52,6 +52,8 @@ function handle_request(msg, callback) {
             "movie.MovieName": new RegExp("^"+msg.reqBody.movieSearch, "i"), "Date": {"$gte": new Date(d), "$lte": new Date(d2)}
         };
 
+        console.log(msg)
+
 
 
         client.get(msg.reqBody.movieSearch, function(err, reply) {

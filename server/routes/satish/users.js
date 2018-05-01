@@ -150,6 +150,9 @@ router.post('/adminSignin', function (req, res, next) {
 });
 
 router.post('/signup', function (req, res) {
+
+    console.log(req.body)
+
     kafka.make_request('signup', {"user": req.body}, function (err, results) {
         console.log('in result');
         console.log(results);
@@ -161,7 +164,7 @@ router.post('/signup', function (req, res) {
                 console.log("Inside the success criteria");
 
                 req.session.accountType = "user";
-                req.user.user.accountType = "user";
+                // req.user.user.accountType = "user";
                 res.status(201).json({username:results.user,message: "User Details Saved successfully",accountType:"User"});
             }
             else {

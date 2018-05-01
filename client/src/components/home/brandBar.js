@@ -51,6 +51,14 @@ class BrandBar extends Component {
         console.log('isloggeIn', isLoggedIn);
         console.log("user", this.props.user);
 
+        if(this.props.user.isLoggingIn){
+            return(
+                <div>
+                    Loading
+                </div>
+            )
+        }
+
         return (
             <div>
 
@@ -59,7 +67,7 @@ class BrandBar extends Component {
                         <nav className="text-right">
                             <a href="/fandango-gift-cards">Gift Cards</a> |
                             <a href="/freemovietickets"> Offers</a> |
-                            {isLoggedIn ? (
+                            {this.props.user.isLoggedIn ? (
                                 <button className="show-logged-in" onClick={this.handleSignout.bind(this)}>
                                     Sign Out </button>
                             ) : (

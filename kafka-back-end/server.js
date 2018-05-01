@@ -4,11 +4,7 @@ var dummyData = require('./services/dummyData');
 var getMoviesInHomePageCarousel = require('./services/getMoviesInHomePageCarousel');
 var getMovieOverview = require('./services/getMovieOverview');
 var user = require('./services/satish/user');
-
-
 var redis = require('./redis');
-
-
 var ad = require('./services/mandip/ad');
 
 var producer = connection.getProducer();

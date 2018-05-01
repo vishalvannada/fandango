@@ -4,7 +4,7 @@ var kafka = require('../kafka/client');
 
 router.post('/getMoviesInSearchPage', function (req, res) {
 console.log("from getMoviesInSearchPage_topic entry");
-console.log(req,req.body,"-----------------------------------------------------");
+console.log(req.body,"-----------------------------------------------------");
     kafka.make_request('getMoviesInSearchPage_topic', {"reqBody":req.body}, function (err, results) {
 
         if (results.code == 200) {

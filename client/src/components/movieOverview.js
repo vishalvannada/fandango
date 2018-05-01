@@ -5,6 +5,7 @@ import MovieTopSection from './movieOverview/movieTopSection';
 import CastCrewCarousel from './movieOverview/castCrewCarousel';
 import {connect} from "react-redux";
 import {getMovieOverview} from "../actions/vishalActions";
+
 import MovieReview from './movieOverview/movieReviewsBottom';
 
 var axios = require('axios');
