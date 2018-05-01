@@ -94,6 +94,7 @@ describe('Movie Module Tests', function() {
             done();
         });
     });
+
     it('Should return all Movies Halls and Movies from Mongo', function(done) {
         request.post('http://localhost:3001/movietheatres/getmoviesnhalls', {
             reqBody:{email: "pranithkouda@gmail.com"}
@@ -293,5 +294,7 @@ describe('Admin Module and User Tests', function () {
         });
     });
 });
+
+
 
 

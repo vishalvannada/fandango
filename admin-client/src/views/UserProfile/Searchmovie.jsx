@@ -44,9 +44,16 @@ class Searchmovie extends Component {
         API.getSearchedMoviesAdmin(this.state.term)
             .then((res) => {
                 console.log("resa----->" + JSON.stringify(res));
-                this.setState({
-                    searchmovies: res
-                });
+                if (res.length == 0) {
+                    this.setState({
+                        searchmovies: undefined
+                    })
+                }
+                else {
+                    this.setState({
+                        searchmovies: res
+                    });
+                }
 
             });
         //
@@ -64,18 +71,21 @@ class Searchmovie extends Component {
     }
 
     render() {
-        console.log("rerer-------->" + this.state.searchmovies);
+
         return (
             <div>
 
-                <form onSubmit={this.handleSubmit} className='margin-left'>
+
+
+                <form onSubmit={this.handleSubmit.bind(this)} className='margin-left'>
                     <input value={this.state.term} onChange={(e) => this.setState({term: e.target.value})}/>
                     <button type="submit" className="btn btn-primary ">Go</button>
                 </form>
 
+                {this.state.searchmovies ? '' : 'No Movies'}
 
-                {this.state.searchmovies.length > 0 ?
-                    <MovieSearchList history={this.props.history} movies={this.state.searchmovies}/> : ''}
+                {this.state.searchmovies ? this.state.searchmovies.length > 0 ?
+                    <MovieSearchList history={this.props.history} movies={this.state.searchmovies}/> : '' : ''}
             </div>
         )
     }

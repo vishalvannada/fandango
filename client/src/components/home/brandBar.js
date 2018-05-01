@@ -37,11 +37,20 @@ class BrandBar extends Component {
     handleSignout() {
         this.props.signout(null);
 
-        const request =axios.post('http://localhost:3001/movietheatres/usertrackclose',{"username":this.props.user.user.email})
+        /*const request =axios.post('http://localhost:3001/movietheatres/usertrackclose',{"username":this.props.user.user.email})
             .then(response => {
                 console.log("sucessss");
             }).catch(error => {
                 console.log("usertracking error");
+            });*/
+
+        var values = {username: this.props.user.user.email, status: "open", pagename: "Log Out", time:0}
+
+        const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+            .then(response => {
+                console.log("sucessss",response.data)
+            }).catch(error => {
+                console.log("usertracking error",error);
             });
     }
 
@@ -51,6 +60,14 @@ class BrandBar extends Component {
         console.log('isloggeIn', isLoggedIn);
         console.log("user", this.props.user);
 
+        if(this.props.user.isLoggingIn){
+            return(
+                <div>
+                    Loading
+                </div>
+            )
+        }
+
         return (
             <div>
 
@@ -59,7 +76,7 @@ class BrandBar extends Component {
                         <nav className="text-right">
                             <a href="/fandango-gift-cards">Gift Cards</a> |
                             <a href="/freemovietickets"> Offers</a> |
-                            {isLoggedIn ? (
+                            {this.props.user.isLoggedIn ? (
                                 <button className="show-logged-in" onClick={this.handleSignout.bind(this)}>
                                     Sign Out </button>
                             ) : (

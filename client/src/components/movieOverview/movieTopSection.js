@@ -5,6 +5,8 @@ import ReactStars from 'react-stars';
 import {Link} from 'react-router-dom';
 import _ from 'lodash';
 import ReactDOM from 'react-dom';
+import {getMoviesInSearchPageReroute} from '../../actions/pranithActions';
+
 var axios = require('axios');
 
 class MovieTopSection extends Component {
@@ -94,7 +96,9 @@ class MovieTopSection extends Component {
                                         <h3 className="font-condensed-bold-white">BUY MOVIE TICKETS</h3>
 
                                         <br/>
-                                        <Link to="/somewhere"><span className="font-weight-700 font-size-14">SOME ALL MOVIE THEATRES + MOVIES</span></Link><br/>
+                                        <span
+                                            onClick={() => this.props.getMoviesInSearchPageReroute(this.props.movie.title)}><span
+                                            className="font-weight-700 font-size-14">SEE ALL MOVIE THEATRES + MOVIES</span></span><br/>
                                         {/*<small className="font-color-white">Movie Times for Tuesday, April 17, 2018*/}
                                         {/*<br/>*/}
                                         {/*Closed caption  Luxury Lounger Recliners Reserved seating</small>*/}
@@ -137,5 +141,4 @@ class MovieTopSection extends Component {
 }
 
 
-
-export default connect(null, null)(MovieTopSection);
+export default connect(null, {getMoviesInSearchPageReroute})(MovieTopSection);

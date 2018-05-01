@@ -109,7 +109,7 @@ class App extends Component {
                                 <ConditionalRouteMovieHall path="/moviehallSignin" component={MovieHallSiginin}/>
                                 <PrivateRouteMovieHallAdmin path="/addmovie" component={AddMovie}/>
                                 <PrivateRouteMovieHallAdmin path="/editmoviehall" component={EditMovieHall}/>
-                                <PrivateRouteMovieHallAdmin path="/movieHall-home" component={MovieAdminHome}/>
+                                <Route path="/movieHall-home" component={MovieAdminHome}/>
                                 <PrivateRouteMovieHallAdmin path="/editmoviehalllisting"
                                                             component={EditMovieHallListing}/>
 

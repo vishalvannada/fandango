@@ -4,7 +4,7 @@ var kafka = require('../kafka/client');
 
 router.post('/getMoviesInSearchPage', function (req, res) {
 console.log("from getMoviesInSearchPage_topic entry");
-console.log(req,req.body,"-----------------------------------------------------");
+console.log(req.body,"-----------------------------------------------------");
     kafka.make_request('getMoviesInSearchPage_topic', {"reqBody":req.body}, function (err, results) {
 
         if (results.code == 200) {
@@ -36,6 +36,28 @@ console.log(req,req.body,"-----------------------------------------------------"
     kafka.make_request('usertrackclose_topic', {"reqBody":req.body}, function (err, results) {
         console.log('Results: ', results);
         res.status(201).send(results)       
+        
+    });
+});
+
+router.post('/pageclicks', function (req, res) {
+console.log("from pageclicks_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('pageclicks_topic', {"reqBody":req.body}, function (err, results) {
+        
+        console.log('Results: ', results);
+        res.status(201).send(results);       
+        
+    });
+});
+
+router.post('/movieclicks', function (req, res) {
+console.log("from movieclicks_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('movieclicks_topic', {"reqBody":req.body}, function (err, results) {
+        
+        console.log('Results: ', results);
+        res.status(201).send(results);       
         
     });
 });

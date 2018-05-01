@@ -53,6 +53,8 @@ function handle_request(msg, callback) {
             "Date": {"$gte": new Date(d2), "$lte": new Date(d)}
         };
 
+        console.log(msg)
+
 
         client.get(msg.reqBody.movieSearch, function (err, reply) {
             console.log(reply);

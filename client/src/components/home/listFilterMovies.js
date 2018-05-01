@@ -15,6 +15,9 @@ class ListFilterMovies extends Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
+        this.state = {
+            current: '',
+        }
 
     }
 
@@ -108,7 +111,7 @@ class ListFilterMovies extends Component {
 
                     <div className='background-fandango-checkout'>
                         <div className='float-left'>
-                            <h2 className='font-condensed-bold m-auto p-2 font-color-white'>MOVIES({this.props.movieGenreData.length})
+                            <h2 className='font-condensed-bold m-auto p-2 font-color-white'>MOVIES({this.props.movieGenreData.length}){this.state.genre}
                             </h2>
                         </div>
                     </div>

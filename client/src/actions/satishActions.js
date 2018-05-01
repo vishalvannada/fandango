@@ -438,7 +438,7 @@ export function movieHallSignin(values) {
             if (res.status == 201) {
                 console.log("response received",res);
                 history.push('/movieHall-home');
-                dispatch({type: SIGN_IN, payload: request});
+                // dispatch({type: SIGN_IN, payload: request});
             }
             else {
                 if (res.status === 200) {
