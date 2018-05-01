@@ -20,7 +20,7 @@ class MovieOverview extends Component {
 
         if (this.props.user.isLoggedIn == true) {
             console.log("User Email............", this.props.user.user.email);
-            var values = {username: this.props.user.user.email, status: "open", pagename: "Movietime"};
+            var values = {username: this.props.user.user.email, status: "open", pagename: "Movietime", time:new Date()};
 
             const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
             .then(response => {
@@ -29,7 +29,40 @@ class MovieOverview extends Component {
                 console.log("usertracking error",error);
             });
 
+        var values1 = {Page: "MovieOverview"};
+
+            const request1 = axios.post('http://localhost:3001/movietheatres/pageclicks', values1)
+                .then(response => {
+                    console.log("sucessss", response.data)
+                }).catch(error => {
+                    console.log("usertracking error", error);
+                });    
+/*
+        var values2 = {movie: this.props.movie.movie.title , tmdbid: "Null" , poster_path: "Null"};
+            console.log("Movieclicks",values2);
+            const request2 = axios.post('http://localhost:3001/movietheatres/movieclicks', values2)
+                .then(response => {
+                    console.log("sucessss", response.data)
+                }).catch(error => {
+                    console.log("usertracking error", error);
+                });        
+
+*/
         }
+    }
+
+    componentWillUnmount()
+    {
+        var values2 = {movie: this.props.movie.movie.title , tmdbid: "Null" , poster_path: "Null"};
+            console.log("Movieclicks",values2);
+            const request2 = axios.post('http://localhost:3001/movietheatres/movieclicks', values2)
+                .then(response => {
+                    console.log("sucessss", response.data)
+                }).catch(error => {
+                    console.log("usertracking error", error);
+                });        
+
+
     }
 
     render() {

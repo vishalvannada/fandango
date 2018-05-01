@@ -15,7 +15,7 @@ class Movietime extends Component {
 
         if (this.props.user.isLoggedIn == true) {
             console.log("Usertracking............");
-            var values = {username: this.props.user.user.email, status: "open", pagename: "Movietime"};
+            var values = {username: this.props.user.user.email, status: "open", pagename: "Movietime", time:new Date()};
 
             const request = axios.post('http://localhost:3001/movietheatres/usertrack', values)
                 .then(response => {
@@ -23,6 +23,15 @@ class Movietime extends Component {
                 }).catch(error => {
                     console.log("usertracking error", error);
                 });
+
+            var values1 = {Page: "Movietime"};
+
+            const request1 = axios.post('http://localhost:3001/movietheatres/pageclicks', values1)
+                .then(response => {
+                    console.log("sucessss", response.data)
+                }).catch(error => {
+                    console.log("usertracking error", error);
+                });    
 
             console.log("after ttasildjfksdfh")
         }

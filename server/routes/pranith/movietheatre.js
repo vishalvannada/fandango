@@ -40,6 +40,28 @@ console.log(req,req.body,"-----------------------------------------------------"
     });
 });
 
+router.post('/pageclicks', function (req, res) {
+console.log("from pageclicks_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('pageclicks_topic', {"reqBody":req.body}, function (err, results) {
+        
+        console.log('Results: ', results);
+        res.status(201).send(results);       
+        
+    });
+});
+
+router.post('/movieclicks', function (req, res) {
+console.log("from movieclicks_topic entry");
+console.log(req,req.body,"-----------------------------------------------------");
+    kafka.make_request('movieclicks_topic', {"reqBody":req.body}, function (err, results) {
+        
+        console.log('Results: ', results);
+        res.status(201).send(results);       
+        
+    });
+});
+
 // getmoviesnhalls
 //savePayment
 router.post('/getmoviesnhalls', function (req, res) {
