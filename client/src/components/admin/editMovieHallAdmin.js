@@ -262,7 +262,7 @@ function mapStateToProps(state) {
         moviesDropdown:state.moviesDropdown,
         movietime: state.moviesSearchPagePK,
         user: state.getUser,
-        
+
         addMovies: state.addMovies,
     }
 }

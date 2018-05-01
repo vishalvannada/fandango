@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DropdownList from 'react-widgets/lib/DropdownList'
-import {addMovieHallAdmin, getAllMovieHalls} from '../actions/pranithActions'
+import {addMovieHallAdmin, getAllMovieHalls,saveMovieHallEdits} from '../actions/pranithActions'
 import {Field, reduxForm, initialize} from 'redux-form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -42,6 +42,7 @@ class EditMovieHallAdmin extends Component {
 
     onSubmit(values) {
         console.log(values);
+        this.props.saveMovieHallEdits(values);
         // this.props.addMovieHallAdmin(values);
     }
 
@@ -288,4 +289,4 @@ export default reduxForm({
     validate,
     form: 'EditmovieHall'
 })
-(connect(mapStateToProps, {addMovieHallAdmin, getAllMovieHalls})(EditMovieHallAdmin));
+(connect(mapStateToProps, {addMovieHallAdmin, getAllMovieHalls,saveMovieHallEdits})(EditMovieHallAdmin));

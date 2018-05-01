@@ -119,6 +119,13 @@ consumer.on('message', function (message) {
                 return;
             })
             break;
+        case 'savemoviehalledits_topic':
+            getMoviesSearchHandle.handle_savemoviehalledits(data.data, function (err, res) {
+                response(data, res);
+                return;
+            })
+            break;
+
 
 
         case 'getMoviesGenereInSearchPage_topic':

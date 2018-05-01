@@ -102,11 +102,11 @@ class EditMovieBody extends Component {
 
         return (_.map(arrayDates, Date => {
             return (
-                <div key={Date}>
+                <div key={Date} onClick={() => {
+                    this.setDate(moment(Date).format())
+                }}>
 
-                    <div className="background-white text-center carousel-date" onClick={() => {
-                        this.setDate(moment(Date).format())
-                    }}>
+                    <div className="background-white text-center carousel-date">
 
                         <span className="font-timesNewRoman font-size-15">{moment(Date).format('ddd')}</span>
                         <br/>
@@ -183,7 +183,9 @@ class EditMovieBody extends Component {
                                                         textField="type"
                                                         placeholder="Select a Movie Hall "
                                                         onChange={event => {
-                                                            this.setState({"moviesSelected": event.type})
+                                                            this.setState({"moviesSelected": event.type,"dateSelected": new Date()})
+                                                            console.log(this.state);
+
                                                             //console.log("This is the new value of field myField: " , event);
                                                             //props.input.onChange(event); // <-- Propagate the event
                                                         }}

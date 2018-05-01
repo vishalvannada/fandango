@@ -40,7 +40,7 @@ export function addMovieHallAdmin(values) {
 export function getAllMovieHalls(values) {
     console.log("from action GetMoviesnHalls");
     return (dispatch) => {
-        console.log("kjhg")
+        console.log("kjhg",values)
         const response = axios.post(`${ROOT_URL}/movietheatres/getAllMovieHalls`,values)
             .then(response => {
 
@@ -85,7 +85,7 @@ function savedPayment(values){
 export function GetMoviesnHalls(values) {
     console.log("from action GetMoviesnHalls");
     return (dispatch) => {
-        console.log("kjhg")
+        console.log("kjhg", values)
         const response = axios.post(`${ROOT_URL}/movietheatres/getmoviesnhalls`,values)
             .then(response => {
 

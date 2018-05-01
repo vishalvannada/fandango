@@ -161,7 +161,7 @@ router.post('/signup', function (req, res) {
                 console.log("Inside the success criteria");
 
                 req.session.accountType = "user";
-                req.user.user.accountType = "user";
+                //req.user.user.accountType = "user";
                 res.status(201).json({username:results.user,message: "User Details Saved successfully",accountType:"User"});
             }
             else {
