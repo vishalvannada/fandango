@@ -735,6 +735,58 @@ function saveTransaction(msg, callback) {
     });
 
 }
+
+function checkaddMovieHallAdmin(msg, callback) {
+    console.log("In checkaddMovieHallAdmin ===============================================")
+// Date: msg.reqBody.movies.Date
+
+    console.log("msg value from addMovieHallAdmin++++++++++++++++++ ", msg);
+    var res = {};
+    MoviehallUser.findAll({
+        where: {
+            email: {$like: msg.reqBody.owner_email}
+        },
+        order: [['createdAt', 'ASC']]
+    }).then(function(users) {
+        console.log("users",users.length);
+        if (users.length === 0) {
+            console.log('error');
+            res.code = 401;
+            res.message = "user details not found";
+            callback(null, res);
+        }
+        else if(users) {
+            console.log("users details found");
+            res.code = 201;
+            res.users = users;
+            res.messsage = "users details found";
+            callback(null, res);
+        }
+
+
+            //callback(null, res);
+
+    }).catch(err =>{
+        res.code=401;
+        callback(null,err)}
+    );
+
+
+    /*transactions.create(data).then(function (newUser, created) {
+        if (!newUser) {
+            res.message = 'Transaction not Saved';
+            callback(null, res);
+        }
+        if (newUser) {
+            res.code = 201;
+            res.message = 'Transaction Saved';
+            res.user = newUser;
+            callback(null, res);
+        }
+
+    });*/
+
+}
 function addMovieHallAdmin(msg, callback) {
     console.log("In save Transaction ===============================================")
 // Date: msg.reqBody.movies.Date
@@ -881,4 +933,5 @@ exports.getmovierevenue = getmovierevenue;
 exports.addMovieHallAdmin=addMovieHallAdmin;
 exports.handle_bookingsearch=handle_bookingsearch;
 exports.handle_cancelbooking=handle_cancelbooking;
+exports.checkaddMovieHallAdmin=checkaddMovieHallAdmin;
 

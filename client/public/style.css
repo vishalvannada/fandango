@@ -541,6 +541,7 @@ ul.breadcrumb {
 
 .carousel-date{
     border: 1px solid #CCCCCC;
+    cursor: pointer;
 }
 
 

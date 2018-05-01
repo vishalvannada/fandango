@@ -121,6 +121,7 @@ class MovieTopSection extends Component {
                             <h1 className="font-condensed-bold-white pt-3">
                                 MOVIE TIMES + TICKETS FOR
                                 <span className="font-color-fandango">  {(this.state.movieSearch).toUpperCase()}</span>
+                                - <span className="font-color-fandango">  {moment(this.state.Date).format("YYYY-MM-DD")} </span>
                             </h1>
 
                             <nav class="nav-movie-top pb-2">
@@ -158,7 +159,12 @@ class MovieTopSection extends Component {
                         </div>
                     </div>
 
-                    <div className="fandango-container">
+
+
+
+                    <div className="fandango-container row">
+
+
                         {this.props.movietime.moviesTheatres.moviemap.map((item) => {
                             return (
                                 <div className="moviesTheatres col-10" id="moviesTheatres">

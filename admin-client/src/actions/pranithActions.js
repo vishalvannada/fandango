@@ -1,6 +1,7 @@
 import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
+import swal from 'sweetalert'
 
 const ROOT_URL = 'http://localhost:3001';
 
@@ -46,6 +47,23 @@ export function getAllMovieHalls(values) {
 
                 console.log(response.data)
                 dispatch(GetMoviesnHallsReducer(response.data))
+            }).catch(error => {
+                console.log(error);
+            });
+    }
+}
+export function saveMovieHallEdits(values) {
+    console.log("from action saveMovieHallEdits");
+    return (dispatch) => {
+        console.log("kjhg")
+        const response = axios.post(`${ROOT_URL}/movietheatres/savemoviehalledits`,values)
+            .then(response => {
+
+                console.log(response.data)
+                if(response.data.code==200) {
+                    swal("Movies Edited")
+                }
+               // dispatch(GetMoviesnHallsReducer(response.data))
             }).catch(error => {
                 console.log(error);
             });

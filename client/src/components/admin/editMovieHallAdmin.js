@@ -258,9 +258,11 @@ function validate(values) {
 
 function mapStateToProps(state) {
     return {
+
+        moviesDropdown:state.moviesDropdown,
         movietime: state.moviesSearchPagePK,
         user: state.getUser,
-        moviesDropdown: state.moviesDropdown,
+
         addMovies: state.addMovies,
     }
 }

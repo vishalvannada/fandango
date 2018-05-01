@@ -244,6 +244,30 @@ router.post('/addMovieHallAdmin', function (req, res) {
 
     });
 });
+router.post('/savemoviehalledits', function (req, res) {
+    // console.log("from addmovies_topic entry");
+   // console.log("-----------savemoviehalledits------------------------------------------");
+  //  console.log(req.body.Date);
+    kafka.make_request('savemoviehalledits_topic',{"reqBody":req.body}, function (err, results) {
+    console.log(results,"?????????????????????????????????");
+        if (results.code == 200||results.code == 201) {
+            console.log("-----------savemoviehalledits------------------------------------------");
+            // console.log(results);
+            res.status(201).send(results)
+        }
+        else if(results.code=400){
+
+            //console.log(results);
+            res.status(208).send("movie not added");
+            // res.status(401).end()
+        }else {
+            console.log('fuckedup', results);
+
+        }
+
+    });
+});
+
 router.post('/getAllMovieHalls', function (req, res) {
     // console.log("from addmovies_topic entry");
     console.log("-----------------------------------------------------");

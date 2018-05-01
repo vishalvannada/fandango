@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 import moment from 'moment';
+import swal from 'sweetalert';
 import Seat from 'material-ui/svg-icons/notification/airline-seat-flat-angled';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 var axios = require('axios');
@@ -84,14 +85,28 @@ class CheckOut extends Component {
                                         placeholder="Enter number of tickets"
                                         type="number" min="1"
                                         onChange={(event)=>{
-                                            this.setState({noOfTickets:event.target.value});
-                                            var ticket_price_total=parseInt(this.props.location.state.movie.TicketPrice)*parseInt(event.target.value);
-                                            this.setState({ticketValue:ticket_price_total});
-                                            var tax = ticket_price_total*0.1;
-                                            this.setState({tax:tax});
-                                            var totalSum= ticket_price_total+tax;
-                                            this.setState({totalSum:totalSum})
-                                            console.log(this.state);
+                                            var seatsMovie;
+                                            for (var i = 0; i < this.props.location.state.movie.Showtimes.length; i++) {
+                                                if (this.props.location.state.movie.Showtimes[i].time == this.props.location.state.showtime) {
+                                                    seatsMovie = this.props.location.state.movie.Showtimes[i].seats;
+                                                }
+
+                                            }
+                                            console.log(seatsMovie,parseInt(event.target.value))
+                                            if(seatsMovie<parseInt(event.target.value)) {
+                                                swal(` Only ${seatsMovie} tickets are left !!!!`);
+                                            }else {
+
+
+                                                this.setState({noOfTickets: event.target.value});
+                                                var ticket_price_total = parseInt(this.props.location.state.movie.TicketPrice) * parseInt(event.target.value);
+                                                this.setState({ticketValue: ticket_price_total});
+                                                var tax = ticket_price_total * 0.1;
+                                                this.setState({tax: tax});
+                                                var totalSum = ticket_price_total + tax;
+                                                this.setState({totalSum: totalSum})
+                                                console.log(this.state);
+                                            }
 
 
                                 }}

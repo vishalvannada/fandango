@@ -63,8 +63,10 @@ export function addMovieHallAdmin(values) {
 export function getAllMovieHalls(values) {
     console.log("from action GetMoviesnHalls");
     return (dispatch) => {
-        console.log("kjhg")
-        const response = axios.post(`${ROOT_URL}/movietheatres/getAllMovieHalls`, values)
+
+        console.log("kjhg",values)
+        const response = axios.post(`${ROOT_URL}/movietheatres/getAllMovieHalls`,values)
+
             .then(response => {
 
                 console.log(response.data)
@@ -110,8 +112,10 @@ function savedPayment(values) {
 export function GetMoviesnHalls(values) {
     console.log("from action GetMoviesnHalls");
     return (dispatch) => {
-        console.log("kjhg")
-        const response = axios.post(`${ROOT_URL}/movietheatres/getmoviesnhalls`, values)
+
+        console.log("kjhg", values)
+        const response = axios.post(`${ROOT_URL}/movietheatres/getmoviesnhalls`,values)
+
             .then(response => {
 
                 console.log(response.data)
