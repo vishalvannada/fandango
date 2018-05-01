@@ -24,6 +24,15 @@ class Movietime extends Component {
                     console.log("usertracking error", error);
                 });
 
+            var values1 = {Page: "Movietime"};
+
+            const request1 = axios.post('http://localhost:3001/movietheatres/pageclicks', values1)
+                .then(response => {
+                    console.log("sucessss", response.data)
+                }).catch(error => {
+                    console.log("usertracking error", error);
+                });    
+
             console.log("after ttasildjfksdfh")
         }
     }

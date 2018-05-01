@@ -87,7 +87,7 @@ function movieclicks(msg, callback) {
             console.log("movieclicks msg",msg);
 
             coll.findOneAndUpdate(
-                { "moviename": msg.reqBody.Page, "tmdbid":msg.reqBody.tmdbid, "poster_path":msg.reqBody.poster_path },
+                { "moviename": msg.reqBody.movie, "tmdbid":msg.reqBody.tmdbid, "poster_path":msg.reqBody.poster_path },
                 { $inc: { "count": 1 } },
                 {upsert: true}
                 );

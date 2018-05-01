@@ -23,7 +23,7 @@ function handle_request(msg, callback) {
         };
 
 
-        client.get(queryJson.tmdbid, function(err, reply) {
+        /*client.get(queryJson.tmdbid, function(err, reply) {
             console.log(reply);
             if(reply == null){
                 console.log("in redisssssssssssssssssssssssss");
@@ -40,18 +40,19 @@ function handle_request(msg, callback) {
                             callback(null, res); 
                        });
                         /*console.log("movie",movie)
-                        callback(null, res);*/
+                        callback(null, res);
                     }
                 });
 
             }else{
                     console.log("dataa from redissssssssssssssssssssssssssssss");
-                    console.log(JSON.parse(reply));
+                    //console.log(JSON.parse(reply));
                     callback(null, JSON.parse(reply));
+                    //callback(null, reply);
             }
-        });
+        });*/
 
-/*
+
 
         MongoConPool.findOne('movies', queryJson, function (err, movie) {
             if (err) {
@@ -64,7 +65,7 @@ function handle_request(msg, callback) {
                 console.log("movie",movie)
                 callback(null, res);
             }
-        });*/
+        });
 
     }
     catch
