@@ -111,6 +111,8 @@ class MovieRating extends Component {
 
     render() {
 
+        console.log(new Date(this.props.movie.movie.release_date) > new Date())
+
 
         var divStyle = {
             backgroundImage: `url(http://image.tmdb.org/t/p/original${this.props.movie.movie.poster_path})`,
@@ -250,7 +252,9 @@ class MovieRating extends Component {
                                                 component={this.renderText}/>
 
 
-                                            <button className="btn align-right" type="submit">
+
+
+                                            <button className={`btn align-right ${new Date(this.props.movie.movie.release_date) > new Date() ? 'disabled' : ''}`} type="submit">
                                                 Save Review
                                             </button>
 

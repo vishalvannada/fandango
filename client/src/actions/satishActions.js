@@ -289,8 +289,8 @@ export function changeBasicInfo(userdata) {
         axios.post(`${ROOT_URL}/user/basicInfo`, userdata,{withCredentials: true})
             .then((res) => {
             if(res.status===201){
-                console.log("Inside actions 'Response'-> ", res.data.user);
-                dispatch({type: BASIC_INFO_SUCCESS, payload: res.data.user});
+                console.log("Inside actions 'Response'-> ", res.data);
+                dispatch({type: BASIC_INFO_SUCCESS, payload: res.data});
                 swal("Basic Info changed Successfully");
             }
 
@@ -316,7 +316,7 @@ export function changeEmail(userdata) {
             })
             .catch((error) => {
                 dispatch({type: EMAIL_ERROR, payload: error})
-                swal("Email change failed");
+                swal("Email Already Exists, Please Enter Other Email");
             });
 
     }
@@ -363,7 +363,7 @@ export function changePassword(userdata) {
             })
             .catch((error) => {
                 dispatch({type: PASSWORD_ERROR, payload: error})
-                swal("password changed failed");
+                swal("password changed failed, please enter correct old password");
             });
 
     }

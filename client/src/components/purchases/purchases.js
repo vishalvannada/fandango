@@ -17,6 +17,24 @@ class Purchases extends Component {
     constructor(props) {
         super(props);
     }
+
+    componentWillMount(){
+        if(this.props.user.isLoggedIn==true)
+        {
+            console.log("User Email............",this.props.user.user.email);
+            var values={username:this.props.user.user.email, status:"open", pagename:"PurchaseHistory"};
+
+            const request =axios.post('http://localhost:3001/movietheatres/usertrack',values)
+                .then(response => {
+                    console.log("sucessss",response.data)
+                }).catch(error => {
+                    console.log("usertracking error",error);
+                });
+
+        }
+
+    }
+
     componentDidMount(){
         this.props.purchaseHistory();
     }
@@ -49,7 +67,7 @@ class Purchases extends Component {
 
 
 function mapStateToProps(store) {
-    return ({purchases:store.purchases});
+    return ({purchases:store.purchases, user : store.getUser});
 }
 
 function mapDispatchToProps(dispatch) {

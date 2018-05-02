@@ -80,6 +80,8 @@ class MovieOverview extends Component {
                 {this.props.movie.movie.cast ?
                     <CastCrewCarousel cast={this.props.movie.movie.cast.concat(this.props.movie.movie.crew)}/> : ''}
                 <img src="http://localhost:3000/movie-overview-hard.jpg"/>
+
+
                 <MovieReview reviews={this.props.movie.movie.reviews}/>
             </div>
         )

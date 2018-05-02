@@ -31,7 +31,8 @@ export function doSignUp(userdata) {
                 dispatch({type:SIGN_UP_SUCCESS, payload:res.data});
             })
             .catch((error) => {
-                dispatch({type:SIGN_UP_ERROR, payload:error})
+                console.log(error.response)
+                dispatch({type:SIGN_UP_ERROR, payload:error.response})
             });
 
     }

@@ -76,7 +76,7 @@ class BrandBar extends Component {
                         <nav className="text-right">
                             <a href="/fandango-gift-cards">Gift Cards</a> |
                             <a href="/freemovietickets"> Offers</a> |
-                            {this.props.user.isLoggedIn ? (
+                            {this.props.user.isLoggedIn && this.props.user.user.accountType == 'user' ? (
                                 <button className="show-logged-in" onClick={this.handleSignout.bind(this)}>
                                     Sign Out </button>
                             ) : (

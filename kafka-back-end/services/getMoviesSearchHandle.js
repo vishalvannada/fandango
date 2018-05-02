@@ -311,9 +311,11 @@ function handle_addOwnerMovies(msg, callback) {
 
 
     var d = new Date();
+    let newDate = new Date();
+    d.setDate(d.getDate() - 4);
+
 
     {
-
         //console.log(d,"??????????????????????????????????????????????????????????????????????????????????");
         var queryJson = {
             // "_id":parseInt(randomInt(9,1000000)),
@@ -326,18 +328,14 @@ function handle_addOwnerMovies(msg, callback) {
                 "MovieName": "Rampage"
             },
             "ScreenNo": 1,
-            "Showtimes": { time:"10:30a",seats:40},
+            "Showtimes": [{time: "10:30a", seats: 40}, {time: "9:30a", seats: 40}],
             "NoofSeats": 15,
             "TicketPrice": 10,
             "Date": d,
             "user": msg.reqBody.owner_email
         };
 
-
-        //queryJsonArray.push(queryJson);
-
     }
-
     {
         // console.log(msg.reqBody,"????????????????????????????????????????????????????");
         try {
@@ -722,17 +720,13 @@ function handle_savemoviehalledits(msg, callback) {
         console.log(msg.reqBody.movietheatername.data.length);
         console.log(msg.reqBody.owner_email);
 
-        var insertQuery={
-        "$set":{
-        "HallID":Hallnew,
-            "user":msg.reqBody.owner_email
+        var insertQuery = {
+            "$set": {
+                "HallID": Hallnew,
+                "user": msg.reqBody.owner_email
 
+            }
         }
-        }
-
-
-
-
 
 
         user.checkaddMovieHallAdmin(msg, function (err, results) {
@@ -754,19 +748,19 @@ function handle_savemoviehalledits(msg, callback) {
                         }
                     });
                 }
-                res.code=200;
-                res.value="Tried Changing values";
-                callback(null,res);
+                res.code = 200;
+                res.value = "Tried Changing values";
+                callback(null, res);
 
-            }else if(results.code==401){
-                res.code=401;
-                res.msg="error";
-                callback(null,res);
+            } else if (results.code == 401) {
+                res.code = 401;
+                res.msg = "error";
+                callback(null, res);
             }
 
 
         });
-        }
+    }
     catch
         (e) {
         res.code = 401;

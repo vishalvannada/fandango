@@ -121,7 +121,8 @@ function check_request(msg, callback) {
         var track = [];
         //Tracking of User
         var collection = db.collection('usertrack');
-        collection.find({status: "close"}).limit(30).toArray(function (err, docs) {
+        //collection.find({status: "close"}).limit(30).toArray(function (err, docs) {
+        collection.find({}).limit(30).toArray(function (err, docs) {
             console.log("User Tacking ----->" + JSON.stringify(docs));
 
             var i = 0, j = 0, k = 0;

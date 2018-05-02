@@ -128,19 +128,19 @@ describe('Admin Module and User Tests', function () {
         })
     });
 
-    it('Should not signup, as the email id already exists', function (done) {
+    it('Should SignUp', function (done) {
         request.post('http://localhost:3001/user/signup', {
             form: {
 
                 firstname: 'vishal',
                 password: 'vishal',
-                email: 'vnn@gmail.com'
+                email: 'ghkkio@gmail.com'
 
             }
         }, function (err, res) {
             //   console.log(res.statusCode);
             //console.log(res);
-            assert.equal(401, res.statusCode);
+            assert.equal(201, res.statusCode);
             done();
         })
     });
@@ -209,16 +209,6 @@ describe('Admin Module and User Tests', function () {
         })
     });
 
-    it('should enable users to login to existing account', function (done) {
-        request.post('http://localhost:3001/getMoviesInSearchPage', function (err, res) {
-            //   console.log(res.statusCode);
-            //console.log(res);
-            assert.equal(201, 201);
-            done();
-
-        });
-    });
-
     it('Should display the user details in the dashboard', function (done) {
         request.post('http://localhost:3001/getMoviesInSearchPage', function (err, res) {
             //   console.log(res.statusCode);
@@ -247,12 +237,6 @@ describe('Admin Module and User Tests', function () {
         })
     });
 
-    it('Should change the user firstname last and address succesfully', function (done) {
-        request.post('http://localhost:3001/movietheatres/getmoviesnhalls', function (error, response, body) {
-            assert.equal(201, 201);
-            done();
-        });
-    });
 
     it('Should change the user email address succesfully ', function (done) {
         request.post('http://localhost:3001/getmoviesnhalls', function (error, response, body) {

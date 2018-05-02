@@ -4,7 +4,7 @@ import {doSignUp} from '../actions/rishithActions';
 import {Route, withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm } from 'redux-form';
 import './Signin/signup.css';
 import logo from './Signin/fandango-logo.svg';
 import offer from './Signin/offers.png'
@@ -71,11 +71,11 @@ class SignUp extends Component {
                                 <div className="large-11 large-centered columns">
                                     <ul className="inline-items">
                                         <li className="site-logo">
-                                            <a className="fandango-logo" href="http://www.fandango.com/">
+                                            <Link className="fandango-logo" to="/home">
                                                 <img
                                                     src={logo}
                                                     alt="Fandango Logo" className="brand-img"/>
-                                            </a>
+                                            </Link>
                                         </li>
                                     </ul>
                                     <div className="registration-mode right">
@@ -183,11 +183,12 @@ class SignUp extends Component {
                                                        type = 'password'
                                                        component={this.renderField}
                                                 />
-                                                <small className="password-instruction">Use 8 or more characters
-                                                    with a letter and a number or symbol. No more than 3 of the same
-                                                    character in a row.
-                                                </small>
+                                                {/*<small className="password-instruction">Use 8 or more characters*/}
+                                                    {/*with a letter and a number or symbol. No more than 3 of the same*/}
+                                                    {/*character in a row.*/}
+                                                {/*</small>*/}
                                                 {/* Confirm Password */}
+                                                <label>Confirm Password</label>
                                                 <Field name="confirm_password"
                                                        className="form-control form-control-lg registration-form-confirm-password"
                                                        id="ConfirmPasswordBox"

@@ -19,6 +19,7 @@ export function getMoviesInSearchPage(values) {
             });
     }
 }
+
 export function addMovieHallAdmin(values) {
     console.log("from action addMovieHallAdmin", values);
     return (dispatch) => {
@@ -26,14 +27,18 @@ export function addMovieHallAdmin(values) {
         const response = axios.post(`${ROOT_URL}/movietheatres/addMovieHallAdmin`,values)
             .then(response => {
 
-                console.log(response.data)
-                if(response.data.code==200)
-                dispatch(moviesInSearchPageAdmin(true))
-                else
-                    dispatch(moviesInSearchPageAdmin(false))
+                console.log(response.data);
+                if(response.data.code==200){swal("Movie Successfully added");
+                    dispatch(moviesInSearchPageAdmin(true))}
+
+                else{
+                    swal("Try again with different credentials");
+                    dispatch(moviesInSearchPageAdmin(false))}
+
             }).catch(error => {
                 console.log(error);
                 dispatch(moviesInSearchPage(false))
+                swal("Try again with different credentials");
             });
     }
 }

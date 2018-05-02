@@ -106,7 +106,7 @@ class MovieTopSection extends Component {
                         }} className="my-2 my-sm-0 ml-4 header-button-go ">GO
                         </button>
 
-                    </div> <br/>No Movies Found</div>
+                    </div> <br/> <h2 className='ml-3'>No Theatres Found, Search for other Movies</h2></div>
             )
         }
 

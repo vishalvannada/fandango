@@ -45,7 +45,7 @@ router.post('/signin', function (req, res, next) {
                 if (err) {
                     console.log(err);
 
-                    return res.status(401).json({message:"Invalid Credentials"});
+                    return res.status(401).json({message: "Invalid Credentials"});
                 }
                 else {
                     req.session.save(function (err) {
@@ -109,8 +109,7 @@ router.post('/movieHallSignin', function (req, res, next) {
                         req.session.accountType = "MoviehallAdmin";
                         req.user.user.accountType = "MoviehallAdmin";
                         console.log("session email", req.session.email);
-                        return res.status(201).
-                        json({username: req.user.user,accountType:"MoviehallAdmin"});
+                        return res.status(201).json({username: req.user.user, accountType: "MoviehallAdmin"});
                     });
                 }
             });
@@ -141,7 +140,7 @@ router.post('/adminSignin', function (req, res, next) {
                         req.session.accountType = "Admin";
                         req.user.user.accountType = "Admin";
                         console.log("session email", req.session.email);
-                        return res.status(201).json({username: req.user.user,accountType:"Admin"});
+                        return res.status(201).json({username: req.user.user, accountType: "Admin"});
                     });
                 }
             });
@@ -166,11 +165,14 @@ router.post('/signup', function (req, res) {
                 req.session.accountType = "user";
                 //req.user.user.accountType = "user";
                 // req.user.user.accountType = "user";
-                res.status(201).json({username:results.user,message: "User Details Saved successfully",accountType:"User"});
+                res.status(201).json({
+                    message: "User Details Saved successfully",
+                    accountType: "user"
+                });
             }
             else {
-                res.status(401).json({message: results.message});
-
+                console.log(results.message)
+                res.status(401).send({message: results.message});
             }
         }
     });
@@ -212,10 +214,10 @@ router.post('/basicInfo', function (req, res) {
     });
 });
 
-router.delete('/deleteuser',function(req,res){
+router.delete('/deleteuser', function (req, res) {
     var email = req.query.email;
-    console.log("user email",req.query.email);
-    kafka.make_request('deleteuser', {"email":email}, function (err, results) {
+    console.log("user email", req.query.email);
+    kafka.make_request('deleteuser', {"email": email}, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -237,10 +239,10 @@ router.delete('/deleteuser',function(req,res){
 })
 
 
-router.delete('/deleteMoviehallUser',function(req,res){
+router.delete('/deleteMoviehallUser', function (req, res) {
     var email = req.query.email;
-    console.log("user email",req.query.email);
-    kafka.make_request('deleteMoviehallUser', {"email":email}, function (err, results) {
+    console.log("user email", req.query.email);
+    kafka.make_request('deleteMoviehallUser', {"email": email}, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -261,10 +263,10 @@ router.delete('/deleteMoviehallUser',function(req,res){
 
 })
 
-router.delete('/deleteSelfuser',function(req,res){
+router.delete('/deleteSelfuser', function (req, res) {
     var email = req.query.email;
-    console.log("user email",req.query.email);
-    kafka.make_request('deleteuser', {"email":email}, function (err, results) {
+    console.log("user email", req.query.email);
+    kafka.make_request('deleteuser', {"email": email}, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -297,7 +299,7 @@ router.post('/editUserAccount', function (req, res) {
     console.log("session email", req.session.email);
     // console.log("req user",req.user);
     var email = req.body.oldemail;
-    kafka.make_request('editUserAccount', {"user": req.body,"email":email}, function (err, results) {
+    kafka.make_request('editUserAccount', {"user": req.body, "email": email}, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -306,9 +308,9 @@ router.post('/editUserAccount', function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
-                req.session.email= results.user.email;
-                req.user= results.user;
-                res.status(201).json({message: "user Account Saved successfully",user:results.user});
+                req.session.email = results.user.email;
+                req.user = results.user;
+                res.status(201).json({message: "user Account Saved successfully", user: results.user});
             }
             else {
                 res.status(401).json({message: results.message});
@@ -325,7 +327,7 @@ router.post('/editMoviehallUserAccount', function (req, res) {
     console.log("session email", req.session.email);
     // console.log("req user",req.user);
     var email = req.body.oldemail;
-    kafka.make_request('editMoviehallUserAccount', {"user": req.body,"email":email}, function (err, results) {
+    kafka.make_request('editMoviehallUserAccount', {"user": req.body, "email": email}, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -334,9 +336,9 @@ router.post('/editMoviehallUserAccount', function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
-                req.session.email= results.user.email;
-                req.user= results.user;
-                res.status(201).json({message: "Movie hall user Account Saved successfully",user:results.user});
+                req.session.email = results.user.email;
+                req.user = results.user;
+                res.status(201).json({message: "Movie hall user Account Saved successfully", user: results.user});
             }
             else {
                 res.status(401).json({message: results.message});
@@ -346,7 +348,6 @@ router.post('/editMoviehallUserAccount', function (req, res) {
     });
 
 });
-
 
 
 router.post('/editMoviehallUserAccount', function (req, res) {
@@ -354,7 +355,7 @@ router.post('/editMoviehallUserAccount', function (req, res) {
     console.log("session email", req.session.email);
     // console.log("req user",req.user);
     var email = req.body.oldemail;
-    kafka.make_request('editMoviehallUserAccount', {"user": req.body,"email":email}, function (err, results) {
+    kafka.make_request('editMoviehallUserAccount', {"user": req.body, "email": email}, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -363,9 +364,9 @@ router.post('/editMoviehallUserAccount', function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
-                req.session.email= results.user.email;
-                req.user= results.user;
-                res.status(201).json({message: "Movie hall user Account Saved successfully",user:results.user});
+                req.session.email = results.user.email;
+                req.user = results.user;
+                res.status(201).json({message: "Movie hall user Account Saved successfully", user: results.user});
             }
             else {
                 res.status(401).json({message: results.message});
@@ -375,13 +376,12 @@ router.post('/editMoviehallUserAccount', function (req, res) {
     });
 
 });
-
 
 
 router.post('/email', function (req, res) {
     console.log("session email", req.session.email);
-    console.log("req user",req.user);
-    kafka.make_request('changeEmail', {"user": req.body,"email":req.session.email}, function (err, results) {
+    console.log("req user", req.user);
+    kafka.make_request('changeEmail', {"user": req.body, "email": req.session.email}, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -390,9 +390,9 @@ router.post('/email', function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
-                req.session.email= results.user.email;
-                req.user= results.user;
-                res.status(201).json({message: "User email Saved successfully",user:results.user});
+                req.session.email = results.user.email;
+                req.user = results.user;
+                res.status(201).json({message: "User email Saved successfully", user: results.user});
             }
             else {
                 res.status(401).json({message: results.message});
@@ -404,9 +404,8 @@ router.post('/email', function (req, res) {
 });
 
 
-
 router.post('/password', function (req, res) {
-    kafka.make_request('changePassword', {"user": req.body,"email":req.session.email}, function (err, results) {
+    kafka.make_request('changePassword', {"user": req.body, "email": req.session.email}, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -415,7 +414,7 @@ router.post('/password', function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
-                res.status(201).json({message: "password Saved successfully",user:results.user});
+                res.status(201).json({message: "password Saved successfully", user: results.user});
             }
             else {
                 res.status(401).json({message: "password update failed"});
@@ -427,7 +426,7 @@ router.post('/password', function (req, res) {
 });
 
 
-router.get('/searchusers',function(req,res){
+router.get('/searchusers', function (req, res) {
     var user = req.query.user;
     kafka.make_request('searchusers', {"user": user}, function (err, results) {
         console.log('in result');
@@ -458,18 +457,18 @@ router.get('/movieRevenue', function (req, res) {
 
         if (results.code === 201) {
             console.log(results);
-            res.status(201).json({message:results.message,data:results.results});
+            res.status(201).json({message: results.message, data: results.results});
         }
         else {
             console.log('roo', results);
-            res.status(401).json({message:results.message});
+            res.status(401).json({message: results.message});
         }
 
     });
 });
 
 
-router.get('/searchMoviehallUsers',function(req,res){
+router.get('/searchMoviehallUsers', function (req, res) {
     var user = req.query.user;
     kafka.make_request('searchMoviehallUsers', {"user": user}, function (err, results) {
         console.log('in result');
@@ -491,9 +490,7 @@ router.get('/searchMoviehallUsers',function(req,res){
 });
 
 
-
-
-router.get('/purchaseHistory',function (req, res) {
+router.get('/purchaseHistory', function (req, res) {
     var email = req.session.email;
 
     kafka.make_request('purchaseHistory', {"email": email}, function (err, results) {
@@ -517,7 +514,7 @@ router.get('/purchaseHistory',function (req, res) {
 
 
 router.post('/savePayment', function (req, res) {
-    kafka.make_request('savePayment', {"user": req.body,"email":req.session.email}, function (err, results) {
+    kafka.make_request('savePayment', {"user": req.body, "email": req.session.email}, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -541,11 +538,14 @@ router.post('/savePayment', function (req, res) {
 router.post('/image', type, function (req, res) {
 
     console.log("dfghjbkn")
-    console.log("fghjm",req.user.user.email)
+    console.log("fghjm", req.user.user.email)
     console.log(req.file.filename)
     req.file.filename;
 
-    kafka.make_request('uploadimage', {"filename": req.file.filename, "email" : req.user.user.email}, function (err, results) {
+    kafka.make_request('uploadimage', {
+        "filename": req.file.filename,
+        "email": req.user.user.email
+    }, function (err, results) {
         console.log('in result');
         console.log(results);
         if (err) {
@@ -554,7 +554,7 @@ router.post('/image', type, function (req, res) {
         else {
             if (results.code === 201) {
                 console.log("Inside the success criteria");
-                res.status(201).json({message: "User email Saved successfully", user : results.user});
+                res.status(201).json({message: "User email Saved successfully", user: results.user});
             }
             else {
                 res.status(401).json({message: "user email update failed"});

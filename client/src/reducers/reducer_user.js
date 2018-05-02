@@ -30,7 +30,7 @@ export default function (state={
             return  {...state, isLoggedIn:true, message: action.payload.message};
             break;
         case SIGN_UP_ERROR:
-            return {...state, isLoggedIn:false, message:action.payload.response.data.message};
+            return {...state, isLoggedIn:false, message:action.payload.data.message};
 
         case SIGN_OUT:
             //  sessionStorage.clear();

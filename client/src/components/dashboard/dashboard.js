@@ -183,7 +183,7 @@ class Dashboard extends Component {
 
 function mapStateToProps(state) {
     return {home: state.home,
-         user:state.userProfile}
+         user:state.getUser}
 }
 
 function mapDispatchToProps(dispatch) {
